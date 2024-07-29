@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { EditarLibroComponent } from './editar-libro.component';
+
+describe('EditarLibroComponent', () => {
+  let component: EditarLibroComponent;
+  let fixture: ComponentFixture<EditarLibroComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [EditarLibroComponent]
+    });
+    fixture = TestBed.createComponent(EditarLibroComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

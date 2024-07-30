@@ -1,11 +1,99 @@
 /* - - - - FORMULARIO - - - - */
-.container {
+.card {
+    height: 76.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../../../assets/fondoPrincipal.png'); 
-    background-size: cover; 
+    background-color: var(--gris-claro);
+    background-size: cover;
     background-position: center;
-
-    height: 100vh; /* pendiente de ajustar con header y footer */   
 }
+
+.tarjeta {
+    width: 78%;
+    height: 90%;
+    padding: 8vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--rosa-claro);
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+/* SOMBRA TARJETA */
+
+.tarjeta:before,
+.tarjeta:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+
+.tarjeta:after {
+    right: 10px;
+    left: auto;
+    -webkit-transform: skew(8deg) rotate(3deg);
+    -moz-transform: skew(8deg) rotate(3deg);
+    -ms-transform: skew(8deg) rotate(3deg);
+    -o-transform: skew(8deg) rotate(3deg);
+    transform: skew(8deg) rotate(3deg);
+}
+
+/* SOMBRA TARJETA */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+.Input-text {
+    display: block;
+    margin: 0;
+    padding: var(--morado-medio) var(--morado);
+    color: inherit;
+    width: 100%;
+    /* font-size: var(--morado-claro); */
+    font-size: 2.5rem;
+    font-weight: inherit;
+    line-height: var(--morado-medio);
+    border: none;
+    border-radius: 0.4rem;
+    transition: box-shadow var(--morado-claro);
+    margin: 4vh;
+    padding: 2vh;
+    cursor: pointer;
+}
+
+.Input-text::placeholder {
+    padding: 4vh;
+}
+
+input[type=text]:hover{
+    box-shadow: 0 0 5pt 0.5pt #D3D3D3;
+  }
+  input[type=text]:focus {
+    box-shadow: 0 0 5pt 2pt #D3D3D3;
+    outline-width: 0px;
+  }
+  

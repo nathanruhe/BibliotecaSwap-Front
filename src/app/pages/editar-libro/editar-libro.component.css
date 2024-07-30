@@ -1,0 +1,11 @@
+/* - - - - FORMULARIO - - - - */
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gris-claro);
+    background-size: cover; 
+    background-position: center;
+
+    height: 100vh; /* pendiente de ajustar con header y footer */   
+}

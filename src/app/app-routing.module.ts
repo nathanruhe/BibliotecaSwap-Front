@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'addLibro', component: AnadirLibroComponent },
   { path: 'editLibro', component: EditarLibroComponent },
-  {path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

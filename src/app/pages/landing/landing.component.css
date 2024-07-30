@@ -1,0 +1,11 @@
+/* - - - - FORMULARIO - - - - */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../assets/fondoPrincipal.png'); 
+    background-size: cover; 
+    background-position: center;
+
+    height: 100vh; /* pendiente de ajustar con header y footer */   
+}

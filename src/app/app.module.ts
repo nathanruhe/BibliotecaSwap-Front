@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms'; // control formularios
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormRegistroComponent } from './components/form-registro/form-registro.component';
-import { FormLoginComponent } from './components/form-login/form-login.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { LibroLandingComponent } from './components/libro-landing/libro-landing.component';
 import { LibroBibliotecaComponent } from './components/libro-biblioteca/libro-biblioteca.component';
@@ -26,14 +25,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.component';
 import { FilterPopupComponent } from './components/filter-popup/filter-popup.component';
+import { HeaderloginComponent } from './components/headerlogin/headerlogin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    FormRegistroComponent,
-    FormLoginComponent,
     LibroComponent,
     LibroLandingComponent,
     LibroBibliotecaComponent,
@@ -52,11 +50,13 @@ import { FilterPopupComponent } from './components/filter-popup/filter-popup.com
     LoginComponent,
     RegistroComponent,
     PerfilOtrosComponent,
-    FilterPopupComponent
+    FilterPopupComponent,
+    HeaderloginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule, // control formularios
   ],
   providers: [],
   bootstrap: [AppComponent]

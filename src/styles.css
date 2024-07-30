@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    /* FUENTES */
+    --titulo-fuente: "Aclonica";
+    --texto-fuente: "Reem Kufi";
+
+    /* TAMAÑOS */
+    --titulo-size: 25px;
+    
+    /* COLORES PRINCIPALES */
+    --azul: #6786F5;
+    --morado: #9389F0;
+    --morado-medio: #9389F07D;
+    --morado-claro: #8800FF1A;
+    --rosa-claro: #FAE9FF;
+    --gris-claro: #F4F4F4;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+
+/* BOTONES */
+.btn-principal {
+    background-color: var(--azul);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: auto;
+    font-family: var(--texto-fuente);
+}
+   

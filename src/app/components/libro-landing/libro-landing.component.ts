@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Libro } from 'src/app/models/libro';
 
 @Component({
   selector: 'app-libro-landing',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./libro-landing.component.css']
 })
 export class LibroLandingComponent {
+
+  @Input() libro: Libro;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    
+  }
 
 }

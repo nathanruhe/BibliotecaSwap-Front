@@ -1,0 +1,65 @@
+/* - - - - FORMULARIO - - - - */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../../assets/fondoPrincipal.png'); 
+    background-size: cover; 
+    background-position: center;
+
+    height: 100vh; /* pendiente de ajustar con header y footer */   
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    padding: 30px 40px;
+    border-radius: 20px;
+    width: 450px;
+    background-color: white;
+    box-shadow: 5px 5px 20px black;
+}
+
+    h2 {
+        font-family: var(--titulo-fuente);
+        font-size: var(--titulo-size);
+    }
+
+    form div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        form div input {
+            text-align: center;
+            border-radius: 5px;
+            padding: 8px;
+            border: 0;
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.5);
+            background-color: var(--gris-claro);
+        }
+
+            input::placeholder {
+                font-family: var(--texto-fuente);
+            }
+
+
+/* - - - - INVALIDS - - - - */
+
+.invalido {
+    border: 1px solid red;
+}
+
+.mensajeInvalido div {
+    color: red;
+    font-size: 15px;
+    text-align: start;
+}
+
+.btn-disabled:disabled {
+    opacity: 0.2;
+}

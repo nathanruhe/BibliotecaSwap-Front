@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms'; // control formularios
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormRegistroComponent } from './components/form-registro/form-registro.component';
-import { FormLoginComponent } from './components/form-login/form-login.component';
 import { LibroComponent } from './components/libro/libro.component';
 import { LibroLandingComponent } from './components/libro-landing/libro-landing.component';
 import { LibroBibliotecaComponent } from './components/libro-biblioteca/libro-biblioteca.component';
@@ -31,8 +30,6 @@ import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.componen
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    FormRegistroComponent,
-    FormLoginComponent,
     LibroComponent,
     LibroLandingComponent,
     LibroBibliotecaComponent,
@@ -54,7 +51,8 @@ import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule, // control formularios
   ],
   providers: [],
   bootstrap: [AppComponent]

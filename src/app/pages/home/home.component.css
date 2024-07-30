@@ -1,0 +1,40 @@
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.search-input {
+  font-family: var(--texto-fuente);
+  width: 300px;
+  padding: 10px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  font-family: 'Reem Kufi', sans-serif;
+  background-color: var( --rosa-claro);
+  margin-right: 40px;
+}
+
+.filter-button {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: rgb(51, 167, 239);
+  cursor: pointer;
+}
+
+.icon{
+  width: 80%;
+  object-fit: contain;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+

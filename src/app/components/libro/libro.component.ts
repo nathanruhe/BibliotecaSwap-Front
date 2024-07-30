@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Libro } from 'src/app/models/libro'; 
 
 @Component({
   selector: 'app-libro',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class LibroComponent {
 
+  @Input() book: Libro;
+  @Output() addToFavorites = new EventEmitter<Libro>();
+  @Output() goToPage = new EventEmitter<number>();
+  
+
+  addBookToFavorites() {
+    this.addToFavorites.emit(this.book);
+  }
+
+  navigateToPage() {
+    this.goToPage.emit(this.book.id_book);
+  }
 }

@@ -1,1 +1,33 @@
-<p>libro-biblioteca works!</p>
+<div class="libroBiblioteca">
+  
+  <div class="top-buttons">
+
+    <button class="edit-btn" [routerLink]="['/update', book.id_book]">
+      <img class="icon" src="assets/icons/edit.png">
+    </button>
+
+    <button class="del-btn" >
+      <img  class="icon" src="assets/icons/delete.png">
+    </button>
+  </div>
+  
+  <figure class="imgn">
+    <div class="marco">
+      <img [src]="book.photo" [alt]="book.title">
+    </div>
+    
+    <div class="info">
+      <div class="title">{{ book.title }}</div><br>
+      <div class="author">{{ book.author }}</div>
+      <div class="gender">{{ book.gender }}</div>
+    </div>
+    
+    <div class="statusb">
+      <div class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
+        {{ book.status ? 'Disponible' : 'Prestado' }}
+      </div>
+    </div>
+  
+  </figure>
+
+</div>

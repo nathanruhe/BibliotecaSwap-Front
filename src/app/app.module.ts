@@ -25,6 +25,7 @@ import { EditarLibroComponent } from './pages/editar-libro/editar-libro.componen
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.component';
+import { FilterPopupComponent } from './components/filter-popup/filter-popup.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.componen
     EditarLibroComponent,
     LoginComponent,
     RegistroComponent,
-    PerfilOtrosComponent
+    PerfilOtrosComponent,
+    FilterPopupComponent
   ],
   imports: [
     BrowserModule,

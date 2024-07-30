@@ -1,1 +1,23 @@
-<p>libro-biblioteca works!</p>
+<div class="libroBiblioteca">
+
+    <figure class="imgn">
+
+      <div class="marco">
+        <img [src]="book.photo" [alt]="book.title">
+      </div>
+
+      <div class="info">
+        <figcaption class="gender">{{ book.gender }}</figcaption>
+        <div class="title">{{ book.title }}</div>
+        <div class="author">{{ book.author }}</div>
+      </div>
+
+      
+      <div class="statusb" >
+        <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
+            {{ book.status ? 'Disponible' : 'Prestado' }}
+        </button>
+      </div>
+
+    </figure>
+  </div>

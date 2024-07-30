@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Libro } from 'src/app/models/libro'; 
+
 
 @Component({
   selector: 'app-libro-biblioteca',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class LibroBibliotecaComponent {
 
+  @Input() book: Libro;
+  
 }

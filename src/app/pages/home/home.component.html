@@ -2,11 +2,14 @@
 
     <input type="text" placeholder="Buscar" class="search-input">
     
-    <button (click)="showFilters = !showFilters" class="filter-button">Filtros</button>
+    <button (click)="showFilters = !showFilters" class="filter-button">
+      <img class="icon" src="assets/icons/book-icon.png">
+    </button>
 </div>
   
 <app-filter-popup *ngIf="showFilters" (filterChange)="applyFilters($event)" (close)="closeFilters()"></app-filter-popup>
   
 <div class="cards-container">
-    <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>
+    <!--<app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>-->
+    <app-libro *ngFor="let book of filteredBooks" [book]="book"></app-libro>
 </div>

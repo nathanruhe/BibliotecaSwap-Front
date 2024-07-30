@@ -10,21 +10,25 @@
   font-family: var(--texto-fuente);
   width: 300px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 50px;
   border: 1px solid #ccc;
   font-family: 'Reem Kufi', sans-serif;
   background-color: var( --rosa-claro);
+  margin-right: 40px;
 }
 
 .filter-button {
-  margin-left: 10px;
-  padding: 10px 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   border: none;
-  border-radius: 10px;
   background-color: rgb(51, 167, 239);
-  font-family: var(--texto-fuente);
-  color: white;
   cursor: pointer;
+}
+
+.icon{
+  width: 80%;
+  object-fit: contain;
 }
 
 .cards-container {
@@ -33,3 +37,4 @@
   justify-content: center;
   gap: 20px;
 }
+

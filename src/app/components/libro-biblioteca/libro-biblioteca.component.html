@@ -2,12 +2,12 @@
   
   <div class="top-buttons">
 
-    <button class="circle-btn" (click)="navigateToPage()">
-      <img class="icon" src="assets/icons/usuario.png">
+    <button class="edit-btn" [routerLink]="['/update', book.id_book]">
+      <img class="icon" src="assets/icons/edit.png">
     </button>
 
-    <button class="heart-btn" (click)="addBookToFavorites()">
-      <img  class="icon" src="assets/icons/heart.png">
+    <button class="del-btn" >
+      <img  class="icon" src="assets/icons/delete.png">
     </button>
   </div>
   
@@ -17,15 +17,15 @@
     </div>
     
     <div class="info">
-      <div class="title">{{ book.title }}</div>
+      <div class="title">{{ book.title }}</div><br>
       <div class="author">{{ book.author }}</div>
       <div class="gender">{{ book.gender }}</div>
     </div>
     
-    <div class="statusb" >
-      <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
+    <div class="statusb">
+      <div class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
         {{ book.status ? 'Disponible' : 'Prestado' }}
-      </button>
+      </div>
     </div>
   
   </figure>

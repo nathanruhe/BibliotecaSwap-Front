@@ -27,28 +27,28 @@ export class FilterPopupComponent {
     this.applyFilters();
   }
 
-  toggleSelection(array: string[], value: string) {
-    const index = array.indexOf(value);
+  toggleDropdown(dropdown: string) {
+    if (dropdown === 'localidad') {
+      this.showLocalidad = !this.showLocalidad;
+    }
+  }
+
+  toggleSingleSelection(array: string[], item: string) {
+    const index = array.indexOf(item);
     if (index === -1) {
-      array.push(value);
+      array.push(item);
     } else {
       array.splice(index, 1);
     }
     this.applyFilters();
   }
 
-  toggleSingleSelection(array: string[], value: string) {
-    array.length = 0;
-    array.push(value); 
-    this.applyFilters();
-  }
-
   applyFilters() {
     this.filterChange.emit({
       status: this.status,
-      localidades: this.selectedLocalidad,
-      generos: this.selectedGenero,
-      idiomas: this.selectedIdioma
+      localidad: this.selectedLocalidad,
+      genero: this.selectedGenero,
+      idioma: this.selectedIdioma
     });
   }
 
@@ -60,23 +60,8 @@ export class FilterPopupComponent {
     this.applyFilters();
   }
 
-  toggleDropdown(dropdown: string) {
-    if (dropdown === 'localidad') {
-      this.showLocalidad = !this.showLocalidad;
-      this.showGenero = false;
-      this.showIdioma = false;
-    } else if (dropdown === 'genero') {
-      this.showGenero = !this.showGenero;
-      this.showLocalidad = false;
-      this.showIdioma = false;
-    } else if (dropdown === 'idioma') {
-      this.showIdioma = !this.showIdioma;
-      this.showLocalidad = false;
-      this.showGenero = false;
-    }
-  }
-
   closePopup() {
     this.close.emit();
   }
+  
 }

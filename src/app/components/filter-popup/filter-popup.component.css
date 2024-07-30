@@ -33,7 +33,7 @@ button {
 }
   
 button.active {
-    background-color: #007bff;
+    background-color:  rgb(51, 167, 239);;
     color: white;
 }
   

@@ -10,15 +10,10 @@ import { Libro } from 'src/app/models/libro';
 export class LibroBibliotecaComponent {
 
   @Input() book: Libro;
-  @Output() addToFavorites = new EventEmitter<Libro>();
-  @Output() goToPage = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<Libro>();
   
 
-  addBookToFavorites() {
-    this.addToFavorites.emit(this.book);
-  }
-
-  navigateToPage() {
-    this.goToPage.emit(this.book.id_book);
+  onDelete(): void {
+    this.delete.emit(this.book);
   }
 }

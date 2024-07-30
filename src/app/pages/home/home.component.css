@@ -1,4 +1,3 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
 
 .search-container {
   display: flex;
@@ -8,11 +7,13 @@
 }
 
 .search-input {
+  font-family: var(--texto-fuente);
   width: 300px;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
   font-family: 'Reem Kufi', sans-serif;
+  background-color: var( --rosa-claro);
 }
 
 .filter-button {
@@ -20,10 +21,10 @@
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background-color: #007bff;
+  background-color: rgb(51, 167, 239);
+  font-family: var(--texto-fuente);
   color: white;
   cursor: pointer;
-  font-family: 'Reem Kufi', sans-serif;
 }
 
 .cards-container {
@@ -31,15 +32,4 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-}*/
-
-.home-container {
-  padding: 20px;
-}
-
-.books-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
 }

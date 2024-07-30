@@ -12,14 +12,47 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Reem Kufi', sans-serif;
   overflow: hidden;
+  position: relative;
+  background-color: #FAE9FF;
 }
 
-.imgn { 
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 5px;
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.circle-btn, .heart-btn {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.circle-btn {
+  background-color: #FAE9FF;
+}
+
+.heart-btn {
+  background-color: #FAE9FF;
+}
+
+.icon {
+  width: 70%;
+  object-fit: contain;
+}
+
+.imgn {
+  width: 100%;
 }
 
 .marco {
@@ -30,51 +63,51 @@
 
 img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.info{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    height: 120px;
+.info {
+  width: 100%;
+  height: 180px;
+  padding-left: 20px;
+  padding-top: 20px;
 }
 
-.gender, .title, .author, .status {
+.title{
+  font-family: var(--titulo-fuente);
   width: 100%;
   padding: 5px;
-  padding-left: 10px;
 }
 
-.title .author{
-  font-weight: bold;
-  margin-top: 10px;
+.gender, .author, .status {
+  width: 100%;
+  padding: 5px;
+  font-family: var(--texto-fuente);
 }
 
 .statusb {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .status {
-    width: 50%;
-    height: 30px;
-    margin-top: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-align: center;
-    color: white;
-    text-transform: uppercase;
+  width: 200px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  text-transform: uppercase;
 }
 
 .disponible {
-  background-color: blue;
+  background-color: rgb(51, 167, 239);
+  font-family: var(--titulo-fuente);
 }
 
 .prestado {
-  background-color: red;
+  background-color: rgba(51, 167, 239, 0.25);
+  font-family: var(--titulo-fuente);
 }

@@ -22,7 +22,7 @@
   
 button {
     height: 40px;
-    width: 100px;
+    width: 130px;
     margin: 5px;
     padding: 10px;
     border: none;
@@ -65,7 +65,7 @@ button:hover {
 }
   
 .scrollable {
-    max-height: 150px;
+    max-height: 200px;
     overflow-y: auto;
 }
   
@@ -79,6 +79,9 @@ button:hover {
 }
   
 .close-btn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     position: absolute;
     top: 10px;
     right: 10px;

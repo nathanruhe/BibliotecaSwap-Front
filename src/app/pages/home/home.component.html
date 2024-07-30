@@ -1,4 +1,4 @@
-<!--<div class="search-container">
+<div class="search-container">
 
     <input type="text" placeholder="Buscar" class="search-input">
     
@@ -9,16 +9,4 @@
   
 <div class="cards-container">
     <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>
-</div>-->
-
-<div class="home-container">
-    <button (click)="showFilters = !showFilters">Toggle Filters</button>
-    <div *ngIf="showFilters">
-      <!-- Aquí irían los filtros -->
-      <!-- Por ejemplo: <app-filters (applyFilters)="applyFilters($event)"></app-filters> -->
-    </div>
-  
-    <div class="books-grid">
-      <app-libro-landing *ngFor="let book of filteredBooks" [libro]="book"></app-libro-landing>
-    </div>
-  </div>
+</div>

@@ -1,6 +1,13 @@
 <app-header></app-header>
-<main>
-    <div class="card">
-        <app-libro-biblioteca></app-libro-biblioteca>
+<main class="card">
+    <div class="tarjeta">
+        <app-libro-biblioteca [book]="book"></app-libro-biblioteca>
+        <div class="form">
+            <h2>Añadir Libro</h2>
+            <input class="Input-text" type="text" placeholder="Título">
+            <input class="Input-text" type="text" placeholder="Autor">
+            <input class="Input-text" type="text" placeholder="Género">
+            <button class="btn-disabled btn-principal" (click)="editBook()" [disabled]="">EDITAR</button>
+        </div>
     </div>
 </main>

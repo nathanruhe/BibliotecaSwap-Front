@@ -1,12 +1,13 @@
 <app-header></app-header>
 <main class="card">
     <div class="tarjeta">
-        <app-libro-biblioteca></app-libro-biblioteca>
+        <app-libro-biblioteca [book]="book"></app-libro-biblioteca>
         <div class="form">
             <h2>Añadir Libro</h2>
             <input class="Input-text" type="text" placeholder="Título">
             <input class="Input-text" type="text" placeholder="Autor">
             <input class="Input-text" type="text" placeholder="Género">
+            <button class="btn-disabled btn-principal" (click)="addBook()" [disabled]="">AÑADIR</button>
         </div>
     </div>
 </main>

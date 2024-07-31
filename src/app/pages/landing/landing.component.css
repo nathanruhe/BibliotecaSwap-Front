@@ -1,12 +1,74 @@
 
 /* - - - - FORMULARIO - - - - */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../../../assets/fondoPrincipal.png'); 
-    background-size: cover; 
+    overflow-y: auto;
+    background-image: url('../../../assets/fondoPrincipal.png');
+    background-size: cover;
     background-position: center;
+    position: relative;
+}
 
-    height: 100vh; /* pendiente de ajustar con header y footer */   
+img {
+  width: 350px !important;
+  height: 500px !important;
+  margin: 4vh;
+}
+
+swiper-slide{
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+swiper-container{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gris-claro);
+  padding: 6vw;
+}
+
+h2 {
+  font-size: 5rem;
+  margin-bottom: 2vw;
+}
+
+h3 {
+  font-size: 4rem;
+}
+
+h4 {
+  font-size: 3.5rem;
+}
+
+.sobre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3vw;
+}
+
+.aboutWe {
+  width: 78%;
+  height: 90%;
+  padding: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--rosa-claro);
+  background-size: cover;
+  background-position: center;
+  border-radius: 40px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }

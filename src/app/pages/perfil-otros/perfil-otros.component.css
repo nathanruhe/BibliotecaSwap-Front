@@ -1,0 +1,299 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+/* - - - - - SECCION ARRIBA - - - - - */
+    .perfil {
+        display: flex;
+        justify-content: center;
+        padding: 0 50px 50px 50px;
+        gap: 100px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+/* RECUADRO IZQUIERDA */
+        .datos {
+            height: 400px;
+            width: 600px;
+            display: flex;
+        }
+
+            .imagen {
+                border-radius: 30px 10px 10px 30px;
+                box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+                background-color: var(--rosa-claro);
+                width: 325px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 50px 20px;
+                z-index: 1;
+            }
+
+                .imagen div{
+                    height: 300px;
+                    width: 250px;
+                    background-color: var(--morado);
+                    border-radius: 150px;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .imagen img {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    object-fit: cover;
+                }
+
+            .sobre {
+                border-radius: 10px 30px 30px 10px;
+                box-shadow: 5px 5px 20px var(--morado);
+                background-color: var(--rosa-claro);
+                width: 325px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 60px 20px;
+            }
+
+                .sobre div{
+                    height: 300px;
+                    width: 250px;
+                    background-color: white;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+/* RECUADRO DERECHA */
+        .info {
+            border-radius: 30px;
+            box-shadow: 5px 5px 20px var(--morado);
+            height: 400px;
+            width: 600px;
+            background-color: var(--rosa-claro);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 60px 80px;
+        }
+
+            .infoEstrella {
+                height: 50px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 30px;
+            }
+
+                .infoEstrella span{
+                    font-size: 60px;
+                    color: #ccc;
+                }
+
+                .infoEstrella .filled {
+                    color: gold;
+                }
+
+
+            .ambos {
+                display: flex;
+                width: 500px;
+            }
+
+                .infoLocal {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                    .local {
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        gap: 10px;
+                    }
+
+                        .icono {
+                            height: 70%;
+                            width: 100%;
+                            display: block;
+                        }
+
+                        .local p, .prestados p {
+                            margin-top: 3px;
+                            font-size: 25px;
+                        }
+
+                    .prestados {
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        gap: 10px;
+                    }
+
+
+
+                .infoDispo {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                    .disponible {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                        .dispo {
+                            display: flex;
+                            gap: 10px;
+                            justify-content: center;
+                        }
+
+                        .dispo img{
+                            width: 20%;
+                            display: block;
+                        }
+
+                        .disponible p, .generos p {
+                            margin-top: 3px;
+                            font-size: 25px;
+                        }
+
+                    .generos {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                    }
+
+                        .gen {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                        }
+
+                            .gen2 {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                height: 35px;
+                            }
+
+                                .gen2 img{
+                                    height: 100%;
+                                    width: 100%;
+                                    display: block;
+                                }
+
+
+
+/* - - - - - SECCION DEBAJO - - - - - */
+.pestañas {
+    border-top: 10px solid var(--morado-medio);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 0;
+    gap: 40px;
+    width: 100%;
+}
+
+    .link {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+        h2 {
+            font-size: var(--titulo-size);
+            font-family: var(--titulo-fuente);
+        }
+
+        .link h2 {
+            cursor: pointer;
+            color: #bbb;
+            transition: color 0.5s;
+          }
+          
+          .link h2.active {
+            color: black;
+          }
+
+
+/* LIBROS */
+    .libros {
+        /* border: 5px solid green; */
+        width: 92%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+/* RESEÑAS */
+    .resenas {
+        border-radius: 30px;
+        background-color: var(--rosa-claro);
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        gap: 10px;
+    }
+    
+        .resena-container {
+            background: white;
+            padding: 10px 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+    
+            .cabecera {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 30px 0 30px;
+            }
+            
+                .usuario {
+                    font-weight: bold;
+                }
+
+                    .usuario span {
+                        font-size: 20px;
+                    }
+    
+                    .estrella {
+                        color: #ccc;
+                        font-size: 25px;
+                    }
+                    
+                    .estrella.filled {
+                        color: gold;
+                    }

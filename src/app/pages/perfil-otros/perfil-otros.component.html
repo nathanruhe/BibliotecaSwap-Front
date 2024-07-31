@@ -1,1 +1,111 @@
-<p>perfil-otros works!</p>
+<div class="container">
+    <section class="perfil">
+        <div class="datos">
+            <div class="imagen">
+                <div>
+                    <img src="{{ myUser.foto }}" alt=""> 
+                </div>
+                <h2>{{ myUser.nombre }} {{ myUser.apellido }}</h2>
+            </div>
+
+            <div class="sobre">
+                <h2>Sobre mi:</h2>
+                <div>
+                    <p>{{ myUser.sobre }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info">
+            <div class="infoEstrella">
+                <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
+                    <span class="estrella" [class.filled]="b < myUser.valoracion">&#9733;</span>
+                </ng-container>
+            </div>
+
+            <div class="ambos">
+                <div class="infoLocal">
+                    <div class="local">
+                        <div>
+                            <img class="icono" src="../../../assets/iconoLocalizacion.png" alt="">
+                        </div>
+                        <p>{{ myUser.localidad }}</p>
+                    </div>
+                    
+                    <div class="disponible">
+                        <p>Disponibilidad</p>
+                        <div class="dispo">
+                            <img src="../../../assets/iconoMañanas.png" alt="">
+                            <img src="../../../assets/iconoTardes.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="infoDispo">
+                    <div class="prestados">
+                        <div>
+                            <img class="icono" src="../../../assets/iconoIntercambio.png" alt="">
+                        </div>
+                        <p> Prestados: {{ myUser.prestados }}</p>
+                    </div>
+
+                    <div class="generos">
+                        <p>Géneros de interés</p>
+                        <div class="gen">
+                            <ng-container *ngFor="let genero of myUser.generos; let i = index">
+                                <div class="gen2" *ngIf="genero.img">
+                                    <img [src]="genero.img" alt="">
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <section class="pestañas">
+        <div class="link">
+            <h2 (click)="setActiveTab('biblioteca')" [ngClass]="{'active': activo === 'biblioteca'}">Biblioteca de {{ myUser.nombre }}</h2>
+            <h2 (click)="setActiveTab('resenas')" [ngClass]="{'active': activo === 'resenas'}">Reseñas: {{ misResenas.length }}</h2>
+        </div>
+
+        <div class="libros" *ngIf="activo === 'biblioteca'">
+            <!-- <ng-container *ngFor="let libro of misLibros; let i = index">
+                <app-libro [book]="libro" [index]="i"></app-libro>
+            </ng-container> -->
+            <ng-container *ngFor="let libro of misLibros; let i = index">
+                <div>
+                    <img src="{{ libro.photo }}" alt="">
+                    <p>{{ libro.title }}</p>
+                    <p>{{ libro.author }}</p>
+                    <p>{{ libro.title }}</p>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="resenas" *ngIf="activo === 'resenas'">
+            <ng-container *ngFor="let resena of misResenas; let i = index">
+                <div class="resena-container">
+                    <div class="cabecera">
+                        <div class="usuario">
+                            <span>{{ resena.nombre }} {{ resena.apellido }}</span>
+                        </div>
+
+                        <div>
+                            <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let j = index">
+                                <span class="estrella" [class.filled]="j < resena.valoracion">&#9733;</span>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p>{{ resena.comentario }}</p>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+</div>

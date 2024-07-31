@@ -28,9 +28,9 @@ export class AnadirLibroComponent {
     })
 
   }
-  public addBook(title: string, author: string, gender: string, photo: string = " ", id_book: number = 0) {
+  public addBook(id_book: number = 0, id_user: number = 0, title: string, author: string, gender: string, status: boolean = true, photo: string, localidad: string = " ", idioma: string= " ") {
 
-    let book = { title, author, gender, photo, id_book };
+    let book = {  title, author, gender, photo, status, localidad, idioma, id_book, id_user };
     this.form.reset();
     return this.books.push(book); 
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Libro } from 'src/app/models/libro';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -15,6 +16,7 @@ export class EditarLibroComponent {
     photo: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcaCbDX4HM9ux9Amx44JgtlepwI-bzP56OP5G7XoANFg7S1YpG1f7LrR6lliwuRD226afnRrt41BITcJlNpIckV-QEk8R1sex4DQfsBtNnP09qkhiQ86DbtD1So2nvnNdQPWbjVO89NK9YF0sN-3S_AYcGv08BjMROodf55BxZ-2J-JqUH81IPYh6aJPTx/s764/S.-El-barco-de-Teseo-550x764.jpg'
   };
 
+  public books: Libro[];
   public form: FormGroup;
 
   constructor(public formBuilder: FormBuilder) {
@@ -27,10 +29,16 @@ export class EditarLibroComponent {
 
   }
 
-  public editBook(title: string, author: string, gender: string, photo: string = " ") {
-    let book = { title, author, gender, photo };
-    this.form.reset();
-    return
-  };
+  public editBook(title: string, author: string, gender: string, photo: string = " ", id_book: number = 0) {
+
+    let book = { title, author, gender, photo, id_book };
+    const index = this.books.findIndex(libro => libro.id_book === book.id_book);
+    if (index !== -1) {
+      this.books[index] = book;
+      this.form.reset();
+      return true;
+    }
+    return false;
+  }
 
 }

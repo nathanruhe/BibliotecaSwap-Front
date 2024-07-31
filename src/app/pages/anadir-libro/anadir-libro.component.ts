@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Libro } from 'src/app/models/libro';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -15,7 +16,7 @@ export class AnadirLibroComponent {
     photo: 'https://imagessl6.casadellibro.com/a/l/s7/66/9788435055666.webp'
   };
 
-  public books: [];
+  public books: Libro[];
   public form: FormGroup;
 
   constructor(public formBuilder: FormBuilder) {
@@ -27,11 +28,11 @@ export class AnadirLibroComponent {
     })
 
   }
-  public addBook(title: string, author: string, gender: string, photo: string = " ") {
+  public addBook(title: string, author: string, gender: string, photo: string = " ", id_book: number = 0) {
 
-    let book = { title, author, gender, photo };
+    let book = { title, author, gender, photo, id_book };
     this.form.reset();
-    return this.books.push(); //book no me deja meterlo en el push
+    return this.books.push(book); 
 
   };
 

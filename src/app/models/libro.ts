@@ -1,26 +1,28 @@
 export class Libro {
 
-    public id_book:number
-    public id_user: number
+    // public id_book:number
+    // public id_user: number
     public title: string;
     public author: string;
     public gender: string;
-    public status: boolean;
+    // public status: boolean;
     public photo: string;
-    public localidad: string;
-    public idioma: string;
+    // public localidad: string;
+    // public idioma: string;
+    public id_book:number
 
     constructor(title: string, author: string, gender: string, status: boolean, photo: string, localidad: string, idioma: string, id_book: number = 0, id_user: number = 0) 
     {
-        this.id_book = id_book;
-        this.id_user = id_user;
+        // this.id_book = id_book;
+        // this.id_user = id_user;
         this.title = title;
         this.author = author;
         this.gender = gender;
-        this.status = status;
+        // this.status = status;
         this.photo = photo;
-        this.localidad = localidad;
-        this.idioma = idioma;
+        // this.localidad = localidad;
+        // this.idioma = idioma;
+        this.id_book = id_book = 0;
     }
 }
 

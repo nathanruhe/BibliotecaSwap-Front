@@ -35,12 +35,15 @@ swiper-container{
 }
 
 h2 {
-  font-size: 5rem;
+  font-size: 4rem;
+  font-family: var(--titulo-fuente);
   margin-bottom: 2vw;
 }
 
 h3 {
-  font-size: 4rem;
+  font-size: 3rem;
+  font-family: var(--titulo-fuente);
+  text-align: center;
 }
 
 h4 {

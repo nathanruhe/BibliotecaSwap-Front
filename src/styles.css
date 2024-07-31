@@ -9,6 +9,8 @@
     
     /* COLORES PRINCIPALES */
     --azul: #6786F5;
+    --azul-boton: rgb(51, 167, 239);
+    --azul-boton-desabilitado: rgba(51, 167, 239, 0.25);
     --morado: #9389F0;
     --morado-medio: #9389F07D;
     --morado-claro: #8800FF1A;
@@ -28,7 +30,16 @@
 
 /* BOTONES */
 .btn-principal {
-    background-color: var(--azul);
+    background-color: var(--azul-boton);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: auto;
+    font-family: var(--texto-fuente);
+}
+
+.btn-principal-disabled {
+    background-color: var(--azul-boton-desabilitado);
     color: white;
     padding: 5px 10px;
     border-radius: 10px;

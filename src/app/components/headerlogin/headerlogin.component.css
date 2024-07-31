@@ -1,48 +1,48 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #6786F5; 
-    padding: 10px 20px;
-    position: relative;
-  }
-  
-  .logo {
-    position: absolute; 
-    left: 50%; 
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo img {
-    height: 100px;
-    margin-right: 10px;
-  }
-  
-  .auth-buttons {
-    display: flex;
-    align-items: center;
-    margin-left: auto; 
-  }
-  
-  .auth-buttons .login-button, .auth-buttons .register-button {
-    margin: 0 5px;
-    padding: 5px 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-  }
-  
-  .login-button {
-    background-color: #9389F0;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  .register-button {
-    background-color: #9389F0;
-    color: white;
-    border-radius: 5px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #6786F5; 
+  padding: 10px 20px;
+  min-height: 120px; 
+  position: relative;
+}
+
+.logo {
+  position: absolute; 
+  left: 50%; 
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 100px;
+  margin-right: 10px;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
+}
+
+.auth-buttons .login-button, .auth-buttons .register-button {
+  margin: 0 5px;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.login-button {
+  background-color: #9389F0;
+  color: white;
+  border-radius: 5px;
+}
+
+.register-button {
+  background-color: #9389F0;
+  color: white;
+  border-radius: 5px;
+}

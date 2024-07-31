@@ -1,0 +1,115 @@
+body {
+    font-family: 'Reem Kufi', sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.edit-profile, .edit-preferences {
+    background-color: #f0e6fa;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-title {
+    font-family: 'Aclonica', sans-serif;
+    color: #6a5acd;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #6a5acd;
+}
+
+.name {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.update-button, .change-password {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #9389F0; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 1em; 
+    transition: background-color 0.3s; 
+  }
+  
+  .change-password:hover, .update-button:hover {
+    background-color: #7a71d8; 
+  }
+  
+  .change-password:active, .update-button:active {
+    background-color: #6761b8; 
+  }
+  
+.availability {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .availability-option {
+    margin: 0 10px;
+    position: relative;
+  }
+  
+  .availability input[type="radio"] {
+    display: none;
+  }
+  
+  .availability-label {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: white; 
+    border: 1px solid #4a4a4a; 
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .availability input[type="radio"]:checked + .availability-label {
+    background-color: #E0AFFF; 
+    color: white;
+    border: none; 
+  }
+  
+  .availability-label:hover {
+    background-color: #E0AFFF; 
+    color: white;
+  }
+  
+  .availability input[type="radio"] + .availability-label:hover {
+    background-color: #E0AFFF; 
+    color: white;
+  }
+  
+  

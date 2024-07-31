@@ -15,10 +15,24 @@ export class AnadirLibroComponent {
     photo: 'https://imagessl6.casadellibro.com/a/l/s7/66/9788435055666.webp'
   };
 
-  public addBook() {
-    // const user = this.form.value;
-    // console.log(user);
-    // this.form.reset();
+  public books: [];
+  public form: FormGroup;
+
+  constructor(public formBuilder: FormBuilder) {
+
+    this.form = this.formBuilder.group({
+      title: [, Validators.required],
+      author: [, Validators.required],
+      gender: [, [Validators.required]],
+    })
+
+  }
+  public addBook(title: string, author: string, gender: string, photo: string = " ") {
+
+    let book = { title, author, gender, photo };
+    this.form.reset();
+    return this.books.push(); //book no me deja meterlo en el push
+
   };
 
 }

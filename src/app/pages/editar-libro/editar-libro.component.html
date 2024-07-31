@@ -2,12 +2,25 @@
 <main class="card">
     <div class="tarjeta">
         <app-libro-biblioteca [book]="book"></app-libro-biblioteca>
-        <div class="form">
+        <form class="form" [formGroup]="form">
             <h2>Modificar Libro</h2>
-            <input class="Input-text" type="text" placeholder="Título">
-            <input class="Input-text" type="text" placeholder="Autor">
-            <input class="Input-text" type="text" placeholder="Género">
-            <button class="btn-disabled btn-principal" (click)="editBook()" [disabled]="">EDITAR</button>
-        </div>
+
+            <input class="Input-text" type="text" #title placeholder="Título" required formControlName="title" [ngClass]="{'invalido': (form.get('title').dirty || form.get('title').touched) && !form.get('title').valid}">
+            <div *ngIf="(form.get('title').dirty || form.get('title').touched) && !form.get('title').valid" class="mensajeInvalido" >
+                <div *ngIf="myForm.get('title').errors.required">Campo obligatorio</div>
+            </div>
+
+            <input class="Input-text" type="text" #author placeholder="gender" required formControlName="autor" [ngClass]="{'invalido': (form.get('autor').dirty || form.get('autor').touched) && !form.get('autor').valid}">
+            <div *ngIf="(form.get('autor').dirty || form.get('autor').touched) && !form.get('autor').valid" class="mensajeInvalido">
+                <div *ngIf="myForm.get('autor').errors.required">Campo obligatorio</div>
+            </div>
+
+            <input class="Input-text" type="text" #gender placeholder="Género" required formControlName="gender" [ngClass]="{'invalido': (form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid}">
+            <div *ngIf="(form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid" class="mensajeInvalido">
+                <div *ngIf="myForm.get('gender').errors.required">Campo obligatorio</div>
+            </div>
+
+            <button class="btn-disabled" (click)="editBook(title.value, author.value, gender.value)" [disabled]="form.invalid">EDITAR</button>
+        </form>
     </div>
 </main>

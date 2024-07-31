@@ -116,3 +116,19 @@ button:hover {
 .button:active {
     transform: scale(3); /* Reduce ligeramente el tamaño del botón cuando se hace clic */
 }
+
+/* - - - - INVALIDS - - - - */
+
+.invalido {
+    border: 1px solid red;
+}
+
+.mensajeInvalido div {
+    color: red;
+    font-size: 15px;
+    text-align: start;
+}
+
+.btn-disabled:disabled {
+    opacity: 0.2;
+}

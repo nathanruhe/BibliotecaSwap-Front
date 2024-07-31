@@ -25,7 +25,8 @@
                 <div *ngIf="myForm.get('photo').errors.required">Campo obligatorio</div>
             </div>
 
-            <button class="btn-disabled btn-principal" (click)="addBook(title.value, author.value, gender.value, photo.value)" [disabled]="form.invalid">AÑADIR</button>
+            <button class="btn-disabled btn-principal button"  [disabled]="form.invalid">AÑADIR</button>
+            <!-- (click)="addBook(title.value, author.value, gender.value, photo.value)" -->
         </div>
     </form>
 </main>

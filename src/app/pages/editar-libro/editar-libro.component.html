@@ -20,7 +20,8 @@
                 <div *ngIf="myForm.get('gender').errors.required">Campo obligatorio</div>
             </div>
 
-            <button class="btn-disabled btn-principal" (click)="editBook(title.value, author.value, gender.value)" [disabled]="form.invalid">EDITAR</button>
+            <button class="btn-disabled btn-principal button"  [disabled]="form.invalid">EDITAR</button>
+            <!-- (click)="editBook(title.value, author.value, gender.value)" -->
         </form>
     </div>
 </main>

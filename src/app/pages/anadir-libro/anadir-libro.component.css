@@ -1,6 +1,6 @@
 /* - - - - FORMULARIO - - - - */
 .card {
-    height: 85vh;
+    height: 81vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,8 +10,8 @@
 }
 
 .tarjeta {
-    width: 78%;
-    height: 90%;
+    width: 64%;
+    height: 80%;
     padding: 8vh;
     display: flex;
     justify-content: space-around;
@@ -64,7 +64,9 @@
 }
 
 h2 {
-    font-size: 4rem;
+    font-size: 2.5rem;
+    font-family: var(--titulo-fuente);
+    margin-bottom: 2vw;
     margin-top: 4vh;
 }
 
@@ -73,16 +75,16 @@ h2 {
     margin: 0;
     padding: var(--morado-medio) var(--morado);
     color: inherit;
-    width: 100%;
-    /* font-size: var(--morado-claro); */
-    font-size: 2.5rem;
+    width: 25vw;
+    font-size: var(--titulo-fuente);
+    font-family: var(--texto-fuente);
     font-weight: inherit;
     line-height: var(--morado-medio);
     border: none;
     border-radius: 0.4rem;
     transition: box-shadow var(--morado-claro);
-    margin: 4vh;
-    padding: 2vh;
+    margin: 2vh;
+    padding: 1.5vh;
     cursor: pointer;
     box-shadow: inset 0px 0px 20px var(--morado),
         0px 0px 20px var(--morado-claro);
@@ -101,12 +103,14 @@ input[type=text]:focus {
     outline-width: 0px;
 }
 
-button {
+.button {
     cursor: pointer;
+    margin-top: 1vh;
     margin-bottom: 4vh;
     padding-left: 3vh;
     padding-right: 3vh;
-    font-size: 1.8rem;
+    font-size: var(--titulo-fuente);
+    box-shadow: 0px, 6px, 0px, rgb(20, 52, 90);
 }
 
 button:hover {
@@ -114,7 +118,7 @@ button:hover {
 }
 
 .button:active {
-    transform: scale(3); /* Reduce ligeramente el tamaño del botón cuando se hace clic */
+    transform: scale(0.9); /* Reduce ligeramente el tamaño del botón cuando se hace clic */
 }
 
 /* - - - - INVALIDS - - - - */

@@ -8,6 +8,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AnadirLibroComponent } from './pages/anadir-libro/anadir-libro.component';
 import { EditarLibroComponent } from './pages/editar-libro/editar-libro.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 
 const routes: Routes = [
   { path: 'register', component: RegistroComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'addLibro', component: AnadirLibroComponent },
   { path: 'editLibro', component: EditarLibroComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'favoritos', component: FavoritosComponent },
 ];
 
 @NgModule({

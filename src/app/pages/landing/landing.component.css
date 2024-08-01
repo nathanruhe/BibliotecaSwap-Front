@@ -1,5 +1,4 @@
 
-/* - - - - FORMULARIO - - - - */
 .container {
     background-image: url('../../../assets/fondoPrincipal.png');
     background-size: cover;
@@ -63,33 +62,3 @@ h3 {
 .genero p{
   margin: .2vw 5.5vw 7vw 8.5vw;
 }
-
-/* h4 {
-  font-size: 3.5rem;
-} */
-
-/* .sobre {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 3vw;
-} */
-
-/* .aboutWe {
-  width: 78%;
-  height: 90%;
-  padding: 8vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background-color: var(--rosa-claro);
-  background-size: cover;
-  background-position: center;
-  border-radius: 40px;
-  position: relative;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-} */

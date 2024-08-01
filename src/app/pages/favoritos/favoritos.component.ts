@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Libro } from 'src/app/models/libro';
+import { Libro, books } from 'src/app/models/libro';
 
 @Component({
   selector: 'app-favoritos',

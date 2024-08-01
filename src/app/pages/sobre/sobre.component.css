@@ -1,0 +1,47 @@
+.container {
+    background-image: url('../../../assets/fondoPrincipal.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 81.8vh;
+}
+
+h3 {
+    font-size: 3rem;
+    font-family: var(--titulo-fuente);
+    text-align: center;
+}
+
+h4 {
+    font-size: 2rem;
+    font-family: var(--titulo-fuente);
+    text-align: center;
+}
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5vw;
+}
+
+.aboutWe {
+    width: 78%;
+    height: 90%;
+    font-family: var(--titulo-fuente);
+    text-align: center;
+    padding: 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--rosa-claro);
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}

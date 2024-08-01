@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Libro } from 'src/app/models/libro';
+import { Libro, books } from 'src/app/models/libro';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -33,9 +33,9 @@ export class EditarLibroComponent {
   public editBook(title: string, author: string, gender: string, photo: string, idioma: string, province: string = " ", like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
 
     let book = { title, author, gender, photo, idioma, province, like, status, id_book, id_user };
-    const index = this.books.findIndex(libro => libro.id_book === book.id_book);
+    const index = books.findIndex(libro => libro.id_book === book.id_book);
     if (index !== -1) {
-      this.books[index] = book;
+      books[index] = book;
       this.form.reset();
       return true;
     }

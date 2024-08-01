@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Libro, books } from 'src/app/models/libro';
-import { Usuario, users } from 'src/app/models/usuario';
+import { Libro } from 'src/app/models/libro';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-home',
@@ -33,8 +33,11 @@ export class HomeComponent implements OnInit{
   currentPage: number = 1;
   itemsPerPage: number = 10;
   
+  constructor() {
 
-  constructor(){
+  }
+
+  ngOnInit() {
     this.books =[
       new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', "", true, false, 1, 1), 
       new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', "", false, false,   2, 1),
@@ -74,9 +77,11 @@ export class HomeComponent implements OnInit{
       new Usuario(4,'Pepon', 'Pereda', 'ppereda@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg', 'Barcelona', 'mañana', ['Terror', 'Astrología', 'Poesía'], '1234'),
   ];
 
-  // filtro para intro los primeros libros
-  this.applyFilters(); 
+  this.applyFilters();
   }
+  
+
+ 
 
 
   //filtramos libros
@@ -93,7 +98,7 @@ export class HomeComponent implements OnInit{
 
     this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);
   }
-
+  
   setStatus(status: string) {
     this.status = status;
     this.resetFilters();

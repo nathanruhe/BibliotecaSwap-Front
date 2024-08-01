@@ -1,1 +1,40 @@
-<p>solicitud works!</p>
+<div class="container">
+    <section class="section-perfil">
+        <div class="perfil">
+            <div class="imagen">
+                <img src="{{ user.photo }}" alt="">
+            </div>
+            <h2>{{ user.name }} {{ user.last_name }}</h2>
+        </div>
+
+        <div class="info">
+            <div class="provincia">
+                <div>
+                    <img class="icono" src="../../../assets/iconoLocalizacion.png" alt="">
+                </div>
+                <p>{{ user.province }}</p>
+            </div>
+
+            <div class="generos">
+                <p>Géneros de interés</p>
+                <div class="gen">
+                    <ng-container *ngFor="let genero of user.genders; let i = index">
+                        <div class="gen2">
+                            <img [src]="genero" alt="">
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <button class="btn-principal" (click)="visitarPerfil()">Visitame</button>
+        </div>
+    </section>
+
+    <section class="section-libro">
+        <ng-container *ngIf="book">
+            <app-libro [book]="book"></app-libro>
+        </ng-container>
+    </section>
+</div>
+
+

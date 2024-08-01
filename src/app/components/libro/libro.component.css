@@ -43,6 +43,10 @@
 .heart-btn {
   background-color: #FAE9FF;
 }
+
+.heart-btn.favorito {
+  background-color: #FF69B4; 
+}
   
 .icon {
   width: 70%;

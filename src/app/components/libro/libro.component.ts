@@ -14,6 +14,8 @@ export class LibroComponent {
   
 
   addBookToFavorites() {
+    this.book.like = !this.book.like;
+    console.log(`libro "${this.book.title}" pasa: ${this.book.like}`);
     this.addToFavorites.emit(this.book);
   }
 

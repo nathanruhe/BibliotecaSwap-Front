@@ -3,15 +3,15 @@
         <div class="datos">
             <div class="imagen">
                 <div>
-                    <img src="{{ myUser.foto }}" alt=""> 
+                    <img src="{{ user.photo }}" alt=""> 
                 </div>
-                <h2>{{ myUser.nombre }} {{ myUser.apellido }}</h2>
+                <h2>{{ user.name }} {{ user.last_name }}</h2>
             </div>
 
             <div class="sobre">
                 <h2>Sobre mi:</h2>
                 <div>
-                    <p>{{ myUser.sobre }}</p>
+                    <p>[ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore earum rerum repellat doloribus? Earum hic facilis dolores officiis harum quaerat nemo atque rem quas iusto quos corporis, vel quasi provident? ]</p>
                 </div>
             </div>
         </div>
@@ -19,7 +19,9 @@
         <div class="info">
             <div class="infoEstrella">
                 <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-                    <span class="estrella" [class.filled]="b < myUser.valoracion">&#9733;</span>
+                    <span class="estrella" [class.filled]="b">&#9733;</span>
+                    <!-- <span class="estrella" [class.filled]="b < user.valoracion">&#9733;</span> -->
+                    <!-- NO EXISTE USER.VALORACION, COMO SE VA A IMPLEMENTAR??? -->
                 </ng-container>
             </div>
 
@@ -29,7 +31,7 @@
                         <div>
                             <img class="icono" src="../../../assets/iconoLocalizacion.png" alt="">
                         </div>
-                        <p>{{ myUser.localidad }}</p>
+                        <p>{{ user.province }}</p>
                     </div>
                     
                     <div class="disponible">
@@ -46,15 +48,17 @@
                         <div>
                             <img class="icono" src="../../../assets/iconoIntercambio.png" alt="">
                         </div>
-                        <p> Prestados: {{ myUser.prestados }}</p>
+                        <p> Prestados: [ 6 ]</p>
+                        <!-- <p> Prestados: {{ user.prestados }}</p> -->
+                        <!-- NO EXISTE USER.PRESTADOS, COMO SE VA A IMPLEMENTAR??? -->
                     </div>
 
                     <div class="generos">
                         <p>Géneros de interés</p>
                         <div class="gen">
-                            <ng-container *ngFor="let genero of myUser.generos; let i = index">
-                                <div class="gen2" *ngIf="genero.img">
-                                    <img [src]="genero.img" alt="">
+                            <ng-container *ngFor="let genero of user.genders; let i = index">
+                                <div class="gen2">
+                                    <img [src]="genero" alt="">
                                 </div>
                             </ng-container>
                         </div>
@@ -68,21 +72,13 @@
     
     <section class="pestañas">
         <div class="link">
-            <h2 (click)="setActiveTab('biblioteca')" [ngClass]="{'active': activo === 'biblioteca'}">Biblioteca de {{ myUser.nombre }}</h2>
+            <h2 (click)="setActiveTab('biblioteca')" [ngClass]="{'active': activo === 'biblioteca'}">Biblioteca de {{ user.name }}</h2>
             <h2 (click)="setActiveTab('resenas')" [ngClass]="{'active': activo === 'resenas'}">Reseñas: {{ misResenas.length }}</h2>
         </div>
 
         <div class="libros" *ngIf="activo === 'biblioteca'">
-            <!-- <ng-container *ngFor="let libro of misLibros; let i = index">
-                <app-libro [book]="libro" [index]="i"></app-libro>
-            </ng-container> -->
-            <ng-container *ngFor="let libro of misLibros; let i = index">
-                <div>
-                    <img src="{{ libro.photo }}" alt="">
-                    <p>{{ libro.title }}</p>
-                    <p>{{ libro.author }}</p>
-                    <p>{{ libro.gender }}</p>
-                </div>
+            <ng-container *ngFor="let book of misLibros; let i = index">
+                <app-libro [book]="book" [index]="i"></app-libro>
             </ng-container>
         </div>
 

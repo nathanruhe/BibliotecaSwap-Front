@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/models/usuario';
 import { Libro } from 'src/app/models/libro';
 import { Resena  } from 'src/app/models/resena';
-// pendiente importar user
 
 @Component({
   selector: 'app-perfil-otros',
   templateUrl: './perfil-otros.component.html',
   styleUrls: ['./perfil-otros.component.css']
 })
-export class PerfilOtrosComponent {
+export class PerfilOtrosComponent implements OnInit {
 
-  public misLibros: Libro[] = [];
-  public misResenas: Resena[] = [];
+  public misLibros: Libro[];
+  public user: Usuario;
+  public misResenas: Resena[];
   public mostrar: boolean = true;
   public activo: string = 'biblioteca';
-  // public myUser: User; // pendiente crear modelo user y ajustar
 
   constructor() {}
 
@@ -26,6 +26,25 @@ export class PerfilOtrosComponent {
       new Libro("Tan poca vida", "Autor 4", "Amor", "https://m.media-amazon.com/images/I/51KnzneiV8L._SY445_SX342_.jpg", "ingles"),
       new Libro("El alquimista", "Autor 5", "Drama", "https://m.media-amazon.com/images/I/51PHOuFmcLL._SY445_SX342_.jpg", "aleman")
     ];
+
+    this.user = {
+      id_user: 1,
+      name: "Roberto",
+      last_name: "Martinez",
+      email: "roberto@gmail.com",
+      photo: "https://previews.123rf.com/images/jemastock/jemastock1704/jemastock170402236/75461964-ilustraci%C3%B3n-de-vector-de-dibujos-animados-hombre-imagen-de-dise%C3%B1o-chico-eps-10.jpg",
+      province: "Barcelona",
+      availability: "mañanas",
+      genders: [
+        "../../../assets/iconoTerror.jpg",
+        "../../../assets/iconoPoesia.png",
+        "../../../assets/iconoPoli.png",
+        "../../../assets/iconoAstro.jpeg",
+        "../../../assets/iconoIdioma.png",
+        "../../../assets/iconoFoto.png",
+      ],
+      password: "123Roberto.",
+    };
 
     this.misResenas = [
       {
@@ -53,41 +72,10 @@ export class PerfilOtrosComponent {
         comentario: "Este libro logra capturar la atención del lector desde el principio con su trama intrigante y personajes complejos, ofreciendo una experiencia de lectura verdaderamente enriquecedora."
       }
     ];
-  }
+  };
 
   setActiveTab(tab: string): void {
     this.activo = tab;
-  }
+  };
 
-// this.myUser;
-  myUser = {
-      nombre: "Roberto",
-      apellido: "Martinez",
-      foto: "https://previews.123rf.com/images/jemastock/jemastock1704/jemastock170402236/75461964-ilustraci%C3%B3n-de-vector-de-dibujos-animados-hombre-imagen-de-dise%C3%B1o-chico-eps-10.jpg",
-      sobre: "¡Hola! Soy un apasionado de la lectura y de compartir el conocimiento. Siempre estoy en busca de nuevas historias y aventuras literarias que me inspiren y me hagan reflexionar. Me encanta descubrir libros que desafíen mi perspectiva.",
-      valoracion: 3,
-      localidad: "Barcelona",
-      prestados: 6,
-      disponibilidad: "mañanas",
-      generos: [
-        {
-          img: "../../../assets/iconoTerror.jpg",
-        },
-        {
-          img: "../../../assets/iconoPoesia.png",
-        },
-        {
-          img: "../../../assets/iconoAstro.jpeg",
-        },
-        {
-          img: "../../../assets/iconoPoli.png",
-        },
-        {
-          img: "../../../assets/iconoFoto.png",
-        },
-        {
-          img: "../../../assets/iconoIdioma.png",
-        },
-      ]
-    };
-}
+};

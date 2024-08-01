@@ -1,0 +1,183 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Reem Kufi', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container-fluid.main-content {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    width: 100vw;  /* Ocupa todo el ancho de la ventana */
+    margin: 0;     /* Elimina márgenes que puedan reducir el ancho */
+    padding: 0;    /* Elimina padding que pueda reducir el ancho */
+}
+
+.sidebar, .chat-area, .info-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
+}
+
+.sidebar {
+    background-color: #d7d3f2;
+    width: 25%; /* Ajuste de ancho */
+    padding: 10px;
+}
+
+.chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-item:hover {
+    background-color: #ddd;
+}
+
+.chat-item .user-icon {
+    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid #000;
+
+}
+
+.chat-item .user-name {
+    flex-grow: 1;
+}
+
+.chat-item .message-count {
+    background-color: #6786F5;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    min-width: 20px;
+    text-align: center;
+}
+
+.chat-area {
+    background-color: #fff;
+    padding: 20px;
+    width: 50%; /* Ajusta el ancho de la sección de chat */
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info h2 {
+    margin: 0 0 0 10px;
+}
+
+.user-info .large {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid #3e8c3f;
+}
+
+.close-chat {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.messages {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    flex-grow: 1; /* Permite que la lista de mensajes ocupe todo el espacio disponible */
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.received {
+    background-color: #f1f1f1;
+    text-align: left;
+}
+
+.sent {
+    background-color: #d1e7ff;
+    text-align: right;
+}
+
+.message-input {
+    margin-top: 10px;
+}
+
+.message-input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.info-section {
+    background-color: #f3e8f0;
+    padding: 20px;
+    width: 25%; /* Ajusta el ancho de la sección de información */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espacia uniformemente los elementos dentro de esta sección */
+}
+
+.book-info {
+    margin-bottom: 20px;
+}
+
+.book-info h3 {
+    margin: 0 0 10px 0;
+}
+
+.status {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.rating-section textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+.rating-section button {
+    margin-top: 10px;
+    background-color: #6786F5;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

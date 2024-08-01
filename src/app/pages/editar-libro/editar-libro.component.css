@@ -1,6 +1,6 @@
 /* - - - - FORMULARIO - - - - */
 .card {
-    height: 81vh;
+    height: 74.8vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,8 +10,8 @@
 }
 
 .tarjeta {
-    width: 64%;
-    height: 80%;
+    width: 54%;
+    height: 89%;
     padding: 8vh;
     display: flex;
     justify-content: space-around;
@@ -61,21 +61,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 4vh;
 }
 
 h2 {
     font-size: 2.5rem;
     font-family: var(--titulo-fuente);
-    margin-bottom: 2vw;
-    margin-top: 4vh;
+    margin-bottom: 1vw;
+    margin-top: .8vh;
 }
 
 .Input-text {
     display: block;
     margin: 0;
-    padding: var(--morado-medio) var(--morado);
     color: inherit;
-    width: 100%;
+    width: 23vw;
     font-size: var(--titulo-fuente);
     font-family: var(--texto-fuente);
     font-weight: inherit;
@@ -83,8 +83,8 @@ h2 {
     border: none;
     border-radius: 0.4rem;
     transition: box-shadow var(--morado-claro);
-    margin: 4vh;
-    padding: 2vh;
+    margin: 2vh;
+    padding: 1vh;
     cursor: pointer;
     box-shadow: inset 0px 0px 20px var(--morado),
         0px 0px 20px var(--morado-claro);

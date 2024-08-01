@@ -24,7 +24,7 @@
 
     <div class="sectionLGI">
       <div class="dropdown">
-        <button class="dropbtn" (click)="toggleDropdown('province')">Localidad</button>
+        <button class="dropbtn" (click)="toggleDropdown('localidad')">Localidad</button>
         <div class="dropdown-content" [ngClass]="{'show': showLocalidadDropdown}">
           <label *ngFor="let loc of localidades">
             <input type="checkbox" [checked]="selectedLocalidad.includes(loc)" (change)="toggleSingleSelection(selectedLocalidad, loc)"> {{loc}}
@@ -60,8 +60,8 @@
 
 
 <div class="cards-container">
-    <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>
-    <!--<app-libro *ngFor="let book of filteredBooks" [book]="book"></app-libro>-->
+    <!--<app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>-->
+    <app-libro *ngFor="let book of filteredBooks" [book]="book"></app-libro>
 </div>
 
 

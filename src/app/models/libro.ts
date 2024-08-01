@@ -1,4 +1,4 @@
-import { Usuario, users } from "./usuario";
+import { Usuario, /*users*/ } from "./usuario";
 
 export class Libro {
 
@@ -14,18 +14,18 @@ export class Libro {
         public id_book: number = 0, 
         public id_user: number = 0) 
     {
-        let userProvince = province;
+       /* let userProvince = province;
         for (let i = 0; i < users.length; i++) {
             if (users[i].id_user === id_user) {
                 userProvince = users[i].province;
                 break;
             }
         }
-        this.province = userProvince;
+        this.province = userProvince;*/
     }
 }
 
-export const books: Libro[] = [
+/*export const books: Libro[] = [
     new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', "", true, false, 1, 1),
     new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', "", false, false,   2, 1),
     new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Francés', "",true, false,  3, 1),
@@ -55,4 +55,4 @@ export const books: Libro[] = [
 
     new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', "",true, false, 23, 4),
     new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', "",  false, false, 24, 4)
-];
+];*/

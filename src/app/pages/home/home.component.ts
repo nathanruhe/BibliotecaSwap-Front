@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Libro, books } from 'src/app/models/libro';
+import { Usuario, users } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { Libro, books } from 'src/app/models/libro';
 export class HomeComponent {
 
   books: Libro[] = books;
+  users: Usuario[] = users;
   filteredBooks: Libro[] = [];
   showFilters: boolean = false;
 
@@ -39,13 +41,14 @@ export class HomeComponent {
   applyFilters() {
     const filtered = this.books.filter(book => {
       return (this.status === 'Todos' || (this.status === 'Disponible' && book.status)) &&
-             (this.selectedLocalidad.length === 0 || this.selectedLocalidad.includes(book.localidad)) &&
+             (this.selectedLocalidad.length === 0 || this.selectedLocalidad.includes(book.province)) &&
              (this.selectedGenero.length === 0 || this.selectedGenero.includes(book.gender)) &&
              (this.selectedIdioma.length === 0 || this.selectedIdioma.includes(book.idioma)) &&
              (book.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
               book.author.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
               book.gender.toLowerCase().includes(this.searchTerm.toLowerCase()));
     });
+
     this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);
   }
 
@@ -77,7 +80,7 @@ export class HomeComponent {
   }
 
   resetFilters() {
-    this.currentPage = 1; 
+    this.currentPage = 1;
     this.applyFilters();
   }
 
@@ -95,9 +98,8 @@ export class HomeComponent {
   }
 
   // cargamos 10 siguientes
-  loadMore() { 
+  loadMore() {
     this.currentPage++;
     this.applyFilters();
   }
 }
-

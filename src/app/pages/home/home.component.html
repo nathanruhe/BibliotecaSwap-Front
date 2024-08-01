@@ -1,19 +1,22 @@
-<div class="search-container">
 
+<div class="search-container">
   <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
-  
   <button (click)="showFilters = !showFilters" class="filter-button">
     <img class="icon" src="assets/icons/book-icon.png">
   </button>
 </div>
+
+
 
 <div *ngIf="filteredBooks.length === 0 && searchTerm" class="no-books-message">
   <p class="noLibro">No se encontraron libros</p>
 </div>
 
 
+
 <div class="filter-overlay" *ngIf="showFilters">
   <div class="filter-popup">
+    
     <div class="section">
       <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
       <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
@@ -21,7 +24,7 @@
 
     <div class="sectionLGI">
       <div class="dropdown">
-        <button class="dropbtn" (click)="toggleDropdown('localidad')">Localidad</button>
+        <button class="dropbtn" (click)="toggleDropdown('province')">Localidad</button>
         <div class="dropdown-content" [ngClass]="{'show': showLocalidadDropdown}">
           <label *ngFor="let loc of localidades">
             <input type="checkbox" [checked]="selectedLocalidad.includes(loc)" (change)="toggleSingleSelection(selectedLocalidad, loc)"> {{loc}}
@@ -46,17 +49,21 @@
           </label>
         </div>
       </div>
+
     </div>
+
     <button class="close-btn" (click)="closeFilters()">X</button>
+
   </div>
 </div>
 
 
 
 <div class="cards-container">
-    <!--<app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>-->
-    <app-libro *ngFor="let book of filteredBooks" [book]="book"></app-libro>
+    <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>
+    <!--<app-libro *ngFor="let book of filteredBooks" [book]="book"></app-libro>-->
 </div>
+
 
 <div class="cont-charge">
 
@@ -65,3 +72,4 @@
   </button>
 
 </div>
+

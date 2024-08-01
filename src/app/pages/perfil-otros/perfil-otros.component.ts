@@ -20,11 +20,11 @@ export class PerfilOtrosComponent {
 
   ngOnInit(): void {
     this.misLibros = [
-      { photo: "https://m.media-amazon.com/images/I/71mE8X0q3rL._SY342_.jpg", title: "Ama tu soledad", author: "Autor 1", gender: "Terror", idioma: undefined},
-      { photo: "https://m.media-amazon.com/images/I/510hKvoP6bL._SY445_SX342_.jpg", title: "Padre rico", author: "Autor 2", gender: "Aventura", idioma: undefined },
-      { photo: "https://m.media-amazon.com/images/I/41Zuk9AefBL._SY445_SX342_.jpg", title: "Liderazgo", author: "Autor 3", gender: "Ficcion", idioma: undefined },
-      { photo: "https://m.media-amazon.com/images/I/51KnzneiV8L._SY445_SX342_.jpg", title: "Tan poca vida", author: "Autor 4", gender: "Amor", idioma: undefined },
-      { photo: "https://m.media-amazon.com/images/I/51PHOuFmcLL._SY445_SX342_.jpg", title: "El alquimista", author: "Autor 5", gender: "Drama", idioma: undefined },
+      new Libro("Ama tu soledad", "Autor 1", "Terror", "https://m.media-amazon.com/images/I/71mE8X0q3rL._SY342_.jpg", "español"),
+      new Libro("Padre rico", "Autor 2", "Aventura", "https://m.media-amazon.com/images/I/510hKvoP6bL._SY445_SX342_.jpg", "italiano"),
+      new Libro("Liderazgo", "Autor 3", "Ficción", "https://m.media-amazon.com/images/I/41Zuk9AefBL._SY445_SX342_.jpg", "frances"),
+      new Libro("Tan poca vida", "Autor 4", "Amor", "https://m.media-amazon.com/images/I/51KnzneiV8L._SY445_SX342_.jpg", "ingles"),
+      new Libro("El alquimista", "Autor 5", "Drama", "https://m.media-amazon.com/images/I/51PHOuFmcLL._SY445_SX342_.jpg", "aleman")
     ];
 
     this.misResenas = [

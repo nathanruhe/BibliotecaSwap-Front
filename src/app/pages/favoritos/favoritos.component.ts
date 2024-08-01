@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Libro } from 'src/app/models/libro';
 
 @Component({
   selector: 'app-favoritos',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./favoritos.component.css']
 })
 export class FavoritosComponent {
+
+  public books: Libro[] = [];
 
 }

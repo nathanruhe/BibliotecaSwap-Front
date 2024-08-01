@@ -1,11 +1,15 @@
 
 /* - - - - FORMULARIO - - - - */
 .container {
-    overflow-y: auto;
     background-image: url('../../../assets/fondoPrincipal.png');
     background-size: cover;
     background-position: center;
     position: relative;
+}
+
+.scroll {
+  overflow: auto;
+  height: 100vh;
 }
 
 img {
@@ -46,19 +50,33 @@ h3 {
   text-align: center;
 }
 
-h4 {
-  font-size: 3.5rem;
+.genero {
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  /* gap: 15vw; */
+  color: var(--gris-claro);
 }
 
-.sobre {
+.genero p{
+  margin: .2vw 5.5vw 7vw 8.5vw;
+}
+
+/* h4 {
+  font-size: 3.5rem;
+} */
+
+/* .sobre {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 3vw;
-}
+} */
 
-.aboutWe {
+/* .aboutWe {
   width: 78%;
   height: 90%;
   padding: 8vh;
@@ -74,4 +92,4 @@ h4 {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
+} */

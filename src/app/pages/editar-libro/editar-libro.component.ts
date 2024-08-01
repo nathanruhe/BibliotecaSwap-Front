@@ -30,9 +30,9 @@ export class EditarLibroComponent {
 
   }
 
-  public editBook(title: string, author: string, gender: string, idioma: string, photo: string, like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
+  public editBook(title: string, author: string, gender: string, photo: string, idioma: string, province: string = " ", like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
 
-    let book = { title, author, gender, idioma, photo, like, status, id_book, id_user };
+    let book = { title, author, gender, photo, idioma, province, like, status, id_book, id_user };
     const index = this.books.findIndex(libro => libro.id_book === book.id_book);
     if (index !== -1) {
       this.books[index] = book;

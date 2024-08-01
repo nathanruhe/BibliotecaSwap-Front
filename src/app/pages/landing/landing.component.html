@@ -1,7 +1,6 @@
-
 <app-headerlogin></app-headerlogin>
 
-<body class="container">
+<main class="container scroll">
 
   <div class="text">
     <h2>¡HOLA QUERIDO LECTOR!</h2>
@@ -13,8 +12,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <main class="col-8 px-0">
-        <!-- image -->
+      <section class="col-8 px-0">
         <swiper-container appSwiper #swiper [config]="swiperConfig" thumbs-swiper=".mySwiper2"
           (slidechange)="slideChange($event)">
           <swiper-slide>
@@ -22,6 +20,12 @@
               <img src="assets/ComoHacerQueTePasenCosasBuenas.jpg" alt="" />
               <img src="assets/Decidido.jpg" alt="" />
               <img src="assets/ElEnigmaDeLasArenas.jpg" alt="" />
+              <div class="genero">
+                <p>Auto Ayuda</p>
+                <!-- {{ book.gender }} -->
+                <p>Divulgación Científica</p>
+                <p>Novela Contemporánea</p>
+              </div>
             </div>
           </swiper-slide>
           <swiper-slide>
@@ -29,6 +33,11 @@
               <img src="assets/ElGuerreroALaSombraDelCerezo.jpg" alt="" />
               <img src="assets/LaGrietaDelSilencio.jpg" alt="" />
               <img src="assets/LasHermanasDeAuschwitz.jpeg" alt="" />
+              <div class="genero">
+                <p>Novela Histórica</p>
+                <p>Novela Negra</p>
+                <p>Novela Histórica</p>
+              </div>
             </div>
           </swiper-slide>
           <swiper-slide>
@@ -37,11 +46,19 @@
               <img src="assets/libro-de-los-cantos.jpg" alt="" />
               <img src="assets/PensarRapidoPensarDespacio.jpg" alt="" />
             </div>
+            <div class="genero">
+              <p>Divulgación Científica</p>
+              <p>Poesía</p>
+              <p>Psicología</p>
+            </div>
           </swiper-slide>
         </swiper-container>
-      </main>
+      </section>
     </div>
   </div>
+  
+  <!-- <app-libro-landing libro.foto="assets/ComoHacerQueTePasenCosasBuenas.jpg"></app-libro-landing> -->
+
   <!-- <div class="sobre">
     <div class="aboutWe">
       <h3>Sobre Nosotros</h3>
@@ -76,4 +93,4 @@
       <P>SOMOS CULTURA EN MOVIMIENTO</P>
     </div>
   </div> -->
-</body>
+</main>

@@ -13,4 +13,18 @@
         <app-libro class="book"></app-libro>
     </div>
 
+    <ul class="vistaLibros favoritos">
+
+        <div *ngIf="books.length===0" class="nulo">
+            <p>NO HAY LIBROS EN FAVORITOS</p>
+        </div>
+       
+        <li class="libros" *ngFor="let book of books; let favoritos = like; let false = odd; let true = even;">
+
+            <app-card [book]="book"></app-card>
+
+        </li>
+
+    </ul>
+
 </main>

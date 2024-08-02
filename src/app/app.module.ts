@@ -54,7 +54,6 @@ register();
     LoginComponent,
     RegistroComponent,
     PerfilOtrosComponent,
-    // FilterPopupComponent,
     HeaderloginComponent,
     SwiperDirective,
   ],

@@ -33,6 +33,9 @@ export class PerfilOtrosComponent implements OnInit {
       last_name: "Martinez",
       email: "roberto@gmail.com",
       photo: "https://previews.123rf.com/images/jemastock/jemastock1704/jemastock170402236/75461964-ilustraci%C3%B3n-de-vector-de-dibujos-animados-hombre-imagen-de-dise%C3%B1o-chico-eps-10.jpg",
+      about: "¡Hola! Soy un lector apasionado que disfruta de diversos géneros. Siempre busco nuevas recomendaciones y estoy emocionado de ser parte de esta comunidad. ¡Feliz lectura e intercambio!",
+      loan: 6,
+      rating: 3,
       province: "Barcelona",
       availability: "mañanas",
       genders: [

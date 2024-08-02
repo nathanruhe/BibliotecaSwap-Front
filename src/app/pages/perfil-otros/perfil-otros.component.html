@@ -11,7 +11,7 @@
             <div class="sobre">
                 <h2>Sobre mi:</h2>
                 <div>
-                    <p>[ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore earum rerum repellat doloribus? Earum hic facilis dolores officiis harum quaerat nemo atque rem quas iusto quos corporis, vel quasi provident? ]</p>
+                    <p>{{ user.about }}</p>
                 </div>
             </div>
         </div>
@@ -19,9 +19,7 @@
         <div class="info">
             <div class="infoEstrella">
                 <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-                    <span class="estrella" [class.filled]="b">&#9733;</span>
-                    <!-- <span class="estrella" [class.filled]="b < user.valoracion">&#9733;</span> -->
-                    <!-- NO EXISTE USER.VALORACION, COMO SE VA A IMPLEMENTAR??? -->
+                    <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
                 </ng-container>
             </div>
 
@@ -37,8 +35,8 @@
                     <div class="disponible">
                         <p>Disponibilidad</p>
                         <div class="dispo">
-                            <img src="../../../assets/iconoMañanas.png" alt="">
-                            <img src="../../../assets/iconoTardes.png" alt="">
+                            <img src="../../../assets/iconoMañanas.png" alt="" [style.opacity]="user.availability === 'tardes' ? 0.4 : 1">
+                            <img src="../../../assets/iconoTardes.png" alt="" [style.opacity]="user.availability === 'mañanas' ? 0.2 : 1">
                         </div>
                     </div>
                 </div>
@@ -48,9 +46,7 @@
                         <div>
                             <img class="icono" src="../../../assets/iconoIntercambio.png" alt="">
                         </div>
-                        <p> Prestados: [ 6 ]</p>
-                        <!-- <p> Prestados: {{ user.prestados }}</p> -->
-                        <!-- NO EXISTE USER.PRESTADOS, COMO SE VA A IMPLEMENTAR??? -->
+                        <p> Prestados: {{ user.loan }}</p>
                     </div>
 
                     <div class="generos">

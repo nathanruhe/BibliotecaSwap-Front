@@ -24,15 +24,6 @@
 
     <div class="sectionLGI">
       <div class="dropdown">
-        <button class="dropbtn" (click)="toggleDropdown('localidad')">Localidad</button>
-        <div class="dropdown-content" [ngClass]="{'show': showLocalidadDropdown}">
-          <label *ngFor="let loc of localidades">
-            <input type="checkbox" [checked]="selectedLocalidad.includes(loc)" (change)="toggleSingleSelection(selectedLocalidad, loc)"> {{loc}}
-          </label>
-        </div>
-      </div>
-
-      <div class="dropdown">
         <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
         <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
           <label *ngFor="let gen of generos">

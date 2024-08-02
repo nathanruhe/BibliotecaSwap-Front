@@ -24,7 +24,6 @@
 }
   
 .otroUser-btn, .heart-btn {
-  background-color: white;
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -35,22 +34,35 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-  
+
+.otroUser-btn, .heart-btn {
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .otroUser-btn {
   background-color: #FAE9FF;
 }
-
+  
 .heart-btn {
-  background-color: #FAE9FF;
-}
-
-.heart-btn.favorito {
-  background-color: #FF69B4; 
+  background-color: transparent; /* Elimina el color de fondo */
+  box-shadow: none; /* Elimina la sombra del botón */
 }
   
 .icon {
   width: 70%;
   object-fit: contain;
+}
+
+.icon-large {
+  width: 100%; /* Ajusta este tamaño según tus necesidades */
 }
   
 .imgn {
@@ -59,7 +71,7 @@
   
 .marco {
   width: 100%;
-  height: 250px;
+  height: 270px;
   overflow: hidden;
 }
   
@@ -71,7 +83,7 @@ img {
   
 .info {
   width: 100%;
-  height: 180px;
+  height: 150px;
   padding-left: 20px;
   padding-top: 20px;
 }
@@ -80,6 +92,7 @@ img {
   font-family: var(--titulo-fuente);
   width: 100%;
   padding: 5px;
+  margin-bottom: 20px;
 }
   
 .gender, .author, .status {

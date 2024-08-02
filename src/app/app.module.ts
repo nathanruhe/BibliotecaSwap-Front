@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'; // control formularios
 
@@ -25,6 +25,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.component';
 import { HeaderloginComponent } from './components/headerlogin/headerlogin.component';
+import { register } from 'swiper/element/bundle';
+import { SwiperDirective } from './pages/landing/swiper.directive';
+
+register();
+
 
 @NgModule({
   declarations: [
@@ -49,7 +54,9 @@ import { HeaderloginComponent } from './components/headerlogin/headerlogin.compo
     LoginComponent,
     RegistroComponent,
     PerfilOtrosComponent,
-    HeaderloginComponent
+    // FilterPopupComponent,
+    HeaderloginComponent,
+    SwiperDirective,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +64,7 @@ import { HeaderloginComponent } from './components/headerlogin/headerlogin.compo
     ReactiveFormsModule, // control formularios
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

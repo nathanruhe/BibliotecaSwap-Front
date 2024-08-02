@@ -1,0 +1,64 @@
+
+.container {
+    background-image: url('../../../assets/fondoPrincipal.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.scroll {
+  overflow: auto;
+  height: 100vh;
+}
+
+img {
+  width: 350px !important;
+  height: 500px !important;
+  margin: 4vh;
+}
+
+swiper-slide{
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+swiper-container{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--gris-claro);
+  padding: 6vw;
+}
+
+h2 {
+  font-size: 4rem;
+  font-family: var(--titulo-fuente);
+  margin-bottom: 2vw;
+}
+
+h3 {
+  font-size: 3rem;
+  font-family: var(--titulo-fuente);
+  text-align: center;
+}
+
+.genero {
+  display: flex;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  /* gap: 15vw; */
+  color: var(--gris-claro);
+}
+
+.genero p{
+  margin: .2vw 5.5vw 7vw 8.5vw;
+}

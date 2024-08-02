@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Libro, books } from 'src/app/models/libro';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-anadir-libro',
@@ -6,5 +8,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./anadir-libro.component.css']
 })
 export class AnadirLibroComponent {
+
+  book = {
+    title: 'El Enigma de las Arenas',
+    author: 'Robert Erskine Childers',
+    gender: 'Novela Contemporánea',
+    idioma: 'Español',
+    photo: 'https://imagessl6.casadellibro.com/a/l/s7/66/9788435055666.webp'
+  };
+
+  public books: Libro[];
+  public form: FormGroup;
+
+  constructor(public formBuilder: FormBuilder) {
+
+    this.form = this.formBuilder.group({
+      title: [, Validators.required],
+      author: [, Validators.required],
+      gender: [, Validators.required],
+      idioma: [, Validators.required],
+      photo: [, Validators.required],
+    })
+
+  }
+  public addBook(title: string, author: string, gender: string, photo: string, idioma: string, province: string = " ", like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
+
+    let book = { title, author, gender, photo, idioma, province, like, status, id_book, id_user };
+    // = this.form.value
+    console.log(book);
+    console.log(books);
+
+    books.push(book); 
+    this.form.reset();
+    
+    return books; 
+
+  };
 
 }

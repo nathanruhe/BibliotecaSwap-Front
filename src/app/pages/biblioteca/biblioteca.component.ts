@@ -9,7 +9,7 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class BibliotecaComponent {
 
-  /*public books: Libro[];
+  public books: Libro[];
   public users: Usuario[];
 
   filteredBooks: Libro[] = [];
@@ -59,9 +59,9 @@ export class BibliotecaComponent {
     const filtered = this.books.filter(book => {
       let filterCondition = true;
       if (this.filterType === 'Mis libros prestados') {
-        filterCondition = !book.status && book.id_user === 5; // Cambia '5' por el ID del usuario logueado
+        filterCondition = !book.status && book.id_user === 5; 
       } else if (this.filterType === 'Libros en prestamo') {
-        filterCondition = !book.status && book.id_user !== 5; // Cambia '5' por el ID del usuario logueado
+        filterCondition = !book.status && book.id_user !== 5; 
       }
 
       return filterCondition &&
@@ -96,5 +96,5 @@ export class BibliotecaComponent {
   onDeleteBook(book: Libro) {
     this.books = this.books.filter(b => b.id_book !== book.id_book);
     this.applyFilters();
-  }*/
+  }
 }

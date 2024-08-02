@@ -44,5 +44,4 @@ export class AnadirLibroComponent {
     return books; 
 
   };
-
 }

@@ -1,29 +1,49 @@
 <div class="search-container">
+  <div class="filters">
+    <p (click)="setFilter('Mis libros prestados')">Mis libros prestados</p>
+    <p (click)="setFilter('Todos')">Mis libros</p>
+    <p (click)="setFilter('Libros en prestamo')">Libros en prestamo</p>
+  </div>
 
-    <div class="filters">
-      <p (click)="setFilter('Mis libros prestados')">Mis libros prestados</p>
-      <p (click)="setFilter('Todos')">Mis libros</p>
-      <p (click)="setFilter('Libros en prestamo')">Libros en prestamo</p>
-    </div>
+  <div class="add">
+    <button class="addbook-btn" [routerLink]="['/addLibro']">
+      <img class="icon" src="assets/icons/add.png">
+    </button>
+  </div>
 
-    <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
-
+  <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
 </div>
 
 <div *ngIf="filteredBooks.length === 0 && searchTerm" class="no-books-message">
-    <p class="noLibro">No se encontraron libros</p>
-</div>
+  <p class="noLibro">No se encontraron libros</p>
+</div><br>
 
 
-<div class="cards-container">
+<div class="cards-container" *ngIf="filterType === 'Todos'">
   <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book" (delete)="onDeleteBook($event)"></app-libro-biblioteca>
 </div>
+<br>
 
+
+<div class="cards-container" *ngIf="filterType === 'Mis libros prestados' || filterType === 'Libros en prestamo'">
+  <div *ngFor="let book of filteredBooks" class="book-user-container">
+    <app-libro-biblioteca [book]="book" (delete)="onDeleteBook($event)"></app-libro-biblioteca>
+    <div class="user-info" *ngIf="filterType === 'Mis libros prestados'">
+      <p class="user-name">{{ book.borrowedBy?.name }} {{ book.borrowedBy?.lastName }}</p>
+      <p class="user-date">Fecha inicio: {{ book.startDate | date: 'dd.MM.yy' }}</p><br>
+      <p class="user-date">Fecha fin: {{ book.endDate | date: 'dd.MM.yy' }}</p>
+    </div>
+
+    <div class="user-info" *ngIf="filterType === 'Libros en prestamo'">
+      <p class="user-name">{{ book.owner?.name }} {{ book.owner?.lastName }}</p>
+      <p class="user-date">Fecha inicio: {{ book.startDate | date: 'dd.MM.yy' }}</p><br>
+      <p class="user-date">Fecha fin: {{ book.endDate | date: 'dd.MM.yy' }}</p>
+    </div>
+  </div>
+</div><br>  
 
 <div class="cont-charge">
-
   <button class="charge-btn" (click)="loadMore()">
     <img class="icon" src="assets/icons/carga.png">
   </button>
-
 </div>

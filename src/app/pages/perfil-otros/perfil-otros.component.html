@@ -1,3 +1,4 @@
+<!--
 <div class="container">
     <section class="perfil">
         <div class="datos">
@@ -72,11 +73,11 @@
             <h2 (click)="setActiveTab('resenas')" [ngClass]="{'active': activo === 'resenas'}">Reseñas: {{ misResenas.length }}</h2>
         </div>
 
-        <div class="libros" *ngIf="activo === 'biblioteca'">
-            <!-- <ng-container *ngFor="let libro of misLibros; let i = index">
-                <app-libro [book]="libro" [index]="i"></app-libro>
+        <div class="libros" *ngIf="activo === 'biblioteca'">-->
+            <!-- <ng-container *ngFor="let libro of misLibros; let i = index"> ESTO ESTABA COMENTADP
+              ESTO ESTABA COMENTADP  <app-libro [book]="libro" [index]="i"></app-libro>
             </ng-container> -->
-            <ng-container *ngFor="let libro of misLibros; let i = index">
+            <!--<ng-container *ngFor="let libro of misLibros; let i = index">
                 <div>
                     <img src="{{ libro.photo }}" alt="">
                     <p>{{ libro.title }}</p>
@@ -108,4 +109,4 @@
             </ng-container>
         </div>
     </section>
-</div>
+</div>-->

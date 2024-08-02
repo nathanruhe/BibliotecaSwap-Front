@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Libro } from 'src/app/models/libro';
-import { Resena  } from 'src/app/models/resena';
+//import { Libro } from 'src/app/models/libro';
+//import { Resena  } from 'src/app/models/resena';
 // pendiente importar user
 
 @Component({
@@ -9,7 +9,7 @@ import { Resena  } from 'src/app/models/resena';
   styleUrls: ['./perfil-otros.component.css']
 })
 export class PerfilOtrosComponent {
-
+/*
   public misLibros: Libro[] = [];
   public misResenas: Resena[] = [];
   public mostrar: boolean = true;
@@ -89,5 +89,5 @@ export class PerfilOtrosComponent {
           img: "../../../assets/iconoIdioma.png",
         },
       ]
-    };
+    };*/
 }

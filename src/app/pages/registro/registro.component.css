@@ -7,7 +7,7 @@
     background-size: cover; 
     background-position: center;
 
-    min-height: 100vh; /* pendiente de ajustar con header y footer */
+    /* min-height: 80vh; pendiente ajustar con header y footer */
     padding: 50px;   
 }
 
@@ -19,7 +19,6 @@ form {
     text-align: center;
     padding: 30px 40px;
     border-radius: 20px;
-    width: 450px;
     background-color: white;
     box-shadow: 5px 5px 20px black;
 }
@@ -29,7 +28,25 @@ form {
         font-size: var(--titulo-size);
     }
 
-    form div {
+    .principal {
+        display: flex;
+        gap: 50px;
+    }
+
+        .izquierda {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .derecha {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+    .izquierda div,
+    .derecha div {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -50,6 +67,10 @@ form {
             select::placeholder {
                 font-family: var(--texto-fuente);
             }
+
+        button {
+            margin-top: 24px;
+        }
 
 
 /* - - - - INVALIDS - - - - */

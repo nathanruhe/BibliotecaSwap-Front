@@ -15,7 +15,6 @@ import { AcercaComponent } from './pages/acerca/acerca.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
-import { SolicitudComponent } from './pages/solicitud/solicitud.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
 import { LandingComponent } from './pages/landing/landing.component';
@@ -40,7 +39,6 @@ import { HeaderloginComponent } from './components/headerlogin/headerlogin.compo
     FavoritosComponent,
     PerfilComponent,
     SobreComponent,
-    SolicitudComponent,
     HomeComponent,
     EditarPerfilComponent,
     LandingComponent,

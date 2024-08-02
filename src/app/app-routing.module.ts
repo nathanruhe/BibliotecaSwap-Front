@@ -12,6 +12,7 @@ import { PerfilOtrosComponent } from './pages//perfil-otros/perfil-otros.compone
 import { SolicitudComponent } from './pages/solicitud/solicitud.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
+import { BibliotecaComponent } from './pages/biblioteca/biblioteca.component';
 
 const routes: Routes = [
   { path: 'register', component: RegistroComponent },
@@ -22,9 +23,9 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'addLibro', component: AnadirLibroComponent },
   { path: 'editLibro', component: EditarLibroComponent },
-  { path: 'home', component: HomeComponent },
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'sobre', component: SobreComponent },
+  { path: 'miBiblioteca', component: BibliotecaComponent},
 ];
 
 @NgModule({

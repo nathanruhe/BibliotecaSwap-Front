@@ -34,7 +34,7 @@ export class AnadirLibroComponent {
   public addBook(title: string, author: string, gender: string, photo: string, idioma: string, province: string = " ", like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
 
     let book = { title, author, gender, photo, idioma, province, like, status, id_book, id_user };
-    // = this.form.value
+    
     console.log(book);
     console.log(books);
 

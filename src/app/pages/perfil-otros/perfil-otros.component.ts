@@ -44,6 +44,7 @@ export class PerfilOtrosComponent implements OnInit {
         "../../../assets/iconoFoto.png",
       ],
       password: "123Roberto.",
+      hidden: false,
     };
 
     this.misResenas = [

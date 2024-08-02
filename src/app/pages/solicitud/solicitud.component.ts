@@ -46,6 +46,7 @@ export class SolicitudComponent implements OnInit {
         "../../../assets/iconoFoto.png",
       ],
       password: "123Roberto.",
+      hidden: true,
     };
   };
 

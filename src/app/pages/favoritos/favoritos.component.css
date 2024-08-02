@@ -20,6 +20,7 @@
     margin-left: 2.5vh;
     margin-right: 2.5vh;
     margin-bottom: 3.5vh;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
 }
 
 .vistaLibros {

@@ -25,7 +25,9 @@ export class EditarLibroComponent {
     this.form = this.formBuilder.group({
       title: [, Validators.required],
       author: [, Validators.required],
-      gender: [, [Validators.required]],
+      gender: [, Validators.required],
+      idioma: [, Validators.required],
+      photo: [, Validators.required],
     })
 
   }

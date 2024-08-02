@@ -1,111 +1,115 @@
 .libro {
-    margin: 10px;
-    width: 300px;
-    height: 500px;
-    border-radius: 10px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Reem Kufi', sans-serif;
-    overflow: hidden;
-    position: relative;
-    background-color: #FAE9FF;
-  }
+  margin: 10px;
+  width: 300px;
+  height: 500px;
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Reem Kufi', sans-serif;
+  overflow: hidden;
+  position: relative;
+  background-color: #FAE9FF;
+}
   
-  .top-buttons {
-    position: absolute;
-    top: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-  }
+.top-buttons {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
   
-  .otroUser-btn, .heart-btn {
-    background-color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.otroUser-btn, .heart-btn {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
   
-  .otroUser-btn {
-    background-color: #FAE9FF;
-  }
+.otroUser-btn {
+  background-color: #FAE9FF;
+}
+
+.heart-btn {
+  background-color: #FAE9FF;
+}
+
+.heart-btn.favorito {
+  background-color: #FF69B4; 
+}
   
-  .heart-btn {
-    background-color: #FAE9FF;
-  }
+.icon {
+  width: 70%;
+  object-fit: contain;
+}
   
-  .icon {
-    width: 70%;
-    object-fit: contain;
-  }
+.imgn {
+  width: 100%;
+}
   
-  .imgn {
-    width: 100%;
-  }
+.marco {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
   
-  .marco {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-  }
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
   
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.info {
+  width: 100%;
+  height: 180px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
   
-  .info {
-    width: 100%;
-    height: 180px;
-    padding-left: 20px;
-    padding-top: 20px;
-  }
+.title {
+  font-family: var(--titulo-fuente);
+  width: 100%;
+  padding: 5px;
+}
   
-  .title {
-    font-family: var(--titulo-fuente);
-    width: 100%;
-    padding: 5px;
-  }
+.gender, .author, .status {
+  width: 100%;
+  padding: 5px;
+  font-family: var(--texto-fuente);
+}
   
-  .gender, .author, .status {
-    width: 100%;
-    padding: 5px;
-    font-family: var(--texto-fuente);
-  }
+.statusb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
-  .statusb {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.status {
+  width: 200px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  text-transform: uppercase;
+}
   
-  .status {
-    width: 200px;
-    height: 40px;
-    margin-top: 10px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    color: white;
-    text-transform: uppercase;
-  }
+.disponible {
+  background-color: rgb(51, 167, 239);
+  font-family: var(--titulo-fuente);
+}
   
-  .disponible {
-    background-color: rgb(51, 167, 239);
-    font-family: var(--titulo-fuente);
-  }
-  
-  .prestado {
-    background-color: rgba(51, 167, 239, 0.25);
-    font-family: var(--titulo-fuente);
-  }
+.prestado {
+  background-color: rgba(51, 167, 239, 0.25);
+  font-family: var(--titulo-fuente);
+}

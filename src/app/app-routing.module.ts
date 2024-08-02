@@ -8,16 +8,27 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AnadirLibroComponent } from './pages/anadir-libro/anadir-libro.component';
 import { EditarLibroComponent } from './pages/editar-libro/editar-libro.component';
 import { HomeComponent } from './pages/home/home.component';
+<<<<<<< HEAD
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
+=======
+import { PerfilOtrosComponent } from './pages//perfil-otros/perfil-otros.component';
+import { SolicitudComponent } from './pages/solicitud/solicitud.component';
+>>>>>>> main
 
 const routes: Routes = [
   { path: 'register', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
+<<<<<<< HEAD
   { path: 'landing', component: LandingComponent },
   { path: 'addLibro', component: AnadirLibroComponent },
   { path: 'editLibro', component: EditarLibroComponent },
   { path: 'home', component: HomeComponent },
   { path: 'favoritos', component: FavoritosComponent },
+=======
+  {path: 'home', component: HomeComponent},
+  { path: 'perfil-otros', component: PerfilOtrosComponent },
+  { path: 'solicitud', component: SolicitudComponent },
+>>>>>>> main
 ];
 
 @NgModule({

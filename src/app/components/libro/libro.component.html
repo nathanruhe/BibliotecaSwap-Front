@@ -2,12 +2,12 @@
   
     <div class="top-buttons">
   
-      <button class="otroUser-btn" [routerLink]="['/acercaDe', book.id_user]">
+      <button class="otroUser-btn" [routerLink]="['/perfil-otros']">
         <img class="icon" src="assets/icons/usuario.png">
       </button>
   
-      <button class="heart-btn" (click)="addBookToFavorites()">
-        <img  class="icon" src="assets/icons/heart.png">
+      <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()">
+        <img class="icon" src="assets/icons/heart.png">
       </button>
     </div>
     

@@ -1,1 +1,29 @@
-<p>biblioteca works!</p>
+<div class="search-container">
+
+    <div class="filters">
+      <p (click)="setFilter('Mis libros prestados')">Mis libros prestados</p>
+      <p (click)="setFilter('Todos')">Mis libros</p>
+      <p (click)="setFilter('Libros en prestamo')">Libros en prestamo</p>
+    </div>
+
+    <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
+
+</div>
+
+<div *ngIf="filteredBooks.length === 0 && searchTerm" class="no-books-message">
+    <p class="noLibro">No se encontraron libros</p>
+</div>
+
+
+<div class="cards-container">
+  <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book" (delete)="onDeleteBook($event)"></app-libro-biblioteca>
+</div>
+
+
+<div class="cont-charge">
+
+  <button class="charge-btn" (click)="loadMore()">
+    <img class="icon" src="assets/icons/carga.png">
+  </button>
+
+</div>

@@ -1,0 +1,40 @@
+<div class="filter-popup">
+
+    <div class="section">
+        <button (click)="resetFilters()" [ngClass]="{'active': status === 'Todos'}">Todos</button>
+        <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
+    </div>
+
+    <div class="section">
+        <div class="dropdown">
+            <button class="dropbtn" (click)="toggleDropdown('localidad')">Localidad</button>
+            <div class="dropdown-content scrollable" *ngIf="showLocalidad">
+                <label *ngFor="let loc of localidades">
+                    <input type="checkbox" [checked]="selectedLocalidad.includes(loc)" (change)="toggleSingleSelection(selectedLocalidad, loc)"> {{loc}}
+                </label>
+            </div>
+        </div>
+
+        <!--<div class="dropdown">
+            <button class="dropbtn" (click)="toggleDropdown('genero')">Géneros</button>
+            <div class="dropdown-content" *ngIf="showGenero">
+                <label *ngFor="let gen of generos">
+                    <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSelection(selectedGenero, gen)"> {{gen}}
+                </label>
+            </div>
+        </div>
+    
+        <div class="dropdown">
+            <button class="dropbtn" (click)="toggleDropdown('idioma')">Idiomas</button>
+            <div class="dropdown-content" *ngIf="showIdioma">
+                <label *ngFor="let idi of idiomas">
+                    <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSelection(selectedIdioma, idi)"> {{idi}}
+                </label>
+            </div>
+        </div>
+
+    </div>-->
+
+    <button class="close-btn" (click)="closePopup()">X</button>
+
+</div>

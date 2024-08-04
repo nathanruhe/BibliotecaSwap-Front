@@ -4,27 +4,33 @@
 
     <div class="card">
 
-        <div class="cardUser">
-            <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
+        <div class="top-buttons">
+
+            <button class="del-btn layer" (click)="onHidden()">
+                <img class="iconCard" src="../../../assets/icons/eye-remove.png" alt="">
+                <div *ngIf="user.hidden==true">
+                    <img class="iconCard up" src="../../../assets/icons/strikethrough.png" alt="">
+                </div>
+            </button>
+          
+
+            <button class="edit-btn" (click)="onEdit()" [routerLink]="['/update', book.id_book]">
+                <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
+            </button>
+
         </div>
 
         <div class="cardUser">
-            <img class="iconCard" src="../../../assets/icons/eye-remove.png" alt="">
-            <div *ngIf="user.hidden==true"></div>
-            <img class="iconCard" src="../../../assets/icons/strikethrough.png" alt="">
+            <img class="imgUser" src="../../../assets/icons/user2.png" alt=""/>
+            <!-- {{user.photo}} -->
+            <h2>{{ user.name }} {{ user.last_name }} Juan</h2>
         </div>
-
-        <div class="cardUser">
-            <img class="imgUser" src="../../../assets/icons/user2.png" alt="">
-        </div>
-
-
 
     </div>
 
     <div class="card">
 
-
+        
 
     </div>
 

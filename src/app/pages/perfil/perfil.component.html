@@ -14,27 +14,27 @@
             </button>
 
 
-            <button class="edit-btn" (click)="onEdit()" [routerLink]="['/update', book.id_book]">
+            <button class="edit-btn" (click)="onEdit()" [routerLink]="['/update', user.id_user]">
                 <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
             </button>
 
         </div>
 
         <div class="cardUser">
-            <img class="imgUser" src="../../../assets/icons/user2.png" alt="" />
-            <!-- {{user.photo}} -->
-            <h3>Roberto Martínez</h3>
-            <!-- {{ user.name }} {{ user.last_name }} -->
+            <img class="imgUser" src="{{user.photo}}" alt="" />
+            
+            <h3> {{ user.name }} {{ user.last_name }} </h3>
+           
         </div>
 
         <div class="info">
             <div class="infoEstrella">
-                <!-- <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index"> -->
-                <span class="estrella">&#9734;</span>
-                <!-- [class.filled]="b" -->
+                <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
+                <span class="estrella" [class.filled]="b">&#9733;</span>
+                
                 <!-- <span class="estrella" [class.filled]="b < user.valoracion">&#9733;</span> -->
                 <!-- NO EXISTE USER.VALORACION, COMO SE VA A IMPLEMENTAR??? -->
-                <!-- </ng-container> -->
+                </ng-container>
             </div>
 
             <div class="ambos">
@@ -49,8 +49,8 @@
                     <div class="disponible">
                         <p>Disponibilidad</p>
                         <div class="dispo">
-                            <img src="../../../assets/iconoMañanas.png" alt="">
-                            <img src="../../../assets/iconoTardes.png" alt="">
+                            <img *ngIf="user.availability=='mañanas'" src="../../../assets/iconoMañanas.png" alt="">
+                            <img *ngIf="user.availability=='tardes'" src="../../../assets/iconoTardes.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -95,12 +95,13 @@
 
         <h2>RESEÑAS</h2>
 
-        <div class="cardReview">
+        <div class="cardReview resenas">
 
             <ng-container *ngFor="let resena of misResenas; let i = index">
                 <div class="resena-container">
                     <div class="cabecera">
                         <div class="usuario">
+                            <img class="imgUser2" src="{{user.photo}}" alt="" />
                             <span>{{ resena.nombre }} {{ resena.apellido }}</span>
                         </div>
 

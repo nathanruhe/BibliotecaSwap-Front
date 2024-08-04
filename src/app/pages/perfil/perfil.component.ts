@@ -23,12 +23,12 @@ export class PerfilComponent implements OnInit {
 
     this.user = {
       id_user: 1,
-      name: "Roberto",
-      last_name: "Martinez",
-      email: "roberto@gmail.com",
-      photo: "https://previews.123rf.com/images/jemastock/jemastock1704/jemastock170402236/75461964-ilustraci%C3%B3n-de-vector-de-dibujos-animados-hombre-imagen-de-dise%C3%B1o-chico-eps-10.jpg",
-      province: "Barcelona",
-      availability: "mañanas",
+      name: "Jose",
+      last_name: "Padilla Torres",
+      email: "genial&dad@gmail.com",
+      photo: "../../../assets/icons/user2.png",
+      province: "Almería",
+      availability: "tardes",
       genders: [
         "../../../assets/iconoTerror.jpg",
         "../../../assets/iconoPoesia.png",
@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
         "../../../assets/iconoIdioma.png",
         "../../../assets/iconoFoto.png",
       ],
-      password: "123Roberto.",
+      password: "23HappYear.",
       hidden: false,
     };
 

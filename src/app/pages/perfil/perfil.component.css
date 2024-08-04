@@ -8,22 +8,6 @@ main {
     background-position: center;
 }
 
-.libroBiblioteca {
-    margin: 10px;
-    width: 300px;
-    height: 500px;
-    border-radius: 10px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Reem Kufi', sans-serif;
-    overflow: hidden;
-    position: relative;
-    background-color: #FAE9FF;
-}
-
 .top-buttons {
     position: absolute;
     top: 10px;
@@ -89,20 +73,22 @@ main {
 }
 
 h2 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-family: var(--titulo-fuente);
     margin-top: .8vh;
+    margin-bottom: 1.5vh;
 }
 
 h3 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-family: var(--titulo-fuente);
     margin-top: .8vh;
 }
 
 h4 {
-    font-size: .8rem;
+    font-size: 1rem;
     font-family: var(--titulo-fuente);
+    margin-bottom: .9vh;
 }
 
 .cardUser {
@@ -258,29 +244,68 @@ h4 {
     padding: 3vh 1.2vh;
 }
 
+.sobre div {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: center;
+}
+
 .sobre p {
     margin-top: 1vh;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .cardReview {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start;
+}
+
+.resena-container {
+    background: white;
+    padding: 10px 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1vh;
 }
 
 .cabecera {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 30px 0 30px;
+    margin: 0 10px 0 10px;
 }
 
 .usuario {
     font-weight: bold;
+    display: inline-flex;
+    gap: 1vw;
+}
+
+.imgUser2 {
+    width: 30px;
+    border-radius: 50%;
+    margin-bottom: 1vh;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
 }
 
 .usuario span {
     font-size: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--rosa-claro);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#6786F5,#9389F0);
+    border-radius: 5px;
 }

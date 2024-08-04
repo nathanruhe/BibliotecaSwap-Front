@@ -12,7 +12,7 @@
                     <img class="iconCard up" src="../../../assets/icons/strikethrough.png" alt="">
                 </div>
             </button>
-          
+
 
             <button class="edit-btn" (click)="onEdit()" [routerLink]="['/update', book.id_book]">
                 <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
@@ -21,16 +21,103 @@
         </div>
 
         <div class="cardUser">
-            <img class="imgUser" src="../../../assets/icons/user2.png" alt=""/>
+            <img class="imgUser" src="../../../assets/icons/user2.png" alt="" />
             <!-- {{user.photo}} -->
-            <h2>{{ user.name }} {{ user.last_name }} Juan</h2>
+            <h3>Roberto Martínez</h3>
+            <!-- {{ user.name }} {{ user.last_name }} -->
+        </div>
+
+        <div class="info">
+            <div class="infoEstrella">
+                <!-- <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index"> -->
+                <span class="estrella">&#9734;</span>
+                <!-- [class.filled]="b" -->
+                <!-- <span class="estrella" [class.filled]="b < user.valoracion">&#9733;</span> -->
+                <!-- NO EXISTE USER.VALORACION, COMO SE VA A IMPLEMENTAR??? -->
+                <!-- </ng-container> -->
+            </div>
+
+            <div class="ambos">
+                <div class="infoLocal">
+                    <div class="local">
+                        <div>
+                            <img class="icono" src="../../../assets/iconoLocalizacion.png" alt="">
+                        </div>
+                        <p>{{ user.province }}</p>
+                    </div>
+
+                    <div class="disponible">
+                        <p>Disponibilidad</p>
+                        <div class="dispo">
+                            <img src="../../../assets/iconoMañanas.png" alt="">
+                            <img src="../../../assets/iconoTardes.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infoDispo">
+                    <div class="prestados">
+                        <div>
+                            <img class="icono" src="../../../assets/iconoIntercambio.png" alt="">
+                        </div>
+                        <p> Prestados: [ 6 ]</p>
+                        <!-- <p> Prestados: {{ user.prestados }}</p> -->
+                        <!-- NO EXISTE USER.PRESTADOS, COMO SE VA A IMPLEMENTAR??? -->
+                    </div>
+
+                    <div class="generos">
+                        <p>Géneros de interés</p>
+                        <div class="gen">
+                            <ng-container *ngFor="let genero of user.genders; let i = index">
+                                <div class="gen2">
+                                    <img [src]="genero" alt="">
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sobre">
+                <h4>Sobre mi:</h4>
+                <div>
+                    <p>[ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore earum rerum repellat
+                        doloribus? Earum hic facilis dolores officiis harum quaerat nemo atque rem quas iusto quos
+                        corporis, vel quasi provident? ]</p>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
     <div class="card">
 
-        
+        <h2>RESEÑAS</h2>
+
+        <div class="cardReview">
+
+            <ng-container *ngFor="let resena of misResenas; let i = index">
+                <div class="resena-container">
+                    <div class="cabecera">
+                        <div class="usuario">
+                            <span>{{ resena.nombre }} {{ resena.apellido }}</span>
+                        </div>
+
+                        <div>
+                            <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let j = index">
+                                <span class="estrella" [class.filled]="j < resena.valoracion">&#9733;</span>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p>{{ resena.comentario }}</p>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
 
     </div>
 

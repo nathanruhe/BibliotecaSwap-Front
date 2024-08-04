@@ -8,12 +8,13 @@ import { Resena  } from 'src/app/models/resena';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent {
+export class PerfilComponent implements OnInit {
 
   @Input() book: Libro;
   @Output() put = new EventEmitter<Usuario>();
 
   public user: Usuario;
+  public resena: Resena;
   public misResenas: Resena[];
 
   constructor() {}

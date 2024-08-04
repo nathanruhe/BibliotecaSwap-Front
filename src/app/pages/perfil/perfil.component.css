@@ -24,10 +24,6 @@ main {
     background-color: #FAE9FF;
 }
 
-/* .cardReview{
-
-} */
-
 .top-buttons {
     position: absolute;
     top: 10px;
@@ -39,11 +35,12 @@ main {
 
 .card {
     width: 27%;
-    height: 80%;
-    padding: 6vh;
+    height: 88%;
+    padding: 4vh;
     margin: 5vh;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: first baseline;
     align-items: center;
     background-color: var(--morado-medio);
     background-size: cover;
@@ -74,8 +71,9 @@ main {
 }
 
 .imgUser {
-    width: 130px;
+    width: 120px;
     border-radius: 50%;
+    margin-bottom: 1vh;
     box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
 }
 
@@ -86,19 +84,203 @@ main {
 }
 
 .up {
-    position:absolute;
+    position: absolute;
     z-index: 1;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 1.6rem;
     font-family: var(--titulo-fuente);
-    margin-bottom: 1vw;
     margin-top: .8vh;
-    color: black;
-    /* z-index: 1; */
 }
 
-/* .cardUser {
-   
-} */
+h3 {
+    font-size: 1.3rem;
+    font-family: var(--titulo-fuente);
+    margin-top: .8vh;
+}
+
+h4 {
+    font-size: .8rem;
+    font-family: var(--titulo-fuente);
+}
+
+.cardUser {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+}
+
+.info {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoEstrella {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.6vh;
+}
+
+.infoEstrella span {
+    font-size: 60px;
+    color: #ccc;
+}
+
+.infoEstrella .filled {
+    color: gold;
+}
+
+.estrella {
+    color: #ccc;
+    font-size: 25px;
+}
+
+.estrella.filled {
+    color: gold;
+}
+
+.ambos {
+    display: flex;
+    width: 100%;
+}
+
+.infoLocal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.local {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icono {
+    height: 70%;
+    width: 100%;
+    display: block;
+}
+
+.local p,
+.prestados p {
+    margin-top: 3px;
+    font-size: 25px;
+}
+
+.prestados {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.infoDispo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.disponible {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dispo {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.dispo img {
+    width: 20%;
+    display: block;
+}
+
+.disponible p,
+.generos p {
+    margin-top: 3px;
+    font-size: 25px;
+}
+
+.generos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.gen {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gen2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 35px;
+}
+
+.gen2 img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.sobre {
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px var(--morado);
+    background-color: var(--gris-claro);
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1vh;
+    padding: 3vh 1.2vh;
+}
+
+.sobre p {
+    margin-top: 1vh;
+    font-size: 15px;
+}
+
+.cardReview {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px 0 30px;
+}
+
+.usuario {
+    font-weight: bold;
+}
+
+.usuario span {
+    font-size: 20px;
+}

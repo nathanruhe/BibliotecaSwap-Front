@@ -13,18 +13,20 @@
         <app-libro class="book" [book]="book8"></app-libro>
     </div>
 
-    <ul class="vistaLibros favoritos">
+    <div class="vistaLibros favoritos">
 
-        <div *ngIf="books.length===0" class="nulo">
+        <ng-container *ngIf="books.length===0" class="nulo">
             <p>NO HAY LIBROS EN FAVORITOS</p>
-        </div>
+        </ng-container>
        
-        <li class="libros" *ngFor="let book of books; let favoritos = like; let false = odd; let true = even;">
+        <ng-container class="libros" *ngFor="let book of books">
+            <!-- ; let favoritos = like; let false = odd; let true = even; -->
+            <!-- <div class="resena-container"> -->
+                <app-card [book]="book"></app-card>
+            <!-- </div> -->
 
-            <app-card [book]="book"></app-card>
+        </ng-container>
 
-        </li>
-
-    </ul>
+    </div>
 
 </main>

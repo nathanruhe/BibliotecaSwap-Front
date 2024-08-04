@@ -17,6 +17,19 @@
   font-family: var(--titulo-fuente);
 }
 
+.filters p {
+  cursor: pointer;
+}
+
+.selected-filter {
+  color: black;
+  font-weight: bold;
+}
+
+.unselected-filter {
+  color: gray;
+}
+
 .add {
   height: 80px;
   width: 80%;
@@ -77,7 +90,7 @@
 .book-user-container {
   display: flex;
   flex-direction: row;
-  width: calc(30% - 20px); /* Ajustar el ancho para que quepan dos tarjetas con el espacio de gap */
+  width: calc(35% );
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;

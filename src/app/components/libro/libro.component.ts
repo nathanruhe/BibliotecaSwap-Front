@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Libro } from 'src/app/models/libro'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-libro',
@@ -12,6 +13,7 @@ export class LibroComponent {
   @Output() addToFavorites = new EventEmitter<Libro>();
   @Output() goToPage = new EventEmitter<number>();
   
+  constructor(private router: Router) {}
 
   addBookToFavorites() {
     this.book.like = !this.book.like;
@@ -21,5 +23,9 @@ export class LibroComponent {
 
   navigateToPage() {
     this.goToPage.emit(this.book.id_book);
+  }
+
+  navigateToPerfilOtros() {
+    this.router.navigateByUrl("/perfil-otros");
   }
 }

@@ -2,7 +2,7 @@
   
   <div class="top-buttons">
 
-    <button class="edit-btn" [routerLink]="['/update', book.id_book]">
+    <button class="edit-btn" (click)="navigateEditBook()">
       <img class="icon" src="assets/icons/edit.png">
     </button>
 

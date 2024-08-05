@@ -41,6 +41,12 @@
   width: 100%;
 }
 
+.isOtroUser {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .otroUser-btn, .heart-btn {
   border: none;
   border-radius: 50%;

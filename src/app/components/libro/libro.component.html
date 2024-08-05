@@ -34,6 +34,14 @@
         <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
       </button>
     </div>
+
+    <!-- OtroUser -->
+    <div *ngIf="isOtroUser" class="isOtroUser">
+      <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()">
+        <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
+      </button>
+    </div>
+    
   </div>
 
   <figure class="imgn">

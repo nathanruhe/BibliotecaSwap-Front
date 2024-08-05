@@ -15,6 +15,7 @@ export class LibroComponent implements OnInit {
   @Input() isHome: boolean = false;
   @Input() isFavoritos: boolean = false;
   @Input() isBiblioteca: boolean = false;
+  @Input() isOtroUser: boolean = false;
   @Input() filterType: string; 
 
   constructor(private router: Router) {}

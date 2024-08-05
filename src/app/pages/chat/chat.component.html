@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container-fluid main-content">
-        <div class="row">
+    <div class="row">
+        <div class="left">
             <aside class="col-md-3 sidebar">
                 <ul class="chat-list">
                     <li class="chat-item">
@@ -34,7 +34,7 @@
                     </li>
                 </ul>
             </aside>
-
+    
             <main class="col-md-6 chat-area">
                 <div class="chat-header">
                     <div class="user-info">
@@ -58,14 +58,34 @@
                     <input type="text" placeholder="TEXTO">
                 </div>
             </main>
+        </div>
+
+        <div class="right">
             <aside class="col-md-3 info-section">
                 <div class="book-info">
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="image.png" alt="Book Cover" class="book-image">
+                        </div>
+                        <div class="book-details">
+                            <h3>Título Libro</h3>
+                            <p><strong>Autor:</strong> Nombre apellidos</p>
+                            <p><strong>Género:</strong> Aventuras</p>
+                        </div>
+                    </div>
                     <h3>Atención</h3>
                     <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
                     <p>Estado: <span class="status">Pendiente</span></p>
                 </div>
                 <div class="rating-section">
-                    <h3>Valora tu experiencia con Gamusino</h3>
+                    <h3>Valora tu experiencia con Juan</h3>
+                    <div class="stars">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
                     <label for="rating">Comentario:</label>
                     <textarea id="rating" rows="3"></textarea>
                     <button type="button" class="btn btn-primary">Valorar</button>

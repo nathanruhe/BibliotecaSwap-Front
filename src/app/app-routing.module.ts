@@ -9,21 +9,12 @@ import { AnadirLibroComponent } from './pages/anadir-libro/anadir-libro.componen
 import { EditarLibroComponent } from './pages/editar-libro/editar-libro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PerfilOtrosComponent } from './pages//perfil-otros/perfil-otros.component';
-import { FavoritosComponent } from './pages/favoritos/favoritos.component';
-import { SobreComponent } from './pages/sobre/sobre.component';
-import { BibliotecaComponent } from './pages/biblioteca/biblioteca.component';
 
 const routes: Routes = [
   { path: 'register', component: RegistroComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'perfil-otros', component: PerfilOtrosComponent },
-  { path: 'landing', component: LandingComponent },
-  { path: 'addLibro', component: AnadirLibroComponent },
-  { path: 'editLibro', component: EditarLibroComponent },
-  { path: 'favoritos', component: FavoritosComponent },
-  { path: 'sobre', component: SobreComponent },
-  { path: 'miBiblioteca', component: BibliotecaComponent},
 ];
 
 @NgModule({

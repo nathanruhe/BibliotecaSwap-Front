@@ -1,0 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Reem Kufi', sans-serif;
+    color: #f3d3c6; 
+    background: url('src/assets/fondoPrincipal.png') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.main-content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; 
+}
+
+.about-section {
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 1000px; 
+    text-align: center;
+}
+
+.about-section h1 {
+    color: #6786F5;
+    font-size: 2em;  
+}
+
+.text-container {
+    color: #3e8c3f; 
+    font-size: 1.2em;  
+}
+
+.text-container p {
+    margin-bottom: 20px;  
+}

@@ -12,6 +12,10 @@ import { PerfilOtrosComponent } from './pages//perfil-otros/perfil-otros.compone
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { BibliotecaComponent } from './pages/biblioteca/biblioteca.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { AcercaComponent } from './pages/acerca/acerca.component';
+
+
 import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
@@ -25,6 +29,8 @@ const routes: Routes = [
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'sobre', component: SobreComponent },
   { path: 'miBiblioteca', component: BibliotecaComponent},
+  { path: 'chat', component: ChatComponent },
+  { path: 'acerca', component: AcercaComponent },
   { path: 'perfil', component: PerfilComponent },
 ];
 
@@ -33,3 +39,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

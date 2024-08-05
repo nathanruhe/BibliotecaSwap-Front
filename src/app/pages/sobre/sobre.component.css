@@ -3,17 +3,17 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    height: 81.8vh;
+    height: 74.7vh;
 }
 
 h3 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: var(--titulo-fuente);
     text-align: center;
 }
 
 h4 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: var(--titulo-fuente);
     text-align: center;
 }
@@ -28,10 +28,10 @@ h4 {
 
 .aboutWe {
     width: 78%;
-    height: 90%;
+    height: 85%;
     font-family: var(--titulo-fuente);
-    text-align: center;
-    padding: 8vh;
+    font-size: .7rem;
+    padding: 5vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -41,7 +41,19 @@ h4 {
     background-position: center;
     border-radius: 40px;
     position: relative;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+}
+
+.usos {
+    display: flex;
+    flex-direction: column;             /*Elegir opción column o row*/
+    justify-content: flex-start;
+}
+
+span {
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
 }

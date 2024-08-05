@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Libro, books } from 'src/app/models/libro';
+import { Libro } from 'src/app/models/libro';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-anadir-libro',
@@ -31,17 +32,17 @@ export class AnadirLibroComponent {
     })
 
   }
-  public addBook(title: string, author: string, gender: string, photo: string, idioma: string, province: string = " ", like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
+  public addBook(title: string, author: string, gender: string, photo: string, idioma: string, propietario: Usuario = null, prestatario: Usuario = null, like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
 
-    let book = { title, author, gender, photo, idioma, province, like, status, id_book, id_user };
-    // = this.form.value
+    let book = { title, author, gender, photo, idioma, propietario, prestatario, like, status, id_book, id_user };
+    
     console.log(book);
-    console.log(books);
+    console.log(this.books);
 
-    books.push(book); 
+    this.books.push(book); 
     this.form.reset();
     
-    return books; 
+    return this.books; 
 
   };
 

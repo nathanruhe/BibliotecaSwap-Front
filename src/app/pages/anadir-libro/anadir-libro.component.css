@@ -56,6 +56,10 @@
 
 /* SOMBRA TARJETA */
 
+.book {
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+}
+
 .form {
     display: flex;
     flex-direction: column;

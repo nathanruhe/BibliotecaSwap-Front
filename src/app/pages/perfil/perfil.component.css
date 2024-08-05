@@ -1,0 +1,311 @@
+main {
+    height: 74.8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gris-claro);
+    background-size: cover;
+    background-position: center;
+}
+
+.top-buttons {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.card {
+    width: 27%;
+    height: 88%;
+    padding: 4vh;
+    margin: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    align-items: center;
+    background-color: var(--morado-medio);
+    background-size: cover;
+    background-position: center;
+    border-radius: 40px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.edit-btn,
+.del-btn {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.layer {
+    position: relative;
+}
+
+.imgUser {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 1vh;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+}
+
+.iconCard {
+    width: 70%;
+    object-fit: contain;
+    /* width: 30px; */
+}
+
+.up {
+    position: absolute;
+    z-index: 1;
+}
+
+h2 {
+    font-size: 1.7rem;
+    font-family: var(--titulo-fuente);
+    margin-top: .8vh;
+    margin-bottom: 1.5vh;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-family: var(--titulo-fuente);
+    margin-top: .8vh;
+}
+
+h4 {
+    font-size: 1rem;
+    font-family: var(--titulo-fuente);
+    margin-bottom: .9vh;
+}
+
+.cardUser {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+}
+
+.info {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoEstrella {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.6vh;
+}
+
+.infoEstrella span {
+    font-size: 60px;
+    color: #ccc;
+}
+
+.infoEstrella .filled {
+    color: gold;
+}
+
+.estrella {
+    color: #ccc;
+    font-size: 25px;
+}
+
+.estrella.filled {
+    color: gold;
+}
+
+.ambos {
+    display: flex;
+    width: 100%;
+}
+
+.infoLocal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.local {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icono {
+    height: 70%;
+    width: 100%;
+    display: block;
+}
+
+.local p,
+.prestados p {
+    margin-top: 3px;
+    font-size: 25px;
+}
+
+.prestados {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.infoDispo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.disponible {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dispo {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.dispo img {
+    width: 20%;
+    display: block;
+}
+
+.disponible p,
+.generos p {
+    margin-top: 3px;
+    font-size: 25px;
+}
+
+.generos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.gen {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.gen2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 35px;
+}
+
+.gen2 img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.sobre {
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px var(--morado);
+    background-color: var(--gris-claro);
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1vh;
+    padding: 3vh 1.2vh;
+}
+
+.sobre div {
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: center;
+}
+
+.sobre p {
+    margin-top: 1vh;
+    font-size: 18px;
+}
+
+.cardReview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start;
+}
+
+.resena-container {
+    background: white;
+    padding: 10px 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1vh;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px 0 10px;
+}
+
+.usuario {
+    font-weight: bold;
+    display: inline-flex;
+    gap: 1vw;
+}
+
+.imgUser2 {
+    width: 30px;
+    border-radius: 50%;
+    margin-bottom: 1vh;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+}
+
+.usuario span {
+    font-size: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--rosa-claro);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#6786F5,#9389F0);
+    border-radius: 5px;
+}

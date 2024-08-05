@@ -3,33 +3,33 @@
 
 <main class="card">
     <div class="tarjeta">
-        <app-libro-biblioteca [book]="book"></app-libro-biblioteca>
+        <app-libro-biblioteca [book]="book" class="book"></app-libro-biblioteca>
         <form class="form" [formGroup]="form">
             <h2>Modificar Libro</h2>
 
-            <input class="Input-text" type="text" #title placeholder="Título" required formControlName="title" [ngClass]="{'invalido': (form.get('title').dirty || form.get('title').touched) && !form.get('title').valid}">
+            <input class="Input-text" type="text" #title placeholder="Título" formControlName="title" [ngClass]="{'invalido': (form.get('title').dirty || form.get('title').touched) && !form.get('title').valid}">
             <div *ngIf="(form.get('title').dirty || form.get('title').touched) && !form.get('title').valid" class="mensajeInvalido" >
-                <div *ngIf="myForm.get('title').errors.required">Campo obligatorio</div>
+                <div *ngIf="form.get('title').errors.required">Campo obligatorio</div>
             </div>
 
-            <input class="Input-text" type="text" #author placeholder="Autor" required formControlName="autor" [ngClass]="{'invalido': (form.get('autor').dirty || form.get('autor').touched) && !form.get('autor').valid}">
-            <div *ngIf="(form.get('autor').dirty || form.get('autor').touched) && !form.get('autor').valid" class="mensajeInvalido">
-                <div *ngIf="myForm.get('autor').errors.required">Campo obligatorio</div>
+            <input class="Input-text" type="text" #author placeholder="Autor"  formControlName="author" [ngClass]="{'invalido': (form.get('author').dirty || form.get('author').touched) && !form.get('author').valid}">
+            <div *ngIf="(form.get('author').dirty || form.get('author').touched) && !form.get('author').valid" class="mensajeInvalido">
+                <div *ngIf="form.get('author').errors.required">Campo obligatorio</div>
             </div>
 
-            <input class="Input-text" type="text" #gender placeholder="Género" required formControlName="gender" [ngClass]="{'invalido': (form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid}">
+            <input class="Input-text" type="text" #gender placeholder="Género" formControlName="gender" [ngClass]="{'invalido': (form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid}">
             <div *ngIf="(form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid" class="mensajeInvalido">
-                <div *ngIf="myForm.get('gender').errors.required">Campo obligatorio</div>
+                <div *ngIf="form.get('gender').errors.required">Campo obligatorio</div>
             </div>
 
-            <input class="Input-text" type="text" #photo placeholder="Url Foto" required formControlName="photo" [ngClass]="{'invalido': (form.get('photo').dirty || form.get('photo').touched) && !form.get('photo').valid}">
+            <input class="Input-text" type="text" #photo placeholder="Url Foto" formControlName="photo" [ngClass]="{'invalido': (form.get('photo').dirty || form.get('photo').touched) && !form.get('photo').valid}">
             <div *ngIf="(form.get('photo').dirty || form.get('photo').touched) && !form.get('photo').valid" class="mensajeInvalido">
-                <div *ngIf="myForm.get('photo').errors.required">Campo obligatorio</div>
+                <div *ngIf="form.get('photo').errors.required">Campo obligatorio</div>
             </div>
 
-            <input class="Input-text" type="text" #idioma placeholder="Idioma" required formControlName="idioma" [ngClass]="{'invalido': (form.get('idioma').dirty || form.get('idioma').touched) && !form.get('idioma').valid}">
+            <input class="Input-text" type="text" #idioma placeholder="Idioma" formControlName="idioma" [ngClass]="{'invalido': (form.get('idioma').dirty || form.get('idioma').touched) && !form.get('idioma').valid}">
             <div *ngIf="(form.get('idioma').dirty || form.get('idioma').touched) && !form.get('idioma').valid" class="mensajeInvalido">
-                <div *ngIf="myForm.get('idioma').errors.required">Campo obligatorio</div>
+                <div *ngIf="form.get('idioma').errors.required">Campo obligatorio</div>
             </div>
 
             <button class="btn-disabled btn-principal button" (click)="editBook(title.value, author.value, gender.value, photo.value, idioma.value)" [disabled]="form.invalid">EDITAR</button>

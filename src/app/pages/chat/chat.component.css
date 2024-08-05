@@ -4,13 +4,24 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Reem Kufi', sans-serif;
-    background-color:white;
+    background-color: white;
     display: flex;
 }
 
 .row {
     display: flex;
     width: 100%;
+    justify-content: space-between; 
+}
+
+.left {
+    display: flex;
+    width: 70%; 
+}
+
+.right {
+    display: flex;
+    width: 30%; 
 }
 
 .sidebar, .chat-area, .info-section {
@@ -69,7 +80,7 @@ html, body {
 }
 
 .chat-area {
-    background-color: rgb(254, 241, 241);;
+    background-color: rgb(254, 241, 241);
     padding: 20px;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
@@ -168,26 +179,33 @@ html, body {
     background-color: #9389F0;
     height: 100px;
     width: 70px;
-    border-radius: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 10px;
 }
 
-.book-details {
-    display: flex;
-    flex-direction: column;
+.book-image {
+    height: 100%;
+    width: auto;
+    border-radius: 5px;
 }
 
-.book-info h3 {
-    margin: 0 0 10px 0;
+.book-details h3 {
+    margin: 0;
+    font-size: 1.2em;
 }
 
-.status {
-    font-weight: bold;
-    color: #d9534f;
+.book-details p {
+    margin: 0;
+    font-size: 0.9em;
 }
 
 .rating-section {
-    text-align: left;
+    background-color: #eceff1;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .stars {
@@ -196,24 +214,24 @@ html, body {
 }
 
 .star {
-    font-size: 2em;
-    color: #ffc107;
+    font-size: 1.5em;
+    color: #ffca28;
     cursor: pointer;
 }
 
-.rating-section textarea {
+textarea {
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    resize: none;
-}
-
-.rating-section button {
-    margin-top: 10px;
-    background-color: #6786F5;
-    color: white;
-    border: none;
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
 }

@@ -1,4 +1,3 @@
-<!-- <app-header></app-header> -->
 
 <main>
 
@@ -14,7 +13,7 @@
             </button>
 
 
-            <button class="edit-btn" (click)="onEdit()" [routerLink]="['/update', user.id_user]">
+            <button class="edit-btn" (click)="onEdit()" [routerLink]="['/editar-perfil']">
                 <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
             </button>
 
@@ -22,17 +21,17 @@
 
         <div class="cardUser">
             <img class="imgUser" src="{{user.photo}}" alt="" />
-
+            
             <h3> {{ user.name }} {{ user.last_name }} </h3>
-
+           
         </div>
 
         <div class="info">
             <div class="infoEstrella">
                 <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-
-                    <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
-
+                
+                <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
+              
                 </ng-container>
             </div>
 

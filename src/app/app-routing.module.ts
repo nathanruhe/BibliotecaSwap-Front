@@ -14,8 +14,6 @@ import { SobreComponent } from './pages/sobre/sobre.component';
 import { BibliotecaComponent } from './pages/biblioteca/biblioteca.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { AcercaComponent } from './pages/acerca/acerca.component';
-
-
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
 
@@ -24,7 +22,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'perfil-otros', component: PerfilOtrosComponent },
-  { path: 'landing', component: LandingComponent },
+  { path: '', component: LandingComponent },
   { path: 'addLibro', component: AnadirLibroComponent },
   { path: 'editLibro', component: EditarLibroComponent },
   { path: 'favoritos', component: FavoritosComponent },

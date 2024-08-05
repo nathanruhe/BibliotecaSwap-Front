@@ -23,7 +23,7 @@
     </div>
     
     <div class="statusb" >
-      <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
+      <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}" [routerLink]="['/chat']" [disabled]="!book.status">
         {{ book.status ? 'Solicitar' : 'Prestado' }}
       </button>
     </div>

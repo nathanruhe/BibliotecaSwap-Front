@@ -103,6 +103,7 @@ img {
   border-radius: 10px;
   color: white;
   text-transform: uppercase;
+  cursor: pointer;
 }
   
 .disponible {

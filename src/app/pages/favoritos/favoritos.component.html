@@ -3,28 +3,17 @@
 <main class="scroll">
 
     <div class="favoritos">
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-        <app-libro class="book"></app-libro>
-    </div>
 
-    <ul class="vistaLibros favoritos">
-
-        <div *ngIf="books.length===0" class="nulo">
-            <p>NO HAY LIBROS EN FAVORITOS</p>
-        </div>
+        <ng-container class="nulo" *ngIf="books.length===0">
+            <p class="nuloP">NO HAY LIBROS EN FAVORITOS</p>
+        </ng-container>
        
-        <li class="libros" *ngFor="let book of books; let favoritos = like; let false = odd; let true = even;">
+        <ng-container class="libros" *ngFor="let book of books">
 
-            <app-card [book]="book"></app-card>
+                 <app-libro class="book" [book]="book"></app-libro>
+         
+        </ng-container>
 
-        </li>
-
-    </ul>
+    </div>
 
 </main>

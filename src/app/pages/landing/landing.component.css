@@ -1,13 +1,17 @@
-
 .container {
-    background-image: url('../../../assets/fondoPrincipal.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
+  background-image: url('../../../assets/fondoPrincipal.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-snap-align: start;
 }
 
 .scroll {
-  overflow: auto;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-snap-align: start;
   height: 100vh;
 }
 
@@ -15,20 +19,21 @@ img {
   width: 350px !important;
   height: 500px !important;
   margin: 4vh;
+  object-fit: cover;
 }
 
-swiper-slide{
+swiper-slide {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-swiper-container{
+swiper-container {
   padding-left: 5%;
   padding-right: 5%;
 }
 
-.text{
+.text {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,6 +64,20 @@ h3 {
   color: var(--gris-claro);
 }
 
-.genero p{
+.genero p {
   margin: .2vw 5.5vw 7vw 8.5vw;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rosa-claro);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#6786F5,#9389F0);
+  border-radius: 5px;
 }

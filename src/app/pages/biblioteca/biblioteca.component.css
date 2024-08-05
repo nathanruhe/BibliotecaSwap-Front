@@ -1,20 +1,36 @@
-.search-container {
+.container {
   width: 100vw;
+  overflow-x: hidden;
+}
+
+.search-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 20px;
+  box-sizing: border-box; 
+}
+
+.filtAdd {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box; 
 }
 
 .filters {
-  width: 100vw;
-  height: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  flex-grow: 1;
   font-family: var(--titulo-fuente);
+  box-sizing: border-box;
 }
 
 .filters p {
@@ -31,18 +47,17 @@
 }
 
 .add {
-  height: 80px;
-  width: 80%;
   display: flex;
-  justify-content: flex-end; 
-  margin-right: 20px; 
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .addbook-btn {
   border: none;
   border-radius: 50%;
   width: 70px;
-  height: 70px; 
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,6 +80,7 @@
   font-family: 'Reem Kufi', sans-serif;
   background-color: var(--rosa-claro);
   margin-right: 40px;
+  box-sizing: border-box;
 }
 
 .no-books-message {
@@ -81,21 +97,24 @@
 }
 
 .cards-container {
+  width: 95%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-it: center;
   gap: 20px;
 }
 
 .book-user-container {
   display: flex;
   flex-direction: row;
-  width: calc(35% );
+  width: calc(35%);
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .user-info {

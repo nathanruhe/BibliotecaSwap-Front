@@ -1,11 +1,9 @@
 
-<!-- <app-header></app-header> -->
-
-<main class="container scroll">
+<main class="container">
 
   <div class="sobre">
 
-    <div class="aboutWe">
+    <div class="aboutWe scroll">
 
       <h3>Sobre Nosotros</h3>
       <br>
@@ -72,8 +70,24 @@
       <h4>Contacto</h4>
       <br>
       <p>Si tienes alguna pregunta, comentario o sugerencia, no dudes en ponerte en contacto con nosotros a través de <a href="info@bibliotecaswap.com">Biblioteca Swap</a> o en nuestras redes sociales.</p>
+      <br>
+      <h3>Conócenos</h3>
+      <br>
+
+      <div class="admin">
+
+        <ng-container *ngFor="let admin of administradores; let i = index">
+          <div class="perfil">
+            <img class="imgAdmin" src="{{admin.photo}}" alt="">
+            <h4> {{ admin.name }} {{ admin.last_name }} </h4>
+            <p style="color: black;"> {{ admin.about }} </p>
+          </div>
+        </ng-container>
+  
+      </div>
 
     </div>
+    
 
   </div>
 

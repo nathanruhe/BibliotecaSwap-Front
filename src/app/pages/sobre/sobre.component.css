@@ -3,14 +3,10 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    height: 74.7vh;
-}
-
-.scroll {
+    height: 76.3vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: start;
-    height: 100vh;
 }
 
 ::-webkit-scrollbar {
@@ -78,4 +74,28 @@ span {
 
 p {
     text-align: center;
+}
+
+.admin {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2vh;
+}
+
+.perfil {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--morado);
+    margin: 2vh;
+}
+
+.imgAdmin {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 1vh;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
 }

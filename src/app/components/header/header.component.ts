@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  isLoggedIn: boolean = false;
 
+  constructor(private router: Router) {}
+
+  login() {
+    this.isLoggedIn = true;
+    this.router.navigate(['/']);
+  }
+
+  register() {
+    this.router.navigate(['/registro']);
+  }
+
+  logout() {
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
+  }
 }

@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #6786F5; 
+  background-color: #6786F5;
   padding: 10px 20px;
+  min-height: 10vh; 
+  position: relative;
 }
 
 .logo {
@@ -37,20 +39,43 @@
   font-weight: bold;
 }
 
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.auth-buttons .login-button, .auth-buttons .register-button {
+  margin: 0 5px;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: #9389F0;
+  color: white;
+  border-radius: 5px;
+}
+
 .user-actions {
   display: flex;
   align-items: center;
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .user-actions .icon {
   margin: 0 10px;
-  height: 30px; 
-  width: 30px; 
+  height: 50px; 
+  width: 50px;  
   cursor: pointer;
 }
 
-.user-actions .icon.user-icon {
-  height: 40px; 
-  width: 40px;
+.logout-button {
+  margin-left: 10px;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: #9389F0;
+  color: white;
+  border-radius: 5px;
 }

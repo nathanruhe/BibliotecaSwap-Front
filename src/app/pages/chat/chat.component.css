@@ -1,38 +1,38 @@
 html, body {
-    height: 100%;
+    height: 100vh; 
     width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Reem Kufi', sans-serif;
-    background-color: #f0f0f0;
+    background-color:white;
+    display: flex;
 }
 
-.container-fluid.main-content {
+.row {
     display: flex;
-    height: 100vh; /* Ocupa toda la altura de la ventana */
-    width: 100vw;  /* Ocupa todo el ancho de la ventana */
-    margin: 0;     /* Elimina márgenes que puedan reducir el ancho */
-    padding: 0;    /* Elimina padding que pueda reducir el ancho */
+    width: 100%;
 }
 
 .sidebar, .chat-area, .info-section {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
+    height: calc(100vh - 10vh); 
+    overflow-y: auto; 
+    flex: 1; 
 }
 
 .sidebar {
     background-color: #d7d3f2;
-    width: 25%; /* Ajuste de ancho */
     padding: 10px;
+    border-right: 1px solid #ddd; 
+    width: 30%;
 }
 
 .chat-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1;
+    flex-grow: 1; 
 }
 
 .chat-item {
@@ -53,7 +53,6 @@ html, body {
     width: 40px;
     border-radius: 50%;
     border: 2px solid #000;
-
 }
 
 .chat-item .user-name {
@@ -70,11 +69,12 @@ html, body {
 }
 
 .chat-area {
-    background-color: #fff;
+    background-color: rgb(254, 241, 241);;
     padding: 20px;
-    width: 50%; /* Ajusta el ancho de la sección de chat */
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
+    flex: 2; 
+    width: 40%;
 }
 
 .chat-header {
@@ -111,7 +111,7 @@ html, body {
     background-color: #f9f9f9;
     padding: 10px;
     border-radius: 5px;
-    flex-grow: 1; /* Permite que la lista de mensajes ocupe todo el espacio disponible */
+    flex-grow: 1; 
     overflow-y: auto;
 }
 
@@ -145,15 +145,36 @@ html, body {
 .info-section {
     background-color: #f3e8f0;
     padding: 20px;
-    width: 25%; /* Ajusta el ancho de la sección de información */
-    flex-grow: 1;
+    flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espacia uniformemente los elementos dentro de esta sección */
+    justify-content: space-between;
+    width: 30%;
 }
 
 .book-info {
     margin-bottom: 20px;
+}
+
+.book-card {
+    display: flex;
+    align-items: center;
+    background-color: #e0d4f7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.book-cover {
+    background-color: #9389F0;
+    height: 100px;
+    width: 70px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
 }
 
 .book-info h3 {
@@ -163,6 +184,21 @@ html, body {
 .status {
     font-weight: bold;
     color: #d9534f;
+}
+
+.rating-section {
+    text-align: left;
+}
+
+.stars {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 2em;
+    color: #ffc107;
+    cursor: pointer;
 }
 
 .rating-section textarea {

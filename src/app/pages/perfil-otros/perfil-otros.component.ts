@@ -20,11 +20,11 @@ export class PerfilOtrosComponent implements OnInit {
 
   ngOnInit(): void {
     this.misLibros = [
-      new Libro("Ama tu soledad", "Autor 1", "Terror", "https://m.media-amazon.com/images/I/71mE8X0q3rL._SY342_.jpg", "español", null, null, false, true, null, null),
-      new Libro("Padre rico", "Autor 2", "Aventura", "https://m.media-amazon.com/images/I/510hKvoP6bL._SY445_SX342_.jpg", "italiano", null, null, false, true, null, null),
-      new Libro("Liderazgo", "Autor 3", "Ficción", "https://m.media-amazon.com/images/I/41Zuk9AefBL._SY445_SX342_.jpg", "frances", null, null, false, true, null, null),
-      new Libro("Tan poca vida", "Autor 4", "Amor", "https://m.media-amazon.com/images/I/51KnzneiV8L._SY445_SX342_.jpg", "ingles", null, null, false, true, null, null),
-      new Libro("El alquimista", "Autor 5", "Drama", "https://m.media-amazon.com/images/I/51PHOuFmcLL._SY445_SX342_.jpg", "aleman", null, null, false, true, null, null)
+      new Libro("Ama tu soledad", "Autor 1", "Terror", "https://m.media-amazon.com/images/I/71mE8X0q3rL._SY342_.jpg", "español", null, null, null, null, false, true, null, null),
+      new Libro("Padre rico", "Autor 2", "Aventura", "https://m.media-amazon.com/images/I/510hKvoP6bL._SY445_SX342_.jpg", "italiano", null, null, null, null, false, true, null, null),
+      new Libro("Liderazgo", "Autor 3", "Ficción", "https://m.media-amazon.com/images/I/41Zuk9AefBL._SY445_SX342_.jpg", "frances", null, null, null, null, false, true, null, null),
+      new Libro("Tan poca vida", "Autor 4", "Amor", "https://m.media-amazon.com/images/I/51KnzneiV8L._SY445_SX342_.jpg", "ingles", null, null, null, null, false, true, null, null),
+      new Libro("El alquimista", "Autor 5", "Drama", "https://m.media-amazon.com/images/I/51PHOuFmcLL._SY445_SX342_.jpg", "aleman", null, null, null, null, false, true, null, null)
     ];
 
     this.user = {

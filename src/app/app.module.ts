@@ -23,7 +23,6 @@ import { EditarLibroComponent } from './pages/editar-libro/editar-libro.componen
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.component';
-import { HeaderloginComponent } from './components/headerlogin/headerlogin.component';
 import { register } from 'swiper/element/bundle';
 import { SwiperDirective } from './pages/landing/swiper.directive';
 
@@ -52,7 +51,6 @@ register();
     LoginComponent,
     RegistroComponent,
     PerfilOtrosComponent,
-    HeaderloginComponent,
     SwiperDirective,
   ],
   imports: [

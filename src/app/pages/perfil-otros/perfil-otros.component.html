@@ -74,7 +74,7 @@
 
         <div class="libros" *ngIf="activo === 'biblioteca'">
             <ng-container *ngFor="let book of misLibros; let i = index">
-                <app-libro [book]="book" [index]="i"></app-libro>
+                <app-libro [book]="book" [index]="i" [isOtroUser]="true"></app-libro>
             </ng-container>
         </div>
 

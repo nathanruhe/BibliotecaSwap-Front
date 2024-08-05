@@ -17,6 +17,7 @@ import { AcercaComponent } from './pages/acerca/acerca.component';
 
 
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
 
 const routes: Routes = [
   { path: 'register', component: RegistroComponent },
@@ -32,6 +33,9 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'acerca', component: AcercaComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'editar-perfil', component: EditarPerfilComponent },
+
+
 ];
 
 @NgModule({

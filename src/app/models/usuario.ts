@@ -12,6 +12,7 @@ export class Usuario {
         public province: string,
         public availability: string,
         public genders: string[],
-        public password: string
+        public password: string,
+        public hidden: boolean = false,
     ) {}
 }

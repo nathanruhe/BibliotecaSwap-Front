@@ -12,6 +12,10 @@ export class LibroComponent {
   @Output() addToFavorites = new EventEmitter<Libro>();
   @Output() goToPage = new EventEmitter<number>();
   
+  constructor(){
+    console.log(this.book);
+    
+  }
 
   addBookToFavorites() {
     this.book.like = !this.book.like;

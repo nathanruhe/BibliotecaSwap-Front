@@ -25,27 +25,23 @@
     box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
 }
 
-.vistaLibros {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: center;
-    align-items: center;
-}
-
 .libros {
     list-style-type: none;
 }
 
 .nulo {
+    width: 100%;
+    height: 81vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color:var(--gris-claro);   
 }
 
-.nulo p {
+.nuloP {
     color: red;
-    font-size: .9rem;
+    font-size: 2rem;
+    font-family: var(--titulo-fuente);
     font-weight: 100;
     letter-spacing: .1rem;
     margin: 1rem;

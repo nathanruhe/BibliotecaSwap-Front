@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-libro-landing',
@@ -8,6 +10,13 @@ import { Libro } from 'src/app/models/libro';
 })
 
 export class LibroLandingComponent  {
-  @Input() libro: Libro;
+
+  @Input() book: Libro;
+
+  constructor(private router: Router) {}
+
+  navigateEditBook() {
+    this.router.navigateByUrl("/editLibro");
+  }
 
 }

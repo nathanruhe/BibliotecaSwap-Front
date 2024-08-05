@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-anadir-libro',
@@ -21,7 +22,7 @@ export class AnadirLibroComponent {
   public books: Libro[];
   public form: FormGroup;
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, private router: Router) {
 
     this.form = this.formBuilder.group({
       title: [, Validators.required],
@@ -45,5 +46,9 @@ export class AnadirLibroComponent {
     return this.books; 
 
   };
+  
+  navigateEditBook() {
+    this.router.navigateByUrl("/editLibro");
+  }
 
 }

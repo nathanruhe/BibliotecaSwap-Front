@@ -1,6 +1,6 @@
 /* - - - - FORMULARIO - - - - */
 .card {
-    height: 74.8vh;
+    height: 76.3vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +58,59 @@
 
 .book {
     box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+    position: relative;
+    left: -34px;
 }
+
+.libroBiblioteca {
+    width: 300px;
+    height: 500px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Reem Kufi', sans-serif;
+    overflow: hidden;
+    position: absolute;
+    background-color: #FAE9FF;
+  }
+  
+  .top-buttons {
+    position: absolute;
+    display: flex;
+    position: relative;
+    top: -230px;
+    right: -20px;
+    z-index: 1;
+  }
+  
+  .edit-btn {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-btn {
+    background-color: #FAE9FF;
+  }
+  
+  .del-btn {
+    background-color: #FAE9FF;
+  }
+  
+  .icon {
+    width: 70%;
+    object-fit: contain;
+  }
 
 .form {
     display: flex;
@@ -66,6 +118,7 @@
     justify-content: center;
     align-items: center;
     padding-top: 4vh;
+    margin-right: 18px;
 }
 
 h2 {

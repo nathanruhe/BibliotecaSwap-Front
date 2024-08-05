@@ -2,24 +2,24 @@
   background-image: url('../../../assets/fondoPrincipal.png');
   background-size: cover;
   background-position: center;
-  position: relative;
+  height: 76.3vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-snap-align: start;
 }
 
-.scroll {
+/* .scroll {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-snap-align: start;
   height: 100vh;
-}
+} */
 
 img {
   width: 350px !important;
   height: 500px !important;
   margin: 4vh;
-  object-fit: cover;
+  object-fit:scale-down;
 }
 
 swiper-slide {

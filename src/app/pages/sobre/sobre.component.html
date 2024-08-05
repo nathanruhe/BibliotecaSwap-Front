@@ -1,11 +1,9 @@
 
-<!-- <app-header></app-header> -->
-
 <main class="container">
 
   <div class="sobre">
 
-    <div class="aboutWe">
+    <div class="aboutWe scroll">
 
       <h3>Sobre Nosotros</h3>
       <br>
@@ -45,9 +43,51 @@
         hacer que la lectura sea accesible para todos, facilitando un espacio donde las personas
         puedan compartir y descubrir nuevos libros sin necesidad de comprarlos. 
       </p>
-      <P>SOMOS CULTURA EN MOVIMIENTO</P>
+      <br>
+      <h4>¿Cómo Funciona?</h4>
+      <br>
+      <ul class="usos">
+        <li><span>Regístrate:</span> Crea una cuenta gratuita en nuestra plataforma.</li>
+        <li><span>Publica tus libros:</span> Sube una lista de los libros que deseas intercambiar.</li>
+        <li><span>Busca libros:</span> Explora las listas de otros usuarios y encuentra libros que te interesen.</li>
+        <li><span>Intercambia:</span> Ponte en contacto con otros usuarios para coordinar el intercambio de libros.</li>
+      </ul>
+      <br>
+      <h4>¿Por Qué Elegirnos?</h4>
+      <ul class="usos">
+        <li><span>Comunidad Activa:</span> Únete a una red de lectores apasionados.</li>
+        <li><span>Fácil de Usar:</span> Nuestra plataforma es intuitiva y fácil de navegar.</li>
+        <li><span>Acceso Gratuito:</span>Disfruta de todos los beneficios de nuestra plataforma sin costo alguno.</li>
+        <li><span>Sostenibilidad:</span> Contribuye a un mundo más sostenible al reutilizar libros y reducir el desperdicio.</li>
+      </ul>
+      <br>
+      <h3>Únete a Nosotros</h3>
+      <br>
+      <p>Si eres un amante de los libros y te encanta la idea de compartir tus lecturas y descubrir nuevas, Biblioteca Swap es el lugar perfecto para ti. Únete a nuestra comunidad hoy y empieza a intercambiar libros con personas de todo el mundo.</p>
+      <br>
+      <h3 style="color:var(--morado)">SOMOS CULTURA EN MOVIMIENTO</h3>
+      <br>
+      <h4>Contacto</h4>
+      <br>
+      <p>Si tienes alguna pregunta, comentario o sugerencia, no dudes en ponerte en contacto con nosotros a través de <a href="info@bibliotecaswap.com">Biblioteca Swap</a> o en nuestras redes sociales.</p>
+      <br>
+      <h3>Conócenos</h3>
+      <br>
+
+      <div class="admin">
+
+        <ng-container *ngFor="let admin of administradores; let i = index">
+          <div class="perfil">
+            <img class="imgAdmin" src="{{admin.photo}}" alt="">
+            <h4> {{ admin.name }} {{ admin.last_name }} </h4>
+            <p style="color: black;"> {{ admin.about }} </p>
+          </div>
+        </ng-container>
+  
+      </div>
 
     </div>
+    
 
   </div>
 

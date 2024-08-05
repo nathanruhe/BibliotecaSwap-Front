@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit{
   public users: Usuario[];
 
   filteredBooks: Libro[] = [];
-  showFilters: boolean = false;
+  showFilters: boolean = true; // Siempre mostrar filtros
 
   status: string = 'Todos';
   selectedGenero: string[] = [];
@@ -149,5 +149,9 @@ export class HomeComponent implements OnInit{
   loadMore() {
     this.currentPage++;
     this.applyFilters();
+  }
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
   }
 }

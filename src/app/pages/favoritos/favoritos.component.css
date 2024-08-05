@@ -1,9 +1,9 @@
-.scroll {
+/* .scroll {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: start;
     height: 100vh;
-}
+} */
 
 .favoritos {
     width: 100%;
@@ -16,6 +16,10 @@
     background-position: center;
     padding-top: 8vh;
     padding-bottom: 5vh;
+    height: 76.3vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start;
 }
 
 .book {
@@ -35,7 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:var(--gris-claro);   
+    background-color: var(--gris-claro);
 }
 
 .nuloP {
@@ -57,6 +61,6 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(#6786F5,#9389F0);
+    background: linear-gradient(#6786F5, #9389F0);
     border-radius: 5px;
 }

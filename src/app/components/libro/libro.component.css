@@ -13,7 +13,7 @@
   position: relative;
   background-color: #FAE9FF;
 }
-  
+
 .top-buttons {
   position: absolute;
   top: 10px;
@@ -22,7 +22,25 @@
   justify-content: space-between;
   padding: 0 10px;
 }
-  
+
+.isHome {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.isFavoritos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.isBiblioteca {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .otroUser-btn, .heart-btn {
   border: none;
   border-radius: 50%;
@@ -38,63 +56,59 @@
 .otroUser-btn {
   background-color: #FAE9FF;
 }
-  
+
 .heart-btn {
-  background-color: transparent; /* Elimina el color de fondo */
-  box-shadow: none; /* Elimina la sombra del botón */
+  background-color: transparent;
+  box-shadow: none;
 }
-  
+
 .icon {
   width: 70%;
   object-fit: contain;
 }
 
-.icon-large {
-  width: 100%; /* Ajusta este tamaño según tus necesidades */
-}
-  
 .imgn {
   width: 100%;
 }
-  
+
 .marco {
   width: 100%;
   height: 270px;
   overflow: hidden;
 }
-  
+
 img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-  
+
 .info {
   width: 100%;
   height: 150px;
   padding-left: 20px;
   padding-top: 20px;
 }
-  
+
 .title {
   font-family: var(--titulo-fuente);
   width: 100%;
   padding: 5px;
   margin-bottom: 20px;
 }
-  
+
 .gender, .author, .status {
   width: 100%;
   padding: 5px;
   font-family: var(--texto-fuente);
 }
-  
+
 .statusb {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-  
+
 .status {
   width: 200px;
   height: 40px;
@@ -103,13 +117,14 @@ img {
   border-radius: 10px;
   color: white;
   text-transform: uppercase;
+  cursor: pointer;
 }
-  
+
 .disponible {
   background-color: rgb(51, 167, 239);
   font-family: var(--titulo-fuente);
 }
-  
+
 .prestado {
   background-color: rgba(51, 167, 239, 0.25);
   font-family: var(--titulo-fuente);

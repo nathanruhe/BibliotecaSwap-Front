@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 export class RegistroComponent {
 
   public myForm: FormGroup;
+  public modal: boolean = false;
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -44,7 +45,7 @@ export class RegistroComponent {
   public register() {
     const user = this.myForm.value;
     console.log(user);
+    this.modal = true;
     this.myForm.reset();
   };
-
 }

@@ -1,6 +1,22 @@
-<div class="card">
+<div class="libroBiblioteca">
+  
+  <figure class="imgn">
+    <div class="marco">
+      <img [src]="book.photo" [alt]="book.title">
+    </div>
+    
+    <div class="info">
+      <div class="title">{{ book.title }}</div><br>
+      <div class="author">{{ book.author }}</div>
+      <div class="gender">{{ book.gender }}</div>
+    </div>
+    
+    <div class="statusb">
+      <div class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
+        {{ book.status ? 'Disponible' : 'Prestado' }}
+      </div>
+    </div>
+  
+  </figure>
 
-    <img [src]="libro.photo" alt="Book Image" class="book-image">
-
-  </div>
-  <div class="genre">{{ libro.gender }}</div>
+</div>

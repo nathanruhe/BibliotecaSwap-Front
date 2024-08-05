@@ -40,8 +40,8 @@
 }
   
 .heart-btn {
-  background-color: transparent; /* Elimina el color de fondo */
-  box-shadow: none; /* Elimina la sombra del botón */
+  background-color: transparent; 
+  box-shadow: none; 
 }
   
 .icon {
@@ -49,10 +49,6 @@
   object-fit: contain;
 }
 
-.icon-large {
-  width: 100%; /* Ajusta este tamaño según tus necesidades */
-}
-  
 .imgn {
   width: 100%;
 }

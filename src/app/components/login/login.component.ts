@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms'; // control formularios
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginComponent {
 
   public myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
 
     this.myForm = this.formBuilder.group({
       email: [, [Validators.required, Validators.email]],
@@ -24,6 +25,7 @@ export class LoginComponent {
 
     if (this.myForm.valid) {
       console.log(user);
+      this.router.navigateByUrl("/home");
     } else {
       console.log("NO FUNCIONA");
     };

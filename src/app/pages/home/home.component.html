@@ -3,30 +3,38 @@
 </div>
 
 <div class="filter-row">
-  <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
-  <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
 
+  <div class="status-buttons">
+    <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
+    <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
+  </div>
+  
   <div class="search-container">
     <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
   </div>
   
-  <div class="dropdown">
-    <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
-    <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
-      <label *ngFor="let gen of generos">
-        <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSingleSelection(selectedGenero, gen)"> {{gen}}
-      </label>
+  <div class="dropdowns-container">
+
+    <div class="dropdown">
+      <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
+      <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
+        <label *ngFor="let gen of generos">
+          <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSingleSelection(selectedGenero, gen)"> {{gen}}
+        </label>
+      </div>
     </div>
+  
+    <div class="dropdown">
+      <button class="dropbtn" (click)="toggleDropdown('idioma')">Idioma</button>
+      <div class="dropdown-content" [ngClass]="{'show': showIdiomaDropdown}">
+        <label *ngFor="let idi of idiomas">
+          <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSingleSelection(selectedIdioma, idi)"> {{idi}}
+        </label>
+      </div>
+    </div>
+
   </div>
   
-  <div class="dropdown">
-    <button class="dropbtn" (click)="toggleDropdown('idioma')">Idioma</button>
-    <div class="dropdown-content" [ngClass]="{'show': showIdiomaDropdown}">
-      <label *ngFor="let idi of idiomas">
-        <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSingleSelection(selectedIdioma, idi)"> {{idi}}
-      </label>
-    </div>
-  </div>
 </div>
 
 <div class="cards-container">

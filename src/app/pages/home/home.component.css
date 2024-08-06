@@ -1,3 +1,10 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .no-books-message {
   display: flex;
   justify-content: center;
@@ -22,14 +29,35 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 20px;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.status-buttons, .search-container, .dropdowns-container {
+  display: flex;
+  align-items: center;
+}
+
+.status-buttons {
+  flex: 1;
+  justify-content: flex-start;
+  padding-left: 55px;
+  gap: 50px;
 }
 
 .search-container {
-  margin: 0 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.dropdowns-container {
+  flex: 1;
+  justify-content: flex-end;
+  padding-right: 55px;
+  gap: 50px;
 }
 
 .search-input {
@@ -88,7 +116,7 @@ button:hover {
   overflow: hidden;
   max-height: 150px;
   overflow-y: auto;
-  width: 180px;
+  width: 160px;
   top: 100%; 
   left: 0; 
 }

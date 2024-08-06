@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Chat Intercambio</title>
+    <title>Página de Chat</title>
     <link rel="stylesheet" href="chat.component.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row no-gutters">
-            <div class="col left">
+        <div class="main">
+            <div class="left">
                 <aside class="sidebar">
                     <ul class="chat-list">
-                        <li class="chat-item active">
+                        <li class="chat-item">
                             <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
                             <span class="user-name">Juan Garcia</span>
                             <span class="message-count">3</span>
@@ -26,7 +26,7 @@
                         <li class="chat-item">
                             <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
                             <span class="user-name">Carlos Martin</span>
-                            <span class="message-count">2</span>
+                            <span class="message-count">0</span>
                         </li>
                         <li class="chat-item">
                             <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
@@ -36,7 +36,7 @@
                     </ul>
                 </aside>
             </div>
-            <div class="col middle">
+            <div class="middle">
                 <main class="chat-area">
                     <div class="chat-header">
                         <div class="user-info">
@@ -73,48 +73,48 @@
                         <div class="message sent">
                             <p>Hasta luego.</p>
                         </div>
+
                     </div>
                     <div class="message-input">
-                        <input type="text" placeholder="Escribe un mensaje...">
+                        <input type="text" placeholder="TEXTO">
                     </div>
                 </main>
             </div>
-            <div class="col right">
+            <div class="right">
                 <aside class="info-section">
                     <div class="book-info">
                         <div class="book-card">
                             <div class="book-cover">
-                                <img src="assets/icons/book-cover.png" alt="Book Cover" class="book-image">
+                                <img src="assets/LasHermanasDeAuschwitz.jpeg" alt="Book Cover" class="book-image">
                             </div>
                             <div class="book-details">
-                                <h3>Título del Libro</h3>
-                                <p><strong>Autor:</strong> Nombre Apellidos</p>
-                                <p><strong>Género:</strong> Aventuras</p>
+                                <h3>Las Hermanas De Auschwitz</h3>
+                                <p><strong>Autor:</strong> Roxane Van Iperen</p>
+                                <p><strong>Género:</strong> Terror</p>
                             </div>
                         </div>
                         <div class="alert-section">
-                            <h3>Atención</h3>
+                            <h5>Atención</h5>
                             <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
-                            <p>Estado: <span class="status">Pendiente</span></p>
+                            <p>Estado: <button class="status">Pendiente </button></p>
                         </div>
+
                     </div>
                     <div class="rating-section">
-                        <h3>Valora tu experiencia con Juan</h3>
+                        <h5>Valora tu experiencia con Juan</h5>
                         <div class="stars">
                             <span class="star">&#9733;</span>
                             <span class="star">&#9733;</span>
                             <span class="star">&#9733;</span>
                             <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
+                            <span class="star">&#9734;</span>
                         </div>
-                        <label for="rating">Comentario:</label>
-                        <textarea id="rating" rows="3"></textarea>
-                        <button type="button" class="btn btn-primary">Valorar</button>
+                        <textarea rows="4" placeholder="Escribe tu reseña aquí..."></textarea>
+                        <button class="btn btn-primary">Enviar</button>
                     </div>
                 </aside>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

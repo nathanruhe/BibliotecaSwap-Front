@@ -1,4 +1,4 @@
-<header class="header">
+<!-- <header class="header">
   <div class="logo">
     <a routerLink="/">
       <img src="assets/icons/logowhite.png" alt="Logo">
@@ -19,4 +19,51 @@
     <img src="assets/icons/user.png" alt="User Profile" class="icon user-icon" routerLink="/perfil">
     <button class="logout-button" style="font-family: 'Reem Kufi', sans-serif;" (click)="logout()">Cerrar Sesión</button>
   </div>
+</header> -->
+
+
+
+
+
+<header>
+    <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+      <div class="login">
+        <div class="logo">
+          <img src="assets/icons/logowhite.png" alt="Logo" routerLink="/">
+        </div>
+
+        <div class="login2">
+          <nav>
+            <a routerLink="/chat">CHAT</a>
+            <a routerLink="/miBiblioteca">MI BIBLIOTECA</a>
+          </nav>
+
+          <div class="iconos">
+            <img src="assets/icons/cc.png" alt="Favorites" routerLink="/favoritos">
+            <img src="assets/icons/user.png" alt="User Profile" routerLink="/perfil">
+          </div>
+
+          <button (click)="logout()">CERRAR SESIÓN</button>
+        </div>
+      </div>
+    </ng-container>
+
+
+  <ng-template #notLoggedIn>
+    <div class="logout">
+      <div class="logolong">
+        <img src="assets/icons/logolong.png" alt="Logo" routerLink="/">
+      </div>
+      <div class="botones">
+        <button class="btn-principal" (click)="login()">Login</button>
+        <button class="btn-principal" (click)="register()">Registrar</button>
+      </div>
+    </div>
+  </ng-template>
 </header>
+
+
+<!-- Modal -->
+<div class="modal" *ngIf="modal">
+  <app-login></app-login>
+</div>

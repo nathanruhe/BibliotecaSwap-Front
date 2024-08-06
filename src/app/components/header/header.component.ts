@@ -7,17 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isLoggedIn: boolean = true;
+  public isLoggedIn: boolean = false;
+  public modal: boolean = false;
 
   constructor(private router: Router) {}
 
   login() {
-    this.isLoggedIn = true;
-    this.router.navigate(['/']);
+    this.modal = true;
   }
 
   register() {
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/register']);
   }
 
   logout() {

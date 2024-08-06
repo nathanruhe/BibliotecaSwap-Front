@@ -1,4 +1,4 @@
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,4 +78,127 @@
   background-color: #9389F0;
   color: white;
   border-radius: 5px;
+} */
+
+
+
+header {
+  display: flex;
+  align-items: center;
+  min-height: 10vh;
+  background-color: var(--azul);
+  justify-content: center;
+}
+
+  a {
+    font-family: var(--titulo-fuente);
+    color: white;
+  }
+
+  /* header notLoggedIn */
+  .logout {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+    .logolong {
+      display: flex;
+    }
+
+    .botones {
+      display: flex;
+      height: 100%;
+      gap: 30px;
+      margin: 10px;
+    }
+
+    button {
+      background-color: var(--morado);
+    }
+
+
+/* header isLoggedIn */
+.login {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+    .logo img {
+      display: block;
+      height: 100%;
+      margin-top: 6px;
+    }
+
+  .login2 {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .iconos {
+    display: flex;
+    height: 40px;
+    gap: 30px;
+    align-items: center;
+  }
+
+    .iconos img {
+      display: block;
+      height: 100%;
+    }
+
+    .iconos img:nth-of-type(2) {
+      height: 50px;
+    }
+
+  .login button {
+    background-color: var(--morado);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-family: var(--texto-fuente);
+  }
+
+
+  @media (max-width: 700px) {
+    .login {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .login2 {
+      margin: 10px;
+    }
+  }
+
+
+
+  /* - - - - MODAL - - - - */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }

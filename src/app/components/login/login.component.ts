@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   public myForm: FormGroup;
+  public modal: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
 
@@ -26,6 +27,7 @@ export class LoginComponent {
     if (this.myForm.valid) {
       console.log(user);
       this.router.navigateByUrl("/home");
+      this.modal = false
     } else {
       console.log("NO FUNCIONA");
     };

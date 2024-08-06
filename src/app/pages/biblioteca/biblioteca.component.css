@@ -1,6 +1,18 @@
-.container {
-  width: 100vw;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   overflow-x: hidden;
+}
+
+.container {
+  max-width: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .search-container {
@@ -9,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin-top: 20px;
   box-sizing: border-box; 
 }
 
@@ -108,7 +120,7 @@
 .book-user-container {
   display: flex;
   flex-direction: row;
-  width: calc(32%);
+  width: 460px;
   border: 1px solid #ccc;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

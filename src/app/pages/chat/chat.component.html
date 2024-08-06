@@ -3,97 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Chat</title>
+    <title>Página de Chat Intercambio</title>
     <link rel="stylesheet" href="chat.component.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="row">
-        <div class="left">
-            <aside class="col-md-3 sidebar">
-                <ul class="chat-list">
-                    <li class="chat-item">
-                        <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                        <span class="user-name">Juan Garcia</span>
-                        <span class="message-count">3</span>
-                    </li>
-                    <li class="chat-item">
-                        <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                        <span class="user-name">Laura Pozas</span>
-                        <span class="message-count">1</span>
-                    </li>
-                    <li class="chat-item">
-                        <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                        <span class="user-name">Carlos Martin</span>
-                        <span class="message-count">0</span>
-                    </li>
-                    <li class="chat-item">
-                        <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                        <span class="user-name">Jose Lopez</span>
-                        <span class="message-count">1</span>
-                    </li>
-                </ul>
-            </aside>
-    
-            <main class="col-md-6 chat-area">
-                <div class="chat-header">
-                    <div class="user-info">
-                        <img src="assets/icons/user.png" alt="Usuario" class="user-icon large">
-                        <h2>Juan Garcia</h2>
-                    </div>
-                    <button class="close-chat">&times;</button>
-                </div>
-                <div class="messages">
-                    <div class="message received">
-                        <p>¡Hola!</p>
-                    </div>
-                    <div class="message received">
-                        <p>¿Cuándo podríamos hacer el intercambio del libro?</p>
-                    </div>
-                    <div class="message sent">
-                        <p>Hola, estoy disponible de tardes, ¿te va bien?</p>
-                    </div>
-                </div>
-                <div class="message-input">
-                    <input type="text" placeholder="TEXTO">
-                </div>
-            </main>
-        </div>
-
-        <div class="right">
-            <aside class="col-md-3 info-section">
-                <div class="book-info">
-                    <div class="book-card">
-                        <div class="book-cover">
-                            <img src="image.png" alt="Book Cover" class="book-image">
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col left">
+                <aside class="sidebar">
+                    <ul class="chat-list">
+                        <li class="chat-item active">
+                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
+                            <span class="user-name">Juan Garcia</span>
+                            <span class="message-count">3</span>
+                        </li>
+                        <li class="chat-item">
+                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
+                            <span class="user-name">Laura Pozas</span>
+                            <span class="message-count">1</span>
+                        </li>
+                        <li class="chat-item">
+                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
+                            <span class="user-name">Carlos Martin</span>
+                            <span class="message-count">2</span>
+                        </li>
+                        <li class="chat-item">
+                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
+                            <span class="user-name">Jose Lopez</span>
+                            <span class="message-count">1</span>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="col middle">
+                <main class="chat-area">
+                    <div class="chat-header">
+                        <div class="user-info">
+                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon large">
+                            <h2>Juan Garcia</h2>
                         </div>
-                        <div class="book-details">
-                            <h3>Título Libro</h3>
-                            <p><strong>Autor:</strong> Nombre apellidos</p>
-                            <p><strong>Género:</strong> Aventuras</p>
+                        <button class="close-chat">&times;</button>
+                    </div>
+                    <div class="messages">
+                        <div class="message received">
+                            <p>¡Hola!</p>
+                        </div>
+                        <div class="message received">
+                            <p>¿Cuándo podríamos hacer el intercambio del libro?</p>
+                        </div>
+                        <div class="message sent">
+                            <p>Hola, estoy disponible de tardes, ¿te va bien?</p>
+                        </div>
+                        <div class="message received">
+                            <p>Sí, me va bien. ¿Podemos vernos el miércoles?</p>
+                        </div>
+                        <div class="message sent">
+                            <p>Perfecto, ¿a las 5 PM?</p>
+                        </div>
+                        <div class="message received">
+                            <p>Sí, a las 5 PM está bien.</p>
+                        </div>
+                        <div class="message sent">
+                            <p>Genial, nos vemos entonces.</p>
+                        </div>
+                        <div class="message received">
+                            <p>Nos vemos, ¡hasta luego!</p>
+                        </div>
+                        <div class="message sent">
+                            <p>Hasta luego.</p>
                         </div>
                     </div>
-                    <h3>Atención</h3>
-                    <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
-                    <p>Estado: <span class="status">Pendiente</span></p>
-                </div>
-                <div class="rating-section">
-                    <h3>Valora tu experiencia con Juan</h3>
-                    <div class="stars">
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
-                        <span class="star">&#9733;</span>
+                    <div class="message-input">
+                        <input type="text" placeholder="Escribe un mensaje...">
                     </div>
-                    <label for="rating">Comentario:</label>
-                    <textarea id="rating" rows="3"></textarea>
-                    <button type="button" class="btn btn-primary">Valorar</button>
-                </div>
-            </aside>
+                </main>
+            </div>
+            <div class="col right">
+                <aside class="info-section">
+                    <div class="book-info">
+                        <div class="book-card">
+                            <div class="book-cover">
+                                <img src="assets/icons/book-cover.png" alt="Book Cover" class="book-image">
+                            </div>
+                            <div class="book-details">
+                                <h3>Título del Libro</h3>
+                                <p><strong>Autor:</strong> Nombre Apellidos</p>
+                                <p><strong>Género:</strong> Aventuras</p>
+                            </div>
+                        </div>
+                        <div class="alert-section">
+                            <h3>Atención</h3>
+                            <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
+                            <p>Estado: <span class="status">Pendiente</span></p>
+                        </div>
+                    </div>
+                    <div class="rating-section">
+                        <h3>Valora tu experiencia con Juan</h3>
+                        <div class="stars">
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                        </div>
+                        <label for="rating">Comentario:</label>
+                        <textarea id="rating" rows="3"></textarea>
+                        <button type="button" class="btn btn-primary">Valorar</button>
+                    </div>
+                </aside>
+            </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

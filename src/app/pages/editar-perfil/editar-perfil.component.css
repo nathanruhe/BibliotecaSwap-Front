@@ -3,8 +3,8 @@ body {
     background-color: #f8f9fa;
     padding: 20px;
     margin: 0;
-    overflow: hidden; 
-    height: 100vh; 
+    overflow: hidden;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +12,7 @@ body {
 
 .container {
     width: 90%;
-    height: 75vh;
+    height: 75vh; 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -24,6 +24,7 @@ body {
     padding: 20px;
     text-align: center;
     height: 100%;
+    overflow: hidden; 
 }
 
 .card {
@@ -36,14 +37,14 @@ body {
 .header-title {
     font-family: 'Aclonica', sans-serif;
     color: #6a5acd;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .profile-picture {
     position: relative;
     width: 150px;
     height: 150px;
-    margin: 0 auto 10px; 
+    margin: 0 auto 10px;
 }
 
 .profile-picture img {
@@ -90,7 +91,7 @@ body {
 }
 
 .edit-preferences .section-title {
-    margin-top: 20px;
+    margin-top: 10px; 
     margin-bottom: 10px;
 }
 
@@ -129,31 +130,38 @@ body {
 }
 
 .genres {
+    margin-top: 10px; 
+    text-align: center; 
+}
+
+.genres-container {
+    margin-top: 10px;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    margin-top: -15px;
+    justify-content: center;
+    width: 100%; 
 }
 
 .genre-column {
     display: flex;
     flex-direction: column;
     width: 45%;
-    margin: 0 5px;
+    margin: 5px; 
 }
 
 .genre-column label {
     display: block;
     margin-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 1.2em; 
     text-align: left;
 }
 
 .genre-column input[type="checkbox"] {
-    transform: scale(1.8);
+    transform: scale(1.5); 
     margin-right: 10px;
 }
 
 .genre-column i {
     margin-right: 8px;
 }
+

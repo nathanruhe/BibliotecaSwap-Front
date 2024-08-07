@@ -1,24 +1,43 @@
-/* .header {
+ .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Reem Kufi', sans-serif;
   background-color: #6786F5;
   padding: 10px 20px;
-  min-height: 10vh; 
+  height: 10vh;
   position: relative;
 }
 
-.logo {
+.logo-left,
+.logo-center {
   display: flex;
   align-items: center;
 }
 
-.logo img {
-  height: 100px;
-  margin-right: 10px;
+.logo-left a,
+.logo-center a {
+  text-decoration: none;
+}
+
+.logo-left img,
+.logo-center img {
+  height: 80px;
+}
+
+.logo-left {
+  position: absolute;
+  left: 10px;
+}
+
+.logo-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav {
+  display: flex;
   margin-left: auto;
 }
 
@@ -45,7 +64,8 @@
   margin-left: auto;
 }
 
-.auth-buttons .login-button, .auth-buttons .register-button {
+.auth-buttons .login-button,
+.auth-buttons .register-button {
   margin: 0 5px;
   padding: 5px 15px;
   border: none;
@@ -64,8 +84,17 @@
 
 .user-actions .icon {
   margin: 0 10px;
-  height: 50px; 
-  width: 50px;  
+}
+
+.user-actions .user-icon {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.user-actions .favorites-icon {
+  height: 30px;
+  width: 30px;
   cursor: pointer;
 }
 
@@ -78,127 +107,22 @@
   background-color: #9389F0;
   color: white;
   border-radius: 5px;
-} */
-
-
-
-header {
-  display: flex;
-  align-items: center;
-  min-height: 10vh;
-  background-color: var(--azul);
-  justify-content: center;
 }
 
-  a {
-    font-family: var(--titulo-fuente);
-    color: white;
-  }
-
-  /* header notLoggedIn */
-  .logout {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-    .logolong {
-      display: flex;
-    }
-
-    .botones {
-      display: flex;
-      height: 100%;
-      gap: 30px;
-      margin: 10px;
-    }
-
-    button {
-      background-color: var(--morado);
-    }
-
-
-/* header isLoggedIn */
-.login {
-  display: flex;
-  align-items: center;
-  width: 95%;
-  height: 100%;
-  justify-content: space-between;
-  align-items: center;
-}
-
-    .logo img {
-      display: block;
-      height: 100%;
-      margin-top: 6px;
-    }
-
-  .login2 {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-  }
-
-  nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .iconos {
-    display: flex;
-    height: 40px;
-    gap: 30px;
-    align-items: center;
-  }
-
-    .iconos img {
-      display: block;
-      height: 100%;
-    }
-
-    .iconos img:nth-of-type(2) {
-      height: 50px;
-    }
-
-  .login button {
-    background-color: var(--morado);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-family: var(--texto-fuente);
-  }
-
-
-  @media (max-width: 700px) {
-    .login {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .login2 {
-      margin: 10px;
-    }
-  }
-
-
-
-  /* - - - - MODAL - - - - */
-.modal {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+}
+
+.modal-overlay app-login {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }

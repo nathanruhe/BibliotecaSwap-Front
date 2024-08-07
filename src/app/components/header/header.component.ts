@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  public isLoggedIn: boolean = false;
-  public modal: boolean = false;
+  isLoggedIn: boolean = true;
+  isLoginModalVisible: boolean = false; 
 
   constructor(private router: Router) {}
 
   login() {
-    this.modal = true;
+    this.isLoggedIn = true;
+    this.router.navigate(['/home']);
   }
 
   register() {
@@ -22,6 +23,14 @@ export class HeaderComponent {
 
   logout() {
     this.isLoggedIn = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/landing']);
+  }
+
+  showLoginModal() {
+    this.isLoginModalVisible = true;
+  }
+
+  hideLoginModal() {
+    this.isLoginModalVisible = false;
   }
 }

@@ -2,23 +2,42 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Reem Kufi', sans-serif;
   background-color: #6786F5;
   padding: 10px 20px;
-  min-height: 10vh; 
+  height: 10vh;
   position: relative;
 }
 
-.logo {
+.logo-left,
+.logo-center {
   display: flex;
   align-items: center;
 }
 
-.logo img {
-  height: 100px;
-  margin-right: 10px;
+.logo-left a,
+.logo-center a {
+  text-decoration: none;
+}
+
+.logo-left img,
+.logo-center img {
+  height: 80px;
+}
+
+.logo-left {
+  position: absolute;
+  left: 10px;
+}
+
+.logo-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav {
+  display: flex;
   margin-left: auto;
 }
 
@@ -45,7 +64,8 @@
   margin-left: auto;
 }
 
-.auth-buttons .login-button, .auth-buttons .register-button {
+.auth-buttons .login-button,
+.auth-buttons .register-button {
   margin: 0 5px;
   padding: 5px 15px;
   border: none;
@@ -64,8 +84,17 @@
 
 .user-actions .icon {
   margin: 0 10px;
-  height: 50px; 
-  width: 50px;  
+}
+
+.user-actions .user-icon {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.user-actions .favorites-icon {
+  height: 30px;
+  width: 30px;
   cursor: pointer;
 }
 
@@ -78,4 +107,22 @@
   background-color: #9389F0;
   color: white;
   border-radius: 5px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay app-login {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
 }

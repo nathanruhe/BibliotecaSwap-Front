@@ -8,20 +8,29 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   isLoggedIn: boolean = true;
+  isLoginModalVisible: boolean = false; 
 
   constructor(private router: Router) {}
 
   login() {
     this.isLoggedIn = true;
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   register() {
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/register']);
   }
 
   logout() {
     this.isLoggedIn = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/landing']);
+  }
+
+  showLoginModal() {
+    this.isLoginModalVisible = true;
+  }
+
+  hideLoginModal() {
+    this.isLoginModalVisible = false;
   }
 }

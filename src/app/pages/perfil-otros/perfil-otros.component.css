@@ -246,7 +246,6 @@
 
 /* LIBROS */
     .libros {
-        /* border: 5px solid green; */
         width: 92%;
         display: flex;
         justify-content: center;
@@ -254,6 +253,7 @@
         gap: 30px;
         flex-wrap: wrap;
         padding: 20px;
+        margin-bottom: 70px;
     }
 
 /* RESEÑAS */
@@ -265,6 +265,7 @@
         flex-direction: column;
         padding: 30px;
         gap: 10px;
+        margin-bottom: 90px;
     }
     
         .resena-container {

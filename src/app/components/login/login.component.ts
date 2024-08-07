@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms'; // control formularios
 import { Router } from '@angular/router'; 
+import { UserService } from 'src/app/shared/user.service';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent {
   public myForm: FormGroup;
   public modal: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) {
 
     this.myForm = this.formBuilder.group({
       email: [, [Validators.required, Validators.email]],
@@ -24,13 +26,17 @@ export class LoginComponent {
   public login() {
     const user = this.myForm.value;
 
-    if (this.myForm.valid) {
-      console.log(user);
-      this.router.navigateByUrl("/home");
-      this.modal = false
-    } else {
-      console.log("NO FUNCIONA");
-    };
+    this.userService.login(user).subscribe((resp: Respuesta) => {
+      if (!resp.error) {
+        this.userService.logueado = true;
+        this.userService.user = resp.dataUser;
+        this.router.navigateByUrl("/home");
+        this.modal = false
+        console.log(resp);
+      } else {
+        console.log(resp);
+      };
+    });
     this.myForm.reset();
   };
 

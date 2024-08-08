@@ -7,7 +7,7 @@
 
             <button class="del-btn layer" (click)="onHidden()">
                 <!-- <img class="iconCard" src="../../../assets/icons/eye-remove.png" alt=""> -->
-                <img class="iconCard" src="../../../assets/icons/hiddenTrue.png" alt="">
+                <img class="iconCard" [src]="user.hidden ? 'assets/icons/eye-remove.png' : 'assets/icons/hiddenTrue.png'">
                 <!-- <div *ngIf="user.hidden==true">
                     <img class="iconCard up" src="../../../assets/icons/strikethrough.png" alt="">
                 </div> -->

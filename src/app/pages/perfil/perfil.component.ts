@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
-import { Libro } from 'src/app/models/libro';
+// import { Libro } from 'src/app/models/libro';
 import { Resena  } from 'src/app/models/resena';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -10,14 +11,15 @@ import { Resena  } from 'src/app/models/resena';
 })
 export class PerfilComponent implements OnInit {
 
-  @Input() book: Libro;
+  @Input() user: Usuario;
   @Output() put = new EventEmitter<Usuario>();
+  // @Output() onHidden = new EventEmitter<Usuario>();
 
-  public user: Usuario;
+  // public user: Usuario;
   public resena: Resena;
   public misResenas: Resena[];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
 
@@ -77,9 +79,9 @@ export class PerfilComponent implements OnInit {
     this.put.emit(this.user);
   }
 
-  onHidden(): void {
-    let user = document.getElementById('usuario');
-    user.hidden = true;
+  onHidden() {
+    this.user.hidden = !this.user.hidden;
+    // this.onHidden.emit(this.user);
   }
 
 }

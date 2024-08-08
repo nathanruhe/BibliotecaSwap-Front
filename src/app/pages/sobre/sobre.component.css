@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    height: 76.3vh;
+    height: 80vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: start;

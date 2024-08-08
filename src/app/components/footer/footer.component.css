@@ -7,15 +7,15 @@ body {
   box-sizing: border-box;
 }
 
-.main-content {
+/* .main-content {
   flex: 1;
   overflow-x: hidden; 
-}
+} */
 
 .footer {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   background-color: #6786F5;
   padding: 20px 40px;

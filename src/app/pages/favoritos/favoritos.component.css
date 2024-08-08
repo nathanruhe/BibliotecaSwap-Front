@@ -16,7 +16,7 @@
     background-position: center;
     padding-top: 8vh;
     padding-bottom: 5vh;
-    height: 76.3vh;
+    height: 80vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: start;

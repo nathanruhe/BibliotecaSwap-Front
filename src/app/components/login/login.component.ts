@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   @Output() closeModal = new EventEmitter<void>();
   public myForm: FormGroup;
-  public modal: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.myForm = this.formBuilder.group({

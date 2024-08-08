@@ -18,7 +18,7 @@ export class HeaderComponent {
   }
 
   register() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/registro']);
   }
 
   logout() {

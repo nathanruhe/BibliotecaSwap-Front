@@ -12,6 +12,7 @@ export class LibroBibliotecaComponent {
   @Input() book: Libro;
   @Input() filterType: string;
   @Output() delete = new EventEmitter<Libro>();
+  @Input() isAddBook: boolean = false;
 
   constructor(private router: Router) {}
 

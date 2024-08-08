@@ -1,8 +1,13 @@
-html, body {
+body {
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
   overflow-x: hidden;
+}
+
+.container{
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .no-books-message {
@@ -28,12 +33,9 @@ html, body {
 .filter-row {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding: 10px; 
+  margin: 20px; 
+  gap: 20px; 
 }
 
 .status-buttons, .search-container, .dropdowns-container {
@@ -43,9 +45,8 @@ html, body {
 
 .status-buttons {
   flex: 1;
-  justify-content: flex-start;
-  padding-left: 55px;
-  gap: 50px;
+  gap: 50px; 
+  justify-content: flex-end;
 }
 
 .search-container {
@@ -55,9 +56,8 @@ html, body {
 
 .dropdowns-container {
   flex: 1;
-  justify-content: flex-end;
-  padding-right: 55px;
-  gap: 50px;
+  gap: 50px; 
+  justify-content: flex-start;
 }
 
 .search-input {
@@ -72,14 +72,13 @@ html, body {
 
 button {
   height: 40px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
   align-content: center;
   background-color: #f1f1f1;
-  margin: 0 10px;
 }
 
 button.active {
@@ -134,11 +133,13 @@ button:hover {
   margin-right: 10px;
 }
 
+
 .cont-charge {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .charge-btn {

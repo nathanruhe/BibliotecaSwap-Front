@@ -15,13 +15,25 @@
   background-color: #FAE9FF;
 }
 
-.top-buttons {
+.tops-buttons {
   position: absolute;
   top: 10px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+}
+
+.isAddBook{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .edit-btn, .del-btn {

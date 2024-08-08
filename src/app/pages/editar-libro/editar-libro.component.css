@@ -1,71 +1,32 @@
-/* - - - - FORMULARIO - - - - */
-.card {
-    height: 80vh;
+
+main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--gris-claro);
-    background-size: cover;
-    background-position: center;
+    height: 80vh;
 }
 
 .tarjeta {
-    width: 54%;
-    height: 89%;
-    padding: 8vh;
+    border-radius: 30px;
+    box-shadow: 5px 5px 20px var(--morado);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    padding: 50px 70px;
     background-color: var(--rosa-claro);
-    background-size: cover;
-    background-position: center;
-    border-radius: 40px;
-    position: relative;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-
-/* SOMBRA TARJETA */
-
-.tarjeta:before,
-.tarjeta:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    top: 0;
-    bottom: 0;
-    left: 10px;
-    right: 10px;
-    -moz-border-radius: 100px / 10px;
-    border-radius: 100px / 10px;
-}
-
-.tarjeta:after {
-    right: 10px;
-    left: auto;
-    -webkit-transform: skew(8deg) rotate(3deg);
-    -moz-transform: skew(8deg) rotate(3deg);
-    -ms-transform: skew(8deg) rotate(3deg);
-    -o-transform: skew(8deg) rotate(3deg);
-    transform: skew(8deg) rotate(3deg);
-}
-
-/* SOMBRA TARJETA */
-
-.book {
-    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
+    gap: 70px;
     justify-content: center;
     align-items: center;
-    padding-top: 4vh;
+}
+
+.libro {
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px var(--morado);
+    background-color: var(--morado-claro);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 h2 {
@@ -73,13 +34,20 @@ h2 {
     font-family: var(--titulo-fuente);
     margin-bottom: 1vw;
     margin-top: .8vh;
+    text-align: center;
 }
 
-.Input-text {
-    display: block;
-    margin: 0;
-    color: inherit;
+input {
+    text-align: center;
+    border-radius: 10px;
     width: 23vw;
+    height: 40px;
+    padding: 8px;
+    border: 0;
+    background-color: var(--gris-claro);
+    color: #757575;
+    box-shadow: inset 0px 0px 20px var(--morado),
+        0px 0px 20px var(--morado-claro);
     font-size: var(--titulo-fuente);
     font-family: var(--texto-fuente);
     font-weight: inherit;
@@ -87,15 +55,12 @@ h2 {
     border: none;
     border-radius: 0.4rem;
     transition: box-shadow var(--morado-claro);
-    margin: 2vh;
-    padding: 1vh;
     cursor: pointer;
-    box-shadow: inset 0px 0px 20px var(--morado),
-        0px 0px 20px var(--morado-claro);
 }
 
-.Input-text::placeholder {
-    padding: 4vh;
+input::placeholder {
+    font-family: var(--texto-fuente);
+    font-size: 20px;
 }
 
 input[type=text]:hover {
@@ -123,7 +88,7 @@ button:hover {
 
 .button:active {
     transform: scale(0.9); /* Reduce ligeramente el tamaño del botón cuando se hace clic */
-}
+}  
 
 /* - - - - INVALIDS - - - - */
 

@@ -1,124 +1,32 @@
-/* - - - - FORMULARIO - - - - */
-/* .card {
-    height: 76.3vh;
+
+main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--gris-claro);
-    background-size: cover;
-    background-position: center;
+    height: 80vh;
 }
 
 .tarjeta {
-    width: 54%;
-    height: 89%;
-    padding: 8vh;
+    border-radius: 30px;
+    box-shadow: 5px 5px 20px var(--morado);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    padding: 50px 70px;
     background-color: var(--rosa-claro);
-    background-size: cover;
-    background-position: center;
-    border-radius: 40px;
-    position: relative;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-} */
-
-/* SOMBRA TARJETA */
-
-/* .tarjeta:before,
-.tarjeta:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    top: 0;
-    bottom: 0;
-    left: 10px;
-    right: 10px;
-    -moz-border-radius: 100px / 10px;
-    border-radius: 100px / 10px;
+    gap: 70px;
+    justify-content: center;
+    align-items: center;
 }
 
-.tarjeta:after {
-    right: 10px;
-    left: auto;
-    -webkit-transform: skew(8deg) rotate(3deg);
-    -moz-transform: skew(8deg) rotate(3deg);
-    -ms-transform: skew(8deg) rotate(3deg);
-    -o-transform: skew(8deg) rotate(3deg);
-    transform: skew(8deg) rotate(3deg);
-} */
-
-/* SOMBRA TARJETA */
-
-/* .book {
-    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
-    position: relative;
-    left: -34px;
-}
-
-.libroBiblioteca {
-    width: 300px;
-    height: 500px;
+.libro {
     border-radius: 10px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'Reem Kufi', sans-serif;
-    overflow: hidden;
-    position: absolute;
-    background-color: #FAE9FF;
-  }
-  
-  .top-buttons {
-    position: absolute;
-    display: flex;
-    position: relative;
-    top: -230px;
-    right: -20px;
-    z-index: 1;
-  }
-  
-  .edit-btn {
-    background-color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .edit-btn {
-    background-color: #FAE9FF;
-  }
-  
-  .del-btn {
-    background-color: #FAE9FF;
-  }
-  
-  .icon {
-    width: 70%;
-    object-fit: contain;
-  }
+    box-shadow: 5px 5px 20px var(--morado);
+    background-color: var(--morado-claro);
+}
 
-.form {
+form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 4vh;
-    margin-right: 18px;
+    gap: 15px;
 }
 
 h2 {
@@ -126,13 +34,20 @@ h2 {
     font-family: var(--titulo-fuente);
     margin-bottom: 1vw;
     margin-top: .8vh;
+    text-align: center;
 }
 
-.Input-text {
-    display: block;
-    margin: 0;
-    color: inherit;
+input {
+    text-align: center;
+    border-radius: 10px;
     width: 23vw;
+    height: 40px;
+    padding: 8px;
+    border: 0;
+    background-color: var(--gris-claro);
+    color: #757575;
+    box-shadow: inset 0px 0px 20px var(--morado),
+        0px 0px 20px var(--morado-claro);
     font-size: var(--titulo-fuente);
     font-family: var(--texto-fuente);
     font-weight: inherit;
@@ -140,15 +55,12 @@ h2 {
     border: none;
     border-radius: 0.4rem;
     transition: box-shadow var(--morado-claro);
-    margin: 2vh;
-    padding: 1vh;
     cursor: pointer;
-    box-shadow: inset 0px 0px 20px var(--morado),
-        0px 0px 20px var(--morado-claro);
 }
 
-.Input-text::placeholder {
-    padding: 4vh;
+input::placeholder {
+    font-family: var(--texto-fuente);
+    font-size: 20px;
 }
 
 input[type=text]:hover {
@@ -176,84 +88,7 @@ button:hover {
 
 .button:active {
     transform: scale(0.9); /* Reduce ligeramente el tamaño del botón cuando se hace clic */
-/* }  */
-
-/* - - - - INVALIDS - - - - */
-
-/* .invalido {
-    border: 1px solid red;
-}
-
-.mensajeInvalido div {
-    color: red;
-    font-size: 15px;
-    text-align: start;
-}
-
-.btn-disabled:disabled {
-    opacity: 0.2;
-} */
-
-main {
-    /* border: 5px solid red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* esto será de 80vh cuando Queen arregle la medida del header / footer */
-    height: 80vh;
-    /* padding: 50px; */
-}
-
-.targeta {
-    /* border: 5px solid green; */
-    border-radius: 30px;
-    box-shadow: 5px 5px 20px var(--morado);
-    display: flex;
-    padding: 50px 70px;
-    background-color: var(--rosa-claro);
-    gap: 70px;
-    justify-content: center;
-    align-items: center;
-    /* flex-wrap: wrap; */
-}
-
-.libro {
-    border-radius: 10px;
-    box-shadow: 5px 5px 20px var(--morado);
-    background-color: var(--morado-claro);
-}
-
-form {
-    /* border: 5px solid blue; */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-h2 {
-    font-size: 2.5rem;
-    font-family: var(--titulo-fuente);
-    margin-bottom: 1vw;
-    margin-top: .8vh;
-    text-align: center;
-}
-
-input {
-    text-align: center;
-    border-radius: 10px;
-    height: 40px;
-    padding: 8px;
-    border: 0;
-    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.5);
-    background-color: var(--gris-claro);
-    color: #757575;
-}
-
-input::placeholder {
-    font-family: var(--texto-fuente);
-    font-size: 20px;
-}
-
+}  
 
 /* - - - - INVALIDS - - - - */
 

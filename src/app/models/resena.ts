@@ -1,8 +1,8 @@
 export class Resena {
     constructor(
-        public nombre: string,
-        public apellido: string,
-        public valoracion: number,
-        public comentario: string
+        public name: string,
+        public last_name: string,
+        public rating: number,
+        public comment: string
       ) {}
 }

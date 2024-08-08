@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit{
   public users: Usuario[];
 
   filteredBooks: Libro[] = [];
-  showFilters: boolean = false;
+  showFilters: boolean = true; // Siempre mostrar filtros
 
   status: string = 'Todos';
   selectedGenero: string[] = [];
@@ -44,35 +44,35 @@ export class HomeComponent implements OnInit{
     ];
     
     this.books =[
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(1), null,  null, null, false, true, 1, 1), 
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(1), null, null, null, false, true,   2, 1),
-      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Francés', this.getUserById(1), null, null, null, true, true,  3, 1),
-      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(1), this.getUserById(2), null, null, false, false, 4, 1),
-      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(1), this.getUserById(3), null, null, true, false,  5, 1),
+      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), null,  null, null, false, true, 1, 1), 
+      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(1), null, null, null, false, true,   2, 1),
+      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(1), null, null, null, true, true,  3, 1),
+      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), this.getUserById(2), null, null, false, false, 4, 1),
+      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), this.getUserById(3), null, null, true, false,  5, 1),
     
     
-      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(2), this.getUserById(1), null, null, false, false, 6, 2),
-      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(2), null, null, null, false, true,  7, 2),
-      new Libro('It', 'Stephen King', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Alicante',this.getUserById(2), null, null, null, true, true,  8, 2),
-      new Libro('El resplandor', 'Stephen King', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(2), null, null, null, false, true, 9, 2),
-      new Libro('El visitante', 'Stephen King', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(2), null, null, null, false, true, 10, 2),
-      new Libro('Carrie', 'Stephen King', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(2), null, null, null, true, true,  11, 2),
+      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), this.getUserById(1), null, null, false, false, 6, 2),
+      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, null, false, true,  7, 2),
+      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Alicante',this.getUserById(2), null, null, null, true, true,  8, 2),
+      new Libro('El resplandor', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, null, false, true, 9, 2),
+      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, null, false, true, 10, 2),
+      new Libro('Carrie', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, null, true, true,  11, 2),
 
 
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Policiaca', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(3), this.getUserById(1), null, null, false, false, 12, 3),
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Policiaca','https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(3), null, null, null, false, true, 13, 3),
-      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Policiaca',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(3), null, null, null, false, true,14, 3),
-      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Policiaca', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(3), null, null, null, false, true, 15, 3),
-      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Policiaca', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(3), null, null, null, false, true, 16, 3),
-      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(3), null, null, null, false, true, 17, 2),
-      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Francés', this.getUserById(3), null, null, null, false, true, 18, 3),
-      new Libro('It', 'Stephen King', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg','Francés', this.getUserById(3), null, null, null, false, false, 19, 3),
-      new Libro('El resplandor', 'Stephen King', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Francés', this.getUserById(3), null, null, null, false, true, 20, 3),
-      new Libro('El visitante', 'Stephen King', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Francés', this.getUserById(3), null, null, null, false, true, 21, 3),
-      new Libro('Carrie', 'Stephen King', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Inglés', this.getUserById(3), null, null, null, false, true, 22, 3),
+      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Policiaca', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), this.getUserById(1), null, null, false, false, 12, 3),
+      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Policiaca','https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, null, false, true, 13, 3),
+      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Policiaca',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, null, false, true,14, 3),
+      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Policiaca', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, null, false, true, 15, 3),
+      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Policiaca', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, null, false, true, 16, 3),
+      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(3), null, null, null, false, true, 17, 2),
+      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(3), null, null, null, false, true, 18, 3),
+      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg','Francés', this.getUserById(3), null, null, null, false, false, 19, 3),
+      new Libro('El resplandor', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(3), null, null, null, false, true, 20, 3),
+      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(3), null, null, null, false, true, 21, 3),
+      new Libro('Carrie', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(3), null, null, null, false, true, 22, 3),
 
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(4), null, null, null, false, true, 23, 4),
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://www.aytosanlorenzo.es/wp-content/uploads/2020/04/phalbm25732285_w980h638c1.jpg', 'Español', this.getUserById(4), null, null, null, false, true, 24, 4)
+      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(4), null, null, null, false, true, 23, 4),
+      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(4), null, null, null, false, true, 24, 4)
     
     ];
     
@@ -149,5 +149,9 @@ export class HomeComponent implements OnInit{
   loadMore() {
     this.currentPage++;
     this.applyFilters();
+  }
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
   }
 }

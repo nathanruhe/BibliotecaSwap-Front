@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro'; 
 import { Router } from '@angular/router';
 
@@ -7,25 +7,33 @@ import { Router } from '@angular/router';
   templateUrl: './libro.component.html',
   styleUrls: ['./libro.component.css']
 })
-export class LibroComponent {
+export class LibroComponent implements OnInit {
 
   @Input() book: Libro;
   @Output() addToFavorites = new EventEmitter<Libro>();
   @Output() goToPage = new EventEmitter<number>();
-  
+  @Input() isHome: boolean = false;
+  @Input() isFavoritos: boolean = false;
+  @Input() isBiblioteca: boolean = false;
+  @Input() isOtroUser: boolean = false;
+  @Input() filterType: string; 
+
   constructor(private router: Router) {}
+
+  ngOnInit() {}
 
   addBookToFavorites() {
     this.book.like = !this.book.like;
-    console.log(`libro "${this.book.title}" pasa a : ${this.book.like}`);
     this.addToFavorites.emit(this.book);
-  }
-
-  navigateToPage() {
-    this.goToPage.emit(this.book.id_book);
   }
 
   navigateToPerfilOtros() {
     this.router.navigateByUrl("/perfil-otros");
+  }
+
+  navigateToChat() {
+    if (this.book.status) {
+      this.router.navigate(['/chat']);
+    }
   }
 }

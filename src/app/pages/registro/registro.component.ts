@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms'; // control formularios
+import { UserService } from 'src/app/shared/user.service';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-registro',
@@ -9,8 +11,9 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 export class RegistroComponent {
 
   public myForm: FormGroup;
+  public modal: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {
 
     this.myForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -19,7 +22,7 @@ export class RegistroComponent {
       photo: ['', Validators.required],
       province: ['', [Validators.required, this.provinciaValida]],
       availability: ['', Validators.required],
-      genders: [[], Validators.required],
+      genres: [[], Validators.required],
       password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.]).+$')]],
       password2: ['', [Validators.required, this.checkPasswords.bind(this)]],
     });
@@ -43,8 +46,15 @@ export class RegistroComponent {
 
   public register() {
     const user = this.myForm.value;
-    console.log(user);
+
+    this.userService.register(user).subscribe((resp: Respuesta) => {
+      if (!resp.error) {
+        console.log(resp);
+        this.modal = true;
+      } else {
+        console.log(resp);
+      };
+    });
     this.myForm.reset();
   };
-
 }

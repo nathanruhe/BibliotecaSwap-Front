@@ -27,7 +27,7 @@ export class SobreComponent {
         rating: 3,
         province: "Almería",
         availability: "tardes",
-        genders: [
+        genres: [
           "../../../assets/iconoTerror.jpg",
           "../../../assets/iconoPoesia.png",
           "../../../assets/iconoPoli.png",
@@ -50,7 +50,7 @@ export class SobreComponent {
         rating: 3,
         province: "Almería",
         availability: "tardes",
-        genders: [
+        genres: [
           "../../../assets/iconoTerror.jpg",
           "../../../assets/iconoPoesia.png",
           "../../../assets/iconoPoli.png",
@@ -73,7 +73,7 @@ export class SobreComponent {
         rating: 3,
         province: "Almería",
         availability: "tardes",
-        genders: [
+        genres: [
           "../../../assets/iconoTerror.jpg",
           "../../../assets/iconoPoesia.png",
           "../../../assets/iconoPoli.png",
@@ -96,7 +96,7 @@ export class SobreComponent {
         rating: 3,
         province: "Almería",
         availability: "tardes",
-        genders: [
+        genres: [
           "../../../assets/iconoTerror.jpg",
           "../../../assets/iconoPoesia.png",
           "../../../assets/iconoPoli.png",

@@ -1,22 +1,30 @@
 <header class="header">
-  <div class="logo">
-    <a routerLink="/">
-      <img src="assets/icons/logowhite.png" alt="Logo">
+  <div class="logo-left" *ngIf="isLoggedIn">
+    <a routerLink="/home">
+      <img src="assets/icons/logowhite.png" alt="Logo White" />
+    </a>
+  </div>
+  <div class="logo-center" *ngIf="!isLoggedIn">
+    <a routerLink="/home">
+      <img src="assets/icons/logolong.png" alt="Logo Long" />
     </a>
   </div>
   <nav class="nav" *ngIf="isLoggedIn">
     <ul>
-      <li><a routerLink="/chat" style="font-family: 'Reem Kufi', sans-serif;">Chat</a></li>
-      <li><a routerLink="/biblioteca" style="font-family: 'Reem Kufi', sans-serif;">Mi Biblioteca</a></li>
+      <li><a routerLink="/chat">Chat</a></li>
+      <li><a routerLink="/miBiblioteca">Mi Biblioteca</a></li>
     </ul>
   </nav>
   <div class="auth-buttons" *ngIf="!isLoggedIn">
-    <button class="login-button" style="font-family: 'Reem Kufi', sans-serif;" routerLink="/login">Login</button>
-    <button class="register-button" style="font-family: 'Reem Kufi', sans-serif;" routerLink="/register">Registrar</button>
+    <button class="login-button" (click)="showLoginModal()">Login</button>
+    <button class="register-button" routerLink="/register">Registrar</button>
   </div>
   <div class="user-actions" *ngIf="isLoggedIn">
-    <img src="assets/icons/cc.png" alt="Favorites" class="icon user-icon">
-    <img src="assets/icons/user.png" alt="User Profile" class="icon user-icon">
-    <button class="logout-button" style="font-family: 'Reem Kufi', sans-serif;" (click)="logout()">Cerrar Sesión</button>
+    <img src="assets/icons/cc.png" alt="Favorites" class="icon favorites-icon" routerLink="/favoritos" />
+    <img src="assets/icons/user.png" alt="User Profile" class="icon user-icon" routerLink="/perfil" />
+    <button class="logout-button" (click)="logout()">Cerrar Sesión</button>
+  </div>
+  <div class="modal-overlay" *ngIf="isLoginModalVisible">
+    <app-login (closeModal)="hideLoginModal()"></app-login>
   </div>
 </header>

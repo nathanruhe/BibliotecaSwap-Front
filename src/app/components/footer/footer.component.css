@@ -1,10 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.main-content {
+  flex: 1;
+  overflow-x: hidden; 
+}
+
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #6786F5;
+  padding: 20px 40px;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #6786F5;
-  padding: 20px 40px;
-  height: 10vh; 
+  box-sizing: border-box;
 }
 
 .footer-section {
@@ -45,5 +64,5 @@
 }
 
 .footer-section.links a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }

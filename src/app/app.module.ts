@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'; // control formularios
+import { HttpClientModule } from '@angular/common/http'; // para servicios
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +21,7 @@ import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.compo
 import { LandingComponent } from './pages/landing/landing.component';
 import { AnadirLibroComponent } from './pages/anadir-libro/anadir-libro.component';
 import { EditarLibroComponent } from './pages/editar-libro/editar-libro.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.component';
 import { register } from 'swiper/element/bundle';
@@ -57,6 +58,7 @@ register();
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, // control formularios
+    HttpClientModule, // para servicios
   ],
   providers: [],
   bootstrap: [AppComponent],

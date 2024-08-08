@@ -52,7 +52,7 @@
                     <div class="generos">
                         <p>Géneros de interés</p>
                         <div class="gen">
-                            <ng-container *ngFor="let genero of user.genders; let i = index">
+                            <ng-container *ngFor="let genero of user.genres; let i = index">
                                 <div class="gen2">
                                     <img [src]="genero" alt="">
                                 </div>
@@ -74,7 +74,7 @@
 
         <div class="libros" *ngIf="activo === 'biblioteca'">
             <ng-container *ngFor="let book of misLibros; let i = index">
-                <app-libro [book]="book" [index]="i"></app-libro>
+                <app-libro [book]="book" [index]="i" [isOtroUser]="true"></app-libro>
             </ng-container>
         </div>
 

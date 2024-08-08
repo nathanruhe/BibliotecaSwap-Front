@@ -1,66 +1,48 @@
-
-<div class="search-container">
-  <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
-  <button (click)="showFilters = !showFilters" class="filter-button">
-    <img class="icon" src="assets/icons/book-icon.png" alt="Filter Icon">
-  </button>
-</div>
-
-
-
 <div *ngIf="filteredBooks.length === 0 && searchTerm" class="no-books-message">
   <p class="noLibro">No se encontraron libros</p>
 </div>
 
+<div class="filter-row">
 
+  <div class="status-buttons">
+    <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
+    <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
+  </div>
+  
+  <div class="search-container">
+    <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
+  </div>
+  
+  <div class="dropdowns-container">
 
-<div class="filter-overlay" *ngIf="showFilters">
-  <div class="filter-popup">
-    
-    <div class="section">
-      <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
-      <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
-    </div>
-
-    <div class="sectionLGI">
-      <div class="dropdown">
-        <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
-        <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
-          <label *ngFor="let gen of generos">
-            <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSingleSelection(selectedGenero, gen)"> {{gen}}
-          </label>
-        </div>
+    <div class="dropdown">
+      <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
+      <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
+        <label *ngFor="let gen of generos">
+          <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSingleSelection(selectedGenero, gen)"> {{gen}}
+        </label>
       </div>
-
-      <div class="dropdown">
-        <button class="dropbtn" (click)="toggleDropdown('idioma')">Idioma</button>
-        <div class="dropdown-content" [ngClass]="{'show': showIdiomaDropdown}">
-          <label *ngFor="let idi of idiomas">
-            <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSingleSelection(selectedIdioma, idi)"> {{idi}}
-          </label>
-        </div>
-      </div>
-
     </div>
-
-    <button class="close-btn" (click)="closeFilters()">X</button>
+  
+    <div class="dropdown">
+      <button class="dropbtn" (click)="toggleDropdown('idioma')">Idioma</button>
+      <div class="dropdown-content" [ngClass]="{'show': showIdiomaDropdown}">
+        <label *ngFor="let idi of idiomas">
+          <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSingleSelection(selectedIdioma, idi)"> {{idi}}
+        </label>
+      </div>
+    </div>
 
   </div>
+  
 </div>
-
-
 
 <div class="cards-container">
-    <!--<app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book"></app-libro-biblioteca>-->
-    <app-libro *ngFor="let book of filteredBooks" [book]="book"></app-libro>
+  <app-libro *ngFor="let book of filteredBooks" [book]="book" [isHome]="true"></app-libro>
 </div>
 
-
 <div class="cont-charge">
-
   <button class="charge-btn" (click)="loadMore()">
     <img class="icon" src="assets/icons/carga.png">
   </button>
-
 </div>
-

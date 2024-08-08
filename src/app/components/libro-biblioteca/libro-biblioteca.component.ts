@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class LibroBibliotecaComponent {
 
   @Input() book: Libro;
+  @Input() filterType: string;
   @Output() delete = new EventEmitter<Libro>();
 
   constructor(private router: Router) {}
-  
 
   onDelete(): void {
     this.delete.emit(this.book);

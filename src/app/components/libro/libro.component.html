@@ -1,16 +1,49 @@
 <div class="libro">
-  
   <div class="top-buttons">
+    <!--  Home -->
+    <div *ngIf="isHome" class="isHome">
+      <button class="otroUser-btn" (click)="navigateToPerfilOtros()">
+        <img class="icon" src="assets/icons/usuario.png">
+      </button>
+      <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()">
+        <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
+      </button>
+    </div>
 
-    <button class="otroUser-btn" (click)="navigateToPerfilOtros()">
-      <img class="icon" src="assets/icons/usuario.png">
-    </button>
+    <!--  favoritos -->
+    <div *ngIf="isFavoritos" class="isFavoritos">
+      <button class="otroUser-btn" (click)="navigateToPerfilOtros()">
+        <img class="icon" src="assets/icons/usuario.png">
+      </button>
+      <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()">
+        <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
+      </button>
+    </div>
 
-    <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()">
-      <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
-    </button>
+    <!--  AÑADIR ESTO EN FAVORITOS HTML es el contenedor de los libros
+
+    <div class="cards-container">
+      <app-libro *ngFor="let book of filteredBooks" [book]="book" [isFavoritos]="true"></app-libro>
+    </div>
+
+    -->
+
+    <!-- Biblioteca -->
+    <div *ngIf="isBiblioteca && filterType === 'Libros en prestamo'" class="isBiblioteca">
+      <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()" style="margin-left: auto;">
+        <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
+      </button>
+    </div>
+
+    <!-- OtroUser -->
+    <div *ngIf="isOtroUser" class="isOtroUser">
+      <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()">
+        <img class="icon" [ngClass]="{'icon-large': book.like}" [src]="book.like ? 'assets/icons/cc.png' : 'assets/icons/c.png'">
+      </button>
+    </div>
+    
   </div>
-  
+
   <figure class="imgn">
     <div class="marco">
       <img [src]="book.photo" [alt]="book.title">
@@ -22,12 +55,10 @@
       <div class="gender">{{ book.gender }}</div>
     </div>
     
-    <div class="statusb" >
-      <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}" [routerLink]="['/chat']" [disabled]="!book.status">
+    <div class="statusb">
+      <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}" (click)="navigateToChat()" [disabled]="!book.status">
         {{ book.status ? 'Solicitar' : 'Prestado' }}
       </button>
     </div>
-  
   </figure>
-
 </div>

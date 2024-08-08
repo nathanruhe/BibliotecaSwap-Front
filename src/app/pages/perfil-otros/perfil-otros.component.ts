@@ -38,7 +38,7 @@ export class PerfilOtrosComponent implements OnInit {
       rating: 3,
       province: "Barcelona",
       availability: "mañanas",
-      genders: [
+      genres: [
         "../../../assets/iconoTerror.jpg",
         "../../../assets/iconoPoesia.png",
         "../../../assets/iconoPoli.png",

@@ -45,7 +45,7 @@
             <div class="derecha">
                 <label for="genders-select">Seleccione los géneros de interés:</label>
                 <div class="select-container">
-                    <select formControlName="genders" multiple [ngClass]="{'invalido': (myForm.get('genders').invalid && (myForm.get('genders').dirty || myForm.get('genders').touched))}">
+                    <select formControlName="genres" multiple [ngClass]="{'invalido': (myForm.get('genres').invalid && (myForm.get('genres').dirty || myForm.get('genres').touched))}">
                         <option value="Terror">Terror</option>
                         <option value="Policiacas">Policiacas</option>
                         <option value="Astrología">Astrología</option>
@@ -53,8 +53,8 @@
                         <option value="Fotografía">Fotografía</option>
                         <option value="Idiomas">Idiomas</option>
                     </select>
-                    <div *ngIf="myForm.get('genders').invalid && (myForm.get('genders').dirty || myForm.get('genders').touched)" class="mensajeInvalido">
-                        <div *ngIf="myForm.get('genders').errors.required">Campo obligatorio</div>
+                    <div *ngIf="myForm.get('genres').invalid && (myForm.get('genres').dirty || myForm.get('genres').touched)" class="mensajeInvalido">
+                        <div *ngIf="myForm.get('genres').errors.required">Campo obligatorio</div>
                     </div>
                 </div>
                 
@@ -76,4 +76,10 @@
         
 
     </form>
+</div>
+
+
+<!-- Modal -->
+<div class="modal" *ngIf="modal">
+    <app-login></app-login>
 </div>

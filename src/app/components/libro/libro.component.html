@@ -20,14 +20,6 @@
       </button>
     </div>
 
-    <!--  AÑADIR ESTO EN FAVORITOS HTML es el contenedor de los libros
-
-    <div class="cards-container">
-      <app-libro *ngFor="let book of filteredBooks" [book]="book" [isFavoritos]="true"></app-libro>
-    </div>
-
-    -->
-
     <!-- Biblioteca -->
     <div *ngIf="isBiblioteca && filterType === 'Libros en prestamo'" class="isBiblioteca">
       <button class="heart-btn" [ngClass]="{'favorito': book.like}" (click)="addBookToFavorites()" style="margin-left: auto;">

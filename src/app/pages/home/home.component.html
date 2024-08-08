@@ -1,48 +1,52 @@
-<div *ngIf="filteredBooks.length === 0 && searchTerm" class="no-books-message">
-  <p class="noLibro">No se encontraron libros</p>
-</div>
+<div class="container">
 
-<div class="filter-row">
-
-  <div class="status-buttons">
-    <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
-    <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
+  <div *ngIf="filteredBooks.length === 0 && searchTerm" class="no-books-message">
+    <p class="noLibro">No se encontraron libros</p>
   </div>
   
-  <div class="search-container">
-    <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
-  </div>
+  <div class="filter-row">
   
-  <div class="dropdowns-container">
-
-    <div class="dropdown">
-      <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
-      <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
-        <label *ngFor="let gen of generos">
-          <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSingleSelection(selectedGenero, gen)"> {{gen}}
-        </label>
-      </div>
+    <div class="status-buttons">
+      <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
+      <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
     </div>
-  
-    <div class="dropdown">
-      <button class="dropbtn" (click)="toggleDropdown('idioma')">Idioma</button>
-      <div class="dropdown-content" [ngClass]="{'show': showIdiomaDropdown}">
-        <label *ngFor="let idi of idiomas">
-          <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSingleSelection(selectedIdioma, idi)"> {{idi}}
-        </label>
-      </div>
+    
+    <div class="search-container">
+      <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
     </div>
-
+    
+    <div class="dropdowns-container">
+  
+      <div class="dropdown">
+        <button class="dropbtn" (click)="toggleDropdown('genero')">Género</button>
+        <div class="dropdown-content" [ngClass]="{'show': showGeneroDropdown}">
+          <label *ngFor="let gen of generos">
+            <input type="checkbox" [checked]="selectedGenero.includes(gen)" (change)="toggleSingleSelection(selectedGenero, gen)"> {{gen}}
+          </label>
+        </div>
+      </div>
+    
+      <div class="dropdown">
+        <button class="dropbtn" (click)="toggleDropdown('idioma')">Idioma</button>
+        <div class="dropdown-content" [ngClass]="{'show': showIdiomaDropdown}">
+          <label *ngFor="let idi of idiomas">
+            <input type="checkbox" [checked]="selectedIdioma.includes(idi)" (change)="toggleSingleSelection(selectedIdioma, idi)"> {{idi}}
+          </label>
+        </div>
+      </div>
+  
+    </div>
+    
   </div>
   
-</div>
+  <div class="cards-container">
+    <app-libro *ngFor="let book of filteredBooks" [book]="book" [isHome]="true"></app-libro>
+  </div>
+  
+  <div class="cont-charge">
+    <button class="charge-btn" (click)="loadMore()">
+      <img class="icon" src="assets/icons/carga.png">
+    </button>
+  </div>
 
-<div class="cards-container">
-  <app-libro *ngFor="let book of filteredBooks" [book]="book" [isHome]="true"></app-libro>
-</div>
-
-<div class="cont-charge">
-  <button class="charge-btn" (click)="loadMore()">
-    <img class="icon" src="assets/icons/carga.png">
-  </button>
 </div>

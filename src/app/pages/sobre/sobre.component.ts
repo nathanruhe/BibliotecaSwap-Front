@@ -23,7 +23,6 @@ export class SobreComponent {
         photo: "../../../assets/icons/user2.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
-        loan: 1,
         rating: 3,
         province: "Almería",
         availability: "tardes",
@@ -46,7 +45,6 @@ export class SobreComponent {
         photo: "../../../assets/icons/user2.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
-        loan: 1,
         rating: 3,
         province: "Almería",
         availability: "tardes",
@@ -69,7 +67,6 @@ export class SobreComponent {
         photo: "../../../assets/icons/user2.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
-        loan: 1,
         rating: 3,
         province: "Almería",
         availability: "tardes",
@@ -92,7 +89,6 @@ export class SobreComponent {
         photo: "../../../assets/icons/user2.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
-        loan: 1,
         rating: 3,
         province: "Almería",
         availability: "tardes",

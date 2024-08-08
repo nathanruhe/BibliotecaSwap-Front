@@ -37,10 +37,10 @@ export class HomeComponent implements OnInit{
 
   ngOnInit() {
     this.users = [
-      new Usuario(1,'Pepito', 'Perez', 'pperez@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, null, 'Barcelona', 'mañana', ['Terror'], '1234'), 
-      new Usuario(2,'Pepe', 'Garcia', 'pgarcia@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, null, 'Barcelona', 'mañana', ['Terror', 'Policiaca'], '1234'),
-      new Usuario(3,'Pepin', 'Perea', 'pperea@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, null, 'Barcelona', 'tarde', ['Terror', 'Poesía'], '1234'),
-      new Usuario(4,'Pepon', 'Pereda', 'ppereda@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, null, 'Barcelona', 'mañana', ['Terror', 'Astrología', 'Poesía'], '1234'),
+      new Usuario(1,'Pepito', 'Perez', 'pperez@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, 'Barcelona', 'mañana', ['Terror'], '1234'), 
+      new Usuario(2,'Pepe', 'Garcia', 'pgarcia@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, 'Barcelona', 'mañana', ['Terror', 'Policiaca'], '1234'),
+      new Usuario(3,'Pepin', 'Perea', 'pperea@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',   null, null, 'Barcelona', 'tarde', ['Terror', 'Poesía'], '1234'),
+      new Usuario(4,'Pepon', 'Pereda', 'ppereda@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',   null, null, 'Barcelona', 'mañana', ['Terror', 'Astrología', 'Poesía'], '1234'),
     ];
     
     this.books =[

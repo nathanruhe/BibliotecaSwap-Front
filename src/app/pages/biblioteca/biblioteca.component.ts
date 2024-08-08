@@ -27,8 +27,8 @@ export class BibliotecaComponent {
   ngOnInit() {
 
     this.users = [
-      new Usuario(5,'Agamenon', 'Tercero', 'Ade3rd@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, null,  'Barcelona', 'mañana', ['Terror'], '1234'), 
-      new Usuario(1,'Pepito', 'Perez', 'pperez@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, null, 'Barcelona', 'mañana', ['Terror'],  '1234')
+      new Usuario(5,'Agamenon', 'Tercero', 'Ade3rd@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg', null, null,  'Barcelona', 'mañana', ['Terror'], '1234'), 
+      new Usuario(1,'Pepito', 'Perez', 'pperez@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg', null, null, 'Barcelona', 'mañana', ['Terror'],  '1234')
     ]; 
 
     this.books =[

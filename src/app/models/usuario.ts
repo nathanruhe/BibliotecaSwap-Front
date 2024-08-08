@@ -11,7 +11,7 @@ export class Usuario {
         public rating: number ,
         public province: string,
         public availability: string,
-        public genders: string[],
+        public genres: string[],
         public password: string,
         public hidden: boolean = false,
     ) {}

@@ -13,5 +13,6 @@ export class Usuario {
         public genres: string[],
         public password: string,
         public hidden: boolean = false,
+        public totalResenas: number = 0,
     ) {}
 }

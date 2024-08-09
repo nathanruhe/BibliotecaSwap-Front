@@ -36,6 +36,7 @@ export class SobreComponent {
         ],
         password: "23HappYear.",
         hidden: false,
+        totalResenas: null
       },
       {
         id_user: 2,
@@ -58,6 +59,7 @@ export class SobreComponent {
         ],
         password: "23HappYear.",
         hidden: false,
+        totalResenas: null
       },
       {
         id_user: 3,
@@ -80,6 +82,7 @@ export class SobreComponent {
         ],
         password: "23HappYear.",
         hidden: false,
+        totalResenas: null
       },
       {
         id_user: 4,
@@ -102,6 +105,7 @@ export class SobreComponent {
         ],
         password: "23HappYear.",
         hidden: false,
+        totalResenas: null
       },
     ]
 

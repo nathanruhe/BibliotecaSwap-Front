@@ -32,18 +32,18 @@ export class BibliotecaComponent {
     ]; 
 
     this.books =[
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(5), null, null, null, false, true, 25, 5), 
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, null, false, true,   26, 5),
-      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, null, true, true,  27, 5),
-      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), this.getUserById(5), null, null,  true, false, 28, 1),
-      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(1), this.getUserById(5), null, null,  true, false,  29, 1),
+      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(5), null, null, false, true, 25, 5), 
+      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true,   26, 5),
+      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, true, true,  27, 5),
+      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), null, null,  true, false, 28, 1),
+      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(1), null, null,  true, false,  29, 1),
     
-      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), this.getUserById(1), null, null, false, false, 30, 5),
-      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, null, false, true,  31, 5),
-      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Alicante', this.getUserById(5), null, null, null, true, true,  32, 5),
-      new Libro('El resplandor', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, null, false, true, 33, 5),
-      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, null, false, true, 34, 5),
-      new Libro('Carrie', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, null, true, true,  35, 5),
+      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, false, 30, 5),
+      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true,  31, 5),
+      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Alicante', this.getUserById(5), null, null, true, true,  32, 5),
+      new Libro('El resplandor', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true, 33, 5),
+      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true, 34, 5),
+      new Libro('Carrie', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, true, true,  35, 5),
     ];
     
     this.applyFilters();
@@ -59,15 +59,15 @@ export class BibliotecaComponent {
     const filtered = this.books.filter(book => {
       let filterCondition = true;
       if (this.filterType === 'Mis libros prestados') {
-        filterCondition = !book.status && book.id_user === 5; 
+        filterCondition = !book.status && book.owner === 5; 
       } else if (this.filterType === 'Libros en prestamo') {
-        filterCondition = !book.status && book.id_user !== 5; 
+        filterCondition = !book.status && book.owner !== 5; 
       }
 
       return filterCondition &&
              (book.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
               book.author.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-              book.gender.toLowerCase().includes(this.searchTerm.toLowerCase()));
+              book.genre.toLowerCase().includes(this.searchTerm.toLowerCase()));
     });
 
     this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);

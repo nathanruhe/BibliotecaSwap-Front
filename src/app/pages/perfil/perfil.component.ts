@@ -43,6 +43,7 @@ export class PerfilComponent implements OnInit {
       ],
       password: "23HappYear.",
       hidden: false,
+      totalResenas: null,
     };
 
     this.misResenas = [

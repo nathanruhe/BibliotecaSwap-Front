@@ -8,8 +8,8 @@ export class Respuesta {
         public error: boolean,
         public codigo: number,
         public mensaje: string,
-        public dataBook: Libro,
+        public dataBook: Libro[],
         public dataUser: Usuario,
-        public dataResena: Resena,
+        public dataResena: Resena[],
     ){}
 }

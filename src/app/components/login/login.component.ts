@@ -30,7 +30,6 @@ export class LoginComponent {
         this.userService.logueado = true;
         this.userService.user = resp.dataUser;
         this.router.navigateByUrl("/home");
-        this.modal = false; 
         this.closeModal.emit(); 
         console.log(resp);
       } else {

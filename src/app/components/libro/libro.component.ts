@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro'; 
 import { Router } from '@angular/router';
+import { BookService } from 'src/app/shared/book.service';
 
 @Component({
   selector: 'app-libro',
@@ -18,7 +19,7 @@ export class LibroComponent implements OnInit {
   @Input() isOtroUser: boolean = false;
   @Input() filterType: string; 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private bookService: BookService) {}
 
   ngOnInit() {}
 
@@ -33,6 +34,7 @@ export class LibroComponent implements OnInit {
 
   navigateToChat() {
     if (this.book.status) {
+      this.bookService.setSelectedBook(this.book);
       this.router.navigate(['/chat']);
     }
   }

@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
+import { BookService } from 'src/app/shared/book.service';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-landing',
@@ -12,6 +14,10 @@ export class LandingComponent {
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
   @ViewChild('swiperThumbs') swiperThumbs!: ElementRef<SwiperContainer>;
   index = 0;
+
+  constructor(public bookService: BookService) {}
+
+  landing(){}
 
   // Swiper
   swiperConfig: SwiperOptions = {

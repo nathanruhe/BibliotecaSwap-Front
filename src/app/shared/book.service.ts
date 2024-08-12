@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Libro } from '../models/libro';
 import { HttpClient } from '@angular/common/http';
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class BookService {
 
   public landing () {
     return this.http.get(this.url + "/");
+  };
+
+  public userLikesBooks (id_user) {
+    return this.http.get(this.url + "/favoritos/" + id_user);
   };
 
 }

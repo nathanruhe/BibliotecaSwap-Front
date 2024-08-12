@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
+import { Respuesta } from 'src/app/models/respuesta';
+import { Usuario } from 'src/app/models/usuario';
+import { BookService } from 'src/app/shared/book.service';
 
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.component.html',
   styleUrls: ['./favoritos.component.css']
 })
-export class FavoritosComponent  {
+export class FavoritosComponent implements OnInit {
 
   public books: Libro[] = [];
 
-  constructor() { 
+  constructor(public bookService: BookService) { 
 
     this.books = [
       new Libro (
@@ -133,6 +136,15 @@ export class FavoritosComponent  {
         35
       )]
 
+  }
+
+  ngOnInit(): void {
+    
+    // this.bookService.userLikesBooks(id_user: number).subscribe((respuesta: Respuesta) => {
+
+     
+      
+    // });
   }
 
 }

@@ -28,12 +28,6 @@ export class LandingComponent implements OnInit {
       this.books1 = respuesta.dataBook.slice(0,3);
       this.books2 = respuesta.dataBook.slice(3,6);
       this.books3 = respuesta.dataBook.slice(6,9);
-      console.log(this.books1);
-      console.log(respuesta.dataBook);
-      console.log(this.books2);
-      console.log(this.books3);
-      
-      
       
     });
   }

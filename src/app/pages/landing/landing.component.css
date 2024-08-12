@@ -12,7 +12,7 @@ img {
   width: 350px !important;
   height: 500px !important;
   margin: 4vh;
-  object-fit:scale-down;
+  /* object-fit:scale-down; */
 }
 
 swiper-slide {

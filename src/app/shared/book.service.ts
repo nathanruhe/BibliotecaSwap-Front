@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BookService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
+  // private url = "https://biblioteca-swap-back.vercel.app";
+  private url = "http://localhost:3000";
 
   constructor(private http: HttpClient) { }
 

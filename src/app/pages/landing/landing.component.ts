@@ -15,16 +15,25 @@ export class LandingComponent implements OnInit {
   @ViewChild('swiperThumbs') swiperThumbs!: ElementRef<SwiperContainer>;
   index = 0;
 
-  books: Libro[];
+  books1: Libro[];
+  books2: Libro[];
+  books3: Libro[];
 
   constructor(public bookService: BookService) {}
 
   ngOnInit(): void {
     
     this.bookService.landing().subscribe((respuesta: Respuesta) => {
-      this.books = respuesta.dataBook;
-      console.log(respuesta);
-      console.log(this.books);
+
+      this.books1 = respuesta.dataBook.slice(0,3);
+      this.books2 = respuesta.dataBook.slice(3,6);
+      this.books3 = respuesta.dataBook.slice(6,9);
+      console.log(this.books1);
+      console.log(respuesta.dataBook);
+      console.log(this.books2);
+      console.log(this.books3);
+      
+      
       
     });
   }

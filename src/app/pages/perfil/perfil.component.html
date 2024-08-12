@@ -59,7 +59,7 @@
                         <div>
                             <img class="icono" src="../../../assets/iconoIntercambio.png" alt="">
                         </div>
-                        <p> Prestados: {{ user.loan }}</p>
+                        <p> Prestados: "eliminar"</p>
                     </div>
 
                     <div class="generos">
@@ -99,18 +99,18 @@
                     <div class="cabecera">
                         <div class="usuario">
                             <img class="imgUser2" src="{{user.photo}}" alt="" />
-                            <span>{{ resena.nombre }} {{ resena.apellido }}</span>
+                            <span>{{ resena.name }} {{ resena.last_name }}</span>
                         </div>
 
                         <div>
                             <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let j = index">
-                                <span class="estrella" [class.filled]="j < resena.valoracion">&#9733;</span>
+                                <span class="estrella" [class.filled]="j < resena.rating">&#9733;</span>
                             </ng-container>
                         </div>
                     </div>
 
                     <div>
-                        <p>{{ resena.comentario }}</p>
+                        <p>{{ resena.comment }}</p>
                     </div>
                 </div>
             </ng-container>

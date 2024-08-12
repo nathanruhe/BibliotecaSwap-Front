@@ -7,12 +7,12 @@ export class Usuario {
         public email: string,
         public photo: string,
         public about: string,
-        public loan: number,
         public rating: number ,
         public province: string,
         public availability: string,
         public genres: string[],
         public password: string,
         public hidden: boolean = false,
+        public totalResenas: number = 0,
     ) {}
 }

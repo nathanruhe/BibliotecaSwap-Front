@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
 import { SwiperContainer } from 'swiper/element';
 import { SwiperOptions } from 'swiper/types';
@@ -10,14 +10,24 @@ import { Respuesta } from 'src/app/models/respuesta';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit {
   @ViewChild('swiper') swiper!: ElementRef<SwiperContainer>;
   @ViewChild('swiperThumbs') swiperThumbs!: ElementRef<SwiperContainer>;
   index = 0;
 
+  books: Libro[];
+
   constructor(public bookService: BookService) {}
 
-  landing(){}
+  ngOnInit(): void {
+    
+    this.bookService.landing().subscribe((respuesta: Respuesta) => {
+      this.books = respuesta.dataBook;
+      console.log(respuesta);
+      console.log(this.books);
+      
+    });
+  }
 
   // Swiper
   swiperConfig: SwiperOptions = {

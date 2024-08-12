@@ -37,20 +37,20 @@ export class AnadirLibroComponent {
       "Novela Contemporánea",
       "https://imagessl6.casadellibro.com/a/l/s7/66/9788435055666.webp",
       "Español",
-      null, null, null, null, false, true, null, null
+      null, null, null, false, true, null, null
     )
 
   }
 
 
-  public addBook(title: string, author: string, gender: string, photo: string, idioma: string, propietario: Usuario = null, prestatario: Usuario = null, startDate: Date = null, endDate: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
+  public addBook(title: string, author: string, genre: string, photo: string, language: string, owner: Usuario = null, borrower: Usuario = null, start_date: Date = null, end_date: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0) {
 
-    let book = { title, author, gender, photo, idioma, propietario, prestatario, startDate, endDate, like, status, id_book, id_user };
+    let book = { title, author, genre, photo, language, owner, borrower, start_date, end_date, like, status, id_book };
 
     console.log(book);
     console.log(this.books);
 
-    this.books.push(book);
+    // this.books.push(book);
     this.form.reset();
 
     return this.books;

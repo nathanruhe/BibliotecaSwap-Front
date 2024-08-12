@@ -11,7 +11,7 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  public landing (book: Libro) {
+  public landing () {
     return this.http.get(this.url + "/");
   };
 

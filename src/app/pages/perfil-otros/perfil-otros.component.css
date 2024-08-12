@@ -108,22 +108,18 @@
                     color: gold;
                 }
 
-
-            .ambos {
-                display: flex;
-                width: 500px;
-            }
-
                 .infoLocal {
+                    /* border: 5px solid red; */
                     width: 100%;
                     display: flex;
-                    flex-direction: column;
                     align-items: center;
                     gap: 20px;
                 }
 
                     .local {
+                        /* border: 5px solid yellow; */
                         height: 50px;
+                        width: 50%;
                         display: flex;
                         justify-content: center;
                         gap: 10px;
@@ -150,6 +146,7 @@
 
 
                 .infoDispo {
+                    /* border: 5px solid green; */
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -158,6 +155,8 @@
                 }
 
                     .disponible {
+                        /* border: 5px solid blue; */
+                        width: 50%;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -181,6 +180,8 @@
                         }
 
                     .generos {
+                        /* border: 5px solid orange; */
+                        width: 100%;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -191,7 +192,7 @@
                         .gen {
                             display: flex;
                             align-items: center;
-                            gap: 5px;
+                            gap: 20px;
                         }
 
                             .gen2 {

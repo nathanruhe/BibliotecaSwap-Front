@@ -47,19 +47,36 @@ h3 {
   text-align: center;
 }
 
-.genero {
+.carrusel {
   display: flex;
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* gap: 15vw; */
+  color: var(--gris-claro);
+  font-family: var(--titulo-fuente);
+  font-size: var(--titulo-size);
+  margin-bottom: 6vh;
+}
+
+/* .carrusel img {
+  width: 350px !important;
+  height: 500px !important;
+  margin: 4vh;
+  object-fit:scale-down;
+} */
+
+/* .genero {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  
   color: var(--gris-claro);
 }
 
 .genero p {
   margin: .2vw 5.5vw 7vw 8.5vw;
-}
+} */
 
 ::-webkit-scrollbar {
   width: 10px;

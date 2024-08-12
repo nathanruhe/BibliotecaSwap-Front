@@ -13,58 +13,24 @@
       <section class="col-8 px-0">
         <swiper-container appSwiper #swiper [config]="swiperConfig" thumbs-swiper=".mySwiper2"
           (slidechange)="slideChange($event)">
-          <swiper-slide>
-            hola
-            <ng-container *ngFor='let book of books1; let i = index'> 
-              <img src={{ book.photo }} alt="" />
-              <p>{{ book.genre }}</p>
-            </ng-container>
-
-            <!-- <div>
-              <img src={{books[i+1].photo}} alt="" />
-              <p>{{ books[i+1].genre }}</p>
-            </div>
-            <div>
-              <img src={{books[i+2].photo}} alt="" />
-              <p>{{ books[i+2].genre }}</p>
-            </div> -->
-          </swiper-slide>
-          <swiper-slide>
-            <div *ngFor='let book of books2; let i = index'> 
-              <img src={{ book.photo }} alt="" />
+          <swiper-slide class="carrusel">
+            <div *ngFor='let book of books1; let i = index'>
+              <img src="{{ book.photo }}" alt="" />
               <p>{{ book.genre }}</p>
             </div>
           </swiper-slide>
-          <swiper-slide>
-            <div *ngFor='let book of books3; let i = index'> 
-              <img src={{ book.photo }} alt="" />
+          <swiper-slide class="carrusel">
+            <div *ngFor='let book of books2; let i = index'>
+              <img src="{{ book.photo }}" alt="" />
               <p>{{ book.genre }}</p>
             </div>
           </swiper-slide>
-          <!-- <swiper-slide>
-            <div>
-              <img src="assets/ElGuerreroALaSombraDelCerezo.jpg" alt="" />
-              <img src="assets/LaGrietaDelSilencio.jpg" alt="" />
-              <img src="assets/LasHermanasDeAuschwitz.jpeg" alt="" />
-              <div class="genero">
-                <p>Novela Histórica</p>
-                <p>Novela Negra</p>
-                <p>Novela Histórica</p>
-              </div>
+          <swiper-slide class="carrusel">
+            <div *ngFor='let book of books3; let i = index'>
+              <img src="{{ book.photo }}" alt="" />
+              <p>{{ book.genre }}</p>
             </div>
           </swiper-slide>
-          <swiper-slide>
-            <div>
-              <img src="assets/LasMatematicasDeJulioVerne.png" alt="" />
-              <img src="assets/libro-de-los-cantos.jpg" alt="" />
-              <img src="assets/PensarRapidoPensarDespacio.jpg" alt="" />
-            </div>
-            <div class="genero">
-              <p>Divulgación Científica</p>
-              <p>Poesía</p>
-              <p>Psicología</p>
-            </div>
-          </swiper-slide> -->
         </swiper-container>
       </section>
     </div>

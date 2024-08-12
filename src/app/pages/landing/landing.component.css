@@ -2,18 +2,11 @@
   background-image: url('../../../assets/fondoPrincipal.png');
   background-size: cover;
   background-position: center;
-  /* height: 76.3vh; */
-  /* overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-snap-align: start; */
-}
-
-/* .scroll {
+  height: 80vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
-  scroll-snap-align: start;
-  height: 100vh;
-} */
+  scroll-snap-align: start; 
+}
 
 img {
   width: 350px !important;

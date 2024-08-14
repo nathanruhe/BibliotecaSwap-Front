@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Libro } from '../models/libro';
+import { HttpClient } from '@angular/common/http';
+import { Usuario } from '../models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class BookService {
   
   public libro: Libro | null = null;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   setSelectedBook(book: Libro) {
     this.libro = book;
@@ -24,4 +26,13 @@ export class BookService {
   clearSelectedBook() {
     this.libro = null;
   }
+
+  public landing () {
+    return this.http.get(this.url + "/");
+  };
+
+  public userLikesBooks (id_user) {
+    return this.http.get(this.url + "/favoritos/" + id_user);
+  };
+
 }

@@ -1,4 +1,3 @@
-
 <main class="container scroll">
 
   <div class="text">
@@ -14,48 +13,27 @@
       <section class="col-8 px-0">
         <swiper-container appSwiper #swiper [config]="swiperConfig" thumbs-swiper=".mySwiper2"
           (slidechange)="slideChange($event)">
-          <swiper-slide>
-            <div>
-              <img src="assets/ComoHacerQueTePasenCosasBuenas.jpg" alt="" />
-              <img src="assets/Decidido.jpg" alt="" />
-              <img src="assets/ElEnigmaDeLasArenas.jpg" alt="" />
-              <div class="genero">
-                <p>Auto Ayuda</p>
-                <!-- {{ book.gender }} -->
-                <p>Divulgación Científica</p>
-                <p>Novela Contemporánea</p>
-              </div>
+          <swiper-slide class="carrusel">
+            <div *ngFor='let book of books1; let i = index'>
+              <img src="{{ book.photo }}" alt="" />
+              <p>{{ book.genre }}</p>
             </div>
           </swiper-slide>
-          <swiper-slide>
-            <div>
-              <img src="assets/ElGuerreroALaSombraDelCerezo.jpg" alt="" />
-              <img src="assets/LaGrietaDelSilencio.jpg" alt="" />
-              <img src="assets/LasHermanasDeAuschwitz.jpeg" alt="" />
-              <div class="genero">
-                <p>Novela Histórica</p>
-                <p>Novela Negra</p>
-                <p>Novela Histórica</p>
-              </div>
+          <swiper-slide class="carrusel">
+            <div *ngFor='let book of books2; let i = index'>
+              <img src="{{ book.photo }}" alt="" />
+              <p>{{ book.genre }}</p>
             </div>
           </swiper-slide>
-          <swiper-slide>
-            <div>
-              <img src="assets/LasMatematicasDeJulioVerne.png" alt="" />
-              <img src="assets/libro-de-los-cantos.jpg" alt="" />
-              <img src="assets/PensarRapidoPensarDespacio.jpg" alt="" />
-            </div>
-            <div class="genero">
-              <p>Divulgación Científica</p>
-              <p>Poesía</p>
-              <p>Psicología</p>
+          <swiper-slide class="carrusel">
+            <div *ngFor='let book of books3; let i = index'>
+              <img src="{{ book.photo }}" alt="" />
+              <p>{{ book.genre }}</p>
             </div>
           </swiper-slide>
         </swiper-container>
       </section>
     </div>
   </div>
-  
-  <!-- <app-libro-landing libro.foto="assets/ComoHacerQueTePasenCosasBuenas.jpg"></app-libro-landing> -->
 
 </main>

@@ -5,15 +5,16 @@
   </div>
   
   <div class="filter-row">
-  
+    
     <div class="status-buttons">
       <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
       <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
     </div>
     
     <div class="search-container">
-      <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
+      <input type="text" placeholder="Buscar por título o autor" class="search-input" name="filterBooks" [(ngModel)]="searchTerm" (input)="onSearch($event)">
     </div>
+
     
     <div class="dropdowns-container">
   
@@ -36,11 +37,15 @@
       </div>
   
     </div>
-    
+ 
   </div>
   
   <div class="cards-container">
-    <app-libro *ngFor="let book of filteredBooks" [book]="book" [isHome]="true"></app-libro>
+    <ul class="unList">
+      <li *ngFor="let book of filteredBooks; let i = index" class="listItem">
+        <app-libro [book]="book" [isHome]="true"></app-libro>
+      </li>
+    </ul>
   </div>
   
   <div class="cont-charge">

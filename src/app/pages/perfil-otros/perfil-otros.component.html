@@ -46,7 +46,7 @@
                     <div class="gen">
                         <ng-container *ngFor="let genero of user.genres; let i = index">
                             <div class="gen2">
-                                <img [src]="genero" alt="">
+                                <img [src]="getGenreIcon(genero)" alt="">
                             </div>
                         </ng-container>
                     </div>

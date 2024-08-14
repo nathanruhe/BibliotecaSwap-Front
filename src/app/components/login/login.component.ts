@@ -29,6 +29,9 @@ export class LoginComponent {
       if (!resp.error) {
         this.userService.logueado = true;
         this.userService.user = resp.dataUser;
+        //guardar id_user
+        localStorage.setItem('userId', resp.dataUser.id_user.toString());
+        
         this.router.navigateByUrl("/home");
         this.closeModal.emit(); 
         console.log(resp);

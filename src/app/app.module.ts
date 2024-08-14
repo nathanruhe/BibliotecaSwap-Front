@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms'; // control formularios
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // control formularios
 import { HttpClientModule } from '@angular/common/http'; // para servicios
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,6 +59,7 @@ register();
     AppRoutingModule,
     ReactiveFormsModule, // control formularios
     HttpClientModule, // para servicios
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

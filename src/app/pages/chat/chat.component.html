@@ -83,35 +83,42 @@
             <div class="right">
                 <aside class="info-section">
                     <div class="book-info">
-                        <div class="book-card">
+                        <div class="book-card" *ngIf="libro; else noLibro">
                             <div class="book-cover">
-                                <img src="assets/LasHermanasDeAuschwitz.jpeg" alt="Book Cover" class="book-image">
+                                <img src="{{ libro.photo }}" alt="Book Cover" class="book-image">
                             </div>
                             <div class="book-details">
-                                <h3>Las Hermanas De Auschwitz</h3>
-                                <p><strong>Autor:</strong> Roxane Van Iperen</p>
-                                <p><strong>Género:</strong> Terror</p>
+                                <h3>{{ libro.title}}</h3>
+                                <p><strong>Autor:</strong> {{ libro.author }}</p>
+                                <p><strong>Género:</strong> {{ libro.genre}} </p>
                             </div>
                         </div>
                         <div class="alert-section">
                             <h5>Atención</h5>
                             <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
-                            <p>Estado: <button class="status">Aceptar </button></p>
+                            <p>Estado: <button class="status" (click)="cambiarEstadoLibro()">Aceptar </button></p>
                         </div>
 
                     </div>
-                    <div class="rating-section">
-                        <h5>Valora tu experiencia con Juan</h5>
-                        <div class="stars">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9734;</span>
+
+                    <ng-template #noLibro>
+                        <div class="noLibro">
+                            <p>No hay libro seleccionado</p>
                         </div>
-                        <textarea rows="4" placeholder="Escribe tu reseña aquí..."></textarea>
-                        <button class="btn btn-primary">Enviar</button>
-                    </div>
+                    </ng-template>
+
+                    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()">
+                        <div class="rating-section">
+                            <h5>Valora tu experiencia con {{ nombreUsuario }}</h5>
+                            <div class="stars">
+                                <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+                                      (click)="ratingForm.patchValue({ rating: star })" 
+                                      [ngClass]="{ 'filled': star <= ratingForm.value.rating }">&#9733;</span>
+                            </div>
+                            <textarea formControlName="comment" rows="4" placeholder="Escribe tu reseña aquí..."></textarea>
+                            <button class="btn btn-primary" type="submit">Enviar</button>
+                        </div>
+                    </form>                                          
                 </aside>
             </div>
         </div>

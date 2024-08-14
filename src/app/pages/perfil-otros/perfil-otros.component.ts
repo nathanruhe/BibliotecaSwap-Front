@@ -15,8 +15,21 @@ export class PerfilOtrosComponent {
   public activo: string = 'biblioteca';
   public milibro: Libro
 
+  genreIcons: { [key: string]: string } = {
+    'Terror': '../../../assets/iconoTerror.jpg',
+    'Policiacas': '../../../assets/iconoPoli.png',
+    'Poesía': '../../../assets/iconoPoesia.png',
+    'Idiomas': '../../../assets/iconoIdioma.png',
+    'Astrología': '../../../assets/iconoAstro.jpeg',
+    'Fotografía': '../../../assets/iconoFoto.png',
+  };
+
   constructor(private userService: UserService) {
     this.user = this.userService.user;
+  }
+
+  getGenreIcon(genre: string): string {
+    return this.genreIcons[genre] || '';
   }
 
   setActiveTab(tab: string): void {

@@ -232,6 +232,17 @@ html, body {
     width: 100%;
 }
 
+    .noLibro {
+        background-color: #e6e0ff;
+        border-radius: 15px;
+        height: 280px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
 .book-cover {
     background-color: #c3c0f2;
     height: 150px;

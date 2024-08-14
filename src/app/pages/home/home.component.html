@@ -10,10 +10,11 @@
       <button (click)="setStatus('Todos')" [ngClass]="{'active': status === 'Todos'}">Todos</button>
       <button (click)="setStatus('Disponible')" [ngClass]="{'active': status === 'Disponible'}">Disponibles</button>
     </div>
-    
+  
     <div class="search-container">
-      <input type="text" placeholder="Buscar" class="search-input" (input)="onSearch($event)">
+      <input type="number" placeholder="Buscar por id" class="search-input" name="filterBooks" [(ngModel)]="filterBooks" (input)="getOneBook(filterBooks)">
     </div>
+
     
     <div class="dropdowns-container">
   
@@ -36,7 +37,7 @@
       </div>
   
     </div>
-    
+  
   </div>
   
   <div class="cards-container">

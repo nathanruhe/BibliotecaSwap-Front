@@ -1,14 +1,12 @@
 body {
     font-family: 'Reem Kufi', sans-serif;
     background-color: #f8f9fa;
-    padding: 0;
-    margin: 0;
     overflow: hidden;
     height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1200px;
+    width: 1200px;
     margin: 20px auto;
     display: flex;
     flex-direction: column;
@@ -27,10 +25,10 @@ body {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    height: 70vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 70vh;
 }
 
 .edit-preferences {
@@ -52,7 +50,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-height: 800px; 
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

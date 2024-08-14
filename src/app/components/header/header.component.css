@@ -1,43 +1,24 @@
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Reem Kufi', sans-serif;
   background-color: #6786F5;
   padding: 10px 20px;
-  height: 10vh;
+  min-height: 10vh; 
   position: relative;
 }
 
-.logo-left,
-.logo-center {
+.logo {
   display: flex;
   align-items: center;
 }
 
-.logo-left a,
-.logo-center a {
-  text-decoration: none;
-}
-
-.logo-left img,
-.logo-center img {
-  height: 80px;
-}
-
-.logo-left {
-  position: absolute;
-  left: 10px;
-}
-
-.logo-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.logo img {
+  height: 100px;
+  margin-right: 10px;
 }
 
 .nav {
-  display: flex;
   margin-left: auto;
 }
 
@@ -64,8 +45,7 @@
   margin-left: auto;
 }
 
-.auth-buttons .login-button,
-.auth-buttons .register-button {
+.auth-buttons .login-button, .auth-buttons .register-button {
   margin: 0 5px;
   padding: 5px 15px;
   border: none;
@@ -84,17 +64,8 @@
 
 .user-actions .icon {
   margin: 0 10px;
-}
-
-.user-actions .user-icon {
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-}
-
-.user-actions .favorites-icon {
-  height: 30px;
-  width: 30px;
+  height: 50px; 
+  width: 50px;  
   cursor: pointer;
 }
 
@@ -107,22 +78,106 @@
   background-color: #9389F0;
   color: white;
   border-radius: 5px;
+} */
+
+
+
+/* Header styling */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #6786F5;
+  padding: 10px 20px;
+  height: 10vh;
+  position: relative;
 }
 
-.modal-overlay {
+a {
+  text-decoration: none;
+  color: white;
+  font-family: var(--titulo-fuente);
+}
+
+.logout, .login {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.logolong, .logo {
+  display: flex;
+  align-items: center;
+}
+
+.logolong img, .logo img {
+  height: 100px;
+  margin-right: 10px;
+}
+
+.botones, .login2 {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 10px;
+}
+
+button, .btn-principal {
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: #9389F0;
+  color: white;
+  border-radius: 5px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconos {
+  display: flex;
+  height: 50px;
+  gap: 30px;
+  align-items: center;
+}
+
+.iconos img {
+  height: 100%;
+  cursor: pointer;
+}
+
+.iconos img:nth-of-type(2) {
+  height: 50px;
+}
+
+@media (max-width: 700px) {
+  .login, .logout {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .login2 {
+    margin: 10px;
+  }
+}
+
+/* Modal styling */
+.modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.modal-overlay app-login {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  z-index: 10;
 }

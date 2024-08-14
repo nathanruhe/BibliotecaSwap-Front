@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isLoggedIn: boolean = false;
-  isLoginModalVisible: boolean = false; 
+  public isLoggedIn: boolean = false;
+  public modal: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {
+    this.isLoggedIn = this.userService.logueado;
+  }
 
   login() {
-    this.isLoggedIn = true;
-    this.router.navigate(['/home']);
+    this.modal = true;
   }
 
   register() {
@@ -22,15 +24,13 @@ export class HeaderComponent {
   }
 
   logout() {
+    this.userService.logueado = false;
     this.isLoggedIn = false;
-    this.router.navigate(['/landing']);
+    this.router.navigate(['/']);
   }
 
-  showLoginModal() {
-    this.isLoginModalVisible = true;
-  }
-
-  hideLoginModal() {
-    this.isLoginModalVisible = false;
+  onCloseModal() {
+    this.modal = false;
+    this.isLoggedIn = this.userService.logueado;
   }
 }

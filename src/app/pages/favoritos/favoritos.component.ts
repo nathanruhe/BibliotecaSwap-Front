@@ -139,17 +139,11 @@ export class FavoritosComponent implements OnInit {
 
   }
 
-  public user = Usuario;
-
   ngOnInit(): void {
     
     this.bookService.userLikesBooks(this.userService.user.id_user).subscribe((respuesta: Respuesta) => {
 
-    //  if (this.userService.user.id_user == Number(id_user)) {
-
-    //   this.bookService.user = respuesta.dataBook;
-
-    //  }; 
+      this.books = respuesta.dataBook;
       
     });
   }

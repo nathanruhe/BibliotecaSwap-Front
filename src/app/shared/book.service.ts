@@ -8,8 +8,8 @@ import { Usuario } from '../models/usuario';
 })
 export class BookService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
-  // private url = "http://localhost:3000";
+  // private url = "https://biblioteca-swap-back.vercel.app";
+  private url = "http://localhost:3000";
   
   public libro: Libro | null = null;
 
@@ -28,7 +28,7 @@ export class BookService {
   }
 
   public landing () {
-    return this.http.get(this.url + "/");
+    return this.http.get(this.url + "/lastBooks");
   };
 
   public userLikesBooks (id_user) {

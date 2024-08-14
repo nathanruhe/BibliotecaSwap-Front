@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/usuario';
 // import { Libro } from 'src/app/models/libro';
 import { Resena  } from 'src/app/models/resena';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-perfil',
@@ -11,15 +12,17 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
-  @Input() user: Usuario;
+  // @Input() user: Usuario;
   @Output() put = new EventEmitter<Usuario>();
   // @Output() onHidden = new EventEmitter<Usuario>();
 
-  // public user: Usuario;
+  public user: Usuario;
   public resena: Resena;
   public misResenas: Resena[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public userService: UserService) {
+    this.user = this.userService.user;
+  }
 
   ngOnInit(): void {
 
@@ -72,6 +75,8 @@ export class PerfilComponent implements OnInit {
         comment: "Este libro logra capturar la atención del lector desde el principio con su trama intrigante y personajes complejos, ofreciendo una experiencia de lectura verdaderamente enriquecedora."
       }
     ];
+
+    // this.userService.
 
   }
 

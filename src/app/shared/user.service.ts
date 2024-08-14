@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
-  // private url = "http://localhost:3000";
+  // private url = "https://biblioteca-swap-back.vercel.app";
+  private url = "http://localhost:3000";
   
   public logueado: boolean = false;
   public user: Usuario;
@@ -21,6 +21,10 @@ export class UserService {
 
   public login(user: Usuario) {
     return this.http.post(this.url + "/login", user);
+  };
+
+  public profile () {
+    return this.http.get(this.url + "/perfil");
   };
 
 }

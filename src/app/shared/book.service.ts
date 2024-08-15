@@ -37,7 +37,7 @@ export class BookService {
   };
 
 
-  public getAll(): Observable<any> {
+  public getBooks(): Observable<any> {
     return this.http.get(this.url + "/home");
   }
 

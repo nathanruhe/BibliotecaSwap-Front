@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
+import { Usuario } from 'src/app/models/usuario';
 import { BookService } from 'src/app/shared/book.service';
 import { Respuesta } from 'src/app/models/respuesta';
+
+interface LibroConUsuario extends Libro {
+  owner_info?: Usuario;
+}
 
 @Component({
   selector: 'app-home',
@@ -12,12 +17,12 @@ export class HomeComponent implements OnInit{
 
   //public users: Usuario[];
 
-  public books: Libro[] = [];
-  public filteredBooks: Libro[] = [];
+  public books: any[] = []; // Cambiamos a any[] para aceptar objetos no estrictamente de tipo Libro
+  public filteredBooks: any[] = [];
   public showFilters: boolean = true;
 
   public userId: number;
-  public userName: string;
+  public userProvince: string;
 
   public status: string = 'Todos';
   public selectedGenero: string[] = [];
@@ -33,14 +38,14 @@ export class HomeComponent implements OnInit{
   public currentPage: number = 1;
   public itemsPerPage: number = 10;
   
-  constructor( private bookService: BookService ) { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit() {
-    this.userId = this.getUserIdFromLocalStorage();  
-    console.log("El ID del usuario es: ", this.userId);
+    this.userId = this.getUserIdFromLocalStorage();
+    this.userProvince = this.getUserProvinceFromLocalStorage();
 
-    this.userName = this.getUserNameFromLocalStorage();
-    console.log("El nombre del usuario es: ", this.userName);
+    console.log("El ID del usuario es: ", this.userId);
+    console.log("La provincia del usuario es: ", this.userProvince);
 
     this.loadBooks();
   }
@@ -49,20 +54,23 @@ export class HomeComponent implements OnInit{
     return Number(localStorage.getItem('userId'));
   }
 
-  getUserNameFromLocalStorage(): string {
-    return localStorage.getItem('userName') || '';
+  getUserProvinceFromLocalStorage(): string {
+    return localStorage.getItem('userProvince') || '';
   }
 
   loadBooks(): void {
-    this.bookService.getAll().subscribe((response: Respuesta) => {
+    this.bookService.getBooks().subscribe((response: Respuesta) => {
       console.log("Respuesta completa del servidor:", response);
 
       if (!response.error) {
-        this.books = response.dataBook as Libro[];
+        this.books = response.dataBook;
         console.log("Todos los libros cargados:", this.books);
 
         this.books = this.books.filter(book => book.owner !== this.userId);
         console.log("Libros después de filtrar por owner:", this.books);
+
+        this.books = this.books.filter(book => book.province.trim().toLowerCase() === this.userProvince.trim().toLowerCase());
+        console.log("Libros después de filtrar por provincia:", this.books);
 
         this.applyFilters();
       } else {
@@ -134,4 +142,5 @@ export class HomeComponent implements OnInit{
   toggleFilters(): void {
     this.showFilters = !this.showFilters;
   }
+
 }

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
 
   //public users: Usuario[];
 
-  public books: any[] = []; // Cambiamos a any[] para aceptar objetos no estrictamente de tipo Libro
+  public books: any[] = [];
   public filteredBooks: any[] = [];
   public showFilters: boolean = true;
 
@@ -60,24 +60,31 @@ export class HomeComponent implements OnInit{
 
   loadBooks(): void {
     this.bookService.getBooks().subscribe((response: Respuesta) => {
-      console.log("Respuesta completa del servidor:", response);
+        console.log("Respuesta completa del servidor:", response);
 
-      if (!response.error) {
-        this.books = response.dataBook;
-        console.log("Todos los libros cargados:", this.books);
+        if (!response.error) {
+            this.books = response.dataBook;
+            console.log("Todos los libros cargados:", this.books);
 
-        this.books = this.books.filter(book => book.owner !== this.userId);
-        console.log("Libros después de filtrar por owner:", this.books);
+            this.books = this.books.filter(book => book.owner !== this.userId);
+            console.log("Libros después de filtrar por owner:", this.books);
 
-        this.books = this.books.filter(book => book.province.trim().toLowerCase() === this.userProvince.trim().toLowerCase());
-        console.log("Libros después de filtrar por provincia:", this.books);
+            this.books.forEach(book => {
+                console.log(`Libro: ${book.title}, Provincia: ${book.owner_province !== undefined ? book.owner_province : 'No definida'}`);
+            });
 
-        this.applyFilters();
-      } else {
-        console.error('Error al cargar los libros:', response.mensaje);
-      }
+            this.books = this.books.filter(book => 
+                book.owner_province && 
+                book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
+            );
+            console.log("Libros después de filtrar por provincia:", this.books);
+
+            this.applyFilters();
+        } else {
+            console.error('Error al cargar los libros:', response.mensaje);
+        }
     });
-  }
+}
 
   applyFilters(): void {
     const filtered = this.books.filter(book => {

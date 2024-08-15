@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro'; 
+import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 
@@ -11,6 +12,7 @@ import { BookService } from 'src/app/shared/book.service';
 export class LibroComponent implements OnInit {
 
   @Input() book: Libro;
+  @Input() usuarios: Usuario[] = [];
   @Output() addToFavorites = new EventEmitter<Libro>();
   @Output() goToPage = new EventEmitter<number>();
   @Input() isHome: boolean = false;
@@ -25,6 +27,7 @@ export class LibroComponent implements OnInit {
 
   ngOnInit() {
     this.userId = Number(localStorage.getItem('userId'));
+    console.log('Usuarios disponibles:', this.usuarios);
   }
 
   navigateToPerfilOtros() {

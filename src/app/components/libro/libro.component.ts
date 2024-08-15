@@ -20,43 +20,11 @@ export class LibroComponent implements OnInit {
   @Input() filterType: string; 
 
   userId: number;
-  likedBooks: number[] = [];
 
   constructor(private router: Router, private bookService: BookService) {}
 
   ngOnInit() {
     this.userId = Number(localStorage.getItem('userId'));
-    this.loadUserLikes();
-  }
-
-  loadUserLikes() {
-    this.bookService.getUserLikes(this.userId).subscribe(
-      (response) => {
-        this.likedBooks = response.data.map(like => like.id_book); 
-        // Marcamos el libro como likeado si está en la lista de likes
-        this.book.like = this.likedBooks.includes(this.book.id_book);
-      },
-      (error) => {
-        console.error('Error al cargar los likes del usuario:', error);
-      }
-    );
-  }
-
-  addBookToFavorites() {
-    this.book.like = !this.book.like;
-
-    if (this.book.like) {
-      this.bookService.addLike(this.userId, this.book.id_book).subscribe(
-        (response) => {
-          console.log('Libro añadido a favoritos:', response);
-        },
-        (error) => {
-          console.error('Error al añadir libro a favoritos:', error);
-        }
-      );
-    }
-
-    this.addToFavorites.emit(this.book);
   }
 
   navigateToPerfilOtros() {

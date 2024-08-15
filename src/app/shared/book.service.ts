@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class BookService {
 
-  //private url = "https://biblioteca-swap-back.vercel.app";
-  private url = "http://localhost:3000";
+  private url = "https://biblioteca-swap-back.vercel.app";
+  //private url = "http://localhost:3000";
   
   public libro: Libro | null = null;
 
@@ -38,15 +38,7 @@ export class BookService {
 
 
   public getAll(): Observable<any> {
-    return this.http.get(this.url + "/home")
-  }
-
-  public addLike(id_user: number, id_book: number): Observable<any> {
-    return this.http.post(`${this.url}/like`, { id_user, id_book });
-  }
-
-  public getUserLikes(id_user: number): Observable<any> {
-    return this.http.get(`${this.url}/like/${id_user}`);
-  }
+    return this.http.get(this.url + "/home");
+}
 
 }

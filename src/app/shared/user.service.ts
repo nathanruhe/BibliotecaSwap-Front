@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,9 @@ export class UserService {
   public profile (id_user: number) {
     return this.http.get(this.url + "/perfil/" + id_user );
   };
+  getUserById(id: number): Observable<Respuesta> {
+    return this.http.get<Respuesta>(`${this.url}/perfil-otros/${id}`);
+  }
+  
 
 }

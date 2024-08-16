@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { UserService } from 'src/app/shared/user.service';
 import { Libro } from 'src/app/models/libro'; 
+import { ActivatedRoute } from '@angular/router';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-perfil-otros',
@@ -24,8 +26,23 @@ export class PerfilOtrosComponent {
     'Fotografía': '../../../assets/iconoFoto.png',
   };
 
-  constructor(private userService: UserService) {
-    this.user = this.userService.user;
+  constructor(private userService: UserService, private route: ActivatedRoute) {
+    // this.user = this.userService.user;
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const ownerId = +params['ownerId'];
+      this.loadUserData(ownerId);
+    });
+  }
+
+  loadUserData(ownerId: number) {
+    this.userService.getUserById(ownerId).subscribe((resp: Respuesta) => {
+      if (!resp.error) {
+        this.user = resp.dataUser
+      }
+    });
   }
 
   getGenreIcon(genre: string): string {

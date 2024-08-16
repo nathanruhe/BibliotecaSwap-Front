@@ -23,8 +23,8 @@ export class UserService {
     return this.http.post(this.url + "/login", user);
   };
 
-  public profile () {
-    return this.http.get(this.url + "/perfil");
+  public profile (id_user: number) {
+    return this.http.get(this.url + "/perfil/" + id_user );
   };
 
 }

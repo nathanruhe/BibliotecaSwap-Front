@@ -20,36 +20,50 @@ export class PerfilComponent implements OnInit {
   public resena: Resena;
   public misResenas: Resena[];
 
+  genreIcons: { [key: string]: string } = {               // no coge los iconos
+    'Terror': '../../../assets/iconoTerror.jpg',
+    'Policiacas': '../../../assets/iconoPoli.png',
+    'Poesía': '../../../assets/iconoPoesia.png',
+    'Idiomas': '../../../assets/iconoIdioma.png',
+    'Astrología': '../../../assets/iconoAstro.jpeg',
+    'Fotografía': '../../../assets/iconoFoto.png',
+  };
+
   constructor(private router: Router, public userService: UserService) {
     this.user = this.userService.user;
+    console.log('usuario perfil:', this.user)
   }
 
   ngOnInit(): void {
+    
+    this.userService.profile(this.user.id_user).subscribe(response => {
+      console.log(response);
+    })
 
-    this.user = {
-      id_user: 1,
-      name: "Jose",
-      last_name: "Padilla Torres",
-      email: "genial&dad@gmail.com",
-      photo: "../../../assets/icons/user2.png",
-      about: " ",
-      rating: 3,
-      province: "Almería",
-      availability: "tardes",
-      genres: [
-        "../../../assets/iconoTerror.jpg",
-        "../../../assets/iconoPoesia.png",
-        "../../../assets/iconoPoli.png",
-        "../../../assets/iconoAstro.jpeg",
-        "../../../assets/iconoIdioma.png",
-        "../../../assets/iconoFoto.png",
-      ],
-      password: "23HappYear.",
-      hidden: false,
-      totalResenas: null,
-    };
+    // this.user = {
+    //   id_user: 1,
+    //   name: "Jose",
+    //   last_name: "Padilla Torres",
+    //   email: "genial&dad@gmail.com",
+    //   photo: "../../../assets/icons/user2.png",
+    //   about: " ",
+    //   rating: 3,
+    //   province: "Almería",
+    //   availability: "tardes",
+    //   genres: [
+    //     "../../../assets/iconoTerror.jpg",
+    //     "../../../assets/iconoPoesia.png",
+    //     "../../../assets/iconoPoli.png",
+    //     "../../../assets/iconoAstro.jpeg",
+    //     "../../../assets/iconoIdioma.png",
+    //     "../../../assets/iconoFoto.png",
+    //   ],
+    //   password: "23HappYear.",
+    //   hidden: false,
+    //   totalResenas: null,
+    // };
 
-    this.misResenas = [
+    this.misResenas = [       // volver a definirlo, user.resenas
       {
         name: "Juan",
         last_name: "Perez",
@@ -87,6 +101,10 @@ export class PerfilComponent implements OnInit {
   onHidden() {
     this.user.hidden = !this.user.hidden;
     // this.onHidden.emit(this.user);
+  }
+
+  getGenreIcon(genre: string): string {
+    return this.genreIcons[genre] || '';
   }
 
 }

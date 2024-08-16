@@ -14,6 +14,13 @@ export class FavoritosComponent implements OnInit {
 
   public books: Libro[] = [];
 
+  filteredBooks: Libro[] = [];
+  searchTerm: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+
+  filterType: string = 'Todos';
+
   constructor(public bookService: BookService, public userService: UserService) { 
 
     this.books = [
@@ -135,7 +142,65 @@ export class FavoritosComponent implements OnInit {
         true,
         8,
         35
+      ),
+      new Libro (
+        'Roma Soy Yo',
+        'Santiago Posteguillo',
+        'Novela Histórica',
+        'https://imagessl4.casadellibro.com/a/l/s7/54/9788413147154.webp',
+        'Español',
+        null,
+        null,
+        null,
+        true,
+        false,
+        9,
+        35
+      ),
+      new Libro (
+        'Canción de Hielo y Fuego',
+        'George R.R.Martin',
+        'Fantasía',
+        'https://imagessl3.casadellibro.com/a/l/s7/93/9788466356893.webp',
+        'Español',
+        null,
+        null,
+        null,
+        true,
+        true,
+        10,
+        35
+      ),
+      new Libro (
+        'El Año de la Langosta',
+        'Terry Hayes',
+        'Novela Negra',
+        'https://imagessl5.casadellibro.com/a/l/s7/45/9788408290445.webp',
+        'Español',
+        null,
+        null,
+        null,
+        true,
+        false,
+        11,
+        35
+      ),
+      new Libro (
+        'El Reino del Dragón de Oro',
+        'Isabel Allende',
+        'Narrativa HispanoAmericana',
+        'https://imagessl8.casadellibro.com/a/l/s7/08/9788497935708.webp',
+        'Español',
+        null,
+        null,
+        null,
+        true,
+        true,
+        12,
+        35
       )]
+
+      this.applyFilters();
 
   }
 
@@ -146,6 +211,31 @@ export class FavoritosComponent implements OnInit {
       this.books = respuesta.dataBook;
       
     });
+  }
+
+   //filtramos libros
+   applyFilters() {
+    const filtered = this.books.filter(book => {
+      let filterCondition = true;
+      // if (this.filterType === 'Mis libros prestados') {
+      //   filterCondition = !book.status && book.owner === 5; 
+      // } else if (this.filterType === 'Libros en prestamo') {
+      //   filterCondition = !book.status && book.owner !== 5; 
+      // }
+      
+
+      return filterCondition &&
+             (book.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+              book.author.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+              book.genre.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    });
+
+    this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);
+  }
+
+  loadMore() {
+    this.currentPage++;
+    this.applyFilters();
   }
 
 }

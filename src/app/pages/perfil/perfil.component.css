@@ -135,21 +135,24 @@ h4 {
 
 .ambos {
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
 .infoLocal {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 20px;
 }
 
 .local {
     height: 50px;
+    margin-left: 2vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -159,9 +162,8 @@ h4 {
     display: block;
 }
 
-.local p,
-.prestados p {
-    margin-top: 3px;
+.local p {
+    /* margin-top: 3px; */
     font-size: 25px;
 }
 
@@ -185,6 +187,7 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: .7vh;
 }
 
 .dispo {

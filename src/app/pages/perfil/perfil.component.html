@@ -27,7 +27,7 @@
             <div class="infoEstrella">
                 <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
 
-                    <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
+                    <span class="estrella" [class.filled]="b < rating">&#9733;</span>
 
                 </ng-container>
             </div>
@@ -85,7 +85,7 @@
                 <div class="resena-container">
                     <div class="cabecera">
                         <div class="usuario">
-                            <img class="imgUser2" src="{{user.photo}}" alt="" />
+                            <img class="imgUser2" src="{{resena.photo}}" alt="" />
                             <span>{{ resena.name }} {{ resena.last_name }}</span>
                         </div>
 

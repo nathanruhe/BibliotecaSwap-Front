@@ -28,9 +28,9 @@ export class UserService {
   public profile (id_user: number) {
     return this.http.get(this.url + "/perfil/" + id_user );
   };
+
   getUserById(id: number): Observable<Respuesta> {
     return this.http.get<Respuesta>(`${this.url}/perfil-otros/${id}`);
   }
   
-
 }

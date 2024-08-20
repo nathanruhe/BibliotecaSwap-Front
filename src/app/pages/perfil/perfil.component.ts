@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
-import { Resena  } from 'src/app/models/resena';
+import { Resena } from 'src/app/models/resena';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
+import { BookService } from 'src/app/shared/book.service';    // ocultar perfil
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-perfil',
@@ -18,6 +20,10 @@ export class PerfilComponent implements OnInit {
   public rating: number;
   public misResenas: Resena[];
 
+  public books: any[] = [];       // Es necesario para ocultar perfil?
+  public userId: number;
+  public userProvince: string;
+
   genreIcons: { [key: string]: string } = {               // no coge los iconos
     'Terror': '../../../assets/iconoTerror.jpg',
     'Policiacas': '../../../assets/iconoPoli.png',
@@ -27,13 +33,13 @@ export class PerfilComponent implements OnInit {
     'Fotografía': '../../../assets/iconoFoto.png',
   };
 
-  constructor(private router: Router, public userService: UserService) {
+  constructor(private router: Router, public userService: UserService, public bookService: BookService) {
     this.user = this.userService.user;
     console.log('usuario perfil:', this.user)
   }
 
   ngOnInit(): void {
-    
+
     this.userService.profile(this.user.id_user).subscribe((response: any) => {
       this.rating = response.dataUser.rating;
       this.misResenas = response.dataUser.misResenas;
@@ -41,13 +47,36 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  onEdit(): void {
+  onEdit(): void {            // Revisar, no sé si funciona
     this.put.emit(this.user);
   }
 
-  onHidden() {
-    this.user.hidden = !this.user.hidden;
-    // this.onHidden.emit(this.user);
+  onHidden() {                // Ocultar Perfil en home y en favoritos
+    this.bookService.getBooks().subscribe((response: Respuesta) => {
+      console.log("Respuesta completa del servidor:", response);
+
+      if (!response.error) {
+        this.books = response.dataBook;
+        console.log("Todos los libros cargados:", this.books);
+
+        this.books = this.books.filter(book => book.owner !== this.userId);
+        console.log("Libros después de filtrar por owner:", this.books);
+
+        this.books.forEach(book => {
+          console.log(`Libro: ${book.title}, Provincia: ${book.owner_province !== undefined ? book.owner_province : 'No definida'}`);
+        });
+
+        this.books = this.books.filter(book =>
+          book.owner_province &&
+          book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
+        );
+        console.log("Libros después de filtrar por provincia:", this.books);
+
+        // this.applyFilters();
+      } else {
+        console.error('Error al cargar los libros:', response.mensaje);
+      }
+    });
   }
 
   getGenreIcon(genre: string): string {

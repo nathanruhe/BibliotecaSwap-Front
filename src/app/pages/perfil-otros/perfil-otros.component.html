@@ -1,94 +1,96 @@
-<div class="container" *ngIf="user">
-    <section class="perfil">
-        <div class="datos">
-            <div class="imagen">
-                <div>
-                    <img src="{{ user.photo }}" alt=""> 
-                </div>
-                <h2>{{ user.name }} {{ user.last_name }}</h2>
-            </div>
-
-            <div class="sobre">
-                <h2>Sobre mi:</h2>
-                <div>
-                    <p>{{ user.about }}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="info">
-            <div class="infoEstrella">
-                <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-                    <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
-                </ng-container>
-            </div>
-
-            <div class="infoLocal">
-                <div class="local">
+<main>
+    <div class="container" *ngIf="user">
+        <section class="perfil">
+            <div class="datos">
+                <div class="imagen">
                     <div>
-                        <img class="icono" src="../../../assets/iconoLocalizacion.png" alt="">
+                        <img src="{{ user.photo }}" alt=""> 
                     </div>
-                    <p>{{ user.province }}</p>
+                    <h2>{{ user.name }} {{ user.last_name }}</h2>
                 </div>
-                
-                <div class="disponible">
-                    <p>Disponibilidad</p>
-                    <div class="dispo">
-                        <img src="../../../assets/iconoMañanas.png" alt="" [style.opacity]="user.availability === 'Tardes' ? 0.4 : 1">
-                        <img src="../../../assets/iconoTardes.png" alt="" [style.opacity]="user.availability === 'Mañanas' ? 0.2 : 1">
-                    </div>
-                </div>
-            </div>
-
-            <div class="infoDispo">
-                <div class="generos">
-                    <p>Géneros de interés</p>
-                    <div class="gen">
-                        <ng-container *ngFor="let genero of user.genres; let i = index">
-                            <div class="gen2">
-                                <img [src]="getGenreIcon(genero)" alt="">
-                            </div>
-                        </ng-container>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
     
-    <section class="pestañas">
-        <div class="link">
-            <h2 (click)="setActiveTab('biblioteca')" [ngClass]="{'active': activo === 'biblioteca'}">Biblioteca de {{ user.name }}</h2>
-            <h2 (click)="setActiveTab('resenas')" [ngClass]="{'active': activo === 'resenas'}">Reseñas: {{ user.totalResenas }}</h2>
-        </div>
-
-        <div class="libros" *ngIf="activo === 'biblioteca'">
-            <ng-container *ngFor="let book of user.libros; let i = index">
-                <app-libro [book]="book" [index]="i" [isOtroUser]="true"></app-libro>
-            </ng-container>
-        </div>
-
-        <div class="resenas" *ngIf="activo === 'resenas'">
-            <ng-container *ngFor="let resena of user.resenas; let i = index">
-                <div class="resena-container">
-                    <div class="cabecera">
-                        <div class="usuario">
-                            <span>{{ resena.name }} {{ resena.last_name }}</span>
-                        </div>
-
+                <div class="sobre">
+                    <h2>Sobre mi:</h2>
+                    <div>
+                        <p>{{ user.about }}</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="info">
+                <div class="infoEstrella">
+                    <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
+                        <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
+                    </ng-container>
+                </div>
+    
+                <div class="infoLocal">
+                    <div class="local">
                         <div>
-                            <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let j = index">
-                                <span class="estrella" [class.filled]="j < resena.rating">&#9733;</span>
+                            <img class="icono" src="../../../assets/iconoLocalizacion.png" alt="">
+                        </div>
+                        <p>{{ user.province }}</p>
+                    </div>
+                    
+                    <div class="disponible">
+                        <p>Disponibilidad</p>
+                        <div class="dispo">
+                            <img src="../../../assets/iconoMañanas.png" alt="" [style.opacity]="user.availability === 'Tardes' ? 0.4 : 1">
+                            <img src="../../../assets/iconoTardes.png" alt="" [style.opacity]="user.availability === 'Mañanas' ? 0.2 : 1">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="infoDispo">
+                    <div class="generos">
+                        <p>Géneros de interés</p>
+                        <div class="gen">
+                            <ng-container *ngFor="let genero of user.genres; let i = index">
+                                <div class="gen2">
+                                    <img [src]="getGenreIcon(genero)" alt="">
+                                </div>
                             </ng-container>
                         </div>
                     </div>
-
-                    <div>
-                        <p>{{ resena.comment }}</p>
-                    </div>
                 </div>
-            </ng-container>
-        </div>
-    </section>
-</div>
+            </div>
+        </section>
+    
+    
+        
+        <section class="pestañas">
+            <div class="link">
+                <h2 (click)="setActiveTab('biblioteca')" [ngClass]="{'active': activo === 'biblioteca'}">Biblioteca de {{ user.name }}</h2>
+                <h2 (click)="setActiveTab('resenas')" [ngClass]="{'active': activo === 'resenas'}">Reseñas: {{ user.totalResenas }}</h2>
+            </div>
+    
+            <div class="libros" *ngIf="activo === 'biblioteca'">
+                <ng-container *ngFor="let book of user.libros; let i = index">
+                    <app-libro [book]="book" [index]="i" [isOtroUser]="true"></app-libro>
+                </ng-container>
+            </div>
+    
+            <div class="resenas" *ngIf="activo === 'resenas'">
+                <ng-container *ngFor="let resena of user.resenas; let i = index">
+                    <div class="resena-container">
+                        <div class="cabecera">
+                            <div class="usuario">
+                                <span>{{ resena.name }} {{ resena.last_name }}</span>
+                            </div>
+    
+                            <div>
+                                <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let j = index">
+                                    <span class="estrella" [class.filled]="j < resena.rating">&#9733;</span>
+                                </ng-container>
+                            </div>
+                        </div>
+    
+                        <div class="comentario">
+                            <p>{{ resena.comment }}</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </section>
+    </div>
+</main>

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'perfil-otros/:ownerId', component: PerfilOtrosComponent },
   { path: '', component: LandingComponent },
   { path: 'addLibro', component: AnadirLibroComponent },
-  { path: 'editLibro', component: EditarLibroComponent },
+  { path: 'editLibro/:id_book', component: EditarLibroComponent },
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'sobre', component: SobreComponent },
   { path: 'miBiblioteca', component: BibliotecaComponent},

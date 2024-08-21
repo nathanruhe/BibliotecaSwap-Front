@@ -45,4 +45,10 @@ export class BookService {
     return this.http.get<Usuario[]>(`${this.url}/home`);
   }
 
+  public getBooksUsers(userId: number): Observable<any> {
+    return this.http.get(`${this.url}/biblioteca`, {
+      params: { userId: userId.toString() }
+    });
+  }
+
 }

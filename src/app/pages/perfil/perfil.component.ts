@@ -51,33 +51,16 @@ export class PerfilComponent implements OnInit {
     this.put.emit(this.user);
   }
 
-  onHidden() {                // Ocultar Perfil en home y en favoritos
-    this.bookService.getBooks().subscribe((response: Respuesta) => {
+  onHidden(id_user, hidden) {                // Ocultar Perfil en home y en favoritos
+
+    this.user.hidden = !this.user.hidden;
+    
+    this.userService.userHidden(id_user, hidden === true ? false : true).subscribe((response: Respuesta) => {
       console.log("Respuesta completa del servidor:", response);
+      console.log('usuario perfil:', this.user.hidden);
 
-      if (!response.error) {
-        this.books = response.dataBook;
-        console.log("Todos los libros cargados:", this.books);
-
-        this.books = this.books.filter(book => book.owner !== this.userId);
-        console.log("Libros después de filtrar por owner:", this.books);
-
-        this.books.forEach(book => {
-          console.log(`Libro: ${book.title}, Provincia: ${book.owner_province !== undefined ? book.owner_province : 'No definida'}`);
-        });
-
-        this.books = this.books.filter(book =>
-          book.owner_province &&
-          book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
-        );
-        console.log("Libros después de filtrar por provincia:", this.books);
-
-        // this.applyFilters();
-      } else {
-        console.error('Error al cargar los libros:', response.mensaje);
-      }
-    });
-  }
+    })
+  };
 
   getGenreIcon(genre: string): string {
     return this.genreIcons[genre] || '';

@@ -38,13 +38,20 @@ export class BookService {
     return this.http.get(this.url + "/favoritos/" + id_user);
   };
 
-
   public getBooks(): Observable<any> {
     return this.http.get(this.url + "/home");
-  }
+  };
 
   public getAllUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.url}/home`);
-  }
+  };
+
+  public addBook(book: Libro) {
+    return this.http.put(this.url + "/addLibro", book);
+  };
+
+  public editBook(book: Libro) {
+    return this.http.patch(this.url + "/editLibro", book);
+  };
 
 }

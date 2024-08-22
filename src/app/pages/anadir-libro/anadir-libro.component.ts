@@ -3,6 +3,8 @@ import { Libro } from 'src/app/models/libro';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
+import { BookService } from 'src/app/shared/book.service';
+import { Respuesta } from 'src/app/models/respuesta';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class AnadirLibroComponent {
   // añado para hardcodear 1 libro
   public book: Libro;
 
-  constructor(public formBuilder: FormBuilder, private router: Router) {
+  constructor(public formBuilder: FormBuilder, private router: Router, public bookService: BookService) {
 
     this.form = this.formBuilder.group({
       title: [, Validators.required],
@@ -38,16 +40,28 @@ export class AnadirLibroComponent {
       "https://imagessl6.casadellibro.com/a/l/s7/66/9788435055666.webp",
       "Español",
       null, null, null, false, true, null, null
-    )
+    );
+
+    // último libro insertado por el usuario
+    this.book = this.bookService.books[5];
 
   }
 
 
-  public addBook(title: string, author: string, genre: string, photo: string, language: string, owner: Usuario = null, borrower: Usuario = null, start_date: Date = null, end_date: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0) {
+  public addBook(title: string, author: string, genre: string, photo: string, language: string, borrower: Usuario = null, start_date: Date = null, end_date: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0, owner: Usuario = null) {
 
-    let book = { title, author, genre, photo, language, owner, borrower, start_date, end_date, like, status, id_book };
+    let book = new Libro( title, author, genre, photo, language, borrower, start_date, end_date, like, status, id_book);
+    // , owner por qué no coge el último campo del modelo libro?
 
     console.log(book);
+
+    this.bookService.addBook(book).subscribe((respuesta: Respuesta)=> {
+
+      this.bookService.books = respuesta.dataBook;
+      console.log(respuesta);
+
+    });
+
     console.log(this.books);
 
     // this.books.push(book);

@@ -4,9 +4,9 @@
 
         <div class="top-buttons">
 
-            <button class="del-btn layer" (click)="onHidden()">
+            <button class="del-btn layer" (click)="onHidden(user.id_user, user.hidden)">
                 <img class="iconCard"
-                    [src]="user.hidden ? 'assets/icons/hiddenTrue.png' : 'assets/icons/eye-remove.png'">
+                    [src]="user.hidden ? 'assets/icons/eye-remove.png' : 'assets/icons/hiddenTrue.png'">
             </button>
 
             <button class="edit-btn" (click)="onEdit()" [routerLink]="['/editar-perfil']">

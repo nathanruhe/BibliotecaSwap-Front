@@ -32,5 +32,9 @@ export class UserService {
   getUserById(id: number): Observable<Respuesta> {
     return this.http.get<Respuesta>(`${this.url}/perfil-otros/${id}`);
   }
+
+  public userHidden(id_user: number, hidden:boolean) {
+    return this.http.put(this.url + "/perfil/hidden", {id_user, hidden});
+  }
   
 }

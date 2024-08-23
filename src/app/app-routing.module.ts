@@ -19,10 +19,10 @@ import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.compo
 const routes: Routes = [
   { path: 'register', component: RegistroComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'perfil-otros', component: PerfilOtrosComponent },
+  { path: 'perfil-otros/:ownerId', component: PerfilOtrosComponent },
   { path: '', component: LandingComponent },
   { path: 'addLibro', component: AnadirLibroComponent },
-  { path: 'editLibro', component: EditarLibroComponent },
+  { path: 'editLibro/:id_book', component: EditarLibroComponent },
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'sobre', component: SobreComponent },
   { path: 'miBiblioteca', component: BibliotecaComponent},

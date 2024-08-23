@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
 import { Usuario } from 'src/app/models/usuario';
+import { BookService } from 'src/app/shared/book.service';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-biblioteca',
@@ -9,59 +11,66 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class BibliotecaComponent {
 
+  
   public books: Libro[];
   public users: Usuario[];
 
-  filteredBooks: Libro[] = [];
-  searchTerm: string = '';
-  currentPage: number = 1;
-  itemsPerPage: number = 10;
+  public filteredBooks: Libro[] = [];
+  public searchTerm: string = '';
+  public currentPage: number = 1;
+  public itemsPerPage: number = 10;
 
-  filterType: string = 'Todos';
+  public filterType: string = 'Todos';
+  public userId: number;
   
   
-  constructor() {
-
-  }
+  constructor(private bookService: BookService) { }
 
   ngOnInit() {
-
-    this.users = [
-      new Usuario(5,'Agamenon', 'Tercero', 'Ade3rd@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg', null, null,  'Barcelona', 'mañana', ['Terror'], '1234'), 
-      new Usuario(1,'Pepito', 'Perez', 'pperez@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg', null, null, 'Barcelona', 'mañana', ['Terror'],  '1234')
-    ]; 
-
-    this.books =[
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(5), null, null, false, true, 25, 5), 
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true,   26, 5),
-      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, true, true,  27, 5),
-      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), null, null,  true, false, 28, 1),
-      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(1), null, null,  true, false,  29, 1),
-    
-      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, false, 30, 5),
-      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true,  31, 5),
-      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Alicante', this.getUserById(5), null, null, true, true,  32, 5),
-      new Libro('El resplandor', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true, 33, 5),
-      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, false, true, 34, 5),
-      new Libro('Carrie', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(5), null, null, true, true,  35, 5),
-    ];
-    
-    this.applyFilters();
+    this.userId = this.getUserIdFromLocalStorage();
+    console.log("ID de usuario en biblioteca es: ", this.userId);
+    this.loadUsersAndBooks();
   }
 
-  getUserById(id: number): Usuario {
-    return this.users.find(user => user.id_user === id);
+  getUserIdFromLocalStorage(): number {
+    return Number(localStorage.getItem('userId'));
   }
- 
 
-  //filtramos libros
+  loadUsersAndBooks(): void {
+    console.log("User ID utilizado para cargar libros:", this.userId);  
+    this.bookService.getBooksUsers(this.userId).subscribe((response: any) => {
+      if (!response.error) {
+        this.books = response.dataBooksUsers;
+        console.log('Libros cargados en biblioteca (después de la asignación):', this.books);
+        this.applyFilters(); 
+      } else {
+        console.error('Error al cargar los libros y usuarios:', response.message);
+      }
+    }, (error) => {
+      console.error('Error en la solicitud HTTP:', error);
+    });
+  }
+
   applyFilters() {
+    if (!this.books) {
+      console.log('No hay libros para filtrar.');
+      return;
+    }
+
+    console.log('Aplicando filtros para el tipo:', this.filterType);
+
     const filtered = this.books.filter(book => {
       let filterCondition = true;
+
       if (this.filterType === 'Mis libros prestados') {
-        filterCondition = !book.status && book.owner === 5; 
+        console.log("Prestamista " + (book.borrower || 'N/A'));
+        filterCondition = !book.status && book.borrower !== this.userId && book.owner === this.userId;
+      } else if (this.filterType === 'Todos') {
+        console.log('Todos los libros del usuario logueado');
+        filterCondition = book.owner === this.userId;
       } else if (this.filterType === 'Libros en prestamo') {
-        filterCondition = !book.status && book.owner !== 5; 
+        console.log(book.borrower);
+        filterCondition = !book.status && book.borrower === this.userId;
       }
 
       return filterCondition &&
@@ -69,6 +78,8 @@ export class BibliotecaComponent {
               book.author.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
               book.genre.toLowerCase().includes(this.searchTerm.toLowerCase()));
     });
+
+    console.log('Libros tras aplicar filtros:', filtered);
 
     this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);
   }

@@ -21,6 +21,8 @@
     <p class="noLibro">No se encontraron libros</p>
   </div><br>
 
+
+
   <div class="cards-container" *ngIf="filterType === 'Todos'">
     <app-libro-biblioteca *ngFor="let book of filteredBooks" [book]="book" [filterType]="filterType" (delete)="onDeleteBook($event)"></app-libro-biblioteca>
   </div>
@@ -30,7 +32,7 @@
     <div *ngFor="let book of filteredBooks" class="book-user-container">
       <app-libro-biblioteca [book]="book" [filterType]="filterType" (delete)="onDeleteBook($event)"></app-libro-biblioteca>
       <div class="user-info">
-        <p class="user-name">{{ book.prestatario?.name }}<br> {{ book.prestatario?.last_name }}</p><br>
+        <p class="user-name">{{ book.borrower_name }}<br> {{ book.borrower_last_name }}</p><br>
         <p class="user-date">Fecha inicio: {{ book.startDate | date: 'dd.MM.yy' }}</p><br>
         <p class="user-date">Fecha fin: {{ book.endDate | date: 'dd.MM.yy' }}</p>
       </div>
@@ -42,7 +44,7 @@
     <div *ngFor="let book of filteredBooks" class="book-user-container">
       <app-libro [book]="book" [filterType]="filterType" [isBiblioteca]="true" (delete)="onDeleteBook($event)"></app-libro>
       <div class="user-info">
-        <p class="user-name">{{ book.propietario?.name }} <br> {{ book.propietario?.last_name }}</p><br>
+        <p class="user-name">{{ book.owner_name }} <br> {{ book.owner_last_name }}</p><br>
         <p class="user-date">Fecha inicio: {{ book.startDate | date: 'dd.MM.yy' }}</p><br>
         <p class="user-date">Fecha fin: {{ book.endDate | date: 'dd.MM.yy' }}</p>
       </div>

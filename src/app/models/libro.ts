@@ -8,7 +8,7 @@ export class Libro {
         public genre: string, 
         public photo: string, 
         public language: string, 
-        public borrower: Usuario, 
+        public borrower: number = 0, 
         public start_date: Date = null,
         public end_date: Date = null,
         public like: boolean = false, 

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
 import { Usuario } from 'src/app/models/usuario';
+import { BookService } from 'src/app/shared/book.service';
+import { Respuesta } from 'src/app/models/respuesta';
+
+interface LibroConUsuario extends Libro {
+  owner_info?: Usuario;
+}
 
 @Component({
   selector: 'app-home',
@@ -9,107 +15,104 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class HomeComponent implements OnInit{
 
-  public books: Libro[];
-  public users: Usuario[];
+  //public users: Usuario[];
 
-  filteredBooks: Libro[] = [];
-  showFilters: boolean = true; // Siempre mostrar filtros
+  public books: any[] = [];
+  public filteredBooks: any[] = [];
+  public showFilters: boolean = true;
 
-  status: string = 'Todos';
-  selectedGenero: string[] = [];
-  selectedIdioma: string[] = [];
-  searchTerm: string = '';
+  public userId: number;
+  public userProvince: string;
 
-  generos: string[] = ['Policiaca', 'Terror', 'Astrología', 'Poesía', 'Fotografía', 'Idiomas'];
-  idiomas: string[] = ['Español', 'Inglés', 'Francés'];
+  public status: string = 'Todos';
+  public selectedGenero: string[] = [];
+  public selectedIdioma: string[] = [];
+  public searchTerm: string = '';
 
-  // Control de visibilidad
-  showGeneroDropdown: boolean = false;
-  showIdiomaDropdown: boolean = false;
+  public generos: string[] = ['Policiaca', 'Terror', 'Astrología', 'Poesía', 'Fotografía', 'Idiomas'];
+  public idiomas: string[] = ['Español', 'Inglés', 'Francés'];
 
-  currentPage: number = 1;
-  itemsPerPage: number = 10;
+  public showGeneroDropdown: boolean = false;
+  public showIdiomaDropdown: boolean = false;
+
+  public currentPage: number = 1;
+  public itemsPerPage: number = 10;
   
-  
-  constructor() {
-
-  }
+  constructor(private bookService: BookService) { }
 
   ngOnInit() {
-    this.users = [
-      new Usuario(1,'Pepito', 'Perez', 'pperez@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, 'Barcelona', 'Mañanas', ['Terror'], '1234'), 
-      new Usuario(2,'Pepe', 'Garcia', 'pgarcia@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',  null, null, 'Barcelona', 'Mañanas', ['Terror', 'Policiaca'], '1234'),
-      new Usuario(3,'Pepin', 'Perea', 'pperea@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',   null, null, 'Barcelona', 'Tardes', ['Terror', 'Poesía'], '1234'),
-      new Usuario(4,'Pepon', 'Pereda', 'ppereda@gmail.com', 'https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos-810x540.jpg',   null, null, 'Barcelona', 'Mañanas', ['Terror', 'Astrología', 'Poesía'], '1234'),
-    ];
-    
-    this.books =[
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1),  null, null, false, true, 1, 1), 
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(1), null, null, false, true,   2, 1),
-      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(1), null, null, true, true,  3, 1),
-      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), null, null, false, false, 4, 1),
-      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(1), null, null, true, false,  5, 1),
-    
-    
-      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, false, false, 6, 2),
-      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, false, true,  7, 2),
-      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Alicante',this.getUserById(2), null, null, true, true,  8, 2),
-      new Libro('El resplandor', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, false, true, 9, 2),
-      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, false, true, 10, 2),
-      new Libro('Carrie', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(2), null, null, true, true,  11, 2),
+    this.userId = this.getUserIdFromLocalStorage();
+    this.userProvince = this.getUserProvinceFromLocalStorage();
 
+    console.log("El ID del usuario es: ", this.userId);
+    console.log("La provincia del usuario es: ", this.userProvince);
 
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Policiaca', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, false, false, 12, 3),
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Policiaca','https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, false, true, 13, 3),
-      new Libro('El retorno del rey', 'J.R.R. Tolkien', 'Policiaca',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, false, true,14, 3),
-      new Libro('El Hobbit', 'J.R.R. Tolkien', 'Policiaca', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, false, true, 15, 3),
-      new Libro('El Silmarillion', 'J.R.R. Tolkien', 'Policiaca', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(3), null, null, false, true, 16, 3),
-      new Libro('Dracula', 'Bram Stoker', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(3), null, null, false, true, 17, 2),
-      new Libro('Ready Player One', 'Ernest Cline', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(3), null, null, false, true, 18, 3),
-      new Libro('It', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg','Francés', this.getUserById(3), null, null, false, false, 19, 3),
-      new Libro('El resplandor', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(3), null, null, false, true, 20, 3),
-      new Libro('El visitante', 'Stephen King', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Francés', this.getUserById(3), null, null, false, true, 21, 3),
-      new Libro('Carrie', 'Stephen King', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Inglés', this.getUserById(3), null, null, false, true, 22, 3),
-
-      new Libro('La comunidad del anillo', 'J.R.R. Tolkien', 'Terror',  'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(4), null, null, false, true, 23, 4),
-      new Libro('Las dos torres', 'J.R.R. Tolkien', 'Terror', 'https://t1.uc.ltmcdn.com/es/posts/8/2/5/por_que_es_importante_leer_43528_orig.jpg', 'Español', this.getUserById(4), null, null, false, true, 24, 4)
-    
-    ];
-    
-    this.applyFilters();
+    this.loadBooks();
   }
 
-  getUserById(id: number): Usuario {
-    return this.users.find(user => user.id_user === id);
-  }
-  
-  //filtramos libros
-  addBookToFavorites(book: Libro) {
-    book.like = !book.like;
-    this.applyFilters();
+  getUserIdFromLocalStorage(): number {
+    return Number(localStorage.getItem('userId'));
   }
 
-  // Filtramos libros
-  applyFilters() {
+  getUserProvinceFromLocalStorage(): string {
+    return localStorage.getItem('userProvince') || '';
+  }
+
+  loadBooks(): void {
+    this.bookService.getBooks().subscribe((response: Respuesta) => {
+        console.log("Respuesta completa del servidor:", response);
+
+        if (!response.error) {
+            this.books = response.dataBook;
+            console.log("Todos los libros cargados:", this.books);
+
+            this.books = this.books.filter(book => book.owner !== this.userId);
+            console.log("Libros después de filtrar por owner:", this.books);
+
+            this.books.forEach(book => {
+                console.log(`Libro: ${book.title}, Provincia: ${book.owner_province !== undefined ? book.owner_province : 'No definida'}`);
+            });
+
+            this.books = this.books.filter(book => 
+                book.owner_province && 
+                book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
+            );
+            console.log("Libros después de filtrar por provincia:", this.books);
+
+            this.applyFilters();
+        } else {
+            console.error('Error al cargar los libros:', response.mensaje);
+        }
+    });
+}
+
+  applyFilters(): void {
     const filtered = this.books.filter(book => {
-      return (this.status === 'Todos' || (this.status === 'Disponible' && book.status)) &&
-             (this.selectedGenero.length === 0 || this.selectedGenero.includes(book.genre)) &&
-             (this.selectedIdioma.length === 0 || this.selectedIdioma.includes(book.language)) &&
-             (book.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-              book.author.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-              book.genre.toLowerCase().includes(this.searchTerm.toLowerCase()));
+      const matchesStatus = this.status === 'Todos' || (this.status === 'Disponible' && book.status);
+      const matchesGenero = this.selectedGenero.length === 0 || this.selectedGenero.includes(book.genre);
+      const matchesIdioma = this.selectedIdioma.length === 0 || this.selectedIdioma.includes(book.language);
+      const matchesSearch = this.searchTerm === '' || 
+                            book.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            book.author.toLowerCase().includes(this.searchTerm.toLowerCase());
+  
+      return matchesStatus && matchesGenero && matchesIdioma && matchesSearch;
     });
 
     this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);
+    console.log("Libros filtrados:", this.filteredBooks);
   }
-  
-  setStatus(status: string) {
+
+  loadMore(): void {
+    this.currentPage++;
+    this.applyFilters();
+  }
+
+  setStatus(status: string): void {
     this.status = status;
     this.resetFilters();
   }
 
-  // Control de los dropdowns
-  toggleDropdown(dropdown: string) {
+  toggleDropdown(dropdown: string): void {
     if (dropdown === 'genero') {
       this.showGeneroDropdown = !this.showGeneroDropdown;
     } else if (dropdown === 'idioma') {
@@ -117,8 +120,7 @@ export class HomeComponent implements OnInit{
     }
   }
 
-  // Añadimos o eliminamos según aplicamos filtro
-  toggleSingleSelection(array: string[], item: string) {
+  toggleSingleSelection(array: string[], item: string): void {
     const index = array.indexOf(item);
     if (index === -1) {
       array.push(item);
@@ -128,30 +130,24 @@ export class HomeComponent implements OnInit{
     this.resetFilters();
   }
 
-  resetFilters() {
+  resetFilters(): void {
     this.currentPage = 1;
     this.applyFilters();
   }
 
-  closeFilters() {
+  closeFilters(): void {
     this.showFilters = false;
     this.showGeneroDropdown = false;
     this.showIdiomaDropdown = false;
   }
-  
-  //buscador
-  onSearch(event: any) {
+
+  onSearch(event: any): void {
     this.searchTerm = event.target.value;
     this.resetFilters();
   }
 
-  // Cargamos 10 siguientes
-  loadMore() {
-    this.currentPage++;
-    this.applyFilters();
-  }
-
-  toggleFilters() {
+  toggleFilters(): void {
     this.showFilters = !this.showFilters;
   }
+
 }

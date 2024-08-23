@@ -53,9 +53,12 @@ export class PerfilComponent implements OnInit {
 
   onHidden(id_user, hidden) {                // Ocultar Perfil en home y en favoritos
 
-    this.user.hidden = !this.user.hidden;
+    
     
     this.userService.userHidden(id_user, hidden === true ? false : true).subscribe((response: Respuesta) => {
+      
+      this.user.hidden = response.dataUser[0].hidden === 1? true : false;
+
       console.log("Respuesta completa del servidor:", response);
       console.log('usuario perfil:', this.user.hidden);
 

@@ -38,8 +38,8 @@ export class BookService {
     return this.http.get(this.url + "/favoritos/" + id_user);
   };
 
-  public getBooks(): Observable<any> {
-    return this.http.get(this.url + "/home");
+  public getBooks(userProvince): Observable<any> {
+    return this.http.get(this.url + "/home/" + userProvince);
   };
 
   public getAllUsers(): Observable<Usuario[]> {

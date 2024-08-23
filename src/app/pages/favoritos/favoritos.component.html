@@ -7,8 +7,6 @@
         </ng-container>
 
         <ng-container class="libros" *ngFor="let book of books">
-            <!-- <ng-container class="libros" *ngFor="let book of user.libros; let i = index"></ng-container> -->
-            <!-- <app-libro [book]="book" [index]="i" [isOtroUser]="true"></app-libro> -->
 
             <app-libro class="book" [book]="book" [isFavoritos]="true"></app-libro>
 

@@ -3,7 +3,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { Resena } from 'src/app/models/resena';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
-import { BookService } from 'src/app/shared/book.service';    // ocultar perfil
+import { BookService } from 'src/app/shared/book.service';
 import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
@@ -20,11 +20,11 @@ export class PerfilComponent implements OnInit {
   public rating: number;
   public misResenas: Resena[];
 
-  public books: any[] = [];       // Es necesario para ocultar perfil?
+  public books: any[] = [];      
   public userId: number;
   public userProvince: string;
 
-  genreIcons: { [key: string]: string } = {               // no coge los iconos
+  genreIcons: { [key: string]: string } = {         
     'Terror': '../../../assets/iconoTerror.jpg',
     'Policiacas': '../../../assets/iconoPoli.png',
     'Poesía': '../../../assets/iconoPoesia.png',
@@ -51,9 +51,7 @@ export class PerfilComponent implements OnInit {
     this.put.emit(this.user);
   }
 
-  onHidden(id_user, hidden) {                // Ocultar Perfil en home y en favoritos
-
-    
+  onHidden(id_user, hidden) {
     
     this.userService.userHidden(id_user, hidden === true ? false : true).subscribe((response: Respuesta) => {
       

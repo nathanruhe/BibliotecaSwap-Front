@@ -35,8 +35,17 @@ export class LibroBibliotecaComponent {
   }
 
   navigateEditBook() {
-    //this.router.navigateByUrl("/editLibro");
-    this.router.navigate(['/editLibro', this.book.id_book]);
+    
+    //this.router.navigateByUrl(`/editLibro/${this.book.id_book}`);
+    //console.log("Libro pulsado " + this.book);
+
+    if (this.book) {
+      console.log("Libro que editaremos:", this.book); 
+      this.router.navigate(['/editLibro', this.book.id_book]);
+    } else {
+      console.error("El objeto 'book' es nulo o indefinido");
+    }
+    
   }
 }
 

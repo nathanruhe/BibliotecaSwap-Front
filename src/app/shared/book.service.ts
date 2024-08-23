@@ -55,4 +55,11 @@ export class BookService {
     return this.http.delete(`${this.url}/book/${id}`);
   }
 
+  public updateBook(id: number, bookData: any): Observable<any> {
+    return this.http.put(`${this.url}/book/${id}`, bookData);
+  }
+  public getBookById(id: number): Observable<Libro> {
+    return this.http.get<Libro>(`${this.url}/book/${id}`);
+  }
+
 }

@@ -28,8 +28,8 @@
           <div *ngIf="form.get('photo')?.errors?.required">Campo obligatorio</div>
         </div>
   
-        <input class="Input-text" type="text" placeholder="Idioma" formControlName="idioma" [ngClass]="{'invalido': (form.get('idioma')?.dirty || form.get('idioma')?.touched) && !form.get('idioma')?.valid}">
-        <div *ngIf="(form.get('idioma')?.dirty || form.get('idioma')?.touched) && !form.get('idioma')?.valid" class="mensajeInvalido">
+        <input class="Input-text" type="text" placeholder="Idioma" formControlName="language" [ngClass]="{'invalido': (form.get('language')?.dirty || form.get('language')?.touched) && !form.get('language')?.valid}">
+        <div *ngIf="(form.get('language')?.dirty || form.get('language')?.touched) && !form.get('language')?.valid" class="mensajeInvalido">
           <div *ngIf="form.get('idioma')?.errors?.required">Campo obligatorio</div>
         </div>
   

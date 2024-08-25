@@ -21,7 +21,7 @@ export class EditarLibroComponent implements OnInit {
       author: ['', Validators.required],
       genre: ['', Validators.required],
       photo: ['', Validators.required],
-      idioma: ['', Validators.required],
+      language: ['', Validators.required],
     });
   }
 
@@ -44,7 +44,7 @@ export class EditarLibroComponent implements OnInit {
             author: this.book.author,
             genre: this.book.genre,
             photo: this.book.photo,
-            idioma: this.book.language
+            language: this.book.language
           });
         }
       },

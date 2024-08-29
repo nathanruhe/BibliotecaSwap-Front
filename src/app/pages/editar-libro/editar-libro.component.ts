@@ -1,48 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
-import { Usuario } from 'src/app/models/usuario';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookService } from 'src/app/shared/book.service';
 
 @Component({
   selector: 'app-editar-libro',
   templateUrl: './editar-libro.component.html',
   styleUrls: ['./editar-libro.component.css']
 })
-export class EditarLibroComponent {
+export class EditarLibroComponent implements OnInit {
 
-  book = {
-    title: 'El barco de Teseo',
-    author: 'J.J. Abrams',
-    gender: 'Narrativa Fantástica',
-    idioma: 'Español',
-    photo: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcaCbDX4HM9ux9Amx44JgtlepwI-bzP56OP5G7XoANFg7S1YpG1f7LrR6lliwuRD226afnRrt41BITcJlNpIckV-QEk8R1sex4DQfsBtNnP09qkhiQ86DbtD1So2nvnNdQPWbjVO89NK9YF0sN-3S_AYcGv08BjMROodf55BxZ-2J-JqUH81IPYh6aJPTx/s764/S.-El-barco-de-Teseo-550x764.jpg'
-  };
-
-  public books: Libro[];
+  public book: Libro = {} as Libro; 
   public form: FormGroup;
+  private bookId: number;
 
-  constructor(public formBuilder: FormBuilder) {
-
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private bookService: BookService) {
     this.form = this.formBuilder.group({
-      title: [, Validators.required],
-      author: [, Validators.required],
-      gender: [, Validators.required],
-      idioma: [, Validators.required],
-      photo: [, Validators.required],
-    })
-
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      genre: ['', Validators.required],
+      photo: ['', Validators.required],
+      language: ['', Validators.required],
+    });
   }
 
-  public editBook(title: string, author: string, gender: string, photo: string, idioma: string, propietario: Usuario = null, prestatario: Usuario = null, startDate: Date = null, endDate: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0, id_user: number = 0) {
-
-    let book = { title, author, gender, photo, idioma, propietario, prestatario, startDate, endDate, like, status, id_book, id_user };
-    const index = this.books.findIndex(libro => libro.id_book === book.id_book);
-    if (index !== -1) {
-      book[index] = book;
-      this.form.reset();
-      return true;
+  ngOnInit(): void {
+    this.bookId = +this.route.snapshot.paramMap.get('id_book');
+    if (this.bookId) {
+      console.log("ID del libro a editar:", this.bookId);
+      this.loadBook(this.bookId);
     }
-    return false;
+  }
+
+  private loadBook(bookId: number): void {
+    this.bookService.getBookById(bookId).subscribe(
+      (response: any) => { 
+        if (response && response.data) {
+          this.book = response.data;
+          console.log("Datos del libro cargados:", this.book);
+          this.form.patchValue({
+            title: this.book.title,
+            author: this.book.author,
+            genre: this.book.genre,
+            photo: this.book.photo,
+            language: this.book.language
+          });
+        }
+      },
+      error => {
+        console.error('Error al cargar el libro:', error);
+      }
+    );
+  }
+
+  public editBook(): void {
+    if (this.form.valid) {
+      const bookData = this.form.value;
+
+      this.bookService.updateBook(this.bookId, bookData).subscribe(
+        response => {
+          console.log('Libro actualizado correctamente:', response);
+          this.router.navigate(['/miBiblioteca']);
+        },
+        error => {
+          console.error('Error al actualizar el libro:', error);
+        }
+      );
+    }
   }
 
 }

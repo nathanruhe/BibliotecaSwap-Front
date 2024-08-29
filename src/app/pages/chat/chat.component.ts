@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit {
       const { rating, comment } = this.ratingForm.value;
       this.chatService.submitRating(this.userId1, this.userId2, rating, comment).subscribe(
         () => {
-          this.ratingForm.reset({ rating: 0 });
+          this.ratingForm.reset();
         }
       )
     }

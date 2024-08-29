@@ -40,10 +40,7 @@ export class AnadirLibroComponent implements OnInit {
       "https://imagessl6.casadellibro.com/a/l/s7/66/9788435055666.webp",
       "Español",
       null, null, null, false, true, null, null
-    );
-
-    // último libro insertado por el usuario
-    this.book = this.bookService.books[5];
+    )
 
   }
 
@@ -57,20 +54,11 @@ export class AnadirLibroComponent implements OnInit {
       
   }
 
-  public addBook(title: string, author: string, genre: string, photo: string, language: string, borrower: Usuario = null, start_date: Date = null, end_date: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0, owner: Usuario = null) {
+  public addBook(title: string, author: string, genre: string, photo: string, language: string, owner: Usuario = null, borrower: Usuario = null, start_date: Date = null, end_date: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0) {
 
-    let book = new Libro( title, author, genre, photo, language, borrower, start_date, end_date, like, status, id_book);
-    // , owner por qué no coge el último campo del modelo libro?
+    let book = { title, author, genre, photo, language, owner, borrower, start_date, end_date, like, status, id_book };
 
     console.log(book);
-
-    this.bookService.addBook(book).subscribe((respuesta: Respuesta)=> {
-
-      this.bookService.books = respuesta.dataBook;
-      console.log(respuesta);
-
-    });
-
     console.log(this.books);
 
     // this.books.push(book);

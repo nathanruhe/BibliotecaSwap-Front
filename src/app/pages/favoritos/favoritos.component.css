@@ -1,11 +1,5 @@
-/* .scroll {
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-snap-align: start;
-    height: 100vh;
-} */
-
-.favoritos {
+.scroll {
+    height: 80vh;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -16,10 +10,26 @@
     background-position: center;
     padding-top: 8vh;
     padding-bottom: 5vh;
-    height: 80vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: start;
+}
+
+.favoritos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* background-color: var(--gris-claro);
+    background-size: cover;
+    background-position: center;
+    padding-top: 8vh;
+    padding-bottom: 5vh;
+    height: 80vh; */
+    /* overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start; */
 }
 
 .book {
@@ -50,6 +60,32 @@
     letter-spacing: .1rem;
     margin: 1rem;
 }
+
+.icon {
+    width: 70%;
+    object-fit: contain;
+  }
+
+  .cont-charge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .charge-btn {
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #FAE9FF;
+  }
 
 ::-webkit-scrollbar {
     width: 10px;

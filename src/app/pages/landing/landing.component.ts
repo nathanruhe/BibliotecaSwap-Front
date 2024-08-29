@@ -24,8 +24,6 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     
     this.bookService.landing().subscribe((respuesta: Respuesta) => {
-
-      console.log(respuesta);
       
       this.books1 = respuesta.dataBook.slice(0,3);
       this.books2 = respuesta.dataBook.slice(3,6);

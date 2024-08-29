@@ -1,18 +1,13 @@
-
 <main>
 
     <div class="card">
 
         <div class="top-buttons">
 
-            <button class="del-btn layer" (click)="onHidden()">
-                <!-- <img class="iconCard" src="../../../assets/icons/eye-remove.png" alt=""> -->
-                <img class="iconCard" [src]="user.hidden ? 'assets/icons/eye-remove.png' : 'assets/icons/hiddenTrue.png'">
-                <!-- <div *ngIf="user.hidden==true">
-                    <img class="iconCard up" src="../../../assets/icons/strikethrough.png" alt="">
-                </div> -->
+            <button class="del-btn layer" (click)="onHidden(user.id_user, user.hidden)">
+                <img class="iconCard"
+                    [src]="user.hidden ? 'assets/icons/eye-remove.png' : 'assets/icons/hiddenTrue.png'">
             </button>
-
 
             <button class="edit-btn" (click)="onEdit()" [routerLink]="['/editar-perfil']">
                 <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
@@ -21,18 +16,19 @@
         </div>
 
         <div class="cardUser">
+
             <img class="imgUser" src="{{user.photo}}" alt="" />
-            
+
             <h3> {{ user.name }} {{ user.last_name }} </h3>
-           
+
         </div>
 
         <div class="info">
             <div class="infoEstrella">
                 <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-                
-                <span class="estrella" [class.filled]="b < user.rating">&#9733;</span>
-              
+
+                    <span class="estrella" [class.filled]="b < rating">&#9733;</span>
+
                 </ng-container>
             </div>
 
@@ -48,26 +44,19 @@
                     <div class="disponible">
                         <p>Disponibilidad</p>
                         <div class="dispo">
-                            <img *ngIf="user.availability=='mañanas'" src="../../../assets/iconoMañanas.png" alt="">
-                            <img *ngIf="user.availability=='tardes'" src="../../../assets/iconoTardes.png" alt="">
+                            <img src="../../../assets/iconoMañanas.png" alt="" [style.opacity]="user.availability === 'Tardes' ? 0.4 : 1">
+                            <img src="../../../assets/iconoTardes.png" alt="" [style.opacity]="user.availability === 'Mañanas' ? 0.2 : 1">
                         </div>
                     </div>
                 </div>
 
                 <div class="infoDispo">
-                    <div class="prestados">
-                        <div>
-                            <img class="icono" src="../../../assets/iconoIntercambio.png" alt="">
-                        </div>
-                        <p> Prestados: "eliminar"</p>
-                    </div>
-
                     <div class="generos">
                         <p>Géneros de interés</p>
                         <div class="gen">
                             <ng-container *ngFor="let genero of user.genres; let i = index">
-                                <div class="gen2">
-                                    <img [src]="genero" alt="">
+                                <div class="gen2">      
+                                    <img [src]="getGenreIcon(genero)" alt="">
                                 </div>
                             </ng-container>
                         </div>
@@ -77,10 +66,8 @@
 
             <div class="sobre">
                 <h4>Sobre mi:</h4>
-                <div>
-                    <p>[ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore earum rerum repellat
-                        doloribus? Earum hic facilis dolores officiis harum quaerat nemo atque rem quas iusto quos
-                        corporis, vel quasi provident? ]</p>
+                <div class="sobreMi">
+                    <p>{{ user.about }}</p>
                 </div>
             </div>
 
@@ -98,7 +85,7 @@
                 <div class="resena-container">
                     <div class="cabecera">
                         <div class="usuario">
-                            <img class="imgUser2" src="{{user.photo}}" alt="" />
+                            <img class="imgUser2" src="{{resena.photo}}" alt="" />
                             <span>{{ resena.name }} {{ resena.last_name }}</span>
                         </div>
 

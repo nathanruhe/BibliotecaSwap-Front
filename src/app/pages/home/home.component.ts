@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit{
   }
 
   loadBooks(): void {
-    this.bookService.getBooks().subscribe((response: Respuesta) => {
+    this.bookService.getBooks(this.userProvince).subscribe((response: Respuesta) => {
         console.log("Respuesta completa del servidor:", response);
 
         if (!response.error) {

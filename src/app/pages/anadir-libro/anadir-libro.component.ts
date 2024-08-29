@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
@@ -14,7 +14,7 @@ import { Respuesta } from 'src/app/models/respuesta';
 })
 
 
-export class AnadirLibroComponent {
+export class AnadirLibroComponent implements OnInit {
 
   public books: Libro[];
   public form: FormGroup;
@@ -47,6 +47,15 @@ export class AnadirLibroComponent {
 
   }
 
+  ngOnInit(): void {
+    
+    this.bookService.lastBook().subscribe((respuesta: Respuesta) => {
+
+      [this.book] = respuesta.dataBook;
+      
+    });
+      
+  }
 
   public addBook(title: string, author: string, genre: string, photo: string, language: string, borrower: Usuario = null, start_date: Date = null, end_date: Date = null, like: boolean = false, status: boolean = true, id_book: number = 0, owner: Usuario = null) {
 

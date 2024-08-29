@@ -38,6 +38,10 @@ export class BookService {
     return this.http.get(this.url + "/favoritos/" + id_user);
   };
 
+  public userLikesBooksMore (id_user) {
+    return this.http.get(this.url + "/favoritos/" + id_user);
+  };
+
   public getBooks(userProvince): Observable<any> {
     return this.http.get(this.url + "/home/" + userProvince);
   };
@@ -45,6 +49,10 @@ export class BookService {
   public getAllUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.url}/home`);
   };
+
+  public lastBook(){
+    return this.http.get(this.url + "/addLibro");
+  }
 
   public addBook(book: Libro) {
     return this.http.put(this.url + "/addLibro", book);

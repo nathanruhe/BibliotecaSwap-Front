@@ -15,12 +15,10 @@ export class FavoritosComponent implements OnInit {
   public books: Libro[] = [];
   public user: Usuario;
 
-  filteredBooks: Libro[] = [];
-  searchTerm: string = '';
-  currentPage: number = 1;
-  itemsPerPage: number = 10;
+  // filteredBooks: Libro[] = [];
 
-  filterType: string = 'Todos';
+  public currentPage: number = 1;
+  public itemsPerPage: number = 7;
 
   constructor(public bookService: BookService, public userService: UserService) { 
 
@@ -29,8 +27,6 @@ export class FavoritosComponent implements OnInit {
 
     this.books = this.bookService.books;
     console.log('librería del perfil:', this.books)
-
-    // this.applyFilters();
 
   }
 
@@ -41,31 +37,17 @@ export class FavoritosComponent implements OnInit {
       this.books = respuesta.dataBook;
       
     });
+    // this.loadMore();
   }
 
-   //filtramos libros
-  //  applyFilters() {
-  //   const filtered = this.books.filter(book => {
-  //     let filterCondition = true;
-      // if (this.filterType === 'Mis libros prestados') {
-      //   filterCondition = !book.status && book.owner === 5; 
-      // } else if (this.filterType === 'Libros en prestamo') {
-      //   filterCondition = !book.status && book.owner !== 5; 
-      // }
+  loadMore() {
+    // this.currentPage++;
+
+    this.bookService.userLikesBooksMore(this.user.id_user).subscribe((respuesta: Respuesta) => {
+
+      this.books = respuesta.dataBook;
       
-
-  //     return filterCondition &&
-  //            (book.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-  //             book.author.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-  //             book.genre.toLowerCase().includes(this.searchTerm.toLowerCase()));
-  //   });
-
-  //   this.filteredBooks = filtered.slice(0, this.itemsPerPage * this.currentPage);
-  // }
-
-  // loadMore() {
-  //   this.currentPage++;
-  //   this.applyFilters();
-  // }
+    });
+  }
 
 }

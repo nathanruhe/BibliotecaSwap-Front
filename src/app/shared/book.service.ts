@@ -9,16 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class BookService {
 
-<<<<<<< HEAD
-  //private url = "https://biblioteca-swap-back.vercel.app";
-  private url = "http://localhost:3000";
-  
-=======
   // private url = "https://biblioteca-swap-back.vercel.app";
   private url = "http://localhost:3000";
 
   public user: Usuario;
->>>>>>> dia7_Judit
   public libro: Libro | null = null;
   public books: Libro[];
 

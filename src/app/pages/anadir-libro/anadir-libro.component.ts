@@ -43,7 +43,7 @@ export class AnadirLibroComponent {
     );
 
     // último libro insertado por el usuario
-    this.book = this.bookService.books[5];
+    // this.book = this.bookService.books[5];
 
   }
 

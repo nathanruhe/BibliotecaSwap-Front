@@ -7,7 +7,7 @@
             <app-libro-biblioteca [book]="book" [isAddBook]="true"></app-libro-biblioteca>
         </div>
 
-        <form [formGroup]="form">
+        <form [formGroup]="form" (ngSubmit)="addBook()">
             <h2>Añadir Libro</h2>
             
             <input class="Input-text" type="text" #title placeholder="Título" formControlName="title" [ngClass]="{'invalido': (form.get('title').dirty || form.get('title').touched) && !form.get('title').valid}">
@@ -20,9 +20,9 @@
                 <div *ngIf="form.get('author').errors.required">Campo obligatorio</div>
             </div>
 
-            <input class="Input-text" type="text" #gender placeholder="Género" formControlName="gender" [ngClass]="{'invalido': (form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid}">
-            <div *ngIf="(form.get('gender').dirty || form.get('gender').touched) && !form.get('gender').valid" class="mensajeInvalido">
-                <div *ngIf="form.get('gender').errors.required">Campo obligatorio</div>
+            <input class="Input-text" type="text" #gender placeholder="Género" formControlName="genre" [ngClass]="{'invalido': (form.get('genre').dirty || form.get('genre').touched) && !form.get('genre').valid}">
+            <div *ngIf="(form.get('genre').dirty || form.get('genre').touched) && !form.get('genre').valid" class="mensajeInvalido">
+                <div *ngIf="form.get('genre').errors.required">Campo obligatorio</div>
             </div>
 
             <input class="Input-text" type="text" #photo placeholder="Url Foto" formControlName="photo" [ngClass]="{'invalido': (form.get('photo').dirty || form.get('photo').touched) && !form.get('photo').valid}">
@@ -35,7 +35,8 @@
                 <div *ngIf="form.get('idioma').errors.required">Campo obligatorio</div>
             </div>
 
-            <button class="btn-disabled btn-principal button" (click)="addBook(title.value, author.value, gender.value, photo.value, idioma.value)" [disabled]="form.invalid">AÑADIR</button>
+            <button type="submit" class="btn-disabled btn-principal button" [disabled]="form.invalid">AÑADIR</button>
+            <!-- title.value, author.value, gender.value, photo.value, idioma.value -->
         
         </form>
         

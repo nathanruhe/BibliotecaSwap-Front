@@ -11,5 +11,6 @@ export class Respuesta {
         public dataBook: Libro[],
         public dataUser: Usuario,
         public dataResena: Resena[],
+        public book: Libro,
     ){}
 }

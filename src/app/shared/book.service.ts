@@ -43,7 +43,7 @@ export class BookService {
   };
 
   public lastBook(){
-    return this.http.get(this.url + "/addLibro");
+    return this.http.get(this.url + "/lastBook");
   }
 
   public getBooks(userProvince): Observable<any> {
@@ -54,8 +54,8 @@ export class BookService {
     return this.http.get<Usuario[]>(`${this.url}/home`);
   };
 
-  public addBook(book: Libro) {
-    return this.http.put(this.url + "/addLibro", book);
+  public addBook(book: Libro, id_user: string) {
+    return this.http.post(this.url + "/addLibro/" + id_user, book);
   };
 
   public editBook(book: Libro) {

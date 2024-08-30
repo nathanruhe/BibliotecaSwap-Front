@@ -46,16 +46,16 @@ export class BookService {
     return this.http.get(this.url + "/lastBook");
   }
 
+  public addBook(book: Libro, id_user: string) {
+    return this.http.post(this.url + "/addLibro/" + id_user, book);
+  };
+
   public getBooks(userProvince): Observable<any> {
     return this.http.get(this.url + "/home/" + userProvince);
   };
 
   public getAllUsers(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.url}/home`);
-  };
-
-  public addBook(book: Libro, id_user: string) {
-    return this.http.post(this.url + "/addLibro/" + id_user, book);
   };
 
   public editBook(book: Libro) {

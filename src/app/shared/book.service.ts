@@ -39,7 +39,7 @@ export class BookService {
   };
 
   public userLikesBooksMore (id_user) {
-    return this.http.get(this.url + "/favoritos/" + id_user);
+    return this.http.get(this.url + "/load/" + id_user);
   };
 
   public lastBook(){

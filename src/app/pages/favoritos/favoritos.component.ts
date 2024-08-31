@@ -15,8 +15,6 @@ export class FavoritosComponent implements OnInit {
   public books: Libro[] = [];
   public user: Usuario;
 
-  // filteredBooks: Libro[] = [];
-
   public currentPage: number = 1;
   public itemsPerPage: number = 7;
 

@@ -31,9 +31,7 @@ main {
     background-position: center;
     border-radius: 40px;
     position: relative;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
 }
 
 .edit-btn,
@@ -95,7 +93,6 @@ h4 {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    /* text-align: center; */
 }
 
 .info {
@@ -135,21 +132,24 @@ h4 {
 
 .ambos {
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
 .infoLocal {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 20px;
 }
 
 .local {
     height: 50px;
+    margin-left: 2vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 
@@ -159,9 +159,7 @@ h4 {
     display: block;
 }
 
-.local p,
-.prestados p {
-    margin-top: 3px;
+.local p {
     font-size: 25px;
 }
 
@@ -185,6 +183,7 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: .7vh;
 }
 
 .dispo {
@@ -223,6 +222,7 @@ h4 {
     flex-direction: column;
     align-items: center;
     height: 35px;
+    margin-bottom: .7vh;
 }
 
 .gen2 img {
@@ -244,7 +244,7 @@ h4 {
     padding: 3vh 1.2vh;
 }
 
-.sobre div {
+.sobreMi {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: center;

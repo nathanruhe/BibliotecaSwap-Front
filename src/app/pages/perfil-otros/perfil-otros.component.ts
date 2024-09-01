@@ -26,9 +26,7 @@ export class PerfilOtrosComponent {
     'Fotografía': '../../../assets/iconoFoto.png',
   };
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
-    // this.user = this.userService.user;
-  }
+  constructor(private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

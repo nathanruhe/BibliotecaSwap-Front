@@ -9,8 +9,8 @@ import { Respuesta } from 'src/app/models/respuesta';
 })
 export class UserService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
-  // private url = "http://localhost:3000";
+  // private url = "https://biblioteca-swap-back.vercel.app";
+  private url = "http://localhost:3000";
   
   public logueado: boolean = false;
   public user: Usuario;
@@ -25,9 +25,16 @@ export class UserService {
     return this.http.post(this.url + "/login", user);
   };
 
+  public profile (id_user: number) {
+    return this.http.get(this.url + "/perfil/" + id_user );
+  };
+
   getUserById(id: number): Observable<Respuesta> {
     return this.http.get<Respuesta>(`${this.url}/perfil-otros/${id}`);
   }
-  
 
+  public userHidden(id_user: number, hidden:boolean) {
+    return this.http.put(this.url + "/perfil/hidden", {id_user, hidden});
+  }
+  
 }

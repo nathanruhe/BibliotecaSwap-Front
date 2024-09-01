@@ -46,38 +46,15 @@
                         <button class="close-chat">&times;</button>
                     </div>
                     <div class="messages">
-                        <div class="message received">
-                            <p>¡Hola!</p>
-                        </div>
-                        <div class="message received">
-                            <p>¿Cuándo podríamos hacer el intercambio del libro?</p>
-                        </div>
-                        <div class="message sent">
-                            <p>Hola, estoy disponible de tardes, ¿te va bien?</p>
-                        </div>
-                        <div class="message received">
-                            <p>Sí, me va bien. ¿Podemos vernos el miércoles?</p>
-                        </div>
-                        <div class="message sent">
-                            <p>Perfecto, ¿a las 5 PM?</p>
-                        </div>
-                        <div class="message received">
-                            <p>Sí, a las 5 PM está bien.</p>
-                        </div>
-                        <div class="message sent">
-                            <p>Genial, nos vemos entonces.</p>
-                        </div>
-                        <div class="message received">
-                            <p>Nos vemos, ¡hasta luego!</p>
-                        </div>
-                        <div class="message sent">
-                            <p>Hasta luego.</p>
-                        </div>
-
-                    </div>
-                    <div class="message-input">
-                        <input type="text" placeholder="TEXTO">
-                    </div>
+                        <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.id_sender === id_user1, 'received': mensaje.id_sender !== id_user1}">
+                            <p>{{ mensaje.message }}</p>
+                          </div>                          
+                      </div>
+                      
+                      <div class="message-input">
+                        <input [(ngModel)]="nuevoMensaje" type="text" placeholder="Escribe un mensaje...">
+                        <button (click) ="enviarMensaje()">Enviar</button>
+                      </div>                      
                 </main>
             </div>
             <div class="right">

@@ -17,12 +17,18 @@ export class ChatComponent implements OnInit {
   private userId2: number = 2;
   public ratingForm: FormGroup;
 
+  mensajes: any[] = [];
+  nuevoMensaje: string = '';
+  id_user1 = 1;  
+  id_user2 = 2;  
+
   constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.libro = this.bookService.getSelectedBook();
     this.loadChatUser();
     this.initForm();
+    this.obtenerMensajes();
   }
 
   initForm() {
@@ -52,6 +58,42 @@ export class ChatComponent implements OnInit {
   cambiarEstadoLibro() {
     if (this.libro) {
       this.libro.status = false;
+    }
+  }
+
+  obtenerMensajes(): void {
+    this.chatService.obtenerMensajes(this.id_user1, this.id_user2).subscribe(
+      data => {
+        this.mensajes = data;
+      },
+      error => {
+        console.error('Error al obtener los mensajes', error);
+      }
+    );
+  }
+
+  enviarMensaje(): void {
+    if (this.nuevoMensaje.trim()) {
+      const data = {
+        id_user1: this.id_user1,
+        id_user2: this.id_user2,
+        emisor: 'user2',  
+        message: this.nuevoMensaje
+      };
+      
+      this.chatService.enviarMensaje(data).subscribe(
+        response => {
+          if (!response.error) {
+            this.obtenerMensajes();  
+            this.nuevoMensaje = ''; 
+          } else {
+            console.error('Error al enviar el mensaje', response.message);
+          }
+        },
+        error => {
+          console.error('Error en la solicitud', error);
+        }
+      );
     }
   }
 }

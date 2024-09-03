@@ -8,13 +8,13 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class ChatService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
-  // private url = "http://localhost:3000";
+  // private url = "https://biblioteca-swap-back.vercel.app";
+  private url = "http://localhost:3000";
 
   constructor(private http: HttpClient) { }
 
-  getChatUser(userId: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.url}/users/${userId}`);
+  getChatUser(id: number) {
+    return this.http.get(`${this.url}/chat/${id}`);
   }
 
   submitRating(idRater: number, idRated: number, rating: number, comment: string): Observable<void> {

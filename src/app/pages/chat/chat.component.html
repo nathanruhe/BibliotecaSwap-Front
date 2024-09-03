@@ -107,9 +107,9 @@
                         </div>
                     </ng-template>
 
-                    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()">
+                    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()" >
                         <div class="rating-section">
-                            <h5>Valora tu experiencia con {{ nombreUsuario }}</h5>
+                            <h5>Valora tu experiencia con {{ userOther.name }}</h5>
                             <div class="stars">
                                 <span *ngFor="let star of [1, 2, 3, 4, 5]" 
                                       (click)="ratingForm.patchValue({ rating: star })" 

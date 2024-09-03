@@ -4,6 +4,7 @@ import { Libro } from 'src/app/models/libro';
 import { BookService } from 'src/app/shared/book.service';
 import { ChatService } from 'src/app/shared/chat.service';
 import { Usuario } from 'src/app/models/usuario';
+import { Respuesta } from 'src/app/models/respuesta';
 
 @Component({
   selector: 'app-chat',
@@ -12,9 +13,8 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class ChatComponent implements OnInit {
   public libro: Libro;
-  public nombreUsuario: string = '';
-  public userId1: number = 1;
-  private userId2: number = 2;
+  public userOwner: Usuario;
+  public userOther: Usuario;
   public ratingForm: FormGroup;
 
   constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder) {}
@@ -33,15 +33,17 @@ export class ChatComponent implements OnInit {
   }
 
   loadChatUser() {
-    this.chatService.getChatUser(this.userId2).subscribe(user => {
-        this.nombreUsuario = user.name;
+    this.chatService.getChatUser(this.userOther.id_user).subscribe((resp: Respuesta) => {
+      if (!resp.error) {
+        this.userOther.name = resp.dataUser.name
+      }
     });
   }
 
   submitRating() {
     if (this.ratingForm.valid) {
       const { rating, comment } = this.ratingForm.value;
-      this.chatService.submitRating(this.userId1, this.userId2, rating, comment).subscribe(
+      this.chatService.submitRating(this.userOwner.id_user, this.userOther.id_user, rating, comment).subscribe(
         () => {
           this.ratingForm.reset();
         }

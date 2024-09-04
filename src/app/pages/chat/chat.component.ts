@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Libro } from 'src/app/models/libro'; 
 import { BookService } from 'src/app/shared/book.service';
 import { ChatService } from 'src/app/shared/chat.service';
 import { Usuario } from 'src/app/models/usuario';
+import { Chat } from 'src/app/models/chat';
 
 @Component({
   selector: 'app-chat',
@@ -11,24 +11,26 @@ import { Usuario } from 'src/app/models/usuario';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  public libro: Libro;
+  public libro: any;
   public nombreUsuario: string = '';
-  public userId1: number = 1;
-  private userId2: number = 2;
-  public ratingForm: FormGroup;
+  public userId1: number = 1; 
+  public userId2: number; 
 
-  mensajes: any[] = [];
+  mensajes: Chat[] = [];
+  chatList: { user: Usuario, lastMessage: Chat }[] = [];
   nuevoMensaje: string = '';
-  id_user1 = 1;  
-  id_user2 = 2;  
+  selectedUser: Usuario;
+  ratingForm: FormGroup;
+
+  chats: any[] = [];
+  selectedChat: any; 
 
   constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.libro = this.bookService.getSelectedBook();
-    this.loadChatUser();
+    this.loadChatUsers();
     this.initForm();
-    this.obtenerMensajes();
   }
 
   initForm() {
@@ -38,20 +40,34 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  loadChatUser() {
+  loadChatUsers() {
+    this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
+        this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
+        if (this.chatList.length > 0) {
+          this.selectUser(this.chatList[0].user.id_user); 
+        }
+    });
+  }
+
+  selectUser(userId: number) {
+    this.userId2 = userId;
+    this.loadChatUser();
+    this.obtenerMensajes();
+  }
+
+ loadChatUser() {
     this.chatService.getChatUser(this.userId2).subscribe(user => {
-        this.nombreUsuario = user.name;
+        this.selectedUser = user;
+        this.nombreUsuario = `${user.name} ${user.last_name}`;
     });
   }
 
   submitRating() {
     if (this.ratingForm.valid) {
       const { rating, comment } = this.ratingForm.value;
-      this.chatService.submitRating(this.userId1, this.userId2, rating, comment).subscribe(
-        () => {
-          this.ratingForm.reset();
-        }
-      )
+      this.chatService.submitRating(this.userId1, this.userId2, rating, comment).subscribe(() => {
+        this.ratingForm.reset();
+      });
     }
   }
 
@@ -61,39 +77,34 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  obtenerMensajes(): void {
-    this.chatService.obtenerMensajes(this.id_user1, this.id_user2).subscribe(
-      data => {
-        this.mensajes = data;
-      },
-      error => {
-        console.error('Error al obtener los mensajes', error);
-      }
-    );
+  obtenerMensajes() {
+    this.chatService.obtenerMensajes(this.userId1, this.userId2).subscribe(data => {
+      this.mensajes = data;
+    }, error => {
+      console.error('Error al obtener los mensajes', error);
+    });
   }
 
-  enviarMensaje(): void {
+  enviarMensaje() {
     if (this.nuevoMensaje.trim()) {
-      const data = {
-        id_user1: this.id_user1,
-        id_user2: this.id_user2,
-        emisor: 'user2',  
-        message: this.nuevoMensaje
-      };
-      
-      this.chatService.enviarMensaje(data).subscribe(
-        response => {
-          if (!response.error) {
-            this.obtenerMensajes();  
-            this.nuevoMensaje = ''; 
-          } else {
-            console.error('Error al enviar el mensaje', response.message);
-          }
-        },
-        error => {
-          console.error('Error en la solicitud', error);
-        }
+      const newMessage = new Chat(
+        0,
+        this.userId1,
+        this.userId2,
+        this.nuevoMensaje,
+        new Date() 
       );
+      
+      this.chatService.enviarMensaje(newMessage).subscribe(response => {
+        if (!response.error) {
+          this.obtenerMensajes();  
+          this.nuevoMensaje = ''; 
+        } else {
+          console.error('Error al enviar el mensaje', response.message);
+        }
+      }, error => {
+        console.error('Error en la solicitud', error);
+      });
     }
   }
 }

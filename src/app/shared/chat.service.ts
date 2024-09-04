@@ -15,10 +15,6 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
-  getChatUser(userId: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.url}/users/${userId}`);
-  }
-
   submitRating(idRater: number, idRated: number, rating: number, comment: string): Observable<void> {
     const ratingData = {
       id_rater: idRater,
@@ -29,13 +25,24 @@ export class ChatService {
     return this.http.post<void>(`${this.url}/ratings`, ratingData);
   }
 
-  obtenerMensajes(id_user1: number, id_user2: number): Observable<Chat[]> {
-    const url = `${this.url}/obtenerMensajes/${id_user1}/${id_user2}`;
-    return this.http.get<Chat[]>(url);
+  obtenerChatsUsuario(id_user: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/obtenerChatsUsuario/${id_user}`);
   }
 
-  enviarMensaje(data: any): Observable<any> {
-    const url = `${this.url}/enviarMensaje`;
-    return this.http.post<any>(url, data);
+  obtenerMensajes(id_user1: number, id_user2: number): Observable<Chat[]> {
+    return this.http.get<Chat[]>(`${this.url}/obtenerMensajes/${id_user1}/${id_user2}`);
   }
+
+  enviarMensaje(newMessage: Chat): Observable<any> {
+    return this.http.post<any>(`${this.url}/enviarMensaje`, newMessage);
+  }
+
+  getChatUsers(userId: number): Observable<{ user: Usuario, lastMessage: Chat }[]> {
+    return this.http.get<{ user: Usuario, lastMessage: Chat }[]>(`${this.url}/getChatUsers/${userId}`);
+  }
+
+  getChatUser(userId: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.url}/getChatUser/${userId}`);
+  }
+
 }

@@ -10,51 +10,36 @@
 <body>
     <div class="container-fluid">
         <div class="main">
-            <div class="left">
-                <aside class="sidebar">
-                    <ul class="chat-list">
-                        <li class="chat-item">
-                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                            <span class="user-name">Juan Garcia</span>
-                            <span class="message-count">3</span>
-                        </li>
-                        <li class="chat-item">
-                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                            <span class="user-name">Laura Pozas</span>
-                            <span class="message-count">1</span>
-                        </li>
-                        <li class="chat-item">
-                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                            <span class="user-name">Carlos Martin</span>
-                            <span class="message-count">0</span>
-                        </li>
-                        <li class="chat-item">
-                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon">
-                            <span class="user-name">Jose Lopez</span>
-                            <span class="message-count">1</span>
-                        </li>
-                    </ul>
-                </aside>
-            </div>
-            <div class="middle">
-                <main class="chat-area">
-                    <div class="chat-header">
-                        <div class="user-info">
-                            <img src="assets/icons/user.png" alt="Usuario" class="user-icon large">
-                            <h2>Juan Garcia</h2>
-                        </div>
-                        <button class="close-chat">&times;</button>
-                    </div>
-                    <div class="messages">
-                        <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.id_sender === id_user1, 'received': mensaje.id_sender !== id_user1}">
-                            <p>{{ mensaje.message }}</p>
-                          </div>                          
-                      </div>
-                      
-                      <div class="message-input">
-                        <input [(ngModel)]="nuevoMensaje" type="text" placeholder="Escribe un mensaje...">
-                        <button (click) ="enviarMensaje()">Enviar</button>
-                      </div>                      
+          <div class="left">
+            <aside class="sidebar">
+              <ul class="chat-list">
+                <li *ngFor="let chat of chats" (click)="seleccionarChat(chat)">
+                  <img [src]="chat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon">
+                  <span class="user-name">{{ chat.user_name }}</span>
+                  <span class="message-count" *ngIf="chat.noLeido_user1 > 0">{{ chat.noLeido_user1 }}</span>
+                </li>
+              </ul>
+            </aside>
+          </div>
+      
+          <div class="middle" *ngIf="selectedChat">
+            <main class="chat-area">
+              <div class="chat-header">
+                <div class="user-info">
+                  <img [src]="selectedChat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon large">
+                  <h2>{{ selectedChat.user_name }}</h2>
+                </div>
+                <button class="close-chat" (click)="selectedChat = null">&times;</button>
+              </div>
+              <div class="messages">
+                <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.emisor === 1, 'received': mensaje.receptor === 1}">
+                  <p>{{ mensaje.message }}</p>
+                </div>
+              </div>  
+                    <div class="message-input">
+                        <input [(ngModel)]="nuevoMensaje" placeholder="Escribe un mensaje...">
+                        <button (click)="enviarMensaje()">Enviar</button>
+                    </div>                      
                 </main>
             </div>
             <div class="right">

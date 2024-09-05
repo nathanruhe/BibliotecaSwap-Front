@@ -1,12 +1,15 @@
 .header {
+  font-family: 'Reem Kufi', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Reem Kufi', sans-serif;
   background-color: #6786F5;
   padding: 10px 20px;
   height: 10vh;
-  position: relative;
+  width: 100%;
+  position: fixed; 
+  z-index: 1000; 
+  margin-top: 0;
 }
 
 .logo-left,

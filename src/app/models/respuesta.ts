@@ -12,5 +12,6 @@ export class Respuesta {
         public dataUser: Usuario,
         public dataResena: Resena[],
         public book: Libro,
+        public currentPage?: number,
     ){}
 }

@@ -26,6 +26,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.component';
 import { register } from 'swiper/element/bundle';
 import { SwiperDirective } from './pages/landing/swiper.directive';
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 register();
 
@@ -56,10 +58,12 @@ register();
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule, // control formularios
     HttpClientModule, // para servicios
     FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

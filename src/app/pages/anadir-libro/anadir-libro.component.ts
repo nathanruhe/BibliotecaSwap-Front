@@ -21,7 +21,7 @@ export class AnadirLibroComponent implements OnInit {
     title: 'Título del Úlitmo Libro Insertado',
     author: 'Autor',
     genre: 'Género',
-    photo: 'https://w7.pngwing.com/pngs/466/904/png-transparent-brown-covered-book-book-cattle-leather-ancient-cow-leather-book-brown-culture-cowboy-thumbnail.png',
+    photo: 'https://img.freepik.com/vector-premium/adorno-oro-sobre-fondo-cuero-puede-utilizar-como-tarjeta-invitacion-ilustracion-vectorial_443748-1466.jpg',
     language: 'Idioma',
     borrower: null,
     start_date: null,

@@ -65,9 +65,8 @@ register();
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-center-center', 
-      preventDuplicates: true,
-    }),
+      positionClass: 'toast-center-center',
+      preventDuplicates: true})
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -21,18 +21,17 @@ export class LibroBibliotecaComponent {
   onDelete(): void {
     //this.delete.emit(this.book);
 
-    if (confirm("¿Estás seguro de que deseas eliminar?")) {
-      this.bookService.deleteBook(this.book.id_book).subscribe(
-        response => {
-          this.toastr.success('Libro eliminado correctamente');  // Toast de éxito
-          this.delete.emit(this.book);
-        },
-        error => {
-          console.error('Error al eliminar el libro', error);
-          this.toastr.error('Hubo un problema al eliminar el libro');  // Toast de error
-        }
-      );
-    }
+    this.bookService.deleteBook(this.book.id_book).subscribe(
+      response => {
+        this.toastr.success('Libro eliminado correctamente');  
+        this.delete.emit(this.book);  
+      },
+      error => {
+        console.error('Error al eliminar el libro', error);
+        this.toastr.error('Problema al eliminar libro'); 
+      }
+    );
+  }
 
     /*
     if(confirm("¿Estás seguro de que deseas eliminar este libro?")) {
@@ -48,7 +47,7 @@ export class LibroBibliotecaComponent {
       );
     }
     */
-  }
+  
 
   navigateEditBook() {
     
@@ -82,5 +81,17 @@ Terror
 Español	
 https://imagessl0.casadellibro.com/a/l/s7/10/9788491296010.webp	
 1
+1
+*/
+
+
+/*
+4	
+El Hobbit	
+J.R.R. Tolkien	
+Terror	
+Español	
+https://www.planetadelibros.com/usuaris/libros/fotos/348/original/portada_el-hobbit-ne_j-r-r-tolkien_202202140958.jpg	
+5	
 1
 */

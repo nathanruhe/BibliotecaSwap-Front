@@ -17,10 +17,25 @@ import { ToastrService } from 'ngx-toastr';
 
 export class AnadirLibroComponent implements OnInit {
 
+  public book: Libro = {
+    title: 'Título del Úlitmo Libro Insertado',
+    author: 'Autor',
+    genre: 'Género',
+    photo: 'https://w7.pngwing.com/pngs/466/904/png-transparent-brown-covered-book-book-cattle-leather-ancient-cow-leather-book-brown-culture-cowboy-thumbnail.png',
+    language: 'Idioma',
+    borrower: null,
+    start_date: null,
+    end_date: null,
+    like: null,
+    status: true,
+    id_book: null,
+    owner: null
+  };
+
   public books: Libro[];
   public form: FormGroup;
 
-  public book: Libro;
+  // public book: Libro;
 
   constructor(public formBuilder: FormBuilder, private router: Router, public bookService: BookService, private toastr: ToastrService) {
 
@@ -38,11 +53,11 @@ export class AnadirLibroComponent implements OnInit {
 
     // this.toastr.success('Hello world!', 'Toastr fun!');
     
-    this.bookService.lastBook().subscribe((respuesta: Respuesta) => {
+    // this.bookService.lastBook().subscribe((respuesta: Respuesta) => {
 
-      this.book = respuesta.book;
+    //   this.book = respuesta.book;
       
-    });
+    // });
       
   }
 
@@ -60,6 +75,11 @@ export class AnadirLibroComponent implements OnInit {
     });
    
     // this.form.reset();
+    this.bookService.lastBook().subscribe((respuesta: Respuesta) => {
+
+      this.book = respuesta.book;
+      
+    });
 
     return this.books;
 

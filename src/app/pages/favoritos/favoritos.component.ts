@@ -40,15 +40,15 @@ export class FavoritosComponent implements OnInit {
 
   loadMore() {
     // this.currentPage++;
-    let booksPage = this.books;
-    let booksUp;
+    // let booksPage = this.books;
+    // let booksUp;
     this.bookService.userLikesBooksMore(this.user.id_user).subscribe((respuesta: Respuesta) => {
       
-      booksUp = respuesta.dataBook;
+      this.books = respuesta.dataBook;
       
     });
 
-    this.books = booksPage + booksUp;
+    // this.books = booksPage + booksUp;
   }
 
 }

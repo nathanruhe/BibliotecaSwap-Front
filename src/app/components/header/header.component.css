@@ -4,39 +4,31 @@
   justify-content: space-between;
   align-items: center;
   background-color: #6786F5;
-  padding: 10px 20px;
-  height: 10vh;
+  padding: 0 20px; 
+  height: 80px; 
   width: 100%;
-  position: fixed; 
+  /* position: fixed;  */
+  position: relative; 
   z-index: 1000; 
-  margin-top: 0;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 4px 2px -2px gray; 
 }
 
-.logo-left,
-.logo-center {
-  display: flex;
-  align-items: center;
+body {
+  margin: 0;
+  padding-top: 80px; 
 }
 
-.logo-left a,
-.logo-center a {
-  text-decoration: none;
+.logo-left img {
+  height: 60px; 
+  max-width: 100%;
 }
 
-.logo-left img,
 .logo-center img {
-  height: 80px;
-}
-
-.logo-left {
-  position: absolute;
-  left: 10px;
-}
-
-.logo-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  height: 60px;
+  max-width: 100%;
+  margin: 0 auto; 
 }
 
 .nav {
@@ -52,7 +44,7 @@
 }
 
 .nav li {
-  margin: 0 10px;
+  margin: 0 20px; 
 }
 
 .nav a {
@@ -82,16 +74,15 @@
 .user-actions {
   display: flex;
   align-items: center;
-  margin-left: 20px;
 }
 
 .user-actions .icon {
-  margin: 0 10px;
+  margin-right: 15px;
 }
 
 .user-actions .user-icon {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   cursor: pointer;
 }
 

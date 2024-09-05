@@ -10,8 +10,8 @@ import { Chat } from '../models/chat';
 })
 export class ChatService {
 
-  // private url = "https://biblioteca-swap-back.vercel.app";
-  private url = "http://localhost:3000";
+  private url = "https://biblioteca-swap-back.vercel.app";
+  // private url = "http://localhost:3000";
 
   constructor(private http: HttpClient) { }
 
@@ -39,7 +39,7 @@ export class ChatService {
 
   getChatUsers(userId: number): Observable<{ user: Usuario, lastMessage: Chat }[]> {
     return this.http.get<{ user: Usuario, lastMessage: Chat }[]>(`${this.url}/getChatUsers/${userId}`);
-  }
+}
 
   getChatUser(userId: number): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.url}/getChatUser/${userId}`);

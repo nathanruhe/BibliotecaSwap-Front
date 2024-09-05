@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
 import { Respuesta } from 'src/app/models/respuesta';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class AnadirLibroComponent implements OnInit {
 
   public book: Libro;
 
-  constructor(public formBuilder: FormBuilder, private router: Router, public bookService: BookService) {
+  constructor(public formBuilder: FormBuilder, private router: Router, public bookService: BookService, private toastr: ToastrService) {
 
     this.form = this.formBuilder.group({
       title: [, Validators.required],
@@ -34,6 +35,8 @@ export class AnadirLibroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    // this.toastr.success('Hello world!', 'Toastr fun!');
     
     this.bookService.lastBook().subscribe((respuesta: Respuesta) => {
 
@@ -49,12 +52,14 @@ export class AnadirLibroComponent implements OnInit {
 
     this.bookService.addBook(book, id_user).subscribe((respuesta: Respuesta) => {
 
-      console.log(respuesta);
-      // this.book = respuesta.book;
-      
+      this.form.reset();
+      this.toastr.success('Libro Insertado Correctamente!', 'Libro añadido!');
+      this.book = respuesta.book[0];
+      // return this.books;
+
     });
    
-    this.form.reset();
+    // this.form.reset();
 
     return this.books;
 

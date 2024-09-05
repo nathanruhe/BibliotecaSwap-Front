@@ -47,10 +47,18 @@
       <div class="gender">{{ book.genre }}</div>
     </div>
     
-    <div class="statusb">
+    <div *ngIf="isHome || isFavoritos || isOtroUser" class="statusb">
       <button class="status" [ngClass]="{'disponible': book.status, 'prestado': !book.status}" (click)="navigateToChat()" [disabled]="!book.status">
         {{ book.status ? 'Solicitar' : 'Prestado' }}
       </button>
     </div>
+
+    <div *ngIf="isBiblioteca && filterType === 'Libros en prestamo'" class="status1">
+      <div class="status2" [ngClass]="{'disponible': book.status, 'prestado': !book.status}">
+        {{ book.status ? 'Disponible' : 'Prestado' }}
+      </div>
+    </div>
+
+
   </figure>
 </div>

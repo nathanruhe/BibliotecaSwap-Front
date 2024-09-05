@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Libro } from 'src/app/models/libro'; 
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-libro-biblioteca',
@@ -15,11 +16,25 @@ export class LibroBibliotecaComponent {
   @Output() delete = new EventEmitter<Libro>();
   @Input() isAddBook: boolean = false;
 
-  constructor(private router: Router, private bookService: BookService) {}
+  constructor(private router: Router, private bookService: BookService, private toastr: ToastrService) {}
 
   onDelete(): void {
     //this.delete.emit(this.book);
 
+    if (confirm("¿Estás seguro de que deseas eliminar?")) {
+      this.bookService.deleteBook(this.book.id_book).subscribe(
+        response => {
+          this.toastr.success('Libro eliminado correctamente');  // Toast de éxito
+          this.delete.emit(this.book);
+        },
+        error => {
+          console.error('Error al eliminar el libro', error);
+          this.toastr.error('Hubo un problema al eliminar el libro');  // Toast de error
+        }
+      );
+    }
+
+    /*
     if(confirm("¿Estás seguro de que deseas eliminar este libro?")) {
       this.bookService.deleteBook(this.book.id_book).subscribe(
         response => {
@@ -32,6 +47,7 @@ export class LibroBibliotecaComponent {
         }
       );
     }
+    */
   }
 
   navigateEditBook() {

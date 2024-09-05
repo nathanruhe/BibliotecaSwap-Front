@@ -11,6 +11,7 @@ import { Respuesta } from 'src/app/models/respuesta';
 })
 export class LoginComponent {
   @Output() closeModal = new EventEmitter<void>();
+  @Output() loginSuccess = new EventEmitter<void>();
   public myForm: FormGroup;
   public modal = true;
 
@@ -27,18 +28,17 @@ export class LoginComponent {
 
     this.userService.login(user).subscribe((resp: Respuesta) => {
       if (!resp.error) {
-        this.userService.logueado = true;
         this.userService.user = resp.dataUser;
-        //guardar id_user y province
         localStorage.setItem('userId', resp.dataUser.id_user.toString());
         localStorage.setItem('userProvince', resp.dataUser.province);
-        
+
         this.router.navigateByUrl("/home");
         this.closeModal.emit(); 
+        this.loginSuccess.emit();
         console.log(resp);
       } else {
         console.log(resp);
-      };
+      }
     });
     this.myForm.reset();
   }

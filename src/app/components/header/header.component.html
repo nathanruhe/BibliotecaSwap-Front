@@ -28,6 +28,6 @@
   </div>
 
   <div class="modal-overlay" *ngIf="isLoginModalVisible">
-    <app-login (closeModal)="hideLoginModal()"></app-login>
+    <app-login (closeModal)="hideLoginModal()" (loginSuccess)="handleLoginSuccess()"></app-login>
   </div>
 </header>

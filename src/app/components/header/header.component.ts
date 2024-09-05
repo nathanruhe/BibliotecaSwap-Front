@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
 
@@ -11,8 +11,12 @@ export class HeaderComponent {
   public isLoggedIn: boolean = false;
   public isLoginModalVisible: boolean = false; 
 
-  constructor(private router: Router, private userService: UserService) {
-    this.isLoggedIn = this.userService.logueado;
+  constructor(private router: Router, private userService: UserService) {}
+
+  ngOnInit() {
+    this.userService.logueado$.subscribe(logueado => {
+      this.isLoggedIn = logueado;
+    });
   }
 
   login() {
@@ -24,13 +28,16 @@ export class HeaderComponent {
   }
 
   logout() {
-    this.userService.logueado = false;
-    this.isLoggedIn = false;
+    this.userService.logout(); 
     this.router.navigate(['/']);
   }
 
   hideLoginModal() {
     this.isLoginModalVisible = false; 
-    this.isLoggedIn = this.userService.logueado;
+  }
+
+  handleLoginSuccess() {
+    this.isLoggedIn = true;
+    this.hideLoginModal();
   }
 }

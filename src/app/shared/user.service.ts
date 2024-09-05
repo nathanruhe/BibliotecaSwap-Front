@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Respuesta } from 'src/app/models/respuesta';
 import { tap } from 'rxjs/operators';
 
@@ -13,12 +13,14 @@ export class UserService {
   private url = "https://biblioteca-swap-back.vercel.app";
   // private url = "http://localhost:3000";
   
-  public logueado: boolean = false;
+  private _logueado = new BehaviorSubject<boolean>(false);
+  public logueado$ = this._logueado.asObservable();
   public user: Usuario;
 
   constructor(private http: HttpClient) {
-    this.logueado = localStorage.getItem('isLoggedIn') === 'true';
-
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    this._logueado.next(isLoggedIn);
+    
     const userData = localStorage.getItem('user');
     if (userData) {
       this.user = JSON.parse(userData);
@@ -32,16 +34,16 @@ export class UserService {
   public login(user: Usuario): Observable<any> {
     return this.http.post(this.url + "/login", user).pipe(
       tap((response: any) => {
-        this.logueado = true;
+        this._logueado.next(true);
         localStorage.setItem('isLoggedIn', 'true');
-        this.user = user; 
-        localStorage.setItem('user', JSON.stringify(user));
+        this.user = response.dataUser; 
+        localStorage.setItem('user', JSON.stringify(response.dataUser));
       })
     );
   }
 
   public logout() {
-    this.logueado = false;
+    this._logueado.next(false);
     this.user = null;
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');

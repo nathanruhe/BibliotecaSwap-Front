@@ -116,9 +116,9 @@ body {
   z-index: 1000; 
 }
 
-.modal-overlay app-login {
+/* .modal-overlay app-login {
   background: white;
   padding: 20px;
   border-radius: 10px;
   z-index: 1001;
-}
+} */

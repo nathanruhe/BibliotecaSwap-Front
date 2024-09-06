@@ -47,7 +47,16 @@ export class EditarPerfilComponent implements OnInit {
     }, { validator: this.passwordMatchValidator });
   }
 
-  ngOnInit(): void { }
+  ngOnInit() { 
+    this.userService.user$.subscribe(user => {
+      this.profileForm.patchValue({
+        name: user.name,
+        last_name: user.last_name,
+        province: user.province,
+        about: user.about
+      });
+    });
+  }
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('newPassword').value === form.get('confirmPassword').value
@@ -65,9 +74,11 @@ export class EditarPerfilComponent implements OnInit {
       };
       this.userService.updateProfile(updatedUser).subscribe(() => {
         alert('Perfil actualizado correctamente.');
+        this.userService.setUser(updatedUser); 
       });
     }
   }
+  
 
   onSubmitPreferences(): void {
     if (this.preferencesForm.valid) {
@@ -91,4 +102,24 @@ export class EditarPerfilComponent implements OnInit {
       });
     }
   }
+
+  actualizarPerfil() {
+    if (this.profileForm.valid) {
+      const updatedUser = this.profileForm.value;
+  
+      this.userService.updateUserProfile(updatedUser).subscribe(response => {
+        if (response.success) {
+          this.userService.setUser(response.data);
+  
+          alert('Perfil actualizado exitosamente.');
+        } else {
+          alert('Hubo un problema al actualizar el perfil.');
+        }
+      });
+    } else {
+      alert('Por favor, completa todos los campos requeridos.');
+    }
+  }
 }
+
+

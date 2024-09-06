@@ -44,6 +44,7 @@ export class PerfilComponent implements OnInit {
       this.rating = response.dataUser.rating;
       this.misResenas = response.dataUser.misResenas;
     })
+    
 
   }
 

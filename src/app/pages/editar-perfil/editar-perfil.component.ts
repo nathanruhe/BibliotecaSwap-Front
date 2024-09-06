@@ -21,25 +21,21 @@ export class EditarPerfilComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
 
-    // Initialize profile form with correct property names
     this.profileForm = this.fb.group({
       name: [this.user?.name, Validators.required],
-      lastName: [this.user?.last_name, Validators.required],
+      last_name: [this.user?.last_name, Validators.required],
       province: [this.user?.province, Validators.required],
       aboutMe: [this.user?.about, Validators.maxLength(200)]
     });
 
-    // Initialize preferences form with correct property names
     this.preferencesForm = this.fb.group({
       availability: [this.user?.availability, Validators.required],
     });
 
-    // Create genre checkboxes based on user genres
     this.genres.forEach(genre => {
       this.preferencesForm.addControl(genre, this.fb.control(this.user?.genres?.includes(genre) || false));
     });
 
-    // Initialize password change form
     this.myForm = this.fb.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', [
@@ -63,7 +59,7 @@ export class EditarPerfilComponent implements OnInit {
       const updatedUser: Usuario = {
         ...this.user,
         name: this.profileForm.value.name,
-        last_name: this.profileForm.value.lastName,
+        last_name: this.profileForm.value.last_name,
         province: this.profileForm.value.province,
         about: this.profileForm.value.aboutMe
       };

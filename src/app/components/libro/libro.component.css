@@ -126,12 +126,38 @@ img {
   cursor: pointer;
 }
 
-.disponible {
+.status.disponible {
   background-color: rgb(51, 167, 239);
   font-family: var(--titulo-fuente);
 }
 
-.prestado {
+.status.prestado {
   background-color: rgba(51, 167, 239, 0.25);
   font-family: var(--titulo-fuente);
+}
+
+.status1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status2 {
+  width: 200px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.status2.disponible {
+  font-family: var(--titulo-fuente);
+  color: rgb(14, 182, 36);
+}
+
+.status2.prestado {
+  font-family: var(--titulo-fuente);
+  color: rgb(182, 34, 14);
 }

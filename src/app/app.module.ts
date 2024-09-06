@@ -2,6 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // control formularios
 import { HttpClientModule } from '@angular/common/http'; // para servicios
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +29,7 @@ import { PerfilOtrosComponent } from './pages/perfil-otros/perfil-otros.componen
 import { register } from 'swiper/element/bundle';
 import { SwiperDirective } from './pages/landing/swiper.directive';
 import { ToastrModule } from 'ngx-toastr';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 register();
 
@@ -63,7 +65,11 @@ register();
     ReactiveFormsModule, // control formularios
     HttpClientModule, // para servicios
     FormsModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(/*{
+      timeOut: 3000,
+      positionClass: 'toast-center-center',
+      preventDuplicates: true}*/)
   ],
   providers: [],
   bootstrap: [AppComponent],

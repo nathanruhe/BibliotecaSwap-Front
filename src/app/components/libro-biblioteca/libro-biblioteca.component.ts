@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Libro } from 'src/app/models/libro'; 
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/shared/book.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-libro-biblioteca',
@@ -15,11 +16,24 @@ export class LibroBibliotecaComponent {
   @Output() delete = new EventEmitter<Libro>();
   @Input() isAddBook: boolean = false;
 
-  constructor(private router: Router, private bookService: BookService) {}
+  constructor(private router: Router, private bookService: BookService, private toastr: ToastrService) {}
 
   onDelete(): void {
     //this.delete.emit(this.book);
 
+    this.bookService.deleteBook(this.book.id_book).subscribe(
+      response => {
+        this.toastr.success('Libro eliminado correctamente');  
+        this.delete.emit(this.book);  
+      },
+      error => {
+        console.error('Error al eliminar el libro', error);
+        this.toastr.error('Problema al eliminar libro'); 
+      }
+    );
+  }
+
+    /*
     if(confirm("¿Estás seguro de que deseas eliminar este libro?")) {
       this.bookService.deleteBook(this.book.id_book).subscribe(
         response => {
@@ -32,7 +46,8 @@ export class LibroBibliotecaComponent {
         }
       );
     }
-  }
+    */
+  
 
   navigateEditBook() {
     
@@ -66,5 +81,17 @@ Terror
 Español	
 https://imagessl0.casadellibro.com/a/l/s7/10/9788491296010.webp	
 1
+1
+*/
+
+
+/*
+4	
+El Hobbit	
+J.R.R. Tolkien	
+Terror	
+Español	
+https://www.planetadelibros.com/usuaris/libros/fotos/348/original/portada_el-hobbit-ne_j-r-r-tolkien_202202140958.jpg	
+5	
 1
 */

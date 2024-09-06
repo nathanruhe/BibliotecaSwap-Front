@@ -16,6 +16,9 @@ export class UserService {
   private _logueado = new BehaviorSubject<boolean>(false);
   public logueado$ = this._logueado.asObservable();
   public user: Usuario;
+  private userSubject = new BehaviorSubject<Usuario>(this.getUser());
+  public user$ = this.userSubject.asObservable();
+
 
   constructor(private http: HttpClient) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -65,6 +68,10 @@ export class UserService {
     return this.http.put(this.url + "/perfil/editar", user);
   }  
 
+  updateUserProfile(updatedUser: any) {
+    return this.http.put<{success: boolean, data: any}>('/api/user/update', updatedUser);
+  }
+
   public updatePreferences(preferences: any): Observable<any> {
     return this.http.put(this.url + "/perfil/preferencias", preferences);
   }
@@ -72,5 +79,17 @@ export class UserService {
   public changePassword(id: number, currentPassword: string, newPassword: string): Observable<any> {
     return this.http.put(this.url + "/perfil/cambiar-contrasena", { id_user: id, currentPassword, newPassword });
   }
-  
+  getUser(): Usuario {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user ? user : {} as Usuario;
+  }
+  setUser(user: Usuario): void {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
+  }
+
+  getUserObservable(): Observable<Usuario> {
+    return this.userSubject.asObservable();
+  }
+
 }

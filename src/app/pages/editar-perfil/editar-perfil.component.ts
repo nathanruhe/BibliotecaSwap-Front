@@ -21,7 +21,6 @@ export class EditarPerfilComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
 
-    // Initialize profile form with correct property names
     this.profileForm = this.fb.group({
       name: [this.user?.name, Validators.required],
       lastName: [this.user?.last_name, Validators.required],
@@ -29,17 +28,14 @@ export class EditarPerfilComponent implements OnInit {
       aboutMe: [this.user?.about, Validators.maxLength(200)]
     });
 
-    // Initialize preferences form with correct property names
     this.preferencesForm = this.fb.group({
       availability: [this.user?.availability, Validators.required],
     });
 
-    // Create genre checkboxes based on user genres
     this.genres.forEach(genre => {
       this.preferencesForm.addControl(genre, this.fb.control(this.user?.genres?.includes(genre) || false));
     });
 
-    // Initialize password change form
     this.myForm = this.fb.group({
       currentPassword: ['', Validators.required],
       newPassword: ['', [
@@ -51,7 +47,16 @@ export class EditarPerfilComponent implements OnInit {
     }, { validator: this.passwordMatchValidator });
   }
 
-  ngOnInit(): void { }
+  ngOnInit() { 
+    this.userService.user$.subscribe(user => {
+      this.profileForm.patchValue({
+        name: user.name,
+        last_name: user.last_name,
+        province: user.province,
+        about: user.about
+      });
+    });
+  }
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('newPassword').value === form.get('confirmPassword').value
@@ -69,9 +74,11 @@ export class EditarPerfilComponent implements OnInit {
       };
       this.userService.updateProfile(updatedUser).subscribe(() => {
         alert('Perfil actualizado correctamente.');
+        this.userService.setUser(updatedUser); 
       });
     }
   }
+  
 
   onSubmitPreferences(): void {
     if (this.preferencesForm.valid) {
@@ -95,4 +102,24 @@ export class EditarPerfilComponent implements OnInit {
       });
     }
   }
+
+  actualizarPerfil() {
+    if (this.profileForm.valid) {
+      const updatedUser = this.profileForm.value;
+  
+      this.userService.updateUserProfile(updatedUser).subscribe(response => {
+        if (response.success) {
+          this.userService.setUser(response.data);
+  
+          alert('Perfil actualizado exitosamente.');
+        } else {
+          alert('Hubo un problema al actualizar el perfil.');
+        }
+      });
+    } else {
+      alert('Por favor, completa todos los campos requeridos.');
+    }
+  }
 }
+
+

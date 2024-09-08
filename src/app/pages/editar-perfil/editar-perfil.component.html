@@ -13,32 +13,33 @@
         <div class="main">
             <div class="edit-profile card">
                 <h2 class="header-title">Editar Perfil</h2>
-                <div class="profile-picture mx-auto">
-                    <img [src]="user?.photo || 'https://picsum.photos/id/64/200/300'" alt="Profile Picture">
-                    <button class="edit-icon">&#9998;</button>
+                <div class="profile-picture mx-auto text-center">
+                  <img [src]="profileForm.get('photo').value || 'https://picsum.photos/id/64/200/300'" alt="Profile Picture" id="profile-image-preview">
+                  <input type="text" class="form-control mt-3" formControlName="photo" placeholder="URL de la foto de perfil">
                 </div>
-                <h3 class="name">{{ user?.name || 'Nombre' }} {{ user?.last_name || 'Apellido' }}</h3>
+                <h3 class="name text-center">{{ user?.name || 'Nombre' }} {{ user?.last_name || 'Apellido' }}</h3>
+                
                 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-                    <div class="form-row">
-                        <div class="col-6">
-                            <input type="text" class="form-control mb-2" formControlName="name" placeholder="Nombre">
-                        </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control mb-2" formControlName="last_name" placeholder="Apellidos">
-                        </div>
+                  <div class="form-row">
+                    <div class="col-6">
+                      <input type="text" class="form-control mb-2" formControlName="name" placeholder="Nombre">
                     </div>
+                    <div class="col-6">
+                      <input type="text" class="form-control mb-2" formControlName="last_name" placeholder="Apellidos">
+                    </div>
+                  </div>
                     <div class="form-group">
                         <select class="form-control mb-2" formControlName="province">
                             <option value="" disabled selected>Provincia</option>
                             <option *ngFor="let province of provinces" [value]="province">{{ province }}</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                      <div class="form-group">
                         <textarea class="form-control mb-2" formControlName="aboutMe" placeholder="Sobre mi"></textarea>
                     </div>
                     <button type="button" class="btn btn-custom mb-2" data-toggle="modal" data-target="#passwordModal">Cambiar Contraseña</button> 
-                    <button type="submit" class="btn btn-custom mb-2">ACTUALIZAR</button>
-                </form>
+                    <button type="submit" class="btn btn-custom mb-2" [disabled]="!profileForm.valid">ACTUALIZAR</button>
+                  </form>
             </div>
 
             <div class="edit-preferences card">

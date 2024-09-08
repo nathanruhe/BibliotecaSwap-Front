@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
 import { BookService } from 'src/app/shared/book.service';
 import { Respuesta } from 'src/app/models/respuesta';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-perfil',
@@ -33,23 +35,24 @@ export class PerfilComponent implements OnInit {
     'Fotografía': '../../../assets/iconoFoto.png',
   };
 
-  constructor(private router: Router, public userService: UserService, public bookService: BookService) {
+  constructor(private router: Router, public userService: UserService, public bookService: BookService, private toastr: ToastrService) {
     this.user = this.userService.user;
     console.log('usuario perfil:', this.user)
   }
 
   ngOnInit(): void {
-
     this.userService.profile(this.user.id_user).subscribe((response: any) => {
       this.rating = response.dataUser.rating;
       this.misResenas = response.dataUser.misResenas;
-    })
-    
-
+      this.user = response.dataUser;  
+   }, error => {
+      this.toastr.error('Error al cargar el perfil.');
+   });
   }
 
   onEdit(): void {            // Revisar, no sé si funciona
     this.put.emit(this.user);
+    this.router.navigate(['/editar-perfil']);
   }
 
   onHidden(id_user, hidden) {

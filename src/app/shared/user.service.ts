@@ -10,15 +10,15 @@ import { tap } from 'rxjs/operators';
 })
 export class UserService {
 
-  // private url = "https://biblioteca-swap-back.vercel.app";
-  private url = "http://localhost:3000";
+  private url = "https://biblioteca-swap-back.vercel.app";
+  // private url = "http://localhost:3000";
   
   private _logueado = new BehaviorSubject<boolean>(false);
   public logueado$ = this._logueado.asObservable();
-  public user: Usuario;
   private userSubject = new BehaviorSubject<Usuario>(this.getUser());
   public user$ = this.userSubject.asObservable();
-
+  updateUserProfile: any;
+  user: Usuario;
 
   constructor(private http: HttpClient) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -26,7 +26,7 @@ export class UserService {
     
     const userData = localStorage.getItem('user');
     if (userData) {
-      this.user = JSON.parse(userData);
+      this.userSubject.next(JSON.parse(userData));
     }
   }
 
@@ -39,7 +39,7 @@ export class UserService {
       tap((response: any) => {
         this._logueado.next(true);
         localStorage.setItem('isLoggedIn', 'true');
-        this.user = response.dataUser; 
+        this.userSubject.next(response.dataUser);
         localStorage.setItem('user', JSON.stringify(response.dataUser));
       })
     );
@@ -47,7 +47,7 @@ export class UserService {
 
   public logout() {
     this._logueado.next(false);
-    this.user = null;
+    this.userSubject.next({} as Usuario);
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
   }
@@ -65,12 +65,13 @@ export class UserService {
   }
 
   public updateProfile(user: Usuario): Observable<any> {
-    return this.http.put(this.url + "/perfil/editar", user);
+    return this.http.put(this.url + "/perfil/editar", user).pipe(
+      tap(() => {
+        this.userSubject.next(user);
+        localStorage.setItem('user', JSON.stringify(user));
+      })
+    );
   }  
-
-  updateUserProfile(updatedUser: any) {
-    return this.http.put<{success: boolean, data: any}>('/api/user/update', updatedUser);
-  }
 
   public updatePreferences(preferences: any): Observable<any> {
     return this.http.put(this.url + "/perfil/preferencias", preferences);
@@ -79,10 +80,12 @@ export class UserService {
   public changePassword(id: number, currentPassword: string, newPassword: string): Observable<any> {
     return this.http.put(this.url + "/perfil/cambiar-contrasena", { id_user: id, currentPassword, newPassword });
   }
+
   getUser(): Usuario {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user ? user : {} as Usuario;
   }
+
   setUser(user: Usuario): void {
     localStorage.setItem('user', JSON.stringify(user));
     this.userSubject.next(user);
@@ -91,5 +94,4 @@ export class UserService {
   getUserObservable(): Observable<Usuario> {
     return this.userSubject.asObservable();
   }
-
 }

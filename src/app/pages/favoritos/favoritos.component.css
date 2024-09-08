@@ -21,15 +21,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* background-color: var(--gris-claro);
-    background-size: cover;
-    background-position: center;
-    padding-top: 8vh;
-    padding-bottom: 5vh;
-    height: 80vh; */
-    /* overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-snap-align: start; */
 }
 
 .book {

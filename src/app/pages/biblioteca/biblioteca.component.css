@@ -5,14 +5,34 @@ html, body {
   overflow-x: hidden;
 }
 
+.scroll {
+  height: 100%;
+  height: 80vh;
+  background-color: var(--gris-claro);
+  background-size: cover;
+  background-position: center;
+  padding-top: 8vh;
+  padding-bottom: 5vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-snap-align: start;
+}
+
 .container {
   max-width: 100%;
   width: 100vw;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 .search-container {
@@ -21,7 +41,6 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
   box-sizing: border-box; 
 }
 
@@ -115,6 +134,7 @@ html, body {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  margin-top: 6vh;
 }
 
 .book-user-container {
@@ -178,4 +198,18 @@ html, body {
 .charge-btn .icon {
   width: 80%;
   object-fit: contain;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--rosa-claro);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#6786F5, #9389F0);
+  border-radius: 5px;
 }

@@ -24,9 +24,11 @@ export class UserService {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     this._logueado.next(isLoggedIn);
     
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      this.userSubject.next(JSON.parse(userData));
+    const userData = this.getUser(); 
+    if (userData && Object.keys(userData).length > 0) {
+      this.userSubject.next(userData);
+    } else {
+      console.warn('No se encontró usuario en localStorage');
     }
   }
 
@@ -82,9 +84,20 @@ export class UserService {
   }
 
   getUser(): Usuario {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user ? user : {} as Usuario;
-  }
+    const userData = localStorage.getItem('user');
+    
+    if (userData) {
+      try {
+        return JSON.parse(userData);
+      } catch (error) {
+        console.error('Error al parsear el usuario desde localStorage', error);
+        localStorage.removeItem('user'); 
+        return {} as Usuario; 
+      }
+    }
+  
+    return {} as Usuario;  
+  }  
 
   setUser(user: Usuario): void {
     localStorage.setItem('user', JSON.stringify(user));

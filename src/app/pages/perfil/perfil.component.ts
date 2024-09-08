@@ -36,18 +36,22 @@ export class PerfilComponent implements OnInit {
   };
 
   constructor(private router: Router, public userService: UserService, public bookService: BookService, private toastr: ToastrService) {
-    this.user = this.userService.user;
+    this.user = this.userService.getUser();
     console.log('usuario perfil:', this.user)
   }
 
   ngOnInit(): void {
-    this.userService.profile(this.user.id_user).subscribe((response: any) => {
-      this.rating = response.dataUser.rating;
-      this.misResenas = response.dataUser.misResenas;
-      this.user = response.dataUser;  
-   }, error => {
-      this.toastr.error('Error al cargar el perfil.');
-   });
+    if (this.user && this.user.id_user) {
+      this.userService.profile(this.user.id_user).subscribe((response: any) => {
+        this.rating = response.dataUser.rating;
+        this.misResenas = response.dataUser.misResenas;
+        this.user = response.dataUser;
+      }, error => {
+        this.toastr.error('Error al cargar el perfil.');
+      });
+    } else {
+      this.toastr.error('El usuario no está definido correctamente.');
+    }
   }
 
   onEdit(): void {            // Revisar, no sé si funciona

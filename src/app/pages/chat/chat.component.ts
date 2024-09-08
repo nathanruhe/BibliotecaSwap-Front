@@ -50,12 +50,17 @@ export class ChatComponent implements OnInit {
       this.loadUserOther(ownerId);
     });
 
-    // cargo la info del usuario logueado
-    this.userOwner = this.userService.user
-    console.log("datos del usuario logueado:", this.userOwner);
-
-    // añado el id del usuario logueado para poder poner la reseña al otro usuario
-    this.idRater = this.userService.user.id_user
+    // Verifica si el usuario logueado está disponible
+    this.userService.user$.subscribe((user: Usuario) => {
+      if (user && user.id_user) {
+        this.userOwner = user;
+        this.idRater = this.userOwner.id_user;
+        console.log("Usuario logueado:", this.userOwner);
+      } else {
+        console.error("Error: Usuario no está definido o no tiene id_user.");
+      }
+    });
+    
 
     // formulario
     this.ratingForm = this.fb.group({
@@ -79,9 +84,9 @@ export class ChatComponent implements OnInit {
     this.obtenerMensajes();
   }
 
- loadChatUser() {
+  loadChatUser() {
     this.chatService.getChatUser(this.userId2).subscribe(user => {
-        this.selectedUser = user;
+      this.selectedUser = user;
     });
   }
 
@@ -118,18 +123,15 @@ export class ChatComponent implements OnInit {
 
 
 
-
-
-// - - - - - PARTE DERECHA - - - - - 
-
+  
   // carga de datos
   loadUserOther(ownerId: number) {
     this.userService.getUserById(ownerId).subscribe((resp: Respuesta) => {
       if (!resp.error) {
         // cargo la info del propietario del libro
-        this.userOther = resp.dataUser
+        this.userOther = resp.dataUser;
         // añado el id del usuario para poderle poner la reseña
-        this.idRated = resp.dataUser.id_user
+        this.idRated = resp.dataUser.id_user;
         console.log("datos del propietario del libro:", this.userOther);
         console.log("datos del libro solicitado:", this.libro);
       }
@@ -183,5 +185,4 @@ export class ChatComponent implements OnInit {
       });
     }
   }
-  
 }

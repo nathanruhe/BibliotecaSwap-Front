@@ -52,12 +52,12 @@
           <div class="genres">
             <h3 class="section-title">GÉNEROS QUE TE GUSTAN</h3>
             <div class="genres-container">
-              <div *ngFor="let genre of genres" class="genre-column">
+              <div *ngFor="let genre of genres; let i = index" class="genre-column">
                 <label>
-                  <input type="checkbox" [formControlName]="genre"> <i class="fas fa-book"></i> {{ genre }}
+                  <input type="checkbox" [formControl]="genresArray.at(i)"> <i class="fas fa-book"></i> {{ genre }}
                 </label>
               </div>
-            </div>
+            </div>          
           </div>
 
           <h3 class="section-title">Disponibilidad</h3>

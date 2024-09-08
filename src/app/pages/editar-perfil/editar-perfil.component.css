@@ -77,22 +77,16 @@ body {
     border-radius: 50%;
 }
 
-.edit-icon {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: #6a5acd;
-    width: 20px;
-    height: 20px;
+.profile-picture input {
+    margin-top: 15px; 
+    width: 100%;
+    display: block;
 }
 
 .name {
+    margin-top: 15px; 
     font-size: 1.5em;
-    margin: 10px 0;
+    text-align: center;
 }
 
 .btn-custom {

@@ -19,6 +19,7 @@ export class UserService {
   public user$ = this.userSubject.asObservable();
   updateUserProfile: any;
   user: Usuario;
+  getCurrentUser: any;
 
   constructor(private http: HttpClient) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';

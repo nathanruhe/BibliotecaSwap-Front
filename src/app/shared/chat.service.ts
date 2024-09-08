@@ -10,8 +10,8 @@ import { Chat } from '../models/chat';
 })
 export class ChatService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
-  // private url = "http://localhost:3000";
+  // private url = "https://biblioteca-swap-back.vercel.app";
+  private url = "http://localhost:3000";
 
   constructor(private http: HttpClient) { }
 

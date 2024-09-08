@@ -56,7 +56,7 @@ export class UserService {
     return this.http.get(this.url + "/perfil/" + id_user);
   }
 
-  getUserById(id: number): Observable<Respuesta> {
+  public getUserById(id: number): Observable<Respuesta> {
     return this.http.get<Respuesta>(`${this.url}/perfil-otros/${id}`);
   }
 
@@ -92,4 +92,14 @@ export class UserService {
     return this.userSubject.asObservable();
   }
 
+  submitRating(idRated: number, idRater: number, rating: number, comment: string): Observable<Respuesta> {
+    const ratingData = {
+      id_rated: idRated,
+      id_rater: idRater,
+      rating: rating,
+      comment: comment
+    };
+    return this.http.post<Respuesta>(`${this.url}/ratings`, ratingData);
+  }
+  
 }

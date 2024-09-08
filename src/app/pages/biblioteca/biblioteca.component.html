@@ -33,8 +33,8 @@
       <app-libro-biblioteca [book]="book" [filterType]="filterType" (delete)="onDeleteBook($event)"></app-libro-biblioteca>
       <div class="user-info">
         <p class="user-name">{{ book.borrower_name }}<br> {{ book.borrower_last_name }}</p><br>
-        <p class="user-date">Fecha inicio: {{ book.startDate | date: 'dd.MM.yy' }}</p><br>
-        <p class="user-date">Fecha fin: {{ book.endDate | date: 'dd.MM.yy' }}</p>
+        <p class="user-date">Fecha inicio: {{ book.start_date | date: 'dd.MM.yy' }}</p><br>
+        <p class="user-date">Fecha fin: {{ book.end_date | date: 'dd.MM.yy' }}</p>
       </div>
     </div>
   </div>

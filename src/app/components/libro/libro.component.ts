@@ -42,7 +42,9 @@ export class LibroComponent implements OnInit {
   navigateToChat() {
     if (this.book.status) {
       this.bookService.setSelectedBook(this.book);
-      this.router.navigate(['/chat']);
+      // this.router.navigate(['/chat']);
+      const ownerId = this.book.owner;
+      this.router.navigate(['/chat', ownerId]);
     }
   }
 }

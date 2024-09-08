@@ -280,13 +280,21 @@ html, body {
 .stars {
     display: flex;
     gap: 5px;
-    margin-bottom: 10px;
     justify-content: center;
 }
 
-.star {
-    font-size: 2em;
+.stars span {
+    font-size: 30px;
+    color: #000;
+}
+
+.stars span.filled {
     color: #ffd700;
+}
+
+.stars span:hover {
+    color: #ffd700;
+    cursor: pointer;
 }
 
 .rating-section textarea {
@@ -303,11 +311,55 @@ html, body {
     display: block;
 }
 
-.status {
-    background-color: #007bff; 
-    color: white;
+.status2 {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.status:disabled {
+    cursor: not-allowed;
+}
+
+.status.accepted {
+    background-color: #007bff30;
+    pointer-events: none;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9em;
+}
+
+.status3 {
+    background-color: #007bff30;
+    pointer-events: none;
+    border: none;
+}
+
+.enviar {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.enviar:disabled {
+    cursor: not-allowed;
+}
+
+.enviar.enviada {
+    background-color: #007bff30;
+    pointer-events: none;
+    border: none;
+}
+
+.enviar2 {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    background-color: #007bff30;
+    pointer-events: none;
+    border: none;
+}
+
+h5 {
+    display: flex;
+    justify-content: center;
 }

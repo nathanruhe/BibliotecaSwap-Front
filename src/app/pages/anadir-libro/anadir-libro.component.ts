@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AnadirLibroComponent implements OnInit {
 
   public book: Libro = {
-    title: 'Título del Úlitmo Libro Insertado',
+    title: 'Título',
     author: 'Autor',
     genre: 'Género',
     photo: 'https://img.freepik.com/vector-premium/adorno-oro-sobre-fondo-cuero-puede-utilizar-como-tarjeta-invitacion-ilustracion-vectorial_443748-1466.jpg',

@@ -26,9 +26,6 @@ export class FavoritosComponent implements OnInit {
 
     this.user = this.userService.user;
     console.log('usuario perfil:', this.user)
-
-    // this.books = this.bookService.books;
-    // console.log('librería del perfil:', this.books)
     
     this.bookService.userLikesBooks(this.user.id_user).subscribe((respuesta: Respuesta) => {
 
@@ -36,25 +33,18 @@ export class FavoritosComponent implements OnInit {
       console.log('librería del perfil:', this.books);
       
     });
-    // this.loadMore();
     
   }
 
   loadMore() {
-    // this.currentPage++;
-    // let booksPage = this.books;
-    // let booksUp;
+    
     this.bookService.userLikesBooksMore(this.user.id_user, this.currentPage).subscribe((respuesta: Respuesta) => {
       
-      // this.books = respuesta.dataBook;
-      // this.books = this.books.concat(respuesta.dataBook);
       console.log(respuesta.dataBook)
       this.currentPage = respuesta.currentPage;
       this.books = [...this.books, ...respuesta.dataBook];
       
     });
-
-    // this.books = booksPage + booksUp;
   }
 
 }

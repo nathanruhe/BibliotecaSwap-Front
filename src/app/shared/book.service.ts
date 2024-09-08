@@ -79,4 +79,7 @@ export class BookService {
     return this.http.get<Libro>(`${this.url}/book/${id}`);
   }
 
+  public updateBookStatus(idBook: number, updateData: any): Observable<any> {
+    return this.http.put<any>(`${this.url}/${idBook}/status`, updateData);
+  }
 }

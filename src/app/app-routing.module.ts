@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'sobre', component: SobreComponent },
   { path: 'miBiblioteca', component: BibliotecaComponent},
   { path: 'chat', component: ChatComponent },
+  { path: 'chat/:ownerId', component: ChatComponent },
   { path: 'acerca', component: AcercaComponent },
   { path: 'perfil', component: PerfilComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },

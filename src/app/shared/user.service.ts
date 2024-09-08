@@ -53,7 +53,7 @@ export class UserService {
     return this.http.get(this.url + "/perfil/" + id_user);
   }
 
-  getUserById(id: number): Observable<Respuesta> {
+  public getUserById(id: number): Observable<Respuesta> {
     return this.http.get<Respuesta>(`${this.url}/perfil-otros/${id}`);
   }
 
@@ -71,6 +71,16 @@ export class UserService {
   
   public changePassword(id: number, currentPassword: string, newPassword: string): Observable<any> {
     return this.http.put(this.url + "/perfil/cambiar-contrasena", { id_user: id, currentPassword, newPassword });
+  }
+  
+  submitRating(idRated: number, idRater: number, rating: number, comment: string): Observable<Respuesta> {
+    const ratingData = {
+      id_rated: idRated,
+      id_rater: idRater,
+      rating: rating,
+      comment: comment
+    };
+    return this.http.post<Respuesta>(`${this.url}/ratings`, ratingData);
   }
   
 }

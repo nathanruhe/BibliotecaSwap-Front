@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';
 import { Chat } from '../models/chat';
+import { Respuesta } from 'src/app/models/respuesta';
 
 
 @Injectable({
@@ -14,16 +15,6 @@ export class ChatService {
   // private url = "http://localhost:3000";
 
   constructor(private http: HttpClient) { }
-
-  submitRating(idRater: number, idRated: number, rating: number, comment: string): Observable<void> {
-    const ratingData = {
-      id_rater: idRater,
-      id_rated: idRated,
-      rating: rating,
-      comment: comment
-    };
-    return this.http.post<void>(`${this.url}/ratings`, ratingData);
-  }
 
   obtenerChatsUsuario(id_user: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}/obtenerChatsUsuario/${id_user}`);

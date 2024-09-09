@@ -47,4 +47,10 @@ export class LibroComponent implements OnInit {
       this.router.navigate(['/chat', ownerId]);
     }
   }
+
+  addBookToFavorites() {
+    this.book.like = !this.book.like;
+    console.log(`libro "${this.book.title}" pasa: ${this.book.like}`);
+    this.addToFavorites.emit(this.book);
+  }
 }

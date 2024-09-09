@@ -6,11 +6,21 @@
             <p class="nuloP">NO HAY LIBROS EN FAVORITOS</p>
         </ng-container>
 
+        <!--
         <ng-container class="libros" *ngFor="let book of books">
 
             <app-libro class="book" [book]="book" [isFavoritos]="true"></app-libro>
 
         </ng-container>
+        -->
+
+        <div class="cards-container">
+            <ul class="unList">
+              <li *ngFor="let book of filteredBooks; let i = index" class="listItem">
+                <app-libro [book]="book" [isFavoritos]="true"></app-libro>
+              </li>
+            </ul>
+        </div>
 
     </div>
 

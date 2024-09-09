@@ -32,7 +32,7 @@
                 <button class="close-chat" (click)="selectedChat = null">&times;</button>
               </div>
               <div class="messages">
-                <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.emisor === 1, 'received': mensaje.receptor === 1}">
+                <div *ngFor="let mensaje of mensajes"      [ngClass]="{'sent': mensaje.emisor === userId1, 'received': mensaje.receptor === userId1}">
                   <p>{{ mensaje.message }}</p>
                 </div>
               </div>  

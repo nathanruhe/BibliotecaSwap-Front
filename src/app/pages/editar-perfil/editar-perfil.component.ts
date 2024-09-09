@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router } from '@angular/router';
@@ -54,10 +54,7 @@ export class EditarPerfilComponent implements OnInit {
 
     this.preferencesForm = this.fb.group({
       availability: [this.user?.availability, Validators.required],
-    });
-
-    this.genres.forEach(genre => {
-      this.preferencesForm.addControl(genre, this.fb.control(this.user?.genres?.includes(genre) || false));
+      genres: this.fb.array(this.genres.map(genre => this.fb.control(this.user?.genres?.includes(genre) || false)))
     });
 
     this.myForm = this.fb.group({
@@ -69,6 +66,10 @@ export class EditarPerfilComponent implements OnInit {
       ]],
       confirmPassword: ['']
     }, { validator: this.passwordMatchValidator });
+  }
+
+  get genresArray() {
+    return this.preferencesForm.get('genres') as FormArray;
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -92,18 +93,18 @@ export class EditarPerfilComponent implements OnInit {
     }
   }
 
-  onSubmitPreferences(): void {
-    if (this.preferencesForm.valid) {
-      const updatedPreferences = {
-        id_user: this.user.id_user,
-        availability: this.preferencesForm.value.availability,
-        genres: this.genres.filter(genre => this.preferencesForm.get(genre).value)
-      };
-      this.userService.updatePreferences(updatedPreferences).subscribe(() => {
-        this.showToast('Preferencias actualizadas correctamente.');
-      });
-    }
+onSubmitPreferences(): void {
+  if (this.preferencesForm.valid) {
+    const updatedPreferences = {
+      id_user: this.user.id_user,
+      availability: this.preferencesForm.value.availability,
+      genres: this.genres.filter((_, i) => this.genresArray.at(i).value)
+    };
+    this.userService.updatePreferences(updatedPreferences).subscribe(() => {
+      this.showToast('Preferencias actualizadas correctamente.');
+    });
   }
+}
 
   changePassword(): void {
     if (this.myForm.valid) {

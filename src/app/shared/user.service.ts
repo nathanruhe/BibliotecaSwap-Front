@@ -19,16 +19,24 @@ export class UserService {
   public user$ = this.userSubject.asObservable();
   updateUserProfile: any;
   user: Usuario;
+  getCurrentUser: any;
 
   constructor(private http: HttpClient) {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    this._logueado.next(isLoggedIn);
-    
-    const userData = this.getUser(); 
-    if (userData && Object.keys(userData).length > 0) {
-      this.userSubject.next(userData);
+    this.checkAuthStatus();
+  }
+
+  private checkAuthStatus() {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+      this._logueado.next(true);
+      const userData = this.getUser();
+      if (userData && Object.keys(userData).length > 0) {
+        this.userSubject.next(userData);
+      } else {
+        this.logout();
+      }
     } else {
-      console.warn('No se encontró usuario en localStorage');
+      this.logout();
     }
   }
 
@@ -39,10 +47,12 @@ export class UserService {
   public login(user: Usuario): Observable<any> {
     return this.http.post(this.url + "/login", user).pipe(
       tap((response: any) => {
-        this._logueado.next(true);
-        localStorage.setItem('isLoggedIn', 'true');
-        this.userSubject.next(response.dataUser);
-        localStorage.setItem('user', JSON.stringify(response.dataUser));
+        if (!response.error) {
+          this._logueado.next(true);
+          sessionStorage.setItem('isLoggedIn', 'true');
+          this.userSubject.next(response.dataUser);
+          sessionStorage.setItem('user', JSON.stringify(response.dataUser));
+        }
       })
     );
   }
@@ -50,8 +60,8 @@ export class UserService {
   public logout() {
     this._logueado.next(false);
     this.userSubject.next({} as Usuario);
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('user');
   }
 
   public profile(id_user: number): Observable<any> {
@@ -84,14 +94,14 @@ export class UserService {
   }
 
   getUser(): Usuario {
-    const userData = localStorage.getItem('user');
+    const userData = sessionStorage.getItem('user');
     
     if (userData) {
       try {
         return JSON.parse(userData);
       } catch (error) {
-        console.error('Error al parsear el usuario desde localStorage', error);
-        localStorage.removeItem('user'); 
+        console.error('Error al parsear el usuario desde sessionStorage', error);
+        sessionStorage.removeItem('user'); 
         return {} as Usuario; 
       }
     }
@@ -100,7 +110,7 @@ export class UserService {
   }  
 
   setUser(user: Usuario): void {
-    localStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.stringify(user));
     this.userSubject.next(user);
   }
 

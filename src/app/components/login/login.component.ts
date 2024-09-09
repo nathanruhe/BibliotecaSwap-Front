@@ -39,6 +39,8 @@ export class LoginComponent {
       } else {
         console.log(resp);
       }
+    }, (error) => {
+      console.error('error al realizar el login', error);
     });
     this.myForm.reset();
   }

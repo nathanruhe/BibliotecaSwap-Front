@@ -1,3 +1,23 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+.scroll {
+    height: 100%;
+    height: 80vh;
+    background-color: var(--gris-claro);
+    background-size: cover;
+    background-position: center;
+    padding-top: 8vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-snap-align: start;
+  }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -292,4 +312,18 @@
 
             .comentario {
                 margin: 0 20px 0 20px;
-            }        
+            }   
+            
+::-webkit-scrollbar {
+    width: 10px;
+}
+              
+::-webkit-scrollbar-track {
+    background: var(--rosa-claro);
+    border-radius: 5px;
+}
+              
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#6786F5, #9389F0);
+    border-radius: 5px;
+}

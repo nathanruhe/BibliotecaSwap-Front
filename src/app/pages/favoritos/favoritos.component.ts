@@ -12,68 +12,80 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class FavoritosComponent implements OnInit {
 
-  public books: any[] = []; 
-  public filteredBooks: Libro[] = [];
-  public user: Usuario;
+  public books: any[] = [];
+  public filteredBooks: any[] = [];
+  public showFilters: boolean = true;
 
   public userId: number;
   public userProvince: string;
+
+  public status: string = 'Todos';
+  public selectedGenero: string[] = [];
+  public selectedIdioma: string[] = [];
+  public searchTerm: string = '';
+
+  public showGeneroDropdown: boolean = false;
+  public showIdiomaDropdown: boolean = false;
+
   public currentPage: number = 1;
   public itemsPerPage: number = 10;
+  
+  constructor(private bookService: BookService) { }
 
-  //public books: Libro[] = [];
-  //public user: Usuario;
-
-  constructor(public bookService: BookService, public userService: UserService) { 
-
-  }
-
-  ngOnInit(): void {
+  ngOnInit() {
     this.userId = this.getUserIdFromLocalStorage();
     this.userProvince = this.getUserProvinceFromLocalStorage();
 
-    this.user = this.userService.user;
     console.log("El ID del usuario es: ", this.userId);
     console.log("La provincia del usuario es: ", this.userProvince);
-    console.log('Pagina favoritos de ', this.user.name);
-    this.loadFavoriteBooks();
+
+    this.loadBooks();
   }
 
   getUserIdFromLocalStorage(): number {
     return Number(localStorage.getItem('userId'));
   }
+
   getUserProvinceFromLocalStorage(): string {
     return localStorage.getItem('userProvince') || '';
   }
 
-  loadFavoriteBooks(): void {
-    this.bookService.userLikesBooks(this.user.id_user).subscribe((respuesta: Respuesta) => {
-        console.log("Respuesta completa de los libros favoritos:", respuesta);
-        
-        if (!respuesta.error) {
-            this.books = respuesta.dataBook;
-            console.log("Libros favoritos cargados:", this.books);
-  
-            // Inspeccionar todos los datos recibidos en el libro
+  loadBooks(): void {
+    this.bookService.getBooks(this.userProvince).subscribe((response: Respuesta) => {
+        console.log("Datos solicitados:", response);
+
+        if (!response.error) {
+            this.books = response.dataBook;
+            console.log("Todos los libros cargados en pag.Favoritos:", this.books);
+
+            this.books = this.books.filter(book => book.owner !== this.userId);
+            console.log("Libros después de filtrar por owner en Favoritos:", this.books);
+
             this.books.forEach(book => {
-                console.log("Libro completo:", book);  // Imprime el objeto completo
-                console.log(`Propietario: ${book.id_book} `);
-                console.log(`id_like: ${book.id_like}`);
-                console.log(`id_user: ${book.id_user}`);
-                console.log(`owner: ${book.owner}`);  // Verificar si 'owner' está definido
+                console.log(`Libro: ${book.title}, Provincia en Favoritos: ${book.owner_province !== undefined ? book.owner_province : 'No definida'}`);
             });
-  
+
+            this.books = this.books.filter(book => 
+                book.owner_province && 
+                book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
+            );
+            console.log("Libros después de filtrar por provincia en Favoritos:", this.books);
+
+            this.filteredBooks = [];
             this.applyFilters();
+            
         } else {
-            console.error('Error al cargar los libros favoritos:', respuesta.mensaje);
+            console.error('Error al cargar los libros:', response.mensaje);
         }
     });
-}
-
-  applyFilters(): void {
-    this.filteredBooks = this.books.slice(0, this.itemsPerPage * this.currentPage);
   }
-
+  applyFilters(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    const newBooks = this.books.slice(startIndex, endIndex);
+    this.filteredBooks = [...this.filteredBooks, ...newBooks];
+    console.log("Libros visibles (filtrados):", this.filteredBooks);
+  }
   loadMore(): void {
     this.currentPage++;
     this.applyFilters();

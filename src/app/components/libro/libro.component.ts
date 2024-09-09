@@ -43,6 +43,11 @@ export class LibroComponent implements OnInit {
     
   }
 
+  addBookToFavorites() {
+    this.book.like = !this.book.like; 
+    this.addToFavorites.emit(this.book);
+  }
+
   navigateToChat() {
     if (this.book.status) {
       this.bookService.setSelectedBook(this.book);

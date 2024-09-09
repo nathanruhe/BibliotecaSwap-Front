@@ -16,9 +16,9 @@
 
         <div class="cards-container">
             <ul class="unList">
-              <li *ngFor="let book of filteredBooks; let i = index" class="listItem">
-                <app-libro [book]="book" [isFavoritos]="true"></app-libro>
-              </li>
+                <li *ngFor="let book of filteredBooks" class="listItem">
+                    <app-libro [book]="book" [isFavoritos]="true"></app-libro>
+                </li>
             </ul>
         </div>
 

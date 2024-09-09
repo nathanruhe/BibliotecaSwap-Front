@@ -30,6 +30,7 @@ export class BibliotecaComponent {
     this.userId = this.getUserIdFromLocalStorage();
     console.log("ID de usuario en biblioteca es: ", this.userId);
     this.loadUsersAndBooks();
+    this.updateExpiredBooks();
   }
 
   getUserIdFromLocalStorage(): number {
@@ -48,6 +49,17 @@ export class BibliotecaComponent {
       }
     }, (error) => {
       console.error('Error en la solicitud HTTP:', error);
+    });
+  }
+
+  updateExpiredBooks(): void {
+    this.bookService.updateExpiredBooks().subscribe((response: any) => {
+      if (!response.error) {
+        console.log(response.message);
+        this.loadUsersAndBooks();
+      } else {
+        console.error(response.message);
+      }
     });
   }
 

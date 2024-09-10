@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class BookService {
 
-  private url = "https://biblioteca-swap-back.vercel.app";
-  // private url = "http://localhost:3000";
+  //private url = "https://biblioteca-swap-back.vercel.app";
+   private url = "http://localhost:3000";
 
   public user: Usuario;
   public libro: Libro | null = null;
@@ -77,6 +77,14 @@ export class BookService {
   }
   public getBookById(id: number): Observable<Libro> {
     return this.http.get<Libro>(`${this.url}/book/${id}`);
+  }
+
+  public iLikesBooks(id_user): Observable<any> {
+    return this.http.get(this.url + "/favoritos/" + id_user);
+  };
+
+  public getAllLikes(): Observable<any> {
+    return this.http.get(this.url + "/favoritos");
   }
 
 }

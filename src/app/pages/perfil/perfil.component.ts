@@ -34,15 +34,19 @@ export class PerfilComponent implements OnInit {
   };
 
   constructor(private router: Router, public userService: UserService, public bookService: BookService) {
-    this.user = this.userService.user;
-    console.log('usuario perfil:', this.user)
+    // this.user = this.userService.user;
+    // console.log('usuario perfil:', this.user)
   }
 
   ngOnInit(): void {
 
+    const userStorage = localStorage.getItem('user');
+    this.user = JSON.parse(userStorage);
+
     this.userService.profile(this.user.id_user).subscribe((response: any) => {
       this.rating = response.dataUser.rating;
       this.misResenas = response.dataUser.misResenas;
+      [this.genreIcons] = response.dataUser.user.genres;
     })
 
   }

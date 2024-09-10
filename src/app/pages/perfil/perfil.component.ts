@@ -43,7 +43,7 @@ export class PerfilComponent implements OnInit {
     this.userService.profile(this.user.id_user).subscribe((response: any) => {
       this.rating = response.dataUser.rating;
       this.misResenas = response.dataUser.misResenas;
-      this.genreIcons = response.dataUser.user.genres;
+      // this.genreIcons = response.dataUser.user.genres;
     })
 
   }

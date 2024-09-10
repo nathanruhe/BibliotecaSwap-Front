@@ -1,18 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
 .scroll {
-    height: 80vh;
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: var(--gris-claro);
-    background-size: cover;
-    background-position: center;
-    padding-top: 8vh;
-    padding-bottom: 5vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-snap-align: start;
+    padding-top: 30px; /* Aumentar el padding-top */
+    padding-bottom: 100px; /* Aumentar el padding-bottom para que el botón tenga más espacio */
+    overflow-y: auto;
+    position: relative;
 }
 
 .favoritos {
@@ -20,18 +22,42 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-bottom: 5vh;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.unList {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 20px;
+    padding: 0;
+}
+
+.listItem {
+    list-style: none;
+    padding: 0;
 }
 
 .book {
-    margin-left: 2.5vh;
-    margin-right: 2.5vh;
-    margin-bottom: 3.5vh;
+    margin: 0 2.5vh 3.5vh;
     box-shadow: 5px 5px 20px var(--morado), inset -5px 0 10px -5px var(--morado);
+    transition: transform 0.3s ease;
 }
 
-.libros {
-    list-style-type: none;
+.book:hover {
+    transform: scale(1.05);
 }
 
 .nulo {
@@ -48,23 +74,25 @@
     font-size: 2rem;
     font-family: var(--titulo-fuente);
     font-weight: 100;
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
     margin: 1rem;
 }
 
 .icon {
     width: 70%;
     object-fit: contain;
-  }
+}
 
-  .cont-charge {
+.cont-charge {
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
-  }
-  
-  .charge-btn {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.charge-btn {
     border-radius: 50%;
     background-color: white;
     border: none;
@@ -76,18 +104,32 @@
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #FAE9FF;
-  }
-
-::-webkit-scrollbar {
-    width: 10px;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--rosa-claro);
-    border-radius: 5px;
+.charge-btn:hover {
+    transform: scale(1.1);
+    background-color: #f4d2ff;
 }
 
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(#6786F5, #9389F0);
-    border-radius: 5px;
+.charge-btn .icon {
+    width: 80%;
+    object-fit: contain;
+}
+
+.list {
+    width: 100vw;
+}
+
+.unList {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.listItem {
+    list-style: none;
 }

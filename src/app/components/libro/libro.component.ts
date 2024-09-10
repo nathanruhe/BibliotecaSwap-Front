@@ -31,12 +31,21 @@ export class LibroComponent implements OnInit {
   }
 
   navigateToPerfilOtros() {
-    //this.router.navigateByUrl("/perfil-otros");
-    const ownerId = this.book.owner;
-    this.router.navigate(['/perfil-otros', ownerId]);
-    //se ha modificado tambien app-routing.module.ts
-    // { path: 'perfil-otros/:ownerId', component: PerfilOtrosComponent },
-    //antes -> { path: 'perfil-otros', component: PerfilOtrosComponent }
+    //const ownerId = this.book.owner;
+    //this.router.navigate(['/perfil-otros', ownerId]);
+
+    console.log('Navegando al perfil de ownerId:', this.book.owner);
+    if (this.book && this.book.owner) {
+      this.router.navigate(['/perfil-otros', this.book.owner]);
+    } else {
+      console.error('Propietario del libro no encontrado.');
+    }
+    
+  }
+
+  addBookToFavorites() {
+    this.book.like = !this.book.like; 
+    this.addToFavorites.emit(this.book);
   }
 
   navigateToChat() {
@@ -48,9 +57,5 @@ export class LibroComponent implements OnInit {
     }
   }
 
-  addBookToFavorites() {
-    this.book.like = !this.book.like;
-    console.log(`libro "${this.book.title}" pasa: ${this.book.like}`);
-    this.addToFavorites.emit(this.book);
-  }
+  
 }

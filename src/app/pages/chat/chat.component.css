@@ -8,7 +8,6 @@ html, body {
     flex-direction: column;
     overflow: hidden;
     height: 80vh; 
-
 }
 
 .container-fluid {
@@ -84,21 +83,20 @@ html, body {
     margin: 0;
 }
 
-.chat-item {
+.chat-list li {
     display: flex;
     align-items: center;
     padding: 10px;
     cursor: pointer;
     border-bottom: 1px solid #ddd;
     transition: background-color 0.3s;
-    cursor: pointer;
 }
 
-.chat-item:hover {
+.chat-list li:hover {
     background-color: #e0e4fc;
 }
 
-.chat-item .user-icon {
+.chat-list .user-icon {
     margin-right: 10px;
     height: 40px;
     width: 40px;
@@ -106,11 +104,11 @@ html, body {
     border: 2px solid #888;
 }
 
-.chat-item .user-name {
+.chat-list .user-name {
     flex-grow: 1;
 }
 
-.chat-item .message-count {
+.chat-list .message-count {
     background-color: #6786F5;
     color: white;
     padding: 5px;
@@ -174,26 +172,17 @@ html, body {
     flex-direction: column;
 }
 
-.message {
-    max-width: 75%;
-    padding: 10px;
-    border-radius: 18px;
-    word-wrap: break-word;
-    margin-bottom: 10px;
-}
-
-.received {
-    background-color: #f1f1f1;
-    align-self: flex-start;
+.messages .sent {
+    background-color: #cce5ff;
+    align-self: flex-end;
     padding: 10px;
     border-radius: 10px;
     margin: 5px;
 }
 
-
-.sent {
-    background-color: #cce5ff;
-    align-self: flex-end;
+.messages .received {
+    background-color: #f1f1f1;
+    align-self: flex-start;
     padding: 10px;
     border-radius: 10px;
     margin: 5px;
@@ -242,16 +231,16 @@ html, body {
     width: 100%;
 }
 
-    .noLibro {
-        background-color: #e6e0ff;
-        border-radius: 15px;
-        height: 280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-    }
+.noLibro {
+    background-color: #e6e0ff;
+    border-radius: 15px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
 
 .book-cover {
     background-color: #c3c0f2;

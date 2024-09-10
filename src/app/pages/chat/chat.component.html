@@ -12,34 +12,34 @@
         <div class="main">
           <div class="left">
             <aside class="sidebar">
-              <ul class="chat-list">
-                <li *ngFor="let chat of chats" (click)="seleccionarChat(chat)">
-                  <img [src]="chat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon">
-                  <span class="user-name">{{ chat.user_name }}</span>
-                  <span class="message-count" *ngIf="chat.noLeido_user1 > 0">{{ chat.noLeido_user1 }}</span>
-                </li>
-              </ul>
+                <ul class="chat-list">
+                    <li *ngFor="let chat of chatList" (click)="selectUser(chat.user.id_user)">
+                        <img [src]="chat.user.photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon">
+                        <span class="user-name">{{ chat.user.name }}</span>
+                        <span class="message-count" *ngIf="chat.lastMessage.noLeido_user1 > 0">{{ chat.lastMessage.noLeido_user1 }}</span>
+                    </li>                
+                </ul>
             </aside>
-          </div>
-      
-          <div class="middle" *ngIf="selectedChat">
+        </div>
+        
+        <div class="middle" *ngIf="selectedUser">
             <main class="chat-area">
-              <div class="chat-header">
-                <div class="user-info">
-                  <img [src]="selectedChat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon large">
-                  <h2>{{ selectedChat.user_name }}</h2>
+                <div class="chat-header">
+                    <div class="user-info">
+                        <img [src]="selectedUser.photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon large">
+                        <h2>{{ selectedUser.name }}</h2>
+                    </div>
+                    <button class="close-chat" (click)="selectedUser = null">&times;</button>
                 </div>
-                <button class="close-chat" (click)="selectedChat = null">&times;</button>
-              </div>
-              <div class="messages">
-                <div *ngFor="let mensaje of mensajes"      [ngClass]="{'sent': mensaje.emisor === userId1, 'received': mensaje.receptor === userId1}">
-                  <p>{{ mensaje.message }}</p>
-                </div>
-              </div>  
-                    <div class="message-input">
-                        <input [(ngModel)]="nuevoMensaje" placeholder="Escribe un mensaje...">
-                        <button (click)="enviarMensaje()">Enviar</button>
-                    </div>                      
+                <div class="messages">
+                    <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.emisor === userOwner.id_user, 'received': mensaje.receptor === selectedUser.id_user}">
+                        <p>{{ mensaje.message }}</p>
+                    </div>
+                </div>  
+                <div class="message-input">
+                    <input [(ngModel)]="nuevoMensaje" placeholder="Escribe un mensaje...">
+                    <button (click)="enviarMensaje()">Enviar</button>
+                </div>          
                 </main>
             </div>
             <div class="right">
@@ -47,12 +47,12 @@
                     <div class="book-info" >
                         <div class="book-card" *ngIf="libro; else noLibro">
                             <div class="book-cover">
-                                <img src="{{ libro.photo }}" alt="Book Cover" class="book-image">
+                                <img [src]="libro.photo" alt="Book Cover" class="book-image">
                             </div>
                             <div class="book-details">
-                                <h3>{{ libro.title}}</h3>
+                                <h3>{{ libro.title }}</h3>
                                 <p><strong>Autor:</strong> {{ libro.author }}</p>
-                                <p><strong>Género:</strong> {{ libro.genre}} </p>
+                                <p><strong>Género:</strong> {{ libro.genre }}</p>
                             </div>
                         </div>
                         <div class="alert-section" *ngIf="libro; else noLibro2">
@@ -71,8 +71,8 @@
                         <div class="rating-section">
                             <h5>Valora tu experiencia con {{ userOther.name }} {{ userOther.last_name }}</h5>
                             <div class="stars">
-                                <span *ngFor="let star of [1, 2, 3, 4, 5]" 
-                                      (click)="ratingForm.patchValue({ rating: star })" 
+                                <span *ngFor="let star of stars" 
+                                      (click)="rate(star)" 
                                       [ngClass]="{ 'filled': star <= ratingForm.value.rating }">&#9733;</span>
                             </div>
                             <textarea formControlName="comment" rows="4" placeholder="Escribe tu reseña aquí..."></textarea>

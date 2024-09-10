@@ -70,39 +70,36 @@ export class ChatComponent implements OnInit {
   }
 
   loadChatUsers() {
-    this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
+    this.chatService.getChatUsers(this.userOwner.id_user).subscribe(usersWithLastMessages => {
         this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
         if (this.chatList.length > 0) {
           this.selectUser(this.chatList[0].user.id_user); 
         }
     });
   }
-
+  
   selectUser(userId: number) {
     this.userId2 = userId;
     this.loadChatUser();
     this.obtenerMensajes();
   }
-
   loadChatUser() {
-    this.chatService.getChatUser(this.userId2).subscribe(user => {
-      this.selectedUser = user;
-    });
+    throw new Error('Method not implemented.');
   }
-
+  
   obtenerMensajes() {
-    this.chatService.obtenerMensajes(this.userId1, this.userId2).subscribe(data => {
+    this.chatService.obtenerMensajes(this.userOwner.id_user, this.userId2).subscribe(data => {
       this.mensajes = data;
     }, error => {
       console.error('Error al obtener los mensajes', error);
     });
   }
-
+  
   enviarMensaje() {
     if (this.nuevoMensaje.trim()) {
       const newMessage = new Chat(
         0,
-        this.userId1,
+        this.userOwner.id_user,
         this.userId2,
         this.nuevoMensaje,
         new Date() 
@@ -120,6 +117,7 @@ export class ChatComponent implements OnInit {
       });
     }
   }
+  
 
 
 

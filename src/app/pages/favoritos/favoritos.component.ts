@@ -24,8 +24,8 @@ export class FavoritosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user = this.userService.user;
-    console.log('usuario perfil:', this.user)
+    const userStorage = localStorage.getItem('user');
+    this.user = JSON.parse(userStorage);
     
     this.bookService.userLikesBooks(this.user.id_user).subscribe((respuesta: Respuesta) => {
 

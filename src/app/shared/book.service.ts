@@ -3,14 +3,15 @@ import { Libro } from '../models/libro';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
 import { Observable } from 'rxjs';
+// import { Respuesta } from '../models/respuesta';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  // private url = "https://biblioteca-swap-back.vercel.app";
-  private url = "http://localhost:3000";
+  private url = "https://biblioteca-swap-back.vercel.app";
+  // private url = "http://localhost:3000";
 
   public user: Usuario;
   public libro: Libro | null = null;
@@ -81,5 +82,9 @@ export class BookService {
 
   public updateBookStatus(idBook: number, updateData: any): Observable<any> {
     return this.http.put<any>(`${this.url}/${idBook}/status`, updateData);
+  }
+
+  updateExpiredBooks(): Observable<any> {
+    return this.http.post<any>(`${this.url}/updateExpiredBooks`, {});
   }
 }

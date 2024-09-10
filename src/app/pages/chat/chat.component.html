@@ -32,7 +32,7 @@
                 <button class="close-chat" (click)="selectedChat = null">&times;</button>
               </div>
               <div class="messages">
-                <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.emisor === 1, 'received': mensaje.receptor === 1}">
+                <div *ngFor="let mensaje of mensajes"      [ngClass]="{'sent': mensaje.emisor === userId1, 'received': mensaje.receptor === userId1}">
                   <p>{{ mensaje.message }}</p>
                 </div>
               </div>  
@@ -43,8 +43,8 @@
                 </main>
             </div>
             <div class="right">
-                <aside class="info-section">
-                    <div class="book-info">
+                <aside class="info-section" >
+                    <div class="book-info" >
                         <div class="book-card" *ngIf="libro; else noLibro">
                             <div class="book-cover">
                                 <img src="{{ libro.photo }}" alt="Book Cover" class="book-image">
@@ -55,33 +55,48 @@
                                 <p><strong>Género:</strong> {{ libro.genre}} </p>
                             </div>
                         </div>
-                        <div class="alert-section">
+                        <div class="alert-section" *ngIf="libro; else noLibro2">
                             <h5>Atención</h5>
                             <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
-                            <p>Estado: <button class="status" (click)="cambiarEstadoLibro()">Aceptar </button></p>
+                            <p class="status2">Estado: 
+                              <button class="btn btn-primary status" (click)="cambiarEstadoLibro()" [disabled]="estadoLibroAceptado" [ngClass]="{ 'accepted': estadoLibroAceptado }">
+                                {{ estadoLibroAceptado ? 'Aceptado' : 'Aceptar' }}
+                              </button>
+                            </p>
                         </div>
 
                     </div>
 
-                    <ng-template #noLibro>
-                        <div class="noLibro">
-                            <p>No hay libro seleccionado</p>
-                        </div>
-                    </ng-template>
-
-                    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()">
+                    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()" *ngIf="userOther">
                         <div class="rating-section">
-                            <h5>Valora tu experiencia con {{ nombreUsuario }}</h5>
+                            <h5>Valora tu experiencia con {{ userOther.name }} {{ userOther.last_name }}</h5>
                             <div class="stars">
                                 <span *ngFor="let star of [1, 2, 3, 4, 5]" 
                                       (click)="ratingForm.patchValue({ rating: star })" 
                                       [ngClass]="{ 'filled': star <= ratingForm.value.rating }">&#9733;</span>
                             </div>
                             <textarea formControlName="comment" rows="4" placeholder="Escribe tu reseña aquí..."></textarea>
-                            <button class="btn btn-primary" type="submit">Enviar</button>
+                            <button class="btn btn-primary enviar" type="submit" [disabled]="estadoResenaEnviada" [ngClass]="{ 'enviada': estadoResenaEnviada }">{{ estadoResenaEnviada ? 'Enviada' : 'Enviar' }}</button>
                         </div>
                     </form>                                          
                 </aside>
+
+                <ng-template #noLibro>
+                  <div class="noLibro">
+                      <p>No hay libro seleccionado</p>
+                  </div>
+                </ng-template>
+
+                <ng-template #noLibro2>
+                  <div class="alert-section">
+                    <h5>Atención</h5>
+                    <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
+                    <p class="status2">Estado: 
+                      <button class="btn btn-primary status3">Aceptar</button>
+                    </p>
+                  </div>
+                </ng-template>
+
             </div>
         </div>
     </div>

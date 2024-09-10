@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from 'src/app/shared/book.service';
 import { ChatService } from 'src/app/shared/chat.service';
+import { UserService } from 'src/app/shared/user.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Chat } from 'src/app/models/chat';
+import { Respuesta } from 'src/app/models/respuesta';
+import { ActivatedRoute } from '@angular/router';
+import { Libro } from 'src/app/models/libro';
 
 @Component({
   selector: 'app-chat',
@@ -11,32 +15,57 @@ import { Chat } from 'src/app/models/chat';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  public libro: any;
-  public nombreUsuario: string = '';
+  public libro: Libro;
   public userId1: number = 1; 
   public userId2: number; 
+
+  public userOwner: Usuario; // Usuario propietario
+  public userOther: Usuario; // Usuario solicitante
+  public idRated!: number;  // ID del usuario que recibe la valoración
+  public idRater!: number;  // ID del usuario que hace la valoración
+  public rating!: number;   // Valoración en estrellas
+  public comment!: string;  // Comentario
+  public stars: number[] = [1, 2, 3, 4, 5]; // Para valorar las estrellas
+  public estadoLibroAceptado: boolean = false; // boton para aceptar el intercambio
+  public estadoResenaEnviada: boolean = false // boton formulario
+  public ratingForm: FormGroup; // formulario valoracion
 
   mensajes: Chat[] = [];
   chatList: { user: Usuario, lastMessage: Chat }[] = [];
   nuevoMensaje: string = '';
   selectedUser: Usuario;
-  ratingForm: FormGroup;
-
+  
   chats: any[] = [];
   selectedChat: any; 
 
-  constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder) {}
+  constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    // cargo la info del libro
     this.libro = this.bookService.getSelectedBook();
-    this.loadChatUsers();
-    this.initForm();
-  }
 
-  initForm() {
+    // para importar el id del userOther
+    this.route.params.subscribe(params => {
+      const ownerId = +params['ownerId'];
+      this.loadUserOther(ownerId);
+    });
+
+    // Verifica si el usuario logueado está disponible
+    this.userService.user$.subscribe((user: Usuario) => {
+      if (user && user.id_user) {
+        this.userOwner = user;
+        this.idRater = this.userOwner.id_user;
+        console.log("Usuario logueado:", this.userOwner);
+      } else {
+        console.error("Error: Usuario no está definido o no tiene id_user.");
+      }
+    });
+    
+
+    // formulario
     this.ratingForm = this.fb.group({
-      rating: [0, Validators.required],
-      comment: ['', Validators.required]
+      rating: [this.rating, Validators.required],
+      comment: [this.comment]
     });
   }
 
@@ -55,26 +84,10 @@ export class ChatComponent implements OnInit {
     this.obtenerMensajes();
   }
 
- loadChatUser() {
+  loadChatUser() {
     this.chatService.getChatUser(this.userId2).subscribe(user => {
-        this.selectedUser = user;
-        this.nombreUsuario = `${user.name} ${user.last_name}`;
+      this.selectedUser = user;
     });
-  }
-
-  submitRating() {
-    if (this.ratingForm.valid) {
-      const { rating, comment } = this.ratingForm.value;
-      this.chatService.submitRating(this.userId1, this.userId2, rating, comment).subscribe(() => {
-        this.ratingForm.reset();
-      });
-    }
-  }
-
-  cambiarEstadoLibro() {
-    if (this.libro) {
-      this.libro.status = false;
-    }
   }
 
   obtenerMensajes() {
@@ -104,6 +117,71 @@ export class ChatComponent implements OnInit {
         }
       }, error => {
         console.error('Error en la solicitud', error);
+      });
+    }
+  }
+
+
+
+  
+  // carga de datos
+  loadUserOther(ownerId: number) {
+    this.userService.getUserById(ownerId).subscribe((resp: Respuesta) => {
+      if (!resp.error) {
+        // cargo la info del propietario del libro
+        this.userOther = resp.dataUser;
+        // añado el id del usuario para poderle poner la reseña
+        this.idRated = resp.dataUser.id_user;
+        console.log("datos del propietario del libro:", this.userOther);
+        console.log("datos del libro solicitado:", this.libro);
+      }
+    });
+  }
+
+  // calcular estrellas
+  rate(stars: number) {
+    this.rating = stars;
+    this.ratingForm.patchValue({ rating: stars });
+  }
+
+  // realizar valoracion
+  submitRating() {
+    if (this.ratingForm.valid) {
+      this.estadoResenaEnviada = true;
+      const { rating, comment } = this.ratingForm.value;
+      this.userService.submitRating(this.idRated, this.idRater, rating, comment).subscribe((resp: Respuesta) => {
+        if (!resp.error) {
+          this.ratingForm.reset();
+          console.log(resp);
+        };
+      });
+    };
+  };
+
+  // cambio estado libro, añado fechas prestamo, añado persona prestada
+  cambiarEstadoLibro() {
+    if (this.libro) {
+      const currentDate = new Date();
+      const endDate = new Date();
+      endDate.setDate(currentDate.getDate() + 10);
+  
+      const updateData = {
+        status: 'Prestado',
+        start_date: currentDate.toISOString().split('T')[0],
+        end_date: endDate.toISOString().split('T')[0],
+        borrower: this.userOther.id_user
+      };
+  
+      this.bookService.updateBookStatus(this.libro.id_book, updateData).subscribe((resp: Respuesta) => {
+        if (!resp.error) {
+          this.libro = resp.book;
+          this.estadoLibroAceptado = true;
+          console.log(resp);
+        } else {
+          console.error('Error al actualizar el estado del libro');
+        }
+      }, error => {
+        console.error('Error en la solicitud de actualización del estado del libro:', error);
       });
     }
   }

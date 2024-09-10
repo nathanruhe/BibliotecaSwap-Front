@@ -4,10 +4,9 @@
 
         <div class="top-buttons">
 
-            <button class="del-btn layer" (click)="onHidden(user.id_user, user.hidden)">
-                <img class="iconCard"
-                    [src]="user.hidden ? 'assets/icons/eye-remove.png' : 'assets/icons/hiddenTrue.png'">
-            </button>
+            <button class="del-btn layer" *ngIf="user" (click)="onHidden(user.id_user, user.hidden)">
+                <img class="iconCard" [src]="user.hidden ? 'assets/icons/eye-remove.png' : 'assets/icons/hiddenTrue.png'">
+              </button>
 
             <button class="edit-btn" (click)="onEdit()" [routerLink]="['/editar-perfil']">
                 <img class="iconCard" src="../../../assets/icons/edit.png" alt="">
@@ -17,9 +16,9 @@
 
         <div class="cardUser">
 
-            <img class="imgUser" src="{{user.photo}}" alt="" />
+            <img class="imgUser" *ngIf="user.photo" [src]="user.photo" alt="" />
 
-            <h3> {{ user.name }} {{ user.last_name }} </h3>
+            <h3 *ngIf="user.name && user.last_name">{{ user.name }} {{ user.last_name }}</h3>
 
         </div>
 

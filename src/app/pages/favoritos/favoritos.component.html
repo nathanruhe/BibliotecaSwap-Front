@@ -17,7 +17,7 @@
         <div class="cards-container">
             <ul class="unList">
                 <li *ngFor="let book of filteredBooks" class="listItem">
-                    <app-libro [book]="book" [isFavoritos]="true"></app-libro>
+                    <app-libro [book]="book" [isFavoritos]="true" (addToFavorites)="handleRemoveFromFavorites($event)"></app-libro>
                 </li>
             </ul>
         </div>

@@ -95,4 +95,16 @@ export class BookService {
     return this.http.get(this.url + "/favoritos");
   }
 
+  public addLike(id_book: number, id_user: number): Observable<any> {
+    const body = { id_book, id_user };
+    return this.http.post(`${this.url}/addLike`, body);
+  }
+  
+  public removeLike(id_book: number, id_user: number): Observable<any> {
+    const options = {
+      body: { id_book, id_user }
+    };
+    return this.http.delete(`${this.url}/removeLike`, options);
+  }
+
 }

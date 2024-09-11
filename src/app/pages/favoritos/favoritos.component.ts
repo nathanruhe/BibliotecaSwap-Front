@@ -12,7 +12,7 @@ export class FavoritosComponent implements OnInit {
   public books: any[] = [];
   public filteredBooks: any[] = [];
   public likes: any[] = [];
-  public likedBookIds: number[] = []; // Para almacenar los IDs de libros que el usuario ha "likeado"
+  public likedBookIds: number[] = [];
   public userId: number;
   public userProvince: string;
 
@@ -28,7 +28,7 @@ export class FavoritosComponent implements OnInit {
     console.log("El ID del usuario es: ", this.userId);
     console.log("La provincia del usuario es: ", this.userProvince);
 
-    this.loadLikes();  // Primero carga los likes
+    this.loadLikes(); 
   }
 
   getUserIdFromLocalStorage(): number {
@@ -39,7 +39,6 @@ export class FavoritosComponent implements OnInit {
     return localStorage.getItem('userProvince') || '';
   }
 
-  // Función para obtener los likes del usuario y almacenar los ids"
   loadLikes(): void {
     this.bookService.getAllLikes().subscribe(
       (response) => {
@@ -50,7 +49,7 @@ export class FavoritosComponent implements OnInit {
           const userLikes = this.likes.filter(like => like.id_user === this.userId);
           this.likedBookIds = userLikes.map(like => like.id_book); 
 
-          console.log("IDs de libros que el usuario ha marcado con 'like':", this.likedBookIds);
+          console.log("id de libros que el usuario ha marcado con 'like':", this.likedBookIds);
 
           this.loadBooks();
         } else {
@@ -100,5 +99,10 @@ export class FavoritosComponent implements OnInit {
   loadMore(): void {
     this.currentPage++;
     this.applyFilters();
+  }
+
+  handleRemoveFromFavorites(book: any) {
+    this.books = this.books.filter(b => b.id_book !== book.id_book); 
+    this.filteredBooks = this.filteredBooks.filter(b => b.id_book !== book.id_book);
   }
 }

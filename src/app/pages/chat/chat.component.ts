@@ -41,8 +41,18 @@ export class ChatComponent implements OnInit {
   constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // cargo la info del libro
-    this.libro = this.bookService.getSelectedBook();
+    const storedLibro = sessionStorage.getItem('selectedLibro');
+    if (storedLibro) {
+      // Muestro la info del libro si existe
+      this.libro = JSON.parse(storedLibro);
+    } else {
+      this.libro = this.bookService.getSelectedBook();
+      if (this.libro) {
+        sessionStorage.setItem('selectedLibro', JSON.stringify(this.libro));
+      } else {
+        console.error('No se encontró el libro en el servicio.');
+      }
+    }
 
     // para importar el id del userOther
     this.route.params.subscribe(params => {
@@ -175,6 +185,7 @@ export class ChatComponent implements OnInit {
       this.bookService.updateBookStatus(this.libro.id_book, updateData).subscribe((resp: Respuesta) => {
         if (!resp.error) {
           this.libro = resp.book;
+          sessionStorage.removeItem('selectedLibro');
           this.estadoLibroAceptado = true;
           console.log(resp);
         } else {

@@ -21,6 +21,8 @@ export class BookService {
 
   setSelectedBook(book: Libro) {
     this.libro = book;
+    // añado la info del libro al sesionStorage para que se guarde al recargar la web
+    sessionStorage.setItem('selectedLibro', JSON.stringify(book));
   }
 
   getSelectedBook(): Libro | null {
@@ -29,6 +31,8 @@ export class BookService {
 
   clearSelectedBook() {
     this.libro = null;
+    // limpio la info del libro del sessionStorage
+    sessionStorage.removeItem('selectedLibro');
   }
 
   public landing () {

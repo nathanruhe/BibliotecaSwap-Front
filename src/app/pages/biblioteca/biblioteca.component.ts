@@ -22,6 +22,9 @@ export class BibliotecaComponent {
 
   public filterType: string = 'Todos';
   public userId: number;
+
+  public likes: any[] = [];
+  public likedBookIds: number[] = [];
   
   
   constructor(private bookService: BookService) { }
@@ -29,12 +32,36 @@ export class BibliotecaComponent {
   ngOnInit() {
     this.userId = this.getUserIdFromLocalStorage();
     console.log("ID de usuario en biblioteca es: ", this.userId);
-    this.loadUsersAndBooks();
+    this.loadLikes();
+    //this.loadUsersAndBooks();
     this.updateExpiredBooks();
   }
 
   getUserIdFromLocalStorage(): number {
     return Number(localStorage.getItem('userId'));
+  }
+
+  loadLikes(): void {
+    this.bookService.getAllLikes().subscribe(
+      (response) => {
+        if (!response.error) {
+          const likes = response.dataLikes;
+          console.log("Array completo de Tabla Likes:", likes);
+
+          const userLikes = likes.filter(like => like.id_user === this.userId);
+          this.likedBookIds = userLikes.map(like => like.id_book); 
+
+          console.log("id de libros con like: ", this.likedBookIds);
+
+          this.loadUsersAndBooks();
+        } else {
+          console.error('Error al cargar los likes:', response.message);
+        }
+      },
+      (error) => {
+        console.error("Error al obtener los likes:", error);
+      }
+    );
   }
 
   loadUsersAndBooks(): void {
@@ -43,6 +70,13 @@ export class BibliotecaComponent {
       if (!response.error) {
         this.books = response.dataBooksUsers;
         console.log('Libros cargados en biblioteca (después de la asignación):', this.books);
+        
+        this.books.forEach(book => {
+          book.like = this.likedBookIds.includes(book.id_book);
+        });
+        console.log("Libros conl like: ", this.books);
+
+        
         this.applyFilters(); 
       } else {
         console.error('Error al cargar los libros y usuarios:', response.message);

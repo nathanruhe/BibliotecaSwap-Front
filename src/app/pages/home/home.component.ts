@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit{
   public books: any[] = [];
   public filteredBooks: any[] = [];
   public showFilters: boolean = true;
-
+  public likes: any[] = [];
+  public likedBookIds: number[] = [];
   public userId: number;
   public userProvince: string;
 
@@ -47,7 +48,8 @@ export class HomeComponent implements OnInit{
     console.log("El ID del usuario es: ", this.userId);
     console.log("La provincia del usuario es: ", this.userProvince);
 
-    this.loadBooks();
+    this.loadLikes();
+    //this.loadBooks();
   }
 
   getUserIdFromLocalStorage(): number {
@@ -58,33 +60,58 @@ export class HomeComponent implements OnInit{
     return localStorage.getItem('userProvince') || '';
   }
 
+  loadLikes(): void {
+    this.bookService.getAllLikes().subscribe(
+      (response) => {
+        if (!response.error) {
+          const likes = response.dataLikes;
+          console.log("Array completo de Tabla Likes:", likes);
+
+          const userLikes = likes.filter(like => like.id_user === this.userId);
+          this.likedBookIds = userLikes.map(like => like.id_book); 
+
+          console.log("id de libros con like: ", this.likedBookIds);
+
+          this.loadBooks();
+        } else {
+          console.error('Error al cargar los likes:', response.message);
+        }
+      },
+      (error) => {
+        console.error("Error al obtener los likes:", error);
+      }
+    );
+  }
+
   loadBooks(): void {
     this.bookService.getBooks(this.userProvince).subscribe((response: Respuesta) => {
-        console.log("Respuesta completa del servidor:", response);
-
-        if (!response.error) {
-            this.books = response.dataBook;
-            console.log("Todos los libros cargados:", this.books);
-
-            this.books = this.books.filter(book => book.owner !== this.userId);
-            console.log("Libros después de filtrar por owner:", this.books);
-
-            this.books.forEach(book => {
-                console.log(`Libro: ${book.title}, Provincia: ${book.owner_province !== undefined ? book.owner_province : 'No definida'}`);
-            });
-
-            this.books = this.books.filter(book => 
-                book.owner_province && 
-                book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
-            );
-            console.log("Libros después de filtrar por provincia:", this.books);
-
-            this.applyFilters();
-        } else {
-            console.error('Error al cargar los libros:', response.mensaje);
-        }
+      console.log("Respuesta completa del servidor:", response);
+  
+      if (!response.error) {
+        this.books = response.dataBook;
+        console.log("Todos los libros cargados:", this.books);
+  
+        this.books.forEach(book => {
+          book.like = this.likedBookIds.includes(book.id_book);
+        });
+  
+        console.log("Libros después de aplicar el estado de 'like':", this.books);
+        
+        this.books = this.books.filter(book => book.owner !== this.userId);
+        console.log("Libros después de filtrar por owner:", this.books);
+  
+        this.books = this.books.filter(book => 
+          book.owner_province && 
+          book.owner_province.trim().toLowerCase() === this.userProvince.trim().toLowerCase()
+        );
+        console.log("Libros después de filtrar por provincia:", this.books);
+  
+        this.applyFilters();
+      } else {
+        console.error('Error al cargar los libros:', response.mensaje);
+      }
     });
-}
+  }
 
   applyFilters(): void {
     const filtered = this.books.filter(book => {

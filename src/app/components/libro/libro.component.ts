@@ -27,7 +27,6 @@ export class LibroComponent implements OnInit {
 
   ngOnInit() {
     this.userId = Number(localStorage.getItem('userId'));
-    console.log('Usuarios disponibles:', this.usuarios);
   }
 
   navigateToPerfilOtros() {
@@ -44,9 +43,30 @@ export class LibroComponent implements OnInit {
   }
 
   addBookToFavorites() {
+    if (this.book.like) {
+      
+      this.bookService.removeLike(this.book.id_book, this.userId).subscribe(response => {
+        console.log("Libro eliminado de favoritos", response);
+        this.book.like = false; 
+        this.addToFavorites.emit(this.book); 
+      }, error => {
+        console.error("Error al eliminar libro de favoritos", error);
+      });
+    } else {
+      this.bookService.addLike(this.book.id_book, this.userId).subscribe(response => {
+        console.log("Libro agregado a favoritos", response);
+        this.book.like = true; 
+        this.addToFavorites.emit(this.book);
+      }, error => {
+        console.error("Error al agregar libro a favoritos", error);
+      });
+    }
+  }
+
+  /*addBookToFavorites() {
     this.book.like = !this.book.like; 
     this.addToFavorites.emit(this.book);
-  }
+  }*/
 
   navigateToChat() {
     if (this.book.status) {
@@ -56,6 +76,4 @@ export class LibroComponent implements OnInit {
       this.router.navigate(['/chat', ownerId]);
     }
   }
-
-  
 }

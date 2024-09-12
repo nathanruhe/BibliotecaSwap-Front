@@ -111,4 +111,8 @@ export class BookService {
     return this.http.delete(`${this.url}/removeLike`, options);
   }
 
+  public getBooksLikes(): Observable<any> {
+    return this.http.get(`${this.url}/books-likes`);
+  }
+
 }

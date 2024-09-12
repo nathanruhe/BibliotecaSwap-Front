@@ -68,14 +68,12 @@ export class FavoritosComponent implements OnInit {
   
       if (!response.error) {
         this.books = response.dataBook;
-        console.log("Todos los libros cargados en Favoritos:", this.books);
+        //console.log("Todos los libros cargados en Favoritos:", this.books);
   
-        
         this.books.forEach(book => {
           book.like = this.likedBookIds.includes(book.id_book); 
         });
   
-        
         this.books = this.books.filter(book => this.likedBookIds.includes(book.id_book));
         console.log("Libros que coinciden con los 'likes' del usuario:", this.books);
   

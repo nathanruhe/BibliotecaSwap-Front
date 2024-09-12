@@ -6,7 +6,7 @@ body {
 }
 
 .scroll {
-    height: 100%;
+    overflow-x: hidden;
     height: 80vh;
     background-color: var(--gris-claro);
     background-size: cover;

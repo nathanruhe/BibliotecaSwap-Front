@@ -13,35 +13,47 @@
           <div class="left">
             <aside class="sidebar">
               <ul class="chat-list">
-                <li *ngFor="let chat of chats" (click)="seleccionarChat(chat)">
-                  <img [src]="chat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon">
-                  <span class="user-name">{{ chat.user_name }}</span>
-                  <span class="message-count" *ngIf="chat.noLeido_user1 > 0">{{ chat.noLeido_user1 }}</span>
+                <li class="chat-item" *ngFor="let chat of chats" (click)="seleccionarChat(chat)">
+                  <div class="user-card">
+                    <div class="user-avatar">
+                      <img [src]="chat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon">
+                    </div>
+                    <div class="user-details">
+                      <span class="user-name">{{ userOther.name }} {{ userOther.last_name }}</span>
+                      <span class="message-count" *ngIf="chat.noLeido_user1 > 0">{{ chat.noLeido_user1 }}</span>
+                    </div>
+                  </div>
                 </li>
               </ul>
             </aside>
           </div>
-      
-          <div class="middle" *ngIf="selectedChat">
+          <div class="middle">
             <main class="chat-area">
               <div class="chat-header">
                 <div class="user-info">
-                  <img [src]="selectedChat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon large">
-                  <h2>{{ selectedChat.user_name }}</h2>
+                  <div class="user-avatar">
+                    <img [src]="selectedChat?.userOther_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon large">
+                  </div>
+                  <div class="user-details">
+                    <h2>{{ userOther.name }} {{ userOther.last_name }}</h2>
+                  </div>
                 </div>
                 <button class="close-chat" (click)="selectedChat = null">&times;</button>
               </div>
+              
               <div class="messages">
-                <div *ngFor="let mensaje of mensajes"      [ngClass]="{'sent': mensaje.emisor === userId1, 'received': mensaje.receptor === userId1}">
+                <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.emisor === userId1, 'received': mensaje.receptor === userId1}">
                   <p>{{ mensaje.message }}</p>
                 </div>
-              </div>  
-                    <div class="message-input">
-                        <input [(ngModel)]="nuevoMensaje" placeholder="Escribe un mensaje...">
-                        <button (click)="enviarMensaje()">Enviar</button>
-                    </div>                      
-                </main>
-            </div>
+              </div>
+          
+              <div class="message-input">
+                <input [(ngModel)]="nuevoMensaje" placeholder="Escribe un mensaje...">
+                <button (click)="enviarMensaje()">Enviar</button>
+              </div>
+            </main>
+          </div>
+          
             <div class="right">
                 <aside class="info-section" >
                     <div class="book-info" >

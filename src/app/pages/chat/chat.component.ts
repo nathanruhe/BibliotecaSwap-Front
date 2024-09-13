@@ -16,8 +16,8 @@ import { Libro } from 'src/app/models/libro';
 })
 export class ChatComponent implements OnInit {
   public libro: Libro;
-  public userId1: number = 1; 
-  public userId2: number; 
+  public id_user1: number = 1; 
+  public id_user2: number; 
 
   public userOwner: Usuario; // Usuario propietario
   public userOther: Usuario; // Usuario solicitante
@@ -79,29 +79,32 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  
   loadChatUsers() {
-    this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
-        this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
-        if (this.chatList.length > 0) {
-          this.selectUser(this.chatList[0].user.id_user); 
-        }
+    this.chatService.getChatUsers(this.id_user1).subscribe(usersWithLastMessages => {
+      this.chatList = usersWithLastMessages.sort(
+        (a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime()
+      );
+      if (this.chatList.length > 0) {
+        this.selectUser(this.chatList[0].user.id_user);
+      }
     });
   }
 
   selectUser(userId: number) {
-    this.userId2 = userId;
+    this.id_user2 = userId;
     this.loadChatUser();
     this.obtenerMensajes();
   }
 
   loadChatUser() {
-    this.chatService.getChatUser(this.userId2).subscribe(user => {
+    this.chatService.getChatUser(this.id_user2).subscribe(user => {
       this.selectedUser = user;
     });
   }
 
   obtenerMensajes() {
-    this.chatService.obtenerMensajes(this.userId1, this.userId2).subscribe(data => {
+    this.chatService.obtenerMensajes(this.id_user1, this.id_user2).subscribe(data => {
       this.mensajes = data;
     }, error => {
       console.error('Error al obtener los mensajes', error);
@@ -112,16 +115,16 @@ export class ChatComponent implements OnInit {
     if (this.nuevoMensaje.trim()) {
       const newMessage = new Chat(
         0,
-        this.userId1,
-        this.userId2,
+        this.id_user1,
+        this.id_user2,
         this.nuevoMensaje,
-        new Date() 
+        new Date()
       );
-      
+
       this.chatService.enviarMensaje(newMessage).subscribe(response => {
         if (!response.error) {
-          this.obtenerMensajes();  
-          this.nuevoMensaje = ''; 
+          this.obtenerMensajes();
+          this.nuevoMensaje = '';
         } else {
           console.error('Error al enviar el mensaje', response.message);
         }
@@ -130,9 +133,6 @@ export class ChatComponent implements OnInit {
       });
     }
   }
-
-
-
   
   // carga de datos
   loadUserOther(ownerId: number) {

@@ -41,7 +41,7 @@ export class SobreComponent {
       {
         id_user: 2,
         name: "Jesús",
-        last_name: "Gamusino",
+        last_name: "Muñoz",
         email: "Verde@gmail.com",
         photo: "../../../assets/icons/user2.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
@@ -64,7 +64,7 @@ export class SobreComponent {
       {
         id_user: 3,
         name: "Queen",
-        last_name: "Queen",
+        last_name: "Odigie",
         email: "Morado@gmail.com",
         photo: "../../../assets/icons/user2.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +

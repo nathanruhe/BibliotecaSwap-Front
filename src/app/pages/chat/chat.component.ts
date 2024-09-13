@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit {
   public ratingForm: FormGroup; // formulario valoracion
 
   mensajes: Chat[] = [];
-  chatList: { user: Usuario, lastMessage: Chat }[] = [];
+  chatList: any[] = [];
   nuevoMensaje: string = '';
   selectedUser: Usuario;
   
@@ -71,6 +71,7 @@ export class ChatComponent implements OnInit {
       }
     });
     
+    this.loadChatUsers();
 
     // formulario
     this.ratingForm = this.fb.group({
@@ -81,23 +82,19 @@ export class ChatComponent implements OnInit {
 
   loadChatUsers() {
     this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
-        this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
+        this.chatList = usersWithLastMessages;
+        // this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
+        console.log(this.chatList);
         if (this.chatList.length > 0) {
-          this.selectUser(this.chatList[0].user.id_user); 
+          this.selectUser(this.chatList[0].id_user1)
         }
     });
   }
 
   selectUser(userId: number) {
     this.userId2 = userId;
-    this.loadChatUser();
+    console.log(this.userId2)
     this.obtenerMensajes();
-  }
-
-  loadChatUser() {
-    this.chatService.getChatUser(this.userId2).subscribe(user => {
-      this.selectedUser = user;
-    });
   }
 
   obtenerMensajes() {
@@ -130,9 +127,6 @@ export class ChatComponent implements OnInit {
       });
     }
   }
-
-
-
   
   // carga de datos
   loadUserOther(ownerId: number) {

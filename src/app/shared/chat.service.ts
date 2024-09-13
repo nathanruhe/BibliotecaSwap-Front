@@ -28,12 +28,8 @@ export class ChatService {
     return this.http.post<any>(`${this.url}/enviarMensaje`, newMessage);
   }  
 
-  getChatUsers(userId: number): Observable<{ user: Usuario, lastMessage: Chat }[]> {
-    return this.http.get<{ user: Usuario, lastMessage: Chat }[]>(`${this.url}/chat/obtenerChatsUsuario/${userId}`);
+  getChatUsers(userId: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/chat/obtenerChatsUsuario/${userId}`);
   }  
-
-  getChatUser(userId: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.url}/getChatUser/${userId}`);
-  }
 
 }

@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
   public libro: Libro;
   public id_user1: number = 1; 
   public id_user2: number; 
+  public user_photo: string
 
   public userOwner: Usuario; // Usuario propietario
   public userOther: Usuario; // Usuario solicitante

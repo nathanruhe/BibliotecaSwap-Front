@@ -1,116 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Chat</title>
-    <link rel="stylesheet" href="chat.component.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="main">
-          <div class="left">
-            <aside class="sidebar">
-              <ul class="chat-list">
-                <li class="chat-item" *ngFor="let chat of chats" (click)="seleccionarChat(chat)">
-                  <div class="user-card">
-                    <div class="user-avatar">
-                      <img [src]="chat.user_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon">
-                    </div>
-                    <div class="user-details">
-                      <span class="user-name">{{ userOther.name }} {{ userOther.last_name }}</span>
-                      <span class="message-count" *ngIf="chat.noLeido_user1 > 0">{{ chat.noLeido_user1 }}</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </aside>
+<main>
+  <section>
+    <div class="chat">
+      <div class="lista">
+        <h3>Chat Usuarios</h3>
+        <div class="chatList" *ngFor="let user of chats" (click)="selectChat(user.id_chat)">
+          <div>
+            <img src="{{ user?.user2_photo }}" alt="">
+            <p>
+              {{ user?.user2_name }} {{ user?.user2_last_name }}
+            </p>
           </div>
-          <div class="middle">
-            <main class="chat-area">
-              <div class="chat-header">
-                <div class="user-info">
-                  <div class="user-avatar">
-                    <img [src]="selectedChat?.userOther_photo || 'assets/icons/user.png'" alt="Usuario" class="user-icon large">
-                  </div>
-                  <div class="user-details">
-                    <h2>{{ userOther.name }} {{ userOther.last_name }}</h2>
-                  </div>
-                </div>
-                <button class="close-chat" (click)="selectedChat = null">&times;</button>
-              </div>
-              
-              <div class="messages">
-                <div *ngFor="let mensaje of mensajes" [ngClass]="{'sent': mensaje.emisor === userId1, 'received': mensaje.receptor === userId1}">
-                  <p>{{ mensaje.message }}</p>
-                </div>
-              </div>
-          
-              <div class="message-input">
-                <input [(ngModel)]="nuevoMensaje" placeholder="Escribe un mensaje...">
-                <button (click)="enviarMensaje()">Enviar</button>
-              </div>
-            </main>
-          </div>
-          
-            <div class="right">
-                <aside class="info-section" >
-                    <div class="book-info" >
-                        <div class="book-card" *ngIf="libro; else noLibro">
-                            <div class="book-cover">
-                                <img src="{{ libro.photo }}" alt="Book Cover" class="book-image">
-                            </div>
-                            <div class="book-details">
-                                <h3>{{ libro.title}}</h3>
-                                <p><strong>Autor:</strong> {{ libro.author }}</p>
-                                <p><strong>Género:</strong> {{ libro.genre}} </p>
-                            </div>
-                        </div>
-                        <div class="alert-section" *ngIf="libro; else noLibro2">
-                            <h5>Atención</h5>
-                            <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
-                            <p class="status2">Estado: 
-                              <button class="btn btn-primary status" (click)="cambiarEstadoLibro()" [disabled]="estadoLibroAceptado" [ngClass]="{ 'accepted': estadoLibroAceptado }">
-                                {{ estadoLibroAceptado ? 'Aceptado' : 'Aceptar' }}
-                              </button>
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()" *ngIf="userOther">
-                        <div class="rating-section">
-                            <h5>Valora tu experiencia con {{ userOther.name }} {{ userOther.last_name }}</h5>
-                            <div class="stars">
-                                <span *ngFor="let star of [1, 2, 3, 4, 5]" 
-                                      (click)="ratingForm.patchValue({ rating: star })" 
-                                      [ngClass]="{ 'filled': star <= ratingForm.value.rating }">&#9733;</span>
-                            </div>
-                            <textarea formControlName="comment" rows="4" placeholder="Escribe tu reseña aquí..."></textarea>
-                            <button class="btn btn-primary enviar" type="submit" [disabled]="estadoResenaEnviada" [ngClass]="{ 'enviada': estadoResenaEnviada }">{{ estadoResenaEnviada ? 'Enviada' : 'Enviar' }}</button>
-                        </div>
-                    </form>                                          
-                </aside>
-
-                <ng-template #noLibro>
-                  <div class="noLibro">
-                      <p>No hay libro seleccionado</p>
-                  </div>
-                </ng-template>
-
-                <ng-template #noLibro2>
-                  <div class="alert-section">
-                    <h5>Atención</h5>
-                    <p>Dispones de un plazo máximo para la devolución de 10 días.</p>
-                    <p class="status2">Estado: 
-                      <button class="btn btn-primary status3">Aceptar</button>
-                    </p>
-                  </div>
-                </ng-template>
-
-            </div>
+          <p>{{ calculateNoLeidosForChat(user.id_chat) }}</p>
         </div>
+      </div>
+
+      <div class="mensaje" *ngIf="userOther; else noUserOtherPhoto">
+        <div class="cabecera">
+          <div class="nombre" (click)="goToUserProfile(userOther.id_user)">
+            <div class="icono">
+              <img src="{{ userOther?.photo }}" alt="">
+            </div>
+            <p>{{ userOther?.name }} {{ userOther?.last_name }}</p>
+          </div>
+          <button class="delete" (click)="deleteChat()">x</button>
+        </div>
+
+        <div class="mensajes" #messageContainer>
+          <div>
+            <div *ngFor="let message of messages" class="message" [ngClass]="{'sent': message.id_sender === userOwner.id_user, 'received': message.id_sender !== userOwner.id_user}">
+              <div class="message-content">
+                <p>{{ message.message }} <span class="timestamp">{{ message.timestamp | date:'shortTime' }}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="enviar">
+          <input [(ngModel)]="newMessage" type="text" placeholder="escribe un mensaje.." (keydown.enter)="sendMessage()">
+          <button class="btn-enviar" (click)="sendMessage()">enviar</button>
+        </div>
+      </div>
     </div>
-</body>
-</html>
+    
+    <div class="info">
+      <div class="info2" *ngIf="userOther; else noUserOther2">
+        <div class="libro" *ngIf="libro; else noLibro">
+          <div class="book-cover">
+              <img src="{{ libro?.photo }}" alt="Book Cover" class="book-image">
+          </div>
+          <div class="book-details">
+              <h3>{{ libro?.title}}</h3>
+              <p><strong>Autor:</strong> {{ libro?.author }}</p>
+              <p><strong>Género:</strong> {{ libro?.genre}} </p>
+          </div>
+        </div>
+
+        <div class="datos">
+          <h3>ATENCION</h3>
+          <p>Disponen de un plazo máximo para la devolución de 10 días.</p>
+          <p class="status2" *ngIf="libro; else noLibro2">Estado: 
+            <button class="btn-principal aceptar status" (click)="cambiarEstadoLibro()" [disabled]="estadoLibroAceptado" [ngClass]="{ 'accepted': estadoLibroAceptado }">
+              {{ estadoLibroAceptado ? 'Aceptado' : 'Aceptar' }}
+            </button>
+          </p>
+        </div>
+      </div>
+
+      <form [formGroup]="ratingForm" (ngSubmit)="submitRating()" *ngIf="userOther; else noUserOther">
+        <div class="resenas">
+          <p class="valora">Valora tu experiencia con {{ userOther?.name }} {{ userOther?.last_name }}</p>
+          <div class="comentario">
+            <p>Comentario:</p>
+            <div class="stars">
+              <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
+                <span class="estrella" [class.filled]="b < rating" (click)="rate(b + 1)">&#9733;</span>
+              </ng-container>
+            </div>
+          </div>
+          <textarea formControlName="comment" placeholder="Escribe tu comentario..."></textarea>
+          <button class="btn-principal enviar2" type="submit" [disabled]="estadoResenaEnviada" [ngClass]="{ 'enviada': estadoResenaEnviada }">{{ estadoResenaEnviada ? 'Enviada' : 'Enviar' }}</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+  <ng-template #noUserOtherPhoto>
+    <div class="mensaje">
+      <div class="cabecera">
+        <div class="nombre emptyChat">
+          <p>Seleccione un chat para empezar</p>
+        </div>
+      </div>
+
+      <div class="mensajes" #messageContainer>
+        <div>
+          <div *ngFor="let message of messages" class="message" [ngClass]="{'sent': message.id_sender === userOwner.id_user, 'received': message.id_sender !== userOwner.id_user}">
+            <div class="message-content">
+              <p>{{ message.message }} <span class="timestamp">{{ message.timestamp | date:'shortTime' }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="enviar">
+        <input [(ngModel)]="newMessage" type="text">
+        <button class="btn-enviar status4">enviar</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #noLibro>
+    <div class="noLibro" >
+        <p>No hay libro seleccionado</p>
+    </div>
+  </ng-template>
+
+  <ng-template #noLibro2>
+    <p class="status2">Estado: 
+      <button class="btn-principal aceptar status3">Aceptar</button>
+    </p>
+  </ng-template>
+
+  <ng-template #noUserOther>
+    <form [formGroup]="ratingForm" (ngSubmit)="submitRating()">
+      <div class="resenas">
+        <p class="valora">No hay nadie a quien valorar</p>
+        <div class="comentario">
+          <p>Comentario:</p>
+          <div class="stars">
+            <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
+              <span class="estrella" [class.filled]="b < rating" (click)="rate(b + 1)">&#9733;</span>
+            </ng-container>
+          </div>
+        </div>
+        <textarea formControlName="comment" placeholder="Escribe tu comentario..."></textarea>
+        <button class="btn-principal aceptar status3">Enviar</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #noUserOther2>
+    <div class="info2">
+      <div class="noLibro" >
+        <p>No hay libro seleccionado</p>
+      </div>
+  
+      <div class="datos">
+        <h3>ATENCION</h3>
+        <p>Disponen de un plazo máximo para la devolución de 10 días.</p>
+        <p class="status2">Estado: 
+          <button class="btn-principal aceptar status3">Aceptar</button>
+        </p>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
+
+</main>

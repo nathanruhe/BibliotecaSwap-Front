@@ -57,7 +57,7 @@ export class PerfilOtrosComponent {
         if (!response.error) {
           const allBooks = response.dataBook;
           this.userBooks = allBooks.filter(book => book.liked_by_user === this.userId);
-          this.likedBookIds = this.userBooks.map(book => book.id_book); // Solo los IDs de libros
+          this.likedBookIds = this.userBooks.map(book => book.id_book);
           console.log("Libros que tienen like:", this.likedBookIds);
         } else {
           console.error('Error al cargar los libros y likes:', response.message);

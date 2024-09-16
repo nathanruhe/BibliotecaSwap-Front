@@ -51,8 +51,7 @@
 
     <div class="cards-container" *ngIf="filterType === 'Libros en prestamo'">
       <div *ngFor="let book of filteredBooks" class="book-user-container">
-        <app-libro [book]="book" [filterType]="filterType" [isBiblioteca]="true"
-          (delete)="onDeleteBook($event)"></app-libro>
+        <app-libro [book]="book" [filterType]="filterType" [isBiblioteca]="true" [isLiked]="likedBookIds.includes(book.id_book)" (delete)="onDeleteBook($event)"> </app-libro>
         <div class="user-info">
           <p class="user-name">{{ book.owner_name }} <br> {{ book.owner_last_name }}</p><br>
           <p class="user-date">Fecha inicio: {{ book.start_date | date: 'dd.MM.yy' }}</p><br>

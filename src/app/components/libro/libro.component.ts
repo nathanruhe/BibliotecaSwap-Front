@@ -20,6 +20,7 @@ export class LibroComponent implements OnInit {
   @Input() isBiblioteca: boolean = false;
   @Input() isOtroUser: boolean = false;
   @Input() filterType: string; 
+  @Input() isLiked: boolean = false;
 
   userId: number;
 
@@ -27,6 +28,7 @@ export class LibroComponent implements OnInit {
 
   ngOnInit() {
     this.userId = Number(localStorage.getItem('userId'));
+    this.book.like = this.isLiked;
   }
 
   navigateToPerfilOtros() {
@@ -44,7 +46,6 @@ export class LibroComponent implements OnInit {
 
   addBookToFavorites() {
     if (this.book.like) {
-      
       this.bookService.removeLike(this.book.id_book, this.userId).subscribe(response => {
         console.log("Libro eliminado de favoritos", response);
         this.book.like = false; 

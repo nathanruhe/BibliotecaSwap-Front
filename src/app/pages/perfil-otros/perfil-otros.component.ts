@@ -55,14 +55,10 @@ export class PerfilOtrosComponent {
     this.bookService.getBooksLikes().subscribe(
       (response) => {
         if (!response.error) {
-          const allBooks = response.dataBook; 
-          //const allLikes = response.dataLikes; 
-          //console.log("Datos de libros:", allBooks);
-          //console.log("Datos de likes:", allLikes);
-    
+          const allBooks = response.dataBook;
           this.userBooks = allBooks.filter(book => book.liked_by_user === this.userId);
-          console.log("Libros logueado con like:", this.userBooks);
-      
+          this.likedBookIds = this.userBooks.map(book => book.id_book); // Solo los IDs de libros
+          console.log("Libros que tienen like:", this.likedBookIds);
         } else {
           console.error('Error al cargar los libros y likes:', response.message);
         }

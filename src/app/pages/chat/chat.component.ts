@@ -1,13 +1,14 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookService } from 'src/app/shared/book.service';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ChatService } from 'src/app/shared/chat.service';
-import { UserService } from 'src/app/shared/user.service';
 import { Usuario } from 'src/app/models/usuario';
-import { Chat } from 'src/app/models/chat';
-import { Respuesta } from 'src/app/models/respuesta';
-import { ActivatedRoute } from '@angular/router';
+import { Message } from 'src/app/models/message';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BookService } from 'src/app/shared/book.service';
 import { Libro } from 'src/app/models/libro';
+import { UserService } from 'src/app/shared/user.service';
+import { Respuesta } from 'src/app/models/respuesta';
+import { Chat } from 'src/app/models/chat';
 
 @Component({
   selector: 'app-chat',
@@ -15,10 +16,18 @@ import { Libro } from 'src/app/models/libro';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  public libro: Libro;
-  public userId1: number = 1; 
-  public userId2: number; 
+  @ViewChild('messageContainer') messageContainer!: ElementRef; // Referencia al contenedor de mensajes
 
+  users: Usuario[] = [];
+  messages: Message[] = [];
+  selectedChatId: number | null = null;
+  newMessage: string = ''; // Inicializa newMessage
+
+  chats: Chat[] = []; // Almacena los chats del usuario
+  mensajes: { [chatId: number]: Message[] } = {}; // Almacena los mensajes por cada chat
+  totalNoLeidos: number = 0;
+
+  public libro: Libro;
   public userOwner: Usuario; // Usuario propietario
   public userOther: Usuario; // Usuario solicitante
   public idRated!: number;  // ID del usuario que recibe la valoración
@@ -30,17 +39,18 @@ export class ChatComponent implements OnInit {
   public estadoResenaEnviada: boolean = false // boton formulario
   public ratingForm: FormGroup; // formulario valoracion
 
-  mensajes: Chat[] = [];
+  // mensajes: Chat[] = [];
   chatList: any[] = [];
   nuevoMensaje: string = '';
   selectedUser: Usuario;
   
-  chats: any[] = [];
+  // chats: any[] = [];
   selectedChat: any; 
+  constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute, private cdr: ChangeDetectorRef, private router: Router ) {}
 
-  constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute) {}
+  ngOnInit(): void {
+    // this.loadUsers();
 
-  ngOnInit() {
     const storedLibro = sessionStorage.getItem('selectedLibro');
     if (storedLibro) {
       // Muestro la info del libro si existe
@@ -62,16 +72,30 @@ export class ChatComponent implements OnInit {
 
     // Verifica si el usuario logueado está disponible
     this.userService.user$.subscribe((user: Usuario) => {
-      if (user && user.id_user) {
+      if (user) {
         this.userOwner = user;
-        this.idRater = this.userOwner.id_user;
         console.log("Usuario logueado:", this.userOwner);
+        
+        if (user.chats) {
+          this.chats = user.chats;
+          console.log("Chats del usuario logueado:", this.chats);
+          this.calculateTotalNoLeidos(); // Llamar después de asignar los chats
+        } else {
+          console.log("El usuario no tiene chats.");
+        }
+    
+        if (user.mensajes) {
+          this.mensajes = user.mensajes;
+          console.log("Mensajes del usuario logueado:", this.mensajes);
+        } else {
+          console.log("El usuario no tiene mensajes.");
+        }
       } else {
         console.error("Error: Usuario no está definido o no tiene id_user.");
       }
     });
     
-    this.loadChatUsers();
+    // this.loadChatUsers();
 
     // formulario
     this.ratingForm = this.fb.group({
@@ -80,54 +104,280 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  loadChatUsers() {
-    this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
-        this.chatList = usersWithLastMessages;
-        // this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
-        console.log(this.chatList);
-        if (this.chatList.length > 0) {
-          this.selectUser(this.chatList[0].id_user1)
-        }
-    });
-  }
+  // loadChatUsers() {
+  //   this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
+  //       this.chatList = usersWithLastMessages;
+  //       // this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
+  //       console.log(this.chatList);
+  //       if (this.chatList.length > 0) {
+  //         this.selectUser(this.chatList[0].id_user1)
+  //       }
+  //   });
+  // }
 
-  selectUser(userId: number) {
-    this.userId2 = userId;
-    console.log(this.userId2)
-    this.obtenerMensajes();
-  }
+  // selectUser(userId: number) {
+  //   this.userId2 = userId;
+  //   console.log(this.userId2)
+  //   this.obtenerMensajes();
+  // }
 
-  obtenerMensajes() {
-    this.chatService.obtenerMensajes(this.userId1, this.userId2).subscribe(data => {
-      this.mensajes = data;
-    }, error => {
-      console.error('Error al obtener los mensajes', error);
-    });
-  }
+  // obtenerMensajes() {
+  //   this.chatService.obtenerMensajes(this.userId1, this.userId2).subscribe(data => {
+  //     this.mensajes = data;
+  //   }, error => {
+  //     console.error('Error al obtener los mensajes', error);
+  //   });
+  // }
 
-  enviarMensaje() {
-    if (this.nuevoMensaje.trim()) {
-      const newMessage = new Chat(
-        0,
-        this.userId1,
-        this.userId2,
-        this.nuevoMensaje,
-        new Date() 
-      );
+  // enviarMensaje() {
+  //   if (this.nuevoMensaje.trim()) {
+  //     const newMessage = new Chat(
+  //       0,
+  //       this.userId1,
+  //       this.userId2,
+  //       this.nuevoMensaje,
+  //       new Date() 
+  //     );
       
-      this.chatService.enviarMensaje(newMessage).subscribe(response => {
-        if (!response.error) {
-          this.obtenerMensajes();  
-          this.nuevoMensaje = ''; 
-        } else {
-          console.error('Error al enviar el mensaje', response.message);
-        }
-      }, error => {
-        console.error('Error en la solicitud', error);
-      });
+  //     this.chatService.enviarMensaje(newMessage).subscribe(response => {
+  //       if (!response.error) {
+  //         this.obtenerMensajes();  
+  //         this.nuevoMensaje = ''; 
+  //       } else {
+  //         console.error('Error al enviar el mensaje', response.message);
+  //       }
+  //     }, error => {
+  //       console.error('Error en la solicitud', error);
+  //     });
+  //   }
+  // }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom(); // Llama a la función después de que la vista esté actualizada
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error('Error al hacer scroll: ', err);
+    }
+  }
+
+  selectChat(chatId: number): void {
+    this.selectedChatId = chatId;
+
+    this.userService.user$.subscribe((user: Usuario) => {
+      if (user.chats) {
+        this.chats = user.chats;
+        console.log("Chats del usuario logueado:", this.chats);
+      } else {
+        console.log("El usuario no tiene chats.");
+      }
+    });
+
+    if (this.selectedChatId !== null) {
+      this.chatService.getMessages(this.selectedChatId).subscribe(
+        (response: any) => {
+          if (!response.error) {
+            this.messages = response.messages;
+
+            this.updateUserOther(chatId).then(() => {
+              // Forzar detección de cambios
+              this.cdr.detectChanges();
+
+              // Esperar un poco para asegurar que la vista se actualice
+              if (this.userOther && this.userOther.id_user) {
+                this.router.navigate([`/chat/${this.userOther.id_user}`]);
+              } else {
+                console.error('ID del usuario no está disponible para redirigir.');
+              }
+              // Ajusta el tiempo si es necesario
+
+              this.chatService.resetUnreadMessages(this.selectedChatId, this.userOwner.id_user).subscribe(
+                () => {
+                  this.updateChatInView(this.selectedChatId);
+                },
+                error => console.error('Error al resetear mensajes no leídos', error)
+              );
+            }).catch(err => console.error('Error al actualizar `userOther`: ', err));
+          } else {
+            console.error(response.message);
+          }
+        },
+        error => console.error('Error al cargar mensajes', error)
+      );
     }
   }
   
+
+  updateChatInView(chatId: number): void {
+    const updatedChat = this.chats.find(c => c.id_chat === chatId);
+    if (updatedChat) {
+      if (this.userOwner.id_user === updatedChat.id_user1) {
+        updatedChat.noLeido_user1 = 0;
+      } else if (this.userOwner.id_user === updatedChat.id_user2) {
+        updatedChat.noLeido_user2 = 0;
+      }
+    }
+    // Recalcula el total de mensajes no leídos
+    this.calculateTotalNoLeidos();
+  }
+
+  updateUserOther(chatId: number): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const chat = this.chats.find(c => c.id_chat === chatId);
+      if (chat) {
+        const otherUserId = chat.id_user1 === this.userOwner.id_user ? chat.id_user2 : chat.id_user1;
+
+        this.userService.getUserById(otherUserId).subscribe(
+          (response: Respuesta) => {
+            if (!response.error) {
+              this.userOther = response.dataUser;
+              console.log('Usuario seleccionado:', this.userOther);
+              resolve(); // Resuelve la promesa cuando se ha actualizado `userOther`
+            } else {
+              reject('Error en la respuesta: ' + response.mensaje); // Rechaza la promesa si hay un error
+            }
+          },
+          error => reject('Error al obtener usuario: ' + error) // Rechaza la promesa en caso de error
+        );
+      } else {
+        reject('Chat no encontrado'); // Rechaza la promesa si el chat no se encuentra
+      }
+    });
+  }
+
+  getMensajesPorChat(chatId: number): Message[] {
+    return this.mensajes[chatId] || []; // Devuelve los mensajes para el chatId seleccionado
+  }
+
+  getUserOtherForChat(chatId: number): Usuario | undefined {
+    const chat = this.chats.find(c => c.id_chat === chatId);
+    if (chat) {
+      return chat.id_user1 === this.userOwner.id_user
+        ? this.getUserById(chat.id_user2)
+        : this.getUserById(chat.id_user1);
+    }
+    return undefined;
+  }
+
+  getUserById(userId: number): Usuario | undefined {
+    return this.users.find(user => user.id_user === userId);
+  }
+
+  calculateNoLeidosForChat(chatId: number): number {
+    if (!this.userOwner) return 0;
+
+    const chat = this.chats.find(c => c.id_chat === chatId);
+
+    if (chat) {
+      if (this.userOwner.id_user === chat.id_user1) {
+        return chat.noLeido_user1 || 0;
+      } else if (this.userOwner.id_user === chat.id_user2) {
+        return chat.noLeido_user2 || 0;
+      }
+    }
+    return 0;
+  }
+
+  calculateTotalNoLeidos(): void {
+    this.totalNoLeidos = 0;
+
+    if (this.userOwner && this.chats) {
+      this.chats.forEach(chat => {
+        if (this.userOwner.id_user === chat.id_user1) {
+          this.totalNoLeidos += chat.noLeido_user1 || 0;
+        } else if (this.userOwner.id_user === chat.id_user2) {
+          this.totalNoLeidos += chat.noLeido_user2 || 0;
+        }
+      });
+    }
+    console.log("Total mensajes no leídos:", this.totalNoLeidos);
+  }
+
+  loadUsers(): void {
+    if (this.userOwner) {
+      this.chatService.getUsersWithChats(this.userOwner.id_user).subscribe(
+        (data: Usuario[]) => {
+          this.users = data;
+          console.log("Usuarios cargados:", this.users);
+        },
+        (error) => {
+          console.error('Error al cargar usuarios', error);
+        }
+      );
+    }
+  }
+
+  sendMessage() {
+    if (this.newMessage.trim() && this.selectedChatId !== null && this.userOwner) {
+      const messageData = {
+        id_user1: this.userOwner.id_user,
+        id_user2: this.userOther.id_user,
+        emisor: this.userOwner.id_user,
+        message: this.newMessage
+      };
+
+      this.chatService.sendMessage(messageData).subscribe(
+        (response) => {
+          const newMessage = {
+            id_message: response.id_message,
+            id_chat: this.selectedChatId,
+            id_sender: messageData.emisor,
+            id_receiver: messageData.id_user2,
+            message: this.newMessage,
+            timestamp: new Date()
+          };
+
+          // Agrega el mensaje nuevo a la colección de mensajes del chat seleccionado
+          this.messages.push(newMessage);
+
+          this.newMessage = ''; // Limpia el campo de mensaje
+          // this.calculateTotalNoLeidos(); // Actualiza el total de mensajes no leídos
+        },
+        (error) => {
+          console.error('Error enviando mensaje', error);
+        }
+      );
+    }
+  }
+
+  deleteChat(): void {
+    if (this.userOther && this.userOther.id_user) {
+      this.chatService.deleteChatsByUserId(this.userOther.id_user).subscribe(
+        response => {
+          console.log('Chats eliminados correctamente', response);
+  
+          // Filtra el chat eliminado de la lista local
+          this.chats = this.chats.filter(chat => chat.id_chat !== this.selectedChatId);
+  
+          // Limpia la selección del chat actual
+          this.selectedChatId = null;
+  
+          // Recalcula el total de mensajes no leídos
+          this.calculateTotalNoLeidos();
+  
+          // Fuerza la detección de cambios para actualizar la vista
+          this.cdr.detectChanges();
+  
+          // Redirigir si es necesario
+          this.router.navigate(['/chat']);
+        },
+        error => {
+          console.error('Error al eliminar los chats:', error);
+        }
+      );
+    } else {
+      console.error('No se encontró el ID del usuario');
+    }
+  }
+
+    // Redireccionar al perfil del usuario
+    goToUserProfile(userId: number): void {
+      this.router.navigate([`/perfil-otros/${this.userOther.id_user}`]);
+    }
+
   // carga de datos
   loadUserOther(ownerId: number) {
     this.userService.getUserById(ownerId).subscribe((resp: Respuesta) => {
@@ -156,12 +406,13 @@ export class ChatComponent implements OnInit {
       this.userService.submitRating(this.idRated, this.idRater, rating, comment).subscribe((resp: Respuesta) => {
         if (!resp.error) {
           this.ratingForm.reset();
+          this.rating = 0;
           console.log(resp);
-        };
+        }
       });
-    };
-  };
-
+    }
+  }
+  
   // cambio estado libro, añado fechas prestamo, añado persona prestada
   cambiarEstadoLibro() {
     if (this.libro) {
@@ -181,7 +432,7 @@ export class ChatComponent implements OnInit {
           this.libro = resp.book;
           sessionStorage.removeItem('selectedLibro');
           this.estadoLibroAceptado = true;
-          console.log(resp);
+          console.log('Estado del libro aceptado:', this.estadoLibroAceptado);
         } else {
           console.error('Error al actualizar el estado del libro');
         }

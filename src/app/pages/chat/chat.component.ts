@@ -67,6 +67,7 @@ export class ChatComponent implements OnInit {
     this.userService.user$.subscribe((user: Usuario) => {
       if (user) {
         this.userOwner = user;
+        this.idRater = user.id_user;
         console.log("Usuario logueado:", this.userOwner);
         
         if (user.chats) {

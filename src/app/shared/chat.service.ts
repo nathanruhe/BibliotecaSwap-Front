@@ -32,8 +32,9 @@ export class ChatService {
   // }  
 
   // Obtener los usuarios con los que ha tenido conversaciones
-  getUsersWithChats(userId: number): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.url}/api/users/${userId}/chats`);
+  getUsersWithChats(id_user: number): Observable<Usuario[]> {
+    // return this.http.get<Usuario[]>(`${this.url}/api/users/${userId}/chats`);
+    return this.http.get<any[]>(`${this.url}//${id_user}/chats`);
   }
 
   // Obtener mensajes de un chat específico

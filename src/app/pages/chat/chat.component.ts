@@ -49,7 +49,7 @@ export class ChatComponent implements OnInit {
   constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute, private cdr: ChangeDetectorRef, private router: Router ) {}
 
   ngOnInit(): void {
-    // this.loadUsers();
+    
 
     const storedLibro = sessionStorage.getItem('selectedLibro');
     if (storedLibro) {
@@ -72,8 +72,11 @@ export class ChatComponent implements OnInit {
 
     // Verifica si el usuario logueado está disponible
     this.userService.user$.subscribe((user: Usuario) => {
+      console.log(user);
+      
       if (user) {
         this.userOwner = user;
+        this.loadUsers();
         console.log("Usuario logueado:", this.userOwner);
         
         if (user.chats) {
@@ -297,6 +300,8 @@ export class ChatComponent implements OnInit {
   }
 
   loadUsers(): void {
+    console.log(this.userOwner);
+    
     if (this.userOwner) {
       this.chatService.getUsersWithChats(this.userOwner.id_user).subscribe(
         (data: Usuario[]) => {
@@ -311,7 +316,8 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    if (this.newMessage.trim() && this.selectedChatId !== null && this.userOwner) {
+    
+    if (this.newMessage.trim() && this.userOwner) {
       const messageData = {
         id_user1: this.userOwner.id_user,
         id_user2: this.userOther.id_user,

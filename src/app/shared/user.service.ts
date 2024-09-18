@@ -6,13 +6,12 @@ import { Respuesta } from 'src/app/models/respuesta';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  private url = "https://biblioteca-swap-back.vercel.app";
+  private url = 'https://biblioteca-swap-back.vercel.app';
   // private url = "http://localhost:3000";
-  
+
   private _logueado = new BehaviorSubject<boolean>(false);
   public logueado$ = this._logueado.asObservable();
   private userSubject = new BehaviorSubject<Usuario>(this.getUser());
@@ -41,11 +40,11 @@ export class UserService {
   }
 
   public register(user: Usuario): Observable<any> {
-    return this.http.post(this.url + "/register", user);
+    return this.http.post(this.url + '/register', user);
   }
 
   public login(user: Usuario): Observable<any> {
-    return this.http.post(this.url + "/login", user).pipe(
+    return this.http.post(this.url + '/login', user).pipe(
       tap((response: any) => {
         if (!response.error) {
           this._logueado.next(true);
@@ -65,7 +64,7 @@ export class UserService {
   }
 
   public profile(id_user: number): Observable<any> {
-    return this.http.get(this.url + "/perfil/" + id_user);
+    return this.http.get(this.url + '/perfil/' + id_user);
   }
 
   public getUserById(id: number): Observable<Respuesta> {
@@ -73,41 +72,52 @@ export class UserService {
   }
 
   public userHidden(id_user: number, hidden: boolean): Observable<any> {
-    return this.http.put(this.url + "/perfil/hidden", { id_user, hidden });
+    return this.http.put(this.url + '/perfil/hidden', { id_user, hidden });
   }
 
   public updateProfile(user: Usuario): Observable<any> {
-    return this.http.put(this.url + "/perfil/editar", user).pipe(
+    return this.http.put(this.url + '/perfil/editar', user).pipe(
       tap(() => {
         this.userSubject.next(user);
         localStorage.setItem('user', JSON.stringify(user));
       })
     );
-  }  
+  }
 
   public updatePreferences(preferences: any): Observable<any> {
-    return this.http.put(this.url + "/perfil/preferencias", preferences);
+    return this.http.put(this.url + '/perfil/preferencias', preferences);
   }
-  
-  public changePassword(id: number, currentPassword: string, newPassword: string): Observable<any> {
-    return this.http.put(this.url + "/perfil/cambiar-contrasena", { id_user: id, currentPassword, newPassword });
+
+  public changePassword(
+    id: number,
+    currentPassword: string,
+    newPassword: string
+  ): Observable<any> {
+    return this.http.put(this.url + '/perfil/cambiar-contrasena', {
+      id_user: id,
+      currentPassword,
+      newPassword,
+    });
   }
 
   getUser(): Usuario {
     const userData = sessionStorage.getItem('user');
-    
+
     if (userData) {
       try {
         return JSON.parse(userData);
       } catch (error) {
-        console.error('Error al parsear el usuario desde sessionStorage', error);
-        sessionStorage.removeItem('user'); 
-        return {} as Usuario; 
+        console.error(
+          'Error al parsear el usuario desde sessionStorage',
+          error
+        );
+        sessionStorage.removeItem('user');
+        return {} as Usuario;
       }
     }
-  
-    return {} as Usuario;  
-  }  
+
+    return {} as Usuario;
+  }
 
   setUser(user: Usuario): void {
     sessionStorage.setItem('user', JSON.stringify(user));
@@ -118,14 +128,18 @@ export class UserService {
     return this.userSubject.asObservable();
   }
 
-  submitRating(idRated: number, idRater: number, rating: number, comment: string): Observable<Respuesta> {
+  submitRating(
+    idRated: number,
+    idRater: number,
+    rating: number,
+    comment: string
+  ): Observable<Respuesta> {
     const ratingData = {
       id_rated: idRated,
       id_rater: idRater,
       rating: rating,
-      comment: comment
+      comment: comment,
     };
     return this.http.post<Respuesta>(`${this.url}/ratings`, ratingData);
   }
-  
 }

@@ -3,14 +3,16 @@
     <div class="chat">
       <div class="lista">
         <h3>Chat Usuarios</h3>
-        <div class="chatList" *ngFor="let user of chats" (click)="selectChat(user.id_chat)">
+        <div
+          class="chatList"
+          *ngFor="let user of users"
+          (click)="selectChat(user)"
+        >
           <div>
-            <img src="{{ user?.user2_photo }}" alt="">
-            <p>
-              {{ user?.user2_name }} {{ user?.user2_last_name }}
-            </p>
+            <img src="{{ user?.photo }}" alt="" />
+            <p>{{ user?.name }} {{ user?.last_name }}</p>
           </div>
-          <p>{{ calculateNoLeidosForChat(user.id_chat) }}</p>
+          <p>{{ calculateNoLeidosForChat(user.id_user) }}</p>
         </div>
       </div>
 
@@ -18,7 +20,7 @@
         <div class="cabecera">
           <div class="nombre" (click)="goToUserProfile(userOther.id_user)">
             <div class="icono">
-              <img src="{{ userOther?.photo }}" alt="">
+              <img src="{{ userOther?.photo }}" alt="" />
             </div>
             <p>{{ userOther?.name }} {{ userOther?.last_name }}</p>
           </div>
@@ -27,69 +29,108 @@
 
         <div class="mensajes" #messageContainer>
           <div>
-            <div *ngFor="let message of messages" class="message" [ngClass]="{'sent': message.id_sender === userOwner.id_user, 'received': message.id_sender !== userOwner.id_user}">
+            <div
+              *ngFor="let message of messages"
+              class="message"
+              [ngClass]="{
+                sent: message.id_sender === userOwner.id_user,
+                received: message.id_sender !== userOwner.id_user
+              }"
+            >
               <div class="message-content">
-                <p>{{ message.message }} <span class="timestamp">{{ message.timestamp | date:'shortTime' }}</span></p>
+                <p>
+                  {{ message.message }}
+                  <span class="timestamp">{{
+                    message.timestamp | date : "shortTime"
+                  }}</span>
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div class="enviar">
-          <input [(ngModel)]="newMessage" type="text" placeholder="escribe un mensaje.." (keydown.enter)="sendMessage()">
+          <input
+            [(ngModel)]="newMessage"
+            type="text"
+            placeholder="escribe un mensaje.."
+            (keydown.enter)="sendMessage()"
+          />
           <button class="btn-enviar" (click)="sendMessage()">enviar</button>
         </div>
       </div>
     </div>
-    
+
     <div class="info">
       <div class="info2" *ngIf="userOther; else noUserOther2">
         <div class="libro" *ngIf="libro; else noLibro">
           <div class="book-cover">
-              <img src="{{ libro?.photo }}" alt="Book Cover" class="book-image">
+            <img src="{{ libro?.photo }}" alt="Book Cover" class="book-image" />
           </div>
           <div class="book-details">
-              <h3>{{ libro?.title}}</h3>
-              <p><strong>Autor:</strong> {{ libro?.author }}</p>
-              <p><strong>Género:</strong> {{ libro?.genre}} </p>
+            <h3>{{ libro?.title }}</h3>
+            <p><strong>Autor:</strong> {{ libro?.author }}</p>
+            <p><strong>Género:</strong> {{ libro?.genre }}</p>
           </div>
         </div>
 
         <div class="datos">
           <h3>ATENCION</h3>
           <p>Disponen de un plazo máximo para la devolución de 10 días.</p>
-          <p class="status2" *ngIf="libro; else noLibro2">Estado: 
-            <button class="btn-principal aceptar status" (click)="cambiarEstadoLibro()" [disabled]="estadoLibroAceptado" [ngClass]="{ 'accepted': estadoLibroAceptado }">
-              {{ estadoLibroAceptado ? 'Aceptado' : 'Aceptar' }}
+          <p class="status2" *ngIf="libro; else noLibro2">
+            Estado:
+            <button
+              class="btn-principal aceptar status"
+              (click)="cambiarEstadoLibro()"
+              [disabled]="estadoLibroAceptado"
+              [ngClass]="{ accepted: estadoLibroAceptado }"
+            >
+              {{ estadoLibroAceptado ? "Aceptado" : "Aceptar" }}
             </button>
           </p>
         </div>
       </div>
 
-      <form [formGroup]="ratingForm" (ngSubmit)="submitRating()" *ngIf="userOther; else noUserOther">
+      <form
+        [formGroup]="ratingForm"
+        (ngSubmit)="submitRating()"
+        *ngIf="userOther; else noUserOther"
+      >
         <div class="resenas">
-          <p class="valora">Valora tu experiencia con {{ userOther?.name }} {{ userOther?.last_name }}</p>
+          <p class="valora">
+            Valora tu experiencia con {{ userOther?.name }}
+            {{ userOther?.last_name }}
+          </p>
           <div class="comentario">
             <p>Comentario:</p>
             <div class="stars">
-              <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-                <span class="estrella" [class.filled]="b < rating" (click)="rate(b + 1)">&#9733;</span>
+              <ng-container
+                *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index"
+              >
+                <span
+                  class="estrella"
+                  [class.filled]="b < rating"
+                  (click)="rate(b + 1)"
+                  >&#9733;</span
+                >
               </ng-container>
             </div>
           </div>
-          <textarea formControlName="comment" placeholder="Escribe tu comentario..."></textarea>
-          <button class="btn-principal enviar2" type="submit" [disabled]="estadoResenaEnviada" [ngClass]="{ 'enviada': estadoResenaEnviada }">{{ estadoResenaEnviada ? 'Enviada' : 'Enviar' }}</button>
+          <textarea
+            formControlName="comment"
+            placeholder="Escribe tu comentario..."
+          ></textarea>
+          <button
+            class="btn-principal enviar2"
+            type="submit"
+            [disabled]="estadoResenaEnviada"
+            [ngClass]="{ enviada: estadoResenaEnviada }"
+          >
+            {{ estadoResenaEnviada ? "Enviada" : "Enviar" }}
+          </button>
         </div>
       </form>
     </div>
   </section>
-
-
-
-
-
-
-
-
 
   <ng-template #noUserOtherPhoto>
     <div class="mensaje">
@@ -101,28 +142,41 @@
 
       <div class="mensajes" #messageContainer>
         <div>
-          <div *ngFor="let message of messages" class="message" [ngClass]="{'sent': message.id_sender === userOwner.id_user, 'received': message.id_sender !== userOwner.id_user}">
+          <div
+            *ngFor="let message of messages"
+            class="message"
+            [ngClass]="{
+              sent: message.id_sender === userOwner.id_user,
+              received: message.id_sender !== userOwner.id_user
+            }"
+          >
             <div class="message-content">
-              <p>{{ message.message }} <span class="timestamp">{{ message.timestamp | date:'shortTime' }}</span></p>
+              <p>
+                {{ message.message }}
+                <span class="timestamp">{{
+                  message.timestamp | date : "shortTime"
+                }}</span>
+              </p>
             </div>
           </div>
         </div>
       </div>
       <div class="enviar">
-        <input [(ngModel)]="newMessage" type="text">
+        <input [(ngModel)]="newMessage" type="text" />
         <button class="btn-enviar status4">enviar</button>
       </div>
     </div>
   </ng-template>
 
   <ng-template #noLibro>
-    <div class="noLibro" >
-        <p>No hay libro seleccionado</p>
+    <div class="noLibro">
+      <p>No hay libro seleccionado</p>
     </div>
   </ng-template>
 
   <ng-template #noLibro2>
-    <p class="status2">Estado: 
+    <p class="status2">
+      Estado:
       <button class="btn-principal aceptar status3">Aceptar</button>
     </p>
   </ng-template>
@@ -134,12 +188,22 @@
         <div class="comentario">
           <p>Comentario:</p>
           <div class="stars">
-            <ng-container *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index">
-              <span class="estrella" [class.filled]="b < rating" (click)="rate(b + 1)">&#9733;</span>
+            <ng-container
+              *ngFor="let estrella of [1, 2, 3, 4, 5]; let b = index"
+            >
+              <span
+                class="estrella"
+                [class.filled]="b < rating"
+                (click)="rate(b + 1)"
+                >&#9733;</span
+              >
             </ng-container>
           </div>
         </div>
-        <textarea formControlName="comment" placeholder="Escribe tu comentario..."></textarea>
+        <textarea
+          formControlName="comment"
+          placeholder="Escribe tu comentario..."
+        ></textarea>
         <button class="btn-principal aceptar status3">Enviar</button>
       </div>
     </form>
@@ -147,22 +211,18 @@
 
   <ng-template #noUserOther2>
     <div class="info2">
-      <div class="noLibro" >
+      <div class="noLibro">
         <p>No hay libro seleccionado</p>
       </div>
-  
+
       <div class="datos">
         <h3>ATENCION</h3>
         <p>Disponen de un plazo máximo para la devolución de 10 días.</p>
-        <p class="status2">Estado: 
+        <p class="status2">
+          Estado:
           <button class="btn-principal aceptar status3">Aceptar</button>
         </p>
       </div>
     </div>
   </ng-template>
-
-
-
-
-
 </main>

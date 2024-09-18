@@ -19,6 +19,6 @@ export class Usuario {
     public totalNoLeido?: number,
     public chats?: Chat[],
     public mensajes?: { [chatId: number]: Message[] },
-    public id_chat?: number
-  ) {}
+    public id_chat?: number
+  ) {}
 }

@@ -183,7 +183,7 @@ export class ChatComponent implements OnInit {
                   );
               })
               .catch((err) =>
-                console.error('Error al actualizar `userOther`: ', err)
+                console.error('Error al actualizar userOther: ', err)
               );
           } else {
             console.error(response.message);
@@ -221,7 +221,7 @@ export class ChatComponent implements OnInit {
             if (!response.error) {
               this.userOther = response.dataUser;
               console.log('Usuario seleccionado:', this.userOther);
-              resolve(); // Resuelve la promesa cuando se ha actualizado `userOther`
+              resolve(); // Resuelve la promesa cuando se ha actualizado userOther
             } else {
               reject('Error en la respuesta: ' + response.mensaje); // Rechaza la promesa si hay un error
             }

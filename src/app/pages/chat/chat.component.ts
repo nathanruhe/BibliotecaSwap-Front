@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ChatService } from 'src/app/shared/chat.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Message } from 'src/app/models/message';
@@ -13,7 +19,7 @@ import { Chat } from 'src/app/models/chat';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit {
   @ViewChild('messageContainer') messageContainer!: ElementRef; // Referencia al contenedor de mensajes
@@ -30,27 +36,33 @@ export class ChatComponent implements OnInit {
   public libro: Libro;
   public userOwner: Usuario; // Usuario propietario
   public userOther: Usuario; // Usuario solicitante
-  public idRated!: number;  // ID del usuario que recibe la valoración
-  public idRater!: number;  // ID del usuario que hace la valoración
-  public rating!: number;   // Valoración en estrellas
-  public comment!: string;  // Comentario
+  public idRated!: number; // ID del usuario que recibe la valoración
+  public idRater!: number; // ID del usuario que hace la valoración
+  public rating!: number; // Valoración en estrellas
+  public comment!: string; // Comentario
   public stars: number[] = [1, 2, 3, 4, 5]; // Para valorar las estrellas
   public estadoLibroAceptado: boolean = false; // boton para aceptar el intercambio
-  public estadoResenaEnviada: boolean = false // boton formulario
+  public estadoResenaEnviada: boolean = false; // boton formulario
   public ratingForm: FormGroup; // formulario valoracion
 
   // mensajes: Chat[] = [];
   chatList: any[] = [];
   nuevoMensaje: string = '';
   selectedUser: Usuario;
-  
+
   // chats: any[] = [];
-  selectedChat: any; 
-  constructor(private bookService: BookService, private chatService: ChatService, private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute, private cdr: ChangeDetectorRef, private router: Router ) {}
+  selectedChat: any;
+  constructor(
+    private bookService: BookService,
+    private chatService: ChatService,
+    private fb: FormBuilder,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    
-
     const storedLibro = sessionStorage.getItem('selectedLibro');
     if (storedLibro) {
       // Muestro la info del libro si existe
@@ -64,96 +76,58 @@ export class ChatComponent implements OnInit {
       }
     }
 
-    // para importar el id del userOther
-    this.route.params.subscribe(params => {
-      const ownerId = +params['ownerId'];
-      this.loadUserOther(ownerId);
-    });
+    // para importar el id del userOther +params['ownerId']
+    const ownerId =
+      this.route.snapshot.params['ownerId'] ??
+      this.userService.getUser().id_user;
 
     // Verifica si el usuario logueado está disponible
     this.userService.user$.subscribe((user: Usuario) => {
-      console.log(user);
-      
       if (user) {
         this.userOwner = user;
-        this.loadUsers();
-        console.log("Usuario logueado:", this.userOwner);
-        
+        this.userService.getUserById(ownerId).subscribe((resp: Respuesta) => {
+          if (!resp.error) {
+            // cargo la info del propietario del libro
+            this.userOther =
+              resp.dataUser.id_user === this.userService.getUser().id_user
+                ? undefined
+                : resp.dataUser;
+            // añado el id del usuario para poderle poner la reseña
+            this.idRated = resp.dataUser.id_user;
+            console.log('datos del propietario del libro:', this.userOther);
+            console.log('datos del libro solicitado:', this.libro);
+            this.loadUsers();
+          }
+        });
+
+        this.idRater = user.id_user;
+
         if (user.chats) {
           this.chats = user.chats;
-          console.log("Chats del usuario logueado:", this.chats);
           this.calculateTotalNoLeidos(); // Llamar después de asignar los chats
         } else {
-          console.log("El usuario no tiene chats.");
+          console.log('El usuario no tiene chats.');
         }
-    
+
         if (user.mensajes) {
           this.mensajes = user.mensajes;
-          console.log("Mensajes del usuario logueado:", this.mensajes);
+          console.log('Mensajes del usuario logueado:', this.mensajes);
         } else {
-          console.log("El usuario no tiene mensajes.");
+          console.log('El usuario no tiene mensajes.');
         }
       } else {
-        console.error("Error: Usuario no está definido o no tiene id_user.");
+        console.error('Error: Usuario no está definido o no tiene id_user.');
       }
     });
-    
+
     // this.loadChatUsers();
 
     // formulario
     this.ratingForm = this.fb.group({
       rating: [this.rating, Validators.required],
-      comment: [this.comment]
+      comment: [this.comment],
     });
   }
-
-  // loadChatUsers() {
-  //   this.chatService.getChatUsers(this.userId1).subscribe(usersWithLastMessages => {
-  //       this.chatList = usersWithLastMessages;
-  //       // this.chatList = usersWithLastMessages.sort((a, b) => new Date(b.lastMessage.timestamp).getTime() - new Date(a.lastMessage.timestamp).getTime());
-  //       console.log(this.chatList);
-  //       if (this.chatList.length > 0) {
-  //         this.selectUser(this.chatList[0].id_user1)
-  //       }
-  //   });
-  // }
-
-  // selectUser(userId: number) {
-  //   this.userId2 = userId;
-  //   console.log(this.userId2)
-  //   this.obtenerMensajes();
-  // }
-
-  // obtenerMensajes() {
-  //   this.chatService.obtenerMensajes(this.userId1, this.userId2).subscribe(data => {
-  //     this.mensajes = data;
-  //   }, error => {
-  //     console.error('Error al obtener los mensajes', error);
-  //   });
-  // }
-
-  // enviarMensaje() {
-  //   if (this.nuevoMensaje.trim()) {
-  //     const newMessage = new Chat(
-  //       0,
-  //       this.userId1,
-  //       this.userId2,
-  //       this.nuevoMensaje,
-  //       new Date() 
-  //     );
-      
-  //     this.chatService.enviarMensaje(newMessage).subscribe(response => {
-  //       if (!response.error) {
-  //         this.obtenerMensajes();  
-  //         this.nuevoMensaje = ''; 
-  //       } else {
-  //         console.error('Error al enviar el mensaje', response.message);
-  //       }
-  //     }, error => {
-  //       console.error('Error en la solicitud', error);
-  //     });
-  //   }
-  // }
 
   ngAfterViewChecked() {
     this.scrollToBottom(); // Llama a la función después de que la vista esté actualizada
@@ -161,61 +135,67 @@ export class ChatComponent implements OnInit {
 
   scrollToBottom(): void {
     try {
-      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+      this.messageContainer.nativeElement.scrollTop =
+        this.messageContainer.nativeElement.scrollHeight;
     } catch (err) {
       console.error('Error al hacer scroll: ', err);
     }
   }
 
-  selectChat(chatId: number): void {
-    this.selectedChatId = chatId;
-
-    this.userService.user$.subscribe((user: Usuario) => {
-      if (user.chats) {
-        this.chats = user.chats;
-        console.log("Chats del usuario logueado:", this.chats);
-      } else {
-        console.log("El usuario no tiene chats.");
-      }
-    });
+  selectChat(user: Usuario): void {
+    this.selectedChatId = user.id_chat;
 
     if (this.selectedChatId !== null) {
       this.chatService.getMessages(this.selectedChatId).subscribe(
         (response: any) => {
           if (!response.error) {
             this.messages = response.messages;
+            this.userOther = user;
+            this.updateUserOther(this.selectedChatId)
+              .then(() => {
+                // Forzar detección de cambios
+                this.cdr.detectChanges();
 
-            this.updateUserOther(chatId).then(() => {
-              // Forzar detección de cambios
-              this.cdr.detectChanges();
+                // Esperar un poco para asegurar que la vista se actualice
+                if (this.userOther && this.userOther.id_user) {
+                  this.router.navigate([`/chat/${this.userOther.id_user}`]);
+                } else {
+                  console.error(
+                    'ID del usuario no está disponible para redirigir.'
+                  );
+                }
+                // Ajusta el tiempo si es necesario
 
-              // Esperar un poco para asegurar que la vista se actualice
-              if (this.userOther && this.userOther.id_user) {
-                this.router.navigate([`/chat/${this.userOther.id_user}`]);
-              } else {
-                console.error('ID del usuario no está disponible para redirigir.');
-              }
-              // Ajusta el tiempo si es necesario
-
-              this.chatService.resetUnreadMessages(this.selectedChatId, this.userOwner.id_user).subscribe(
-                () => {
-                  this.updateChatInView(this.selectedChatId);
-                },
-                error => console.error('Error al resetear mensajes no leídos', error)
+                this.chatService
+                  .resetUnreadMessages(
+                    this.selectedChatId,
+                    this.userOwner.id_user
+                  )
+                  .subscribe(
+                    () => {
+                      this.updateChatInView(this.selectedChatId);
+                    },
+                    (error) =>
+                      console.error(
+                        'Error al resetear mensajes no leídos',
+                        error
+                      )
+                  );
+              })
+              .catch((err) =>
+                console.error('Error al actualizar `userOther`: ', err)
               );
-            }).catch(err => console.error('Error al actualizar `userOther`: ', err));
           } else {
             console.error(response.message);
           }
         },
-        error => console.error('Error al cargar mensajes', error)
+        (error) => console.error('Error al cargar mensajes', error)
       );
     }
   }
-  
 
   updateChatInView(chatId: number): void {
-    const updatedChat = this.chats.find(c => c.id_chat === chatId);
+    const updatedChat = this.chats.find((c) => c.id_chat === chatId);
     if (updatedChat) {
       if (this.userOwner.id_user === updatedChat.id_user1) {
         updatedChat.noLeido_user1 = 0;
@@ -229,9 +209,12 @@ export class ChatComponent implements OnInit {
 
   updateUserOther(chatId: number): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      const chat = this.chats.find(c => c.id_chat === chatId);
+      const chat = this.chats.find((c) => c.id_chat === chatId);
       if (chat) {
-        const otherUserId = chat.id_user1 === this.userOwner.id_user ? chat.id_user2 : chat.id_user1;
+        const otherUserId =
+          chat.id_user1 === this.userOwner.id_user
+            ? chat.id_user2
+            : chat.id_user1;
 
         this.userService.getUserById(otherUserId).subscribe(
           (response: Respuesta) => {
@@ -243,7 +226,7 @@ export class ChatComponent implements OnInit {
               reject('Error en la respuesta: ' + response.mensaje); // Rechaza la promesa si hay un error
             }
           },
-          error => reject('Error al obtener usuario: ' + error) // Rechaza la promesa en caso de error
+          (error) => reject('Error al obtener usuario: ' + error) // Rechaza la promesa en caso de error
         );
       } else {
         reject('Chat no encontrado'); // Rechaza la promesa si el chat no se encuentra
@@ -256,7 +239,7 @@ export class ChatComponent implements OnInit {
   }
 
   getUserOtherForChat(chatId: number): Usuario | undefined {
-    const chat = this.chats.find(c => c.id_chat === chatId);
+    const chat = this.chats.find((c) => c.id_chat === chatId);
     if (chat) {
       return chat.id_user1 === this.userOwner.id_user
         ? this.getUserById(chat.id_user2)
@@ -266,13 +249,13 @@ export class ChatComponent implements OnInit {
   }
 
   getUserById(userId: number): Usuario | undefined {
-    return this.users.find(user => user.id_user === userId);
+    return this.users.find((user) => user.id_user === userId);
   }
 
   calculateNoLeidosForChat(chatId: number): number {
     if (!this.userOwner) return 0;
 
-    const chat = this.chats.find(c => c.id_chat === chatId);
+    const chat = this.chats.find((c) => c.id_chat === chatId);
 
     if (chat) {
       if (this.userOwner.id_user === chat.id_user1) {
@@ -288,7 +271,7 @@ export class ChatComponent implements OnInit {
     this.totalNoLeidos = 0;
 
     if (this.userOwner && this.chats) {
-      this.chats.forEach(chat => {
+      this.chats.forEach((chat) => {
         if (this.userOwner.id_user === chat.id_user1) {
           this.totalNoLeidos += chat.noLeido_user1 || 0;
         } else if (this.userOwner.id_user === chat.id_user2) {
@@ -296,17 +279,19 @@ export class ChatComponent implements OnInit {
         }
       });
     }
-    console.log("Total mensajes no leídos:", this.totalNoLeidos);
+    console.log('Total mensajes no leídos:', this.totalNoLeidos);
   }
 
   loadUsers(): void {
-    console.log(this.userOwner);
-    
     if (this.userOwner) {
       this.chatService.getUsersWithChats(this.userOwner.id_user).subscribe(
         (data: Usuario[]) => {
           this.users = data;
-          console.log("Usuarios cargados:", this.users);
+          const chat = this.users.find(
+            (user) => user.id_user === this.userOther.id_user
+          );
+          this.selectChat(chat);
+          console.log('Usuarios cargados:', this.users);
         },
         (error) => {
           console.error('Error al cargar usuarios', error);
@@ -316,28 +301,35 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    
     if (this.newMessage.trim() && this.userOwner) {
       const messageData = {
         id_user1: this.userOwner.id_user,
         id_user2: this.userOther.id_user,
         emisor: this.userOwner.id_user,
-        message: this.newMessage
+        message: this.newMessage,
       };
 
       this.chatService.sendMessage(messageData).subscribe(
         (response) => {
-          const newMessage = {
+          const newMessage: Message = {
             id_message: response.id_message,
             id_chat: this.selectedChatId,
             id_sender: messageData.emisor,
             id_receiver: messageData.id_user2,
             message: this.newMessage,
-            timestamp: new Date()
+            timestamp: new Date(),
           };
 
           // Agrega el mensaje nuevo a la colección de mensajes del chat seleccionado
           this.messages.push(newMessage);
+
+          if (
+            this.users.length === 0 ||
+            !this.users.find((user) => user.id_user === newMessage.id_receiver)
+          ) {
+            this.users.push(this.userOther);
+            window.location.reload();
+          }
 
           this.newMessage = ''; // Limpia el campo de mensaje
           // this.calculateTotalNoLeidos(); // Actualiza el total de mensajes no leídos
@@ -352,25 +344,27 @@ export class ChatComponent implements OnInit {
   deleteChat(): void {
     if (this.userOther && this.userOther.id_user) {
       this.chatService.deleteChatsByUserId(this.userOther.id_user).subscribe(
-        response => {
+        (response) => {
           console.log('Chats eliminados correctamente', response);
-  
+
           // Filtra el chat eliminado de la lista local
-          this.chats = this.chats.filter(chat => chat.id_chat !== this.selectedChatId);
-  
+          this.users = this.users.filter(
+            (chat) => chat.id_chat !== this.selectedChatId
+          );
+          this.userOther = undefined;
+
           // Limpia la selección del chat actual
           this.selectedChatId = null;
-  
+
           // Recalcula el total de mensajes no leídos
           this.calculateTotalNoLeidos();
-  
+
           // Fuerza la detección de cambios para actualizar la vista
           this.cdr.detectChanges();
-  
           // Redirigir si es necesario
           this.router.navigate(['/chat']);
         },
-        error => {
+        (error) => {
           console.error('Error al eliminar los chats:', error);
         }
       );
@@ -379,23 +373,9 @@ export class ChatComponent implements OnInit {
     }
   }
 
-    // Redireccionar al perfil del usuario
-    goToUserProfile(userId: number): void {
-      this.router.navigate([`/perfil-otros/${this.userOther.id_user}`]);
-    }
-
-  // carga de datos
-  loadUserOther(ownerId: number) {
-    this.userService.getUserById(ownerId).subscribe((resp: Respuesta) => {
-      if (!resp.error) {
-        // cargo la info del propietario del libro
-        this.userOther = resp.dataUser;
-        // añado el id del usuario para poderle poner la reseña
-        this.idRated = resp.dataUser.id_user;
-        console.log("datos del propietario del libro:", this.userOther);
-        console.log("datos del libro solicitado:", this.libro);
-      }
-    });
+  // Redireccionar al perfil del usuario
+  goToUserProfile(userId: number): void {
+    this.router.navigate([`/perfil-otros/${this.userOther.id_user}`]);
   }
 
   // calcular estrellas
@@ -409,42 +389,55 @@ export class ChatComponent implements OnInit {
     if (this.ratingForm.valid) {
       this.estadoResenaEnviada = true;
       const { rating, comment } = this.ratingForm.value;
-      this.userService.submitRating(this.idRated, this.idRater, rating, comment).subscribe((resp: Respuesta) => {
-        if (!resp.error) {
-          this.ratingForm.reset();
-          this.rating = 0;
-          console.log(resp);
-        }
-      });
+      this.userService
+        .submitRating(this.idRated, this.idRater, rating, comment)
+        .subscribe((resp: Respuesta) => {
+          if (!resp.error) {
+            this.ratingForm.reset();
+            this.rating = 0;
+            console.log(resp);
+          }
+        });
     }
   }
-  
+
   // cambio estado libro, añado fechas prestamo, añado persona prestada
   cambiarEstadoLibro() {
     if (this.libro) {
       const currentDate = new Date();
       const endDate = new Date();
       endDate.setDate(currentDate.getDate() + 10);
-  
+
       const updateData = {
         status: 'Prestado',
         start_date: currentDate.toISOString().split('T')[0],
         end_date: endDate.toISOString().split('T')[0],
-        borrower: this.userOther.id_user
+        borrower: this.userOther.id_user,
       };
-  
-      this.bookService.updateBookStatus(this.libro.id_book, updateData).subscribe((resp: Respuesta) => {
-        if (!resp.error) {
-          this.libro = resp.book;
-          sessionStorage.removeItem('selectedLibro');
-          this.estadoLibroAceptado = true;
-          console.log('Estado del libro aceptado:', this.estadoLibroAceptado);
-        } else {
-          console.error('Error al actualizar el estado del libro');
-        }
-      }, error => {
-        console.error('Error en la solicitud de actualización del estado del libro:', error);
-      });
+
+      this.bookService
+        .updateBookStatus(this.libro.id_book, updateData)
+        .subscribe(
+          (resp: Respuesta) => {
+            if (!resp.error) {
+              this.libro = resp.book;
+              sessionStorage.removeItem('selectedLibro');
+              this.estadoLibroAceptado = true;
+              console.log(
+                'Estado del libro aceptado:',
+                this.estadoLibroAceptado
+              );
+            } else {
+              console.error('Error al actualizar el estado del libro');
+            }
+          },
+          (error) => {
+            console.error(
+              'Error en la solicitud de actualización del estado del libro:',
+              error
+            );
+          }
+        );
     }
   }
 }

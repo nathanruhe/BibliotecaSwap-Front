@@ -111,6 +111,43 @@ export class ChatComponent implements OnInit {
 
   selectChat(chatId: number): void {
     this.selectedChatId = chatId;
+  
+    // Resetea la información del libro al cambiar de chat
+    this.libro = null;  // Aquí se limpia la información del libro
+  
+    if (this.selectedChatId !== null) {
+      this.chatService.getMessages(this.selectedChatId).subscribe(
+        (response: any) => {
+          if (!response.error) {
+            this.messages = response.messages;
+  
+            this.updateUserOther(chatId).then(() => {
+              this.cdr.detectChanges();
+              if (this.userOther && this.userOther.id_user) {
+                this.router.navigate([`/chat/${this.userOther.id_user}`]);
+              } else {
+                console.error('ID del usuario no está disponible para redirigir.');
+              }
+  
+              this.chatService.resetUnreadMessages(this.selectedChatId, this.userOwner.id_user).subscribe(
+                () => {
+                  this.updateChatInView(this.selectedChatId);
+                },
+                error => console.error('Error al resetear mensajes no leídos', error)
+              );
+            }).catch(err => console.error('Error al actualizar `userOther`: ', err));
+          } else {
+            console.error(response.message);
+          }
+        },
+        error => console.error('Error al cargar mensajes', error)
+      );
+    }
+  }
+
+  /*
+  selectChat(chatId: number): void {
+    this.selectedChatId = chatId;
 
     this.userService.user$.subscribe((user: Usuario) => {
       if (user.chats) {
@@ -154,7 +191,7 @@ export class ChatComponent implements OnInit {
       );
     }
   }
-  
+  */
 
   updateChatInView(chatId: number): void {
     const updatedChat = this.chats.find(c => c.id_chat === chatId);

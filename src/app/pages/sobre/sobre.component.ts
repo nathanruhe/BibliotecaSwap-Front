@@ -20,7 +20,7 @@ export class SobreComponent {
         name: "Jonathan",
         last_name: "Ruiz",
         email: "Azul@gmail.com",
-        photo: "../../../assets/icons/user2.png",
+        photo: "../../../assets/jonathan.png",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
         rating: 3,
@@ -43,7 +43,7 @@ export class SobreComponent {
         name: "Jesús",
         last_name: "Muñoz",
         email: "Verde@gmail.com",
-        photo: "../../../assets/icons/user2.png",
+        photo: "../../../assets/jesus.jpg",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
         rating: 3,
@@ -63,10 +63,10 @@ export class SobreComponent {
       },
       {
         id_user: 3,
-        name: "Queen",
+        name: "Queensley",
         last_name: "Odigie",
         email: "Morado@gmail.com",
-        photo: "../../../assets/icons/user2.png",
+        photo: "../../../assets/queen.jpg",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
         rating: 3,
@@ -89,7 +89,7 @@ export class SobreComponent {
         name: "Judit",
         last_name: "Amate",
         email: "Naranja@gmail.com",
-        photo: "../../../assets/icons/user2.png",
+        photo: "../../../assets/judit.jpg",
         about: "Desarrollador/a Full-Stack 💻--> Todo esto empezó como proyecto final de un bootcamp. Ahí conocí " +
                 "al resto del equipo y nos fue tan bien que  le dimos vida y lo sacamos a la web.",
         rating: 3,

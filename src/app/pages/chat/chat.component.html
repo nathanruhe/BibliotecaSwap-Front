@@ -84,7 +84,7 @@
               [disabled]="estadoLibroAceptado"
               [ngClass]="{ accepted: estadoLibroAceptado }"
             >
-              {{ estadoLibroAceptado ? "Aceptado" : "Aceptar" }}
+              {{ estadoLibroAceptado ? "Solicitado" : "Solicitar" }}
             </button>
           </p>
         </div>
@@ -177,7 +177,7 @@
   <ng-template #noLibro2>
     <p class="status2">
       Estado:
-      <button class="btn-principal aceptar status3">Aceptar</button>
+      <button class="btn-principal aceptar status3">Solicitado</button>
     </p>
   </ng-template>
 
